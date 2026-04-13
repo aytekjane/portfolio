@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aytek Jane | Horology & Design Studio</title>
+    <style>
+        /* --- MODERN MINIMALIST TEMA --- */
+        body {
+            background-color: rgb(245, 245, 245); 
+            color: #1a1a1a; 
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0; padding: 0;
+            display: flex; flex-direction: column; align-items: center; 
+            min-height: 100vh;
+        }
+
+        /* --- ÜST BAR (HEADER) --- */
+        .header-nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1100; padding: 15px 40px; box-sizing: border-box;
+            background-color: rgba(245, 245, 245, 0.95);
+            border-bottom: 1px solid rgb(0, 103, 79); 
+        }
+
+        #header-logo { 
+            font-size: 24px; color: #1a1a1a; font-weight: 700; cursor: pointer;
+            text-decoration: none; display: flex; text-transform: uppercase;
+        }
+        #header-logo span { display: inline-block; transition: font-family 0.3s ease; }
+        #header-logo span.space { width: 0.2em; }
+
+        .nav-links { display: flex; gap: 20px; }
+        .nav-item {
+            cursor: pointer; color: #1a1a1a; padding: 8px 0; font-weight: 500; font-size: 12px;
+            text-transform: uppercase; text-decoration: none; letter-spacing: 1.2px;
+            transition: color 0.3s ease; position: relative;
+        }
+        .nav-item::after {
+            content: ''; position: absolute; width: 0; height: 1px;
+            bottom: 0; left: 0; background-color: #FF91AF; 
+            transition: width 0.3s ease;
+        }
+        .nav-item:hover::after { width: 100%; }
+        #langBtn { color: #888; }
+
+        /* --- KATEGORİ MENÜSÜ --- */
+        .category-menu {
+            position: fixed; top: 70px; left: 0; width: 100%;
+            display: flex; justify-content: center; gap: 25px;
+            background-color: rgba(245, 245, 245, 0.9);
+            padding: 15px 0; z-index: 1050; border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .cat-item {
+            font-size: 11px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 1.5px; cursor: pointer; color: #888;
+            transition: color 0.3s ease;
+        }
+        .cat-item:hover, .cat-item.active { color: #1a1a1a; }
+        .cat-item.active { border-bottom: 1px solid #FF91AF; }
+
+        /* --- INTRO --- */
+        .intro { 
+            margin-bottom: 60px; margin-top: 180px; 
+            display: flex; flex-direction: column; align-items: flex-start;
+            text-align: left; gap: 15px; max-width: 1200px; width: 100%;
+            padding: 0 40px; box-sizing: border-box;
+        }
+        .subtitle { font-size: 18px; color: #666; margin: 0; font-weight: 400; letter-spacing: 0.2px; max-width: 800px; line-height: 1.5; }
+
+        /* --- PROJE BÖLÜMLERİ --- */
+        .project-section { width: 100%; max-width: 1200px; margin-bottom: 60px; padding: 0 40px; box-sizing: border-box; }
+        .project-header { 
+            margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px; 
+            font-weight: 600; text-align: left; color: #1a1a1a; font-size: 14px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .project-header::before {
+            content: ''; display: inline-block; width: 8px; height: 8px;
+            background-color: #FF91AF; border-radius: 50%;
+        }
+        .divider { width: 100%; max-width: 1120px; border-top: 1px solid #FF91AF; margin: 40px 40px; }
+
+        /* --- GALERİ --- */
+        .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 40px; align-items: start; }
+        .img-wrapper { position: relative; width: 100%; padding-top: 100%; } 
+        .img-wrapper.wide { grid-column: span 2; padding-top: calc(50% - 7.5px); }
+        
+        .gallery img {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: block; cursor: pointer; filter: grayscale(100%); 
+            transition: filter 0.4s ease, transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.4s ease, box-shadow 0.4s ease;
+            box-sizing: border-box; object-fit: cover; 
+            border: 2px solid transparent; 
+            z-index: 1;
+        }
+        .gallery img:hover { 
+            filter: grayscale(0%); 
+            transform: translateY(-10px) scale(1.02); 
+            border-color: #FF91AF; 
+            z-index: 10; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15); 
+        }
+
+        /* --- METİNLER --- */
+        .project-desc-container { margin-bottom: 40px; text-align: left; max-width: 900px; }
+        .project-desc { font-size: 16px; line-height: 1.8; color: #444; margin-bottom: 15px; font-weight: 300; white-space: pre-line; }
+        .render-note { display: block; font-size: 11px; font-style: italic; color: #888; margin-bottom: 25px; }
+        .project-link { display: inline-block; color: #1a1a1a; text-decoration: none; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; margin-right: 25px; }
+        .project-link:hover { color: #FF91AF; }
+
+        /* --- LIGHTBOX --- */
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.98); z-index: 2000; justify-content: center; align-items: center; cursor: pointer; }
+        .lb-content { position: relative; max-width: 90%; max-height: 90%; }
+        .lightbox img { max-width: 100%; max-height: 85vh; object-fit: contain; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+        .lb-close { position: absolute; top: -60px; right: 0; font-size: 12px; color: #888; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
+
+        @media (max-width: 768px) { 
+            .gallery { grid-template-columns: repeat(2, 1fr); } 
+            #header-logo { font-size: 18px; }
+            .intro { margin-top: 160px; }
+            .img-wrapper.wide { padding-top: calc(50% - 7.5px); } 
+            .category-menu { gap: 12px; overflow-x: auto; padding: 15px 20px; justify-content: flex-start; }
+            .cat-item { white-space: nowrap; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-nav">
+        <a href="#" id="header-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Aytek Jane</a>
+        <div class="nav-links">
+            <a href="mailto:aytekjane@gmail.com" class="nav-item" id="contactBtn">CONTACT</a>
+            <div class="nav-item" onclick="toggleLanguage()" id="langBtn">TÜRKÇE</div>
+        </div>
+    </div>
+
+    <div class="category-menu">
+        <div class="cat-item active" onclick="filterProjects('all', this)" id="cat-all">ALL</div>
+        <div class="cat-item" onclick="filterProjects('horology', this)" id="cat-horology">HOROLOGY</div>
+        <div class="cat-item" onclick="filterProjects('furniture', this)" id="cat-furniture">FURNITURE</div>
+        <div class="cat-item" onclick="filterProjects('lighting', this)" id="cat-lighting">LIGHTING</div>
+        <div class="cat-item" onclick="filterProjects('fashion', this)" id="cat-fashion">FASHION</div>
+        <div class="cat-item" onclick="filterProjects('interior', this)" id="cat-interior">INTERIOR</div>
+    </div>
+
+    <div class="intro">
+        <p class="subtitle" id="desc">A space where you can find my selected works and ideas.</p>
+    </div>
+
+    <div class="project-section filter-horology">
+        <div class="project-header" id="proj1Title">HOROLOGY: UNIMATIC UC1 SKELETON CONCEPT</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="proj1Text">A skeleton variation of the Modello Uno UC1 Classic diver watch was created for Unimatic using an NH72 movement, with a transparent dial designed to reveal the mechanism while preserving the watch’s original minimalist character through a circular screen-printed pattern that creates a subtle semi-transparent effect; the movement is also visible through a window on the case back, while gray-toned corporate typography on the bezel indicates the seconds, and the transparency of both the front and back responds to the curiosity of users new to automatic watches, who often want to observe the mechanical movement, especially in their first timepiece.</p>
+            <a href="https://www.unimaticwatches.com" target="_blank" class="project-link">UNIMATICWATCHES.COM</a>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper"><img src="images/unimatic1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/unimatic2.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/unimatic3.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/unimatic4.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/unimatic5.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/unimatic6.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/unimatic7.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/unimatic8.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/unimatic9.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-horology"></div>
+
+    <div class="project-section filter-horology">
+        <div class="project-header" id="proj2Title">HOROLOGY: CITIZEN CONCEPT</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="proj2Text">This project is based on Citizen’s Eco-Drive technology, which is powered by light energy, and features a concept watch with a clean interface displaying day, battery level, and date information, reflecting the brand’s commitment to sustainable and high-tech watchmaking; the design is inspired by the cherry blossom (sakura) of Japan, incorporating its delicate and minimal aesthetic into the overall concept.</p>
+            <a href="https://www.citizenwatch.com" target="_blank" class="project-link">CITIZENWATCH.COM</a>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper"><img src="images/citizen1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/citizen2.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/citizen3.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/citizen4.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/citizen5.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/citizen6.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/citizen7.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-horology"></div>
+
+    <div class="project-section filter-furniture">
+        <div class="project-header" id="proj3Title">FURNITURE: SOFA CONCEPT</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="proj3Text">A modern furniture concept exploring comfort and form through industrial design principles. This study focuses on modular structures and the intersection of ergonomic utility and sculptural aesthetics.</p>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper"><img src="images/sofa-a1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/sofa-a2.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/sofa-a3.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/sofa-a4.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-furniture"></div>
+
+    <div class="project-section filter-furniture">
+        <div class="project-header" id="projModularSofaTitle">FURNITURE: MODULAR SOFA (CLIENT: WANGAN)</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="projModularSofaText">A modular sofa system designed for flexibility and adaptability in contemporary living spaces. This concept explores customizable configurations through interlocking modules, combining sustainable materials with ergonomic comfort.</p>
+            <a href="https://wangan.studio/" target="_blank" class="project-link">WANGAN.STUDIO</a>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/sofa-b1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/sofa-b2.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/sofa-b3.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/sofa-b4.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/sofa-b5.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-furniture"></div>
+
+    <div class="project-section filter-furniture">
+        <div class="project-header" id="projHotelTitle">FURNITURE: HOTEL FURNITURE DESIGN (CLIENT: WANGAN)</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="projHotelText">Designed for use in equestrian hotel interior.</p>
+            <a href="https://wangan.studio/" target="_blank" class="project-link">WANGAN.STUDIO</a>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper"><img src="images/sofa-c1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/sofa-c2.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/sofa-c3.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/sofa-c4.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-furniture"></div>
+
+    <div class="project-section filter-furniture">
+        <div class="project-header" id="projBedTitle">FURNITURE: BED CONCEPT</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="projBedText">A contemporary bed design study exploring structural minimalism and material warmth. This concept focuses on the balance between geometric precision and the comfort required for a restful environment.</p>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper"><img src="images/bed-a1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/bed-a2.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/bed-a3.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-furniture"></div>
+
+    <div class="project-section filter-furniture">
+        <div class="project-header" id="proj4Title">FURNITURE: JANE STREET FURNITURE (CLIENT: URBAN JOBS)</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="proj4Text">With seven modules, it is possible to create geometries that complement architectural forms. The design evolved through an analysis of the history of street furniture. Winner of EDIDA 2020 in the Outdoor Furniture category.</p>
+            <span class="render-note" id="janeNote">Context renders belong to Urban Jobs.</span>
+            <a href="https://www.urbanjobs.istanbul/" target="_blank" class="project-link">URBANJOBS.ISTANBUL</a>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/jane1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/jane2.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/jane3.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/jane4.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/jane5.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/jane6.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/jane7.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/jane8.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-furniture"></div>
+
+    <div class="project-section filter-furniture">
+        <div class="project-header" id="projBurositTitle">FURNITURE: BANZAI OFFICE CHAIR (CLIENT: BÜROSIT - DESIGN ADVISING)</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="projBurositText">This product is the result of weekly meetings conducted with the company’s owner, focusing on developing the company’s new look and feel and advancing a design-driven approach. Throughout the process, we aimed to simplify the design language primarily through reduction, making it more refined. It represents one of the first elements of the company’s modern new identity.</p>
+            <span class="render-note" id="burositNote">Photos belong to Bürosit.</span>
+            <a href="https://www.burosit.com/" target="_blank" class="project-link">BUROSIT.COM</a>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/burosit1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/burosit2.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/burosit3.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-furniture"></div>
+
+    <div class="project-section filter-furniture">
+        <div class="project-header" id="projCocoonTitle">FURNITURE: ISTANBUL DESIGN WEEK COCOON STRUCTURE (IN-HOUSE WORK: AUTOBAN)</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="projCocoonText">This project reinterprets the cocoon zone elements developed by the company for Heydar Aliyev Airport in Azerbaijan, translating their distinctive details into a small-scale outdoor seating unit for Istanbul Design Week. Defined by its own volume, the structure creates an immersive experience for users to rest and engage with the sunset.</p>
+            <a href="https://autoban.com/" target="_blank" class="project-link">AUTOBAN.COM</a>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/cocoon1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/cocoon2.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/cocoon3.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/cocoon4.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-furniture"></div>
+
+    <div class="project-section filter-furniture">
+        <div class="project-header" id="projUnionTitle">FURNITURE: UNION COLLECTION (IN-HOUSE WORK: AUTOBAN)</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="projUnionText">Launched at Maison&Objet Paris, the Union family was developed as a collaborative team effort, consisting of a bed, sofa, and table. The collection has been widely utilized across the company’s projects. Rooted in the domestic environment, Union emphasizes form while prioritizing maximum comfort. It is crafted using tactile, natural materials, combining traditional craftsmanship with modern production techniques. Its distinctive and unconventional pieces are defined by soft curves and subtle design details throughout.</p>
+            <span class="render-note" id="unionNote">Renders and photos belong to Autoban.</span>
+            <a href="https://autoban.com/" target="_blank" class="project-link">AUTOBAN.COM</a>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/union1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/union2.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/union3.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/union4.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/union5.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/union6.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-furniture"></div>
+
+    <div class="project-section filter-lighting">
+        <div class="project-header" id="projStarTitle">LIGHTING: STAR PENDANT LIGHT (IN-HOUSE WORK: AUTOBAN)</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="projStarText">Guided by the golden ratio, each element of the product was proportioned to form a harmonious whole. The project also included PCB design, along with the development of wiring and the necessary driver system.</p>
+            <a href="https://autoban.com/" target="_blank" class="project-link">AUTOBAN.COM</a>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/pendant-c1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/pendant-c2.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/pendant-c3.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/pendant-c4.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/pendant-c5.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-lighting"></div>
+
+    <div class="project-section filter-lighting">
+        <div class="project-header" id="proj5Title">LIGHTING: FELT PENDANT LIGHT CONCEPT</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="pendantText">A minimalist lighting concept utilizing the acoustic and aesthetic properties of felt to create a warm, diffused lighting environment.</p>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/pendant-a1.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-lighting"></div>
+
+    <div class="project-section filter-lighting">
+        <div class="project-header" id="projPendantBTitle">LIGHTING: THE NEW BIG PENDANT LIGHT (IN-HOUSE WORK: AUTOBAN)</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="projPendantBText">A large-scale pendant lighting design developed for high-volume interior spaces, combining industrial structural elements with refined lighting aesthetics.</p>
+            <a href="https://autoban.com/" target="_blank" class="project-link">AUTOBAN.COM</a>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper"><img src="images/pendant-b1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/pendant-b2.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/pendant-b3.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-lighting"></div>
+
+    <div class="project-section filter-lighting">
+        <div class="project-header" id="projGhDeskTitle">LIGHTING: GRAND HYATT DESK LAMP (IN-HOUSE WORK: AUTOBAN)</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="projGhDeskText">Custom desk lamp design for the Grand Hyatt project, balancing functional task lighting with the sophisticated aesthetic language of luxury hospitality interiors.</p>
+            <a href="https://autoban.com/" target="_blank" class="project-link">AUTOBAN.COM</a>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/ghdesk1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/ghdesk2.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-lighting"></div>
+
+    <div class="project-section filter-lighting">
+        <div class="project-header" id="projBurganTitle">LIGHTING: BURGAN BANK PRIVATE - LIGHTING PLAN (IN-HOUSE WORK: I-AM ASSOCIATES)</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="projBurganText">Lighting design for Burgan Bank’s private branch, including the development of the lighting layout, selection of lighting fixtures, and calculation of light levels using DIALux software.</p>
+            <span class="render-note" id="burganNote">Photos belong to I-AM Associates.</span>
+            <a href="https://www.i-amonline.com/" target="_blank" class="project-link">I-AMONLINE.COM</a>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/burgan1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/burgan2.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/burgan3.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/burgan4.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/burgan5.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/burgan6.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/burgan7.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-lighting"></div>
+
+    <div class="project-section filter-fashion">
+        <div class="project-header" id="proj6Title">FASHION: SERVER CONCEPT</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="fashionText">This project explores the intersection of functional server design and high-fashion aesthetics. This conceptual study aims to redefine the visual language of industrial technology within a lifestyle context.</p>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper"><img src="images/fashion-a1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/fashion-a2.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/fashion-a3.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/fashion-a4.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/fashion-a5.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-fashion"></div>
+
+    <div class="project-section filter-interior">
+        <div class="project-header" id="proj7Title">INTERIOR: KILIMANJARO BAR ISTANBUL (IN-HOUSE WORK: AUTOBAN)</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="kilimanjaroText">Located inside the recently developed Bomonti Historic Brewery, Kilimanjaro is a casual restaurant-bar that is an integral part of Bomontiada. Won the Time Out Istanbul “Best Restaurant” award. Developed the bar concept, adapted and refined the geometry into developable surfaces, produced structural drawings, and designed wall fixture lighting and pendant light units.</p>
+            <span class="render-note" id="kiliNote">Photography: Engin Aydeniz</span>
+            <a href="https://autoban.com/" target="_blank" class="project-link">AUTOBAN.COM</a>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/kilimanjaro1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/kilimanjaro2.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/kilimanjaro3.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/kilimanjaro4.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/kilimanjaro5.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/kilimanjaro6.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/kilimanjaro7.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/kilimanjaro8.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/kilimanjaro9.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/kilimanjaro10.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/kilimanjaro11.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-interior"></div>
+
+    <div class="project-section filter-interior">
+        <div class="project-header" id="proj8Title">INTERIOR: SMILES DENTAL CLINIC PARAMETRIC WALL (CLIENT: WANGAN)</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="smilesText">Providing parametric drawings of the developed wall concept and creating production drawings for a dental clinic located in Ankara, Turkey. Winner of the Best of Year 2025 Interior Design Award.</p>
+            <span class="render-note" id="smilesNote">Photography: Ibrahim Ozbunar, 645 Studio</span>
+            <a href="https://wangan.studio/" target="_blank" class="project-link">WANGAN.STUDIO</a>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/smiles1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/smiles2.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/smiles3.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/smiles4.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/smiles5.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/smiles6.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-interior"></div>
+
+    <div class="project-section filter-interior">
+        <div class="project-header" id="projSinemiraTitle">INTERIOR: SINEMIRA YACHT INTERIOR FABRICATION DRAWINGS (CLIENT: NORMAL)</div>
+        <div class="project-desc-container">
+            <span class="render-note" id="sinemiraNote">Renders belong to Normal.</span>
+            <a href="https://www.normal.com.tr/" target="_blank" class="project-link">NORMAL.COM.TR</a>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/sinemira1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/sinemira2.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/sinemira3.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/sinemira4.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-interior"></div>
+
+    <div class="project-section filter-interior">
+        <div class="project-header" id="proj9Title">INTERIOR: VAKKORAMA STORE PARAMETRIC LIGHTING INSTALLATION (CLIENT: VAKKORAMA)</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="vakkoramaText">A study for the Vakkorama store at Zorlu Center in Istanbul. The project incorporates parametric lighting for the vertical walls. It was developed with the intention of having minimal impact on the existing lighting scheme created by lighting designer Ali Berkman, which defines the spatial light map.
+
+The light leaking from the frames was controlled within a defined mapping system, where the scale of the circular pattern on the printed surface was parametrically adjusted through software.</p>
+            <span class="render-note" id="vakkNote">Photography: Ali Berkman, Aytek Jane</span>
+            <a href="https://www.vakkorama.com.tr" target="_blank" class="project-link">VAKKORAMA.COM.TR</a>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/vakkorama1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/vakkorama2.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/vakkorama3.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/vakkorama4.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/vakkorama5.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/vakkorama6.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/vakkorama7.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/vakkorama8.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/vakkorama9.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/vakkorama10.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/vakkorama11.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/vakkorama12.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-interior"></div>
+
+    <div class="project-section filter-interior">
+        <div class="project-header" id="proj10Title">INTERIOR: GAD PARK OFFICE (IN-HOUSE WORK: GAD ARCHITECTURE)</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="gadText">I contributed to the interior architectural design, spatial layout planning, and lighting design for the GAD Architecture office, which is located within a former multi-storey parking structure.</p>
+            <span class="render-note" id="gadNote">Photos belong to Gad Architecture.</span>
+            <a href="https://www.gadarchitecture.com/" target="_blank" class="project-link">GADARCHITECTURE.COM</a>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper"><img src="images/gad1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/gad2.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/gad3.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/gad4.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/gad5.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/gad6.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-interior"></div>
+
+    <div class="project-section filter-interior">
+        <div class="project-header" id="projMarbleTitle">INTERIOR: MARBLE BATHROOM UNIT DESIGN</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="projMarbleText">A bathroom unit and interior design project developed for a marble manufacturer based in the United States.</p>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/marble1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/marble2.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="divider filter-interior"></div>
+
+    <div class="project-section filter-interior">
+        <div class="project-header" id="proj12Title">INTERIOR: SAMSUNG EMAAR MALL - EXPERIENCE STORE (IN-HOUSE WORK: PROJECT MANAGER - ONERX)</div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="samsungText">Interior design and project management for the Samsung Experience Store at Emaar Mall were carried out as a collaborative team effort involving project managers, designers, manufacturers, and contractors. The project focused on retail flow and technological integration, developed in accordance with the design guidelines created by Simon Orchover, former retail design director at Samsung and Apple. Recognized as a world-first concept, the Samsung Experience Store combines experience, sales, and after-sales services within a single unified environment. As Samsung expands this model globally, the Istanbul store has been regarded as a reference point. Within the store, first-class technical services are provided to ensure customers can continuously benefit from Samsung technologies without interruption.</p>
+            <span class="render-note" id="samsungNote">Photos belong to Onerx.</span>
+        </div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/samsung1.jpg" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/samsung2.jpg" onclick="openLightbox(this)"></div>
+        </div>
+    </div>
+
+    <div class="lightbox" id="lightbox" onclick="changeImage(1)">
+        <div class="lb-content">
+            <div class="lb-close" onclick="closeLightbox(); event.stopPropagation();">CLOSE</div>
+            <img id="lightboxImg" src="">
+        </div>
+    </div>
+
+    <script>
+        // --- LOGO ANIMASYONU ---
+        const logoElement = document.getElementById('header-logo');
+        const fonts = ['Arial', 'Verdana', 'Times New Roman', 'Impact', 'Courier New', 'Georgia', 'Trebuchet MS'];
+        logoElement.innerHTML = "AYTEK JANE".split('').map(char => char === " " ? `<span class="space">&nbsp;</span>` : `<span>${char}</span>`).join('');
+        const logoSpans = logoElement.querySelectorAll('span:not(.space)');
+        function changeLogoFont() {
+            logoSpans[Math.floor(Math.random() * logoSpans.length)].style.fontFamily = fonts[Math.floor(Math.random() * fonts.length)];
+            setTimeout(changeLogoFont, Math.random() * 500 + 200);
+        }
+        changeLogoFont();
+
+        // --- FILTRELEME FONKSIYONU ---
+        function filterProjects(category, element) {
+            document.querySelectorAll('.cat-item').forEach(item => item.classList.remove('active'));
+            element.classList.add('active');
+            const sections = document.querySelectorAll('.project-section');
+            const dividers = document.querySelectorAll('.divider');
+            
+            sections.forEach(sec => {
+                if (category === 'all' || sec.classList.contains('filter-' + category)) {
+                    sec.style.display = 'block';
+                } else {
+                    sec.style.display = 'none';
+                }
+            });
+
+            dividers.forEach(div => {
+                if (category === 'all' || div.classList.contains('filter-' + category)) {
+                    div.style.display = 'block';
+                } else {
+                    div.style.display = 'none';
+                }
+            });
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // --- DİL VERİLERİ ---
+        const data = {
+            en: {
+                desc: "A space where you can find my selected works and ideas.",
+                proj1Title: "HOROLOGY: UNIMATIC UC1 SKELETON CONCEPT",
+                proj2Title: "HOROLOGY: CITIZEN CONCEPT",
+                proj3Title: "FURNITURE: SOFA CONCEPT",
+                projModularSofaTitle: "FURNITURE: MODULAR SOFA (CLIENT: WANGAN)",
+                projHotelTitle: "FURNITURE: HOTEL FURNITURE DESIGN (CLIENT: WANGAN)",
+                projBedTitle: "FURNITURE: BED CONCEPT",
+                proj4Title: "FURNITURE: JANE STREET FURNITURE (CLIENT: URBAN JOBS)",
+                projBurositTitle: "FURNITURE: BANZAI OFFICE CHAIR (CLIENT: BÜROSIT - DESIGN ADVISING)",
+                projCocoonTitle: "FURNITURE: ISTANBUL DESIGN WEEK COCOON STRUCTURE (IN-HOUSE WORK: AUTOBAN)",
+                projUnionTitle: "FURNITURE: UNION COLLECTION (IN-HOUSE WORK: AUTOBAN)",
+                projStarTitle: "LIGHTING: STAR PENDANT LIGHT (IN-HOUSE WORK: AUTOBAN)",
+                projStarText: "Guided by the golden ratio, each element of the product was proportioned to form a harmonious whole. The project also included PCB design, along with the development of wiring and the necessary driver system.",
+                proj5Title: "LIGHTING: FELT PENDANT LIGHT CONCEPT",
+                projPendantBTitle: "LIGHTING: THE NEW BIG PENDANT LIGHT (IN-HOUSE WORK: AUTOBAN)",
+                projGhDeskTitle: "LIGHTING: GRAND HYATT DESK LAMP (IN-HOUSE WORK: AUTOBAN)",
+                projBurganTitle: "LIGHTING: BURGAN BANK PRIVATE - LIGHTING PLAN (IN-HOUSE WORK: I-AM ASSOCIATES)",
+                proj6Title: "FASHION: SERVER CONCEPT",
+                proj7Title: "INTERIOR: KILIMANJARO BAR ISTANBUL (IN-HOUSE WORK: AUTOBAN)",
+                proj8Title: "INTERIOR: SMILES DENTAL CLINIC PARAMETRIC WALL (CLIENT: WANGAN)",
+                projSinemiraTitle: "INTERIOR: SINEMIRA YACHT INTERIOR FABRICATION DRAWINGS (CLIENT: NORMAL)",
+                proj9Title: "INTERIOR: VAKKORAMA STORE PARAMETRIC LIGHTING INSTALLATION (CLIENT: VAKKORAMA)",
+                proj10Title: "INTERIOR: GAD PARK OFFICE (IN-HOUSE WORK: GAD ARCHITECTURE)",
+                projMarbleTitle: "INTERIOR: MARBLE BATHROOM UNIT DESIGN",
+                proj12Title: "INTERIOR: SAMSUNG EMAAR MALL - EXPERIENCE STORE (IN-HOUSE WORK: PROJECT MANAGER - ONERX)",
+                contactBtn: "CONTACT",
+                langBtn: "TÜRKÇE"
+            },
+            tr: {
+                desc: "Seçilmiş çalışmalarımı ve fikirlerimi bulabileceğiniz bir alan.",
+                proj1Title: "SAAT: UNIMATIC UC1 İSKELET KONSEPTİ",
+                proj2Title: "SAAT: CITIZEN KONSEPTİ",
+                proj3Title: "MOBİLYA: SOFA KONSEPTİ",
+                projModularSofaTitle: "MOBİLYA: MODÜLER KANEPE (MÜŞTERİ: WANGAN)",
+                projHotelTitle: "MOBİLYA: OTEL MOBİLYASI TASARIMI (MÜŞTERİ: WANGAN)",
+                projBedTitle: "MOBİLYA: YATAK KONSEPTİ",
+                proj4Title: "MOBİLYA: JANE SOKAK MOBİLYASI (MÜŞTERİ: URBAN JOBS)",
+                projBurositTitle: "MOBİLYA: BANZAI OFİS SANDALYESİ (MÜŞTERİ: BÜROSİT - TASARIM DANIŞMANLIĞI)",
+                projCocoonTitle: "MOBİLYA: İSTANBUL DESIGN WEEK COCOON YAPISI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                projUnionTitle: "MOBİLYA: UNION KOLEKSİYONU (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                projStarTitle: "AYDINLATMA: STAR SARKIT LAMBA (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                projStarText: "Altın oran rehberliğinde, ürünün her bir öğesi uyumlu bir bütün oluşturacak şekilde oranlanmıştır. Proje ayrıca PCB tasarımının yanı sıra kablolama ve gerekli sürücü sisteminin geliştirilmesini de içermektedir.",
+                proj5Title: "AYDINLATMA: KEÇE SARKIT LAMBA KONSEPTİ",
+                projPendantBTitle: "AYDINLATMA: THE NEW BIG PENDANT LIGHT (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                projGhDeskTitle: "AYDINLATMA: GRAND HYATT MASA LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                projBurganTitle: "AYDINLATMA: BURGAN BANK PRIVATE - AYDINLATMA PLANI (KURUM İÇİ ÇALIŞMA: I-AM ASSOCIATES)",
+                proj6Title: "MODA: SERVER KONSEPTİ",
+                proj7Title: "İÇ MİMARİ: KILIMANJARO BAR İSTANBUL (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                proj8Title: "İÇ MİMARİ: SMILES DENTAL CLINIC PARAMETRIK DUVAR (MÜŞTERİ: WANGAN)",
+                projSinemiraTitle: "İÇ MİMARİ: SINEMIRA YAT İÇ MEKAN ÜRETİM ÇİZİMLERİ (MÜŞTERİ: NORMAL)",
+                proj9Title: "İÇ MİMARİ: VAKKORAMA MAĞAZASI PARAMETRİK AYDINLATMA ENSTALASYONU (MÜŞTERİ: VAKKORAMA)",
+                proj10Title: "İÇ MİMARİ: GAD PARK OFİSİ (KURUM İÇİ ÇALIŞMA: GAD ARCHITECTURE)",
+                projMarbleTitle: "İÇ MİMARİ: MERMER BANYO ÜNİTESİ TASARIMI",
+                proj12Title: "İÇ MİMARİ: SAMSUNG EMAAR MALL - DENEYİM MAĞAZASI (KURUM İÇİ ÇALIŞMA: PROJE YÖNETİCİSİ - ONERX)",
+                contactBtn: "İLETİŞİM",
+                langBtn: "ENGLISH"
+            }
+        };
+
+        let currentLang = 'en';
+        function toggleLanguage() {
+            currentLang = (currentLang === 'en' ? 'tr' : 'en');
+            document.documentElement.lang = currentLang;
+            Object.keys(data[currentLang]).forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.innerText = data[currentLang][id];
+            });
+            document.querySelectorAll('.cat-item').forEach(item => {
+                if(currentLang === 'tr') {
+                    if(item.id === 'cat-all') item.innerText = 'HEPSİ';
+                    if(item.id === 'cat-horology') item.innerText = 'SAAT';
+                    if(item.id === 'cat-furniture') item.innerText = 'MOBİLYA';
+                    if(item.id === 'cat-lighting') item.innerText = 'AYDINLATMA';
+                    if(item.id === 'cat-fashion') item.innerText = 'MODA';
+                    if(item.id === 'cat-interior') item.innerText = 'İÇ MİMARİ';
+                } else {
+                    if(item.id === 'cat-all') item.innerText = 'ALL';
+                    if(item.id === 'cat-horology') item.innerText = 'HOROLOGY';
+                    if(item.id === 'cat-furniture') item.innerText = 'FURNITURE';
+                    if(item.id === 'cat-lighting') item.innerText = 'LIGHTING';
+                    if(item.id === 'cat-fashion') item.innerText = 'FASHION';
+                    if(item.id === 'cat-interior') item.innerText = 'INTERIOR';
+                }
+            });
+        }
+
+        // --- LIGHTBOX ---
+        let currentImgIdx = 0; let currentImages = [];
+        function openLightbox(img) {
+            currentImages = Array.from(img.closest('.gallery').querySelectorAll('img'));
+            currentImgIdx = currentImages.indexOf(img);
+            document.getElementById('lightboxImg').src = img.src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+        function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; }
+        function changeImage(step) {
+            if (currentImages.length === 0) return;
+            currentImgIdx = (currentImgIdx + step + currentImages.length) % currentImages.length;
+            document.getElementById('lightboxImg').src = currentImages[currentImgIdx].src;
+        }
+        window.addEventListener('keydown', (e) => {
+            if (document.getElementById('lightbox').style.display === "flex") {
+                if (e.key === "ArrowRight") changeImage(1);
+                if (e.key === "ArrowLeft") changeImage(-1);
+                if (e.key === "Escape") closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
