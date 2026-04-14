@@ -22,7 +22,7 @@
             position: fixed;
             top: 0; left: 0; width: 100%;
             display: flex; justify-content: space-between; align-items: center;
-            z-index: 4000; padding: 15px 40px; box-sizing: border-box;
+            z-index: 5000; padding: 15px 40px; box-sizing: border-box;
             background-color: rgba(245, 245, 245, 0.98);
             border-bottom: 1px solid rgb(0, 103, 79);
         }
@@ -37,6 +37,7 @@
             font-size: 24px;
             color: #1a1a1a; font-weight: 700; cursor: pointer; 
             text-decoration: none; display: flex; text-transform: uppercase;
+            -webkit-tap-highlight-color: transparent;
         }
         #header-logo span { display: inline-block; transition: font-family 0.1s ease; }
         #header-logo span.space { width: 0.2em; }
@@ -49,17 +50,17 @@
             left: 0; background-color: #FF91AF; transition: width 0.3s ease; }
         .nav-item:hover::after { width: 100%; }
 
-        .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 4100; }
+        .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 5100; }
         .menu-toggle span { width: 25px; height: 2px; background-color: #1a1a1a; transition: 0.3s; }
 
-        /* --- CATEGORY MENU & SCROLLABLE OVERLAY --- */
+        /* --- CATEGORY MENU & MOBILE OVERLAY --- */
         .category-menu {
             position: fixed;
             top: 70px; left: 0; width: 100%;
             display: flex; justify-content: center; gap: 25px;
             background-color: rgba(245, 245, 245, 0.95);
             padding: 15px 0;
-            z-index: 1050; border-bottom: 1px solid rgba(0,0,0,0.05);
+            z-index: 4500; border-bottom: 1px solid rgba(0,0,0,0.05);
             transition: all 0.3s ease;
         }
         .cat-item { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer;
@@ -67,7 +68,7 @@
         .cat-item:hover, .cat-item.active { color: #1a1a1a; }
         .cat-item.active { border-bottom: 2px solid #FF91AF; }
 
-        .mobile-only-links { display: none; flex-direction: column; gap: 20px; padding: 30px 40px 100px 40px; border-top: 1px solid #FF91AF; margin-top: 10px; }
+        .mobile-only-links { display: none; flex-direction: column; gap: 20px; padding: 30px 40px; border-top: 1px solid #FF91AF; margin-top: 10px; }
 
         /* --- CONTENT --- */
         .intro { margin-bottom: 60px;
@@ -101,52 +102,23 @@
             .nav-links { display: none; } 
             .menu-toggle { display: flex; } 
             
-            /* DİNAMİK YÜKSEKLİK ÇÖZÜMÜ */
             .category-menu {
-                flex-direction: column; 
-                top: 60px; 
-                left: 0; 
-                width: 100%;
-                height: 0;
-                /* dvh (dynamic viewport height) tarayıcı çubuklarını hesaba katar */
-                max-height: calc(100dvh - 60px); 
+                flex-direction: column; top: 60px; left: 0; width: 100%; height: 0;
+                max-height: calc(100dvh - 60px); /* dVH ile tarayıcı çubuğu uyumu */
                 background-color: rgb(245, 245, 245); 
-                padding: 0; 
-                overflow-y: auto; 
-                overflow-x: hidden;
-                visibility: hidden;
-                opacity: 0;
-                border-bottom: none;
-                z-index: 3500;
-                transition: opacity 0.3s ease;
-                -webkit-overflow-scrolling: touch;
+                padding: 0; overflow-y: auto; overflow-x: hidden; visibility: hidden; opacity: 0; border-bottom: none;
+                display: flex; justify-content: flex-start; z-index: 4500; -webkit-overflow-scrolling: touch;
             }
-            .category-menu.active { 
-                height: calc(100dvh - 60px); 
-                visibility: visible;
-                opacity: 1;
-            }
-            .cat-item { 
-                padding: 22px 40px; 
-                font-size: 16px; 
-                border-bottom: 1px solid rgba(0,0,0,0.05); 
-                width: 100%;
-                display: block;
-                flex-shrink: 0;
-            }
-            .mobile-only-links { 
-                display: flex; 
-                flex-shrink: 0;
-                /* Alt çubuk sığmama sorunu için ekstra güvenli alan */
-                padding-bottom: 120px; 
-            } 
+            .category-menu.active { height: calc(100dvh - 60px); visibility: visible; opacity: 1; }
+            .cat-item { padding: 22px 40px; font-size: 18px; border-bottom: 1px solid rgba(0,0,0,0.05); width: 100%; display: block; flex-shrink: 0; }
+            .mobile-only-links { display: flex; flex-shrink: 0; padding-bottom: 120px; } /* Alt boşluk eklendi */
             .intro { margin-top: 100px; padding: 0 20px; }
             .project-section { padding: 0 20px; }
             .divider { margin: 40px 20px; }
         }
 
         /* LIGHTBOX */
-        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.98); z-index: 5000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.98); z-index: 6000; justify-content: center; align-items: center; cursor: pointer; }
         .lb-content { position: relative; max-width: 90%; max-height: 90%; }
         .lightbox img { max-width: 100%; max-height: 85vh; object-fit: contain; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
         .lb-close { position: absolute; top: -60px; right: 0; font-size: 12px; color: #888; cursor: pointer; text-transform: uppercase; }
@@ -657,18 +629,21 @@
     </div>
 
     <script>
-        // --- LOGO ANIMATION ---
+        // --- LOGO ANIMATION (Fix for Mobile & Loop) ---
         const logoElement = document.getElementById('header-logo');
         const fonts = ['Arial', 'Verdana', 'Times New Roman', 'Impact', 'Courier New', 'Georgia', 'Trebuchet MS', 'Helvetica'];
         logoElement.innerHTML = "AYTEK JANE".split('').map(char => char === " " ? `<span class="space">&nbsp;</span>` : `<span>${char}</span>`).join('');
         const logoSpans = logoElement.querySelectorAll('span:not(.space)');
+        
         function changeLogoFont() {
-            logoSpans[Math.floor(Math.random() * logoSpans.length)].style.fontFamily = fonts[Math.floor(Math.random() * fonts.length)];
+            const randomSpan = logoSpans[Math.floor(Math.random() * logoSpans.length)];
+            const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+            randomSpan.style.fontFamily = randomFont;
             setTimeout(changeLogoFont, Math.random() * 500 + 100);
         }
         changeLogoFont();
 
-        // --- MOBILE MENU TOGGLE ---
+        // --- MOBILE MENU ---
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             const body = document.getElementById('page-body');
@@ -681,7 +656,7 @@
             }
         }
 
-        // --- DATA DICTIONARY (Eksiksiz) ---
+        // --- DATA DICTIONARY (Eksiksiz Metinler) ---
         const data = {
             en: {
                 desc: "A space where you can find my selected works and ideas.",
@@ -759,11 +734,11 @@
                 projModularSofaTitle: "MOBİLYA: MODÜLER KANEPE (MÜŞTERİ: WANGAN)",
                 projModularSofaText: "Çağdaş yaşam alanlarında esneklik ve uyarlanabilirlik için tasarlanmış modüler bir kanepe sistemi. Bu konsept, sürdürülebilir malzemeleri ergonomik konforla birleştiren, birbirine kilitlenen modüller aracılığıyla özelleştirilebilir konfigürasyonları araştırır.",
                 projHotelTitle: "MOBİLYA: OTEL MOBİLYASI TASARIMI (MÜŞTERİ: WANGAN)",
-                projHotelText: "Designed for use in equestrian hotel interior.",
+                projHotelText: "Equestrian otel iç mekan kullanımı için tasarlanmıştır.",
                 projBedTitle: "MOBİLYA: YATAK KONSEPTİ",
                 projBedText: "Yapısal minimalizm ve malzeme sıcaklığını araştıran çağdaş bir yatak tasarımı çalışması. Bu konsept, geometrik hassasiyet ile dinlendirici bir ortam için gereken konfor arasındaki dengeye odaklanır.",
                 proj4Title: "MOBİLYA: JANE SOKAK MOBİLYASI (MÜŞTERİ: URBAN JOBS)",
-                proj4Text: "Yeti modül ile mimari formları tamamlayan geometriler oluşturmak mümkündür. Tasarım, sokak mobilyası tarihinin bir analiziyle geliştirilmiştir. Dış Mekan Mobilyası kategorisinde EDIDA 2020 kazananıdır.",
+                proj4Text: "Yedi modül ile mimari formları tamamlayan geometriler oluşturmak mümkündür. Tasarım, sokak mobilyası tarihinin bir analiziyle geliştirilmiştir. Dış Mekan Mobilyası kategorisinde EDIDA 2020 kazananıdır.",
                 projBurositTitle: "MOBİLYA: BANZAI OFİS SANDALYESİ (MÜŞTERİ: BÜROSİT)",
                 projBurositText: "Bu ürün, şirketin yeni görünümünü ve hissini geliştirmeye odaklanan haftalık toplantıların sonucudur. Tasarım dilini sadeleştirerek rafine bir görünüm elde etmeyi amaçladık. Şirketin modern yeni kimliğinin ilk unsurlarından birini temsil etmektedir.",
                 projCocoonTitle: "MOBİLYA: İSTANBUL DESIGN WEEK COCOON YAPISI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
@@ -791,10 +766,10 @@
                 proj1Title: "SAAT: UNIMATIC UC1 İSKELET KONSEPTİ",
                 proj1Text: "Unimatic için Modello Uno UC1 Classic dalgıç saatinin NH72 mekanizması kullanılarak bir iskelet varyasyonu oluşturuldu. Mekanizmayı ortaya çıkarmak için şeffaf bir kadran tasarlandı ve saatin orijinal minimalist karakterini korumak amacıyla serigrafi baskı ile dairesel bir desen uygulanarak hafif yarı şeffaf bir efekt yaratıldı; mekanizma aynı zamanda kasa arkasındaki pencereden de görülebilirken, bezel üzerindeki gri tonlu kurumsal tipografi saniyeleri gösterir. Hem ön hem de arka yüzün şeffaflığı, özellikle ilk saatlerinde mekanik hareketi gözlemlemek isteyen ve otomatik saatlerle yeni tanışan kullanıcıların merakına yanıt verir.",
                 proj2Title: "SAAT: CITIZEN KONSEPTİ",
-                proj2Text: "Bu proje, gücünü ışık enerjisinden alan Citizen'ın Eco-Drive teknolojisine dayanmaktadır ve gün, pil seviyesi ile tarih bilgilerini gösteren temiz bir arayüze sahip konsept bir saat sunarak markanın sürdürülebilir ve yüksek teknoloji ürünü saatçiliğe olan bağlılığını yansıtır; tasarım, Japonya'nın kiraz çiçeğinden (sakura) ilham almış olup, onun narin ve minimal estetiğini genel konsepte entegre etmektedir.",
+                proj2Text: "Bu proje, gücünü ışık enerjisinden alan Citizen'ın Eco-Drive teknolojisine dayanmaktadır ve gün, pil seviyesi ile tarih bilgilerini gösteren temiz bir arayüze sahip konsept bir saat sunarak markanın sürdürülebilir ve high-tech watchmaking; tasarım, Japonya'nın kiraz çiçeğinden (sakura) ilham almış olup, onun narin ve minimal estetiğini genel konsepte entegre etmektedir.",
                 proj6Title: "MODA: SERVER KONSEPTİ",
                 fashionText: "Bu proje, fonksiyonel sunucu tasarımı ile yüksek moda estetiğinin kesişimini araştırmaktadır. Bu kavramsal çalışma, endüstriyel teknolojinin görsel dilini bir yaşam tarzı bağlamında yeniden tanımlamayı amaçlamaktadır.",
-                projBronzeTitle: "AR-GE: TUNÇ ÇAĞI GEMİSİ, 3B TARAYICI, MÜZE (KURUM İÇİ ÇALIŞMA: NEW YORK UNIVERSITY ABU DHABI - TASARIM MÜHENDİSİ)",
+                projBronzeTitle: "AR-GE: TUNÇ ÇAĞI GEMİSİ, 3B TARAYICI, MÜZE (KURUM İÇİ ÇALIŞMA: NEW YORK UNIVERSITY ABU DHABI - DESIGN ENGINEER)",
                 projBronzeText: "REF tarafından finanse edilen Má I Tunç Çağı Gemisi Projesi, arkeolojik, metinsel, ikonografik ve etnografik verilerin kapsamlı bir analizi yoluyla Tunç Çağı denizcilik teknolojilerini araştırmıştır. Proje, geleneksel araştırma metodolojilerini yerel bilgi sistemleriyle birleştirerek, geleneksel tekne yapım tekniklerinde uzmanlaşmış Batı Hint Okyanusu'ndan gemi yapım ustalarını sürece dahil etmiştir. Ustaların pratik uzmanlığı, akademik araştırmaların ötesine geçen kritik bilgiler sağlayarak daha otantik bir yeniden inşa sürecine olanak tanımış ve tarihsel kanıtlarla yaşayan gelenekler arasında karşılaştırmalar yapılmasını sağlamıştır. Bu temel üzerine inşa edilen Má II Projesi, tam ölçekli bir Tunç Çağı kamış gemisinin deneysel olarak yeniden inşasına odaklanmıştır. Bu girişim, NYU Abu Dhabi bünyesindeki Dhakira Miras Çalışmaları Merkezi, Zayed Üniversitesi ve Abu Dabi Kültür ve Turizm Bakanlığı arasındaki bir iş birliğidir. Proje, denizcilik teknolojisinin 4000 ile 2000 yıl önce Körfez ve Batı Hint Okyanusu genelinde ticaret, kültürel değişim ve siyasi ağları kolaylaştırmadaki rolünü daha derinlemesine anlamayı hedeflemektedir. Tunç Çağı boyunca, kamış ve ahşaptan inşa edilen ve bitümle sızdırmaz hale getirilen gemiler, Bereketli Hilal'i Dilmun (Bahreyn), Magan (modern BAE ve Umman) ve Meluhha (Indus Vadisi) gibi bölgelere bağlayan ticaret rotalarında seyretmiştir. Bu döneme ait tam bir gemi enkazı keşfedilmemiş olsa da, çivi yazılı metinler, çanak çömlekler, ikonografi ve maddi kalıntılar dahil olmak üzere kapsamlı arkeolojik kanıtlar bu gemilerin yeniden inşasına temel oluşturmuştur. Má II Projesi'nin temel çıktısı, kamış, kereste, palmiye lifi halat ve bitüm gibi tarihsel olarak doğru malzemeler kullanılarak 18 metre uzunluğunda bir geminin tasarlanması ve inşa edilmesidir. Gemi, yerel inşa teknikleri konusundaki bilgileri süreçte hayati bir rol oynayan Keralalı geleneksel gemi yapım ustalarıyla iş birliği içinde inşa edilmiştir. Yeniden inşa edilen gemi, Umm an-Nar döneminden (M.Ö. 2600–2000) kalma Tunç Çağı gemilerinin yapısı, dayanıklılığı, kargo kapasitesi ve seyir performansı hakkında değerli bilgiler sunmaktadır. Projenin araştırma ve geliştirme bileşeninin bir parçası olarak, gemi yapım sürecini dijital olarak belgelemek için özel bir fotogrametrik 3B tarama sistemi tasarladım. Bu sistem, birden fazla açıdan binlerce yüksek çözünürlüklü görüntü yakalayarak inşa tekniklerinin ve malzeme birleşimlerinin hassas 3B rekonstrüksiyonuna olanak sağlamıştır. Amaç, disiplinler arası iş birliğini desteklerken somut olmayan zanaat bilgisini koruyan ayrıntılı bir dijital arşiv oluşturmaktı. Proje ayrıca inşa aşamasında sürdürülebilir mimari stratejileri de içermiştir. İnşa ortamı, UV filtreleme özelliklerine sahip teknik kumaş ve jeotermal soğutma sistemi kullanarak, geleneksel klimaya ihtiyaç duymadan etkili bir iklim kontrolü sağlamıştır. İlk yeniden inşanın başarısının ardından, projenin devamı olarak daha büyük bir gemi geliştirilmiştir. Bu gemi şu anda Zayed Ulusal Müzesi'nde sergilenmektedir ve National Geographic dahil olmak üzere uluslararası medyada geniş yer bulmuştur.",
             }
         };
@@ -811,9 +786,9 @@
             });
 
             const btns = ['langBtn', 'langBtnMobile'];
-            btns.forEach(id => {
-                const b = document.getElementById(id);
-                if(b) b.innerText = (currentLang === 'en' ? 'TÜRKÇE' : 'ENGLISH');
+            btns.forEach(btnId => {
+                const btn = document.getElementById(btnId);
+                if (btn) btn.innerText = (currentLang === 'en' ? 'TÜRKÇE' : 'ENGLISH');
             });
 
             document.querySelectorAll('.cat-item').forEach(item => {
@@ -826,7 +801,7 @@
             });
         }
 
-        // --- FILTRELEME (Pembe çizgi hatası burada kesin giderildi) ---
+        // --- FILTER PROJECTS (Fixed Divider Issue) ---
         function filterProjects(category, element) {
             document.querySelectorAll('.cat-item').forEach(item => item.classList.remove('active'));
             element.classList.add('active');
@@ -835,19 +810,11 @@
             const dividers = document.querySelectorAll('.divider');
             
             sections.forEach(sec => {
-                if (category === 'all' || sec.classList.contains('filter-' + category)) {
-                    sec.style.display = 'block';
-                } else {
-                    sec.style.display = 'none';
-                }
+                sec.style.display = (category === 'all' || sec.classList.contains('filter-' + category)) ? 'block' : 'none';
             });
             
             dividers.forEach(div => {
-                if (category === 'all' || div.classList.contains('filter-' + category)) {
-                    div.style.display = 'block';
-                } else {
-                    div.style.display = 'none';
-                }
+                div.style.display = (category === 'all' || div.classList.contains('filter-' + category)) ? 'block' : 'none';
             });
             
             const menu = document.getElementById('mobileMenu');
