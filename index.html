@@ -16,10 +16,11 @@
             display: flex; flex-direction: column; align-items: center; 
             min-height: 100vh;
         }
+        /* --- HEADER & NAV --- */
         .header-nav {
             position: fixed; top: 0; left: 0; width: 100%;
             display: flex; justify-content: space-between; align-items: center;
-            z-index: 1100; padding: 15px 40px; box-sizing: border-box;
+            z-index: 1200; padding: 15px 40px; box-sizing: border-box;
             background-color: rgba(245, 245, 245, 0.95);
             border-bottom: 1px solid rgb(0, 103, 79); 
         }
@@ -30,16 +31,28 @@
         #header-logo span { display: inline-block; transition: font-family 0.1s ease; }
         #header-logo span.space { width: 0.2em; }
 
-        .nav-links { display: flex; gap: 20px; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
         .nav-item { cursor: pointer; color: #1a1a1a; padding: 8px 0; font-weight: 500; font-size: 12px; text-transform: uppercase; text-decoration: none; letter-spacing: 1.2px; transition: color 0.3s ease; position: relative; }
         .nav-item::after { content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 0; background-color: #FF91AF; transition: width 0.3s ease; }
         .nav-item:hover::after { width: 100%; }
-        
-        .category-menu { position: fixed; top: 70px; left: 0; width: 100%; display: flex; justify-content: center; gap: 25px; background-color: rgba(245, 245, 245, 0.9); padding: 15px 0; z-index: 1050; border-bottom: 1px solid rgba(0,0,0,0.05); }
+
+        /* --- CATEGORY MENU & DROP DOWN --- */
+        .category-menu {
+            position: fixed; top: 70px; left: 0; width: 100%;
+            display: flex; justify-content: center; gap: 25px;
+            background-color: rgba(245, 245, 245, 0.95);
+            padding: 15px 0; z-index: 1050; border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
         .cat-item { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; color: #888; transition: color 0.3s ease; }
         .cat-item:hover, .cat-item.active { color: #1a1a1a; }
         .cat-item.active { border-bottom: 2px solid #FF91AF; }
 
+        /* Hamburger Icon */
+        .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .menu-toggle span { width: 25px; height: 2px; background-color: #1a1a1a; transition: 0.3s; }
+
+        /* --- CONTENT --- */
         .intro { margin-bottom: 60px; margin-top: 180px; display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 15px; max-width: 1200px; width: 100%; padding: 0 40px; box-sizing: border-box; }
         .subtitle { font-size: 18px; color: #666; margin: 0; font-weight: 400; line-height: 1.5; }
         
@@ -60,11 +73,29 @@
         .project-link:hover { color: #FF91AF; }
         .divider { width: 100%; max-width: 1120px; border-top: 1px solid #FF91AF; margin: 40px 40px; }
 
+        /* --- MOBILE ADAPTATION --- */
         @media (max-width: 768px) { 
             .gallery { grid-template-columns: repeat(2, 1fr); } 
-            .img-wrapper.wide { padding-top: calc(50% - 7.5px); } 
+            .img-wrapper.wide { grid-column: span 2; padding-top: calc(50% - 7.5px); } 
+            
+            .menu-toggle { display: flex; }
+            .category-menu {
+                flex-direction: column;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: rgb(245, 245, 245);
+                padding: 0;
+                height: 0;
+                overflow: hidden;
+                border-bottom: none;
+            }
+            .category-menu.active { height: auto; padding: 20px 0; border-bottom: 1px solid #FF91AF; }
+            .cat-item { padding: 12px 40px; font-size: 14px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+            .intro { margin-top: 120px; }
         }
 
+        /* LIGHTBOX */
         .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.98); z-index: 2000; justify-content: center; align-items: center; cursor: pointer; }
         .lb-content { position: relative; max-width: 90%; max-height: 90%; }
         .lightbox img { max-width: 100%; max-height: 85vh; object-fit: contain; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
@@ -76,12 +107,15 @@
     <div class="header-nav">
         <a href="#" id="header-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">AYTEK JANE</a>
         <div class="nav-links">
+            <div class="menu-toggle" onclick="toggleMobileMenu()">
+                <span></span><span></span><span></span>
+            </div>
             <a href="mailto:aytekjane@gmail.com" class="nav-item">CONTACT</a>
             <div class="nav-item" onclick="toggleLanguage()" id="langBtn">TÜRKÇE</div>
         </div>
     </div>
 
-    <div class="category-menu">
+    <div class="category-menu" id="mobileMenu">
         <div class="cat-item active" onclick="filterProjects('all', this)" id="cat-all">ALL</div>
         <div class="cat-item" onclick="filterProjects('interior', this)" id="cat-interior">INTERIOR</div>
         <div class="cat-item" onclick="filterProjects('furniture', this)" id="cat-furniture">FURNITURE</div>
@@ -147,7 +181,7 @@
             <div class="img-wrapper wide"><img src="images/sinemira4.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
-            <span class="render-note" id="sinemiraNote">Renders belong to Normal.</span>
+            <span class="render-note">Renders belong to Normal.</span>
             <a href="https://www.normal.com.tr/" target="_blank" class="project-link">NORMAL.COM.TR</a>
         </div>
     </div>
@@ -412,7 +446,7 @@
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="projCapsuleText">This wall lamp, defined by its simple circular form, was carefully developed with close attention to proportion. Designed for production using a hydraulic press, all mold development processes were completed in detail. A wide range of color and surface finish variations were explored throughout the design process. The internal lighting element, wiring, and driver were meticulously engineered to ensure both performance and durability. The product was exhibited at Maison&Objet and later sold to CTO Lighting UK.</p>
-            <span class="render-note">Context render belongs to Autoban.</span>
+            <span class="render-note" id="capsuleNote">Context render belongs to Autoban.</span>
             <a href="https://autoban.com/" target="_blank" class="project-link">AUTOBAN.COM</a>
         </div>
     </div>
@@ -561,16 +595,9 @@
             <div class="img-wrapper"><img src="images/bronze16.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
-            <p class="project-desc" id="projBronzeText">The REF-funded Má I Bronze Age Boat Project explored Bronze Age maritime technologies through a comprehensive analysis of archaeological, textual, iconographic, and ethnographic data. The project combined conventional research methodologies with indigenous knowledge systems, integrating expert shipwrights from the western Indian Ocean who specialize in traditional boatbuilding techniques. Their practical expertise provided critical insights that extended beyond academic research, enabling a more authentic reconstruction process and allowing comparisons between historical evidence and living traditions.
-Building on this foundation, the Má II Project focused on the experimental reconstruction of a full-scale Bronze Age reed boat. This initiative is a collaboration between the Dhakira Center for Heritage Studies at NYU Abu Dhabi, Zayed University, and the Abu Dhabi Department of Culture and Tourism. The project aims to deepen understanding of maritime technology and its role in facilitating trade, cultural exchange, and political networks across the Gulf and the western Indian Ocean between 4000 and 2000 years ago.
-During the Bronze Age, vessels constructed from reeds and wood, sealed with bitumen, navigated trade routes connecting the Fertile Crescent with regions such as Dilmun (Bahrain), Magan (modern UAE and Oman), and Meluhha (Indus Valley). Although no complete shipwrecks from this period have been discovered, extensive archaeological evidence—including cuneiform texts, pottery, iconography, and material remains—has informed the reconstruction of these vessels.
-The central outcome of the Má II Project was the design and construction of an 18-meter-long ship using historically accurate materials such as reeds, timber, palm fiber cordage, and bitumen. The vessel was built in collaboration with traditional shipwrights from Kerala, whose knowledge of indigenous construction techniques played a vital role in the process. The reconstructed ship offers valuable insights into the structure, durability, cargo capacity, and sailing performance of Bronze Age vessels from the Umm an-Nar period (2600–2000 BCE).
-As part of the research and development component of the project, I designed a custom photogrammetric 3D scanning system to digitally document the shipbuilding process. This system captured thousands of high-resolution images from multiple angles, enabling precise 3D reconstruction of construction techniques and material assemblies. The aim was to create a detailed digital archive that preserves intangible craftsmanship knowledge while supporting interdisciplinary collaboration.
-The project also incorporated sustainable architectural strategies during the construction phase. The building environment utilized technical fabric with UV-filtering properties and a geothermal cooling system, achieving effective climate control without reliance on conventional air conditioning.
-Following the success of the initial reconstruction, a larger vessel was later developed as a continuation of the project. This ship is currently exhibited at the Zayed National Museum and has received significant international media attention, including coverage by National Geographic.</p>
-            <a href="https://heritagelab.center/index.php/heritage-experiments/bronze-age-boat/" target="_blank" class="project-link">HERITAGELAB.CENTER</a>
+            <p class="project-desc" id="projBronzeText">The REF-funded Má I Bronze Age Boat Project explored Bronze Age maritime technologies through a comprehensive analysis of archaeological, textual, iconographic, and ethnographic data. The project combined conventional research methodologies with indigenous knowledge systems, integrating expert shipwrights from the western Indian Ocean who specialize in traditional boatbuilding techniques. Their practical expertise provided critical insights that extended beyond academic research, enabling a more authentic reconstruction process and allowing comparisons between historical evidence and living traditions. Building on this foundation, the Má II Project focused on the experimental reconstruction of a full-scale Bronze Age reed boat. This initiative is a collaboration between the Dhakira Center for Heritage Studies at NYU Abu Dhabi, Zayed University, and the Abu Dhabi Department of Culture and Tourism. The project aims to deepen understanding of maritime technology and its role in facilitating trade, cultural exchange, and political networks across the Gulf and the western Indian Ocean between 4000 and 2000 years ago. During the Bronze Age, vessels constructed from reeds and wood, sealed with bitumen, navigated trade routes connecting the Fertile Crescent with regions such as Dilmun (Bahrain), Magan (modern UAE and Oman), and Meluhha (Indus Valley). Although no complete shipwrecks from this period have been discovered, extensive archaeological evidence—including cuneiform texts, pottery, iconography, and material remains—has informed the reconstruction of these vessels. The central outcome of the Má II Project was the design and construction of an 18-meter-long ship using historically accurate materials such as reeds, timber, palm fiber cordage, and bitumen. The vessel was built in collaboration with traditional shipwrights from Kerala, whose knowledge of indigenous construction techniques played a vital role in the process. The reconstructed ship offers valuable insights into the structure, durability, cargo capacity, and sailing performance of Bronze Age vessels from the Umm an-Nar period (2600–2000 BCE). As part of the research and development component of the project, I designed a custom photogrammetric 3D scanning system to digitally document the shipbuilding process. This system captured thousands of high-resolution images from multiple angles, enabling precise 3D reconstruction of construction techniques and material assemblies. The aim was to create a detailed digital archive that preserves intangible craftsmanship knowledge while supporting interdisciplinary collaboration. The project also incorporated sustainable architectural strategies during the construction phase. The building environment utilized technical fabric with UV-filtering properties and a geothermal cooling system, achieving effective climate control without reliance on conventional air conditioning. Following the success of the initial reconstruction, a larger vessel was later developed as a continuation of the project. This ship is currently exhibited at the Zayed National Museum and has received significant international media attention, including coverage by National Geographic.</p>
+            <a href="https://heritagelab.center/" target="_blank" class="project-link">HERITAGELAB.CENTER</a>
             <a href="https://www.nationalgeographic.com/travel/article/paid-content-magan-boat-rebuilding-uae-maritime-history" target="_blank" class="project-link">NATIONALGEOGRAPHIC.COM</a>
-            <a href="https://www.felix-beck.de/professional_projects/monsoon-culture-research-center.html" target="_blank" class="project-link">FELIX-BECK.DE</a>
         </div>
     </div>
 
@@ -579,19 +606,23 @@ Following the success of the initial reconstruction, a larger vessel was later d
     </div>
 
     <script>
-        // --- LOGO ANIMATION (FLICKER EFFECT) ---
+        // --- LOGO ANIMATION ---
         const logoElement = document.getElementById('header-logo');
         const fonts = ['Arial', 'Verdana', 'Times New Roman', 'Impact', 'Courier New', 'Georgia', 'Trebuchet MS', 'Helvetica'];
-        const logoText = "AYTEK JANE";
-        logoElement.innerHTML = logoText.split('').map(char => char === " " ? `<span class="space">&nbsp;</span>` : `<span>${char}</span>`).join('');
+        logoElement.innerHTML = "AYTEK JANE".split('').map(char => char === " " ? `<span class="space">&nbsp;</span>` : `<span>${char}</span>`).join('');
         const logoSpans = logoElement.querySelectorAll('span:not(.space)');
-        
         function changeLogoFont() {
             logoSpans[Math.floor(Math.random() * logoSpans.length)].style.fontFamily = fonts[Math.floor(Math.random() * fonts.length)];
             setTimeout(changeLogoFont, Math.random() * 500 + 100);
         }
         changeLogoFont();
 
+        // --- MOBILE MENU ---
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+
+        // --- DATA DICTIONARY (FULL TEXTS) ---
         const data = {
             en: {
                 desc: "A space where you can find my selected works and ideas.",
@@ -663,17 +694,16 @@ Following the success of the initial reconstruction, a larger vessel was later d
                 gadText: "Eski bir çok katlı otopark yapısında yer alan GAD Architecture ofisi için iç mimari tasarım, mekansal düzenleme planlaması ve aydınlatma tasarımı süreçlerine katkıda bulundum.",
                 projMarbleTitle: "İÇ MİMARİ: MERMER BANYO ÜNİTESİ TASARIMI",
                 proj12Title: "İÇ MİMARİ: SAMSUNG EMAAR MALL - DENEYİM MAĞAZASI (KURUM İÇİ ÇALIŞMA: ONERX)",
-                samsungText: "Samsung Emaar Experience Store iç mimari tasarımı ve proje yönetimi; proje yöneticileri, tasarımcılar, üreticiler ve müteahhitlerin katıldığı ortak bir ekip çalışması olarak yürütülmüştür. Proje, Samsung ve Apple'ın eski perakende tasarım direktörü Simon Orchover tarafından oluşturulan tasarım yönergelerine uygun olarak perakende akışı ve teknolojik entegrasyona odaklanılmıştır. Dünyada bir ilk olan bu konsept, deneyim, satış ve satış sonrası hizmetleri tek bir birleşik ortamda sunmaktadır. Samsung bu modeli küresel olarak genişletirken, İstanbul mağazası bir referans noktası olarak kabul edilmiştir. Mağaza bünyesinde, müşterilerin Samsung teknolojilerinden kesintisiz yararlanabilmelerini sağlamak için birinci sınıf teknik servis hizmeti sunulmaktadır.",
+                samsungText: "Samsung Emaar Experience Store iç mimari tasarımı ve proje yönetimi; proje yöneticileri, tasarımcılar, üreticiler ve müteahhitlerin katıldığı ortak bir ekip çalışması olarak yürütülmüştür. Proje, Samsung ve Apple'ın eski perakende tasarım direktörü Simon Orchover tarafından oluşturulan tasarım yönergelerine uygun olarak perakende akışı ve teknolojik entegrasyona odaklanılmıştır. Dünyada bir ilk olan bu konsept, deneyim, satış ve satış sonrası hizmetleri tek bir çatıda toplar. Samsung bu modeli küresel olarak genişletirken, İstanbul mağazası bir referans noktası olarak kabul edilmiştir. Mağaza bünyesinde, müşterilerin Samsung teknolojilerinden kesintisiz yararlanabilmelerini sağlamak için birinci sınıf teknik servis hizmeti sunulmaktadır.",
                 proj3Title: "MOBİLYA: SOFA KONSEPTİ",
                 proj3Text: "Endüstriyel tasarım prensipleriyle konfor ve formu araştıran modern bir mobilya konsepti. Bu çalışma, modüler yapılara ve ergonomik fayda ile heykel estetiğinin kesişimine odaklanmaktadır.",
                 projModularSofaTitle: "MOBİLYA: MODÜLER KANEPE (MÜŞTERİ: WANGAN)",
                 projModularSofaText: "Çağdaş yaşam alanlarında esneklik ve uyarlanabilirlik için tasarlanmış modüler bir kanepe sistemi. Bu konsept, sürdürülebilir malzemeleri ergonomik konforla birleştiren, birbirine kilitlenen modüller aracılığıyla özelleştirilebilir konfigürasyonları araştırır.",
                 projHotelTitle: "MOBİLYA: OTEL MOBİLYASI TASARIMI (MÜŞTERİ: WANGAN)",
-                projHotelText: "Binicilik oteli iç mekanı için tasarlanmıştır.",
                 projBedTitle: "MOBİLYA: YATAK KONSEPTİ",
                 projBedText: "Yapısal minimalizm ve malzeme sıcaklığını araştıran çağdaş bir yatak tasarımı çalışması. Bu konsept, geometrik hassasiyet ile dinlendirici bir ortam için gereken konfor arasındaki dengeye odaklanır.",
                 proj4Title: "MOBİLYA: JANE SOKAK MOBİLYASI (MÜŞTERİ: URBAN JOBS)",
-                proj4Text: "Yedi modül ile mimari formları tamamlayan geometriler oluşturmak mümkündür. Tasarım, sokak mobilyası tarihinin bir analizi yoluyla geliştirilmiştir. Dış Mekan Mobilyası kategorisinde EDIDA 2020 kazananıdır.",
+                proj4Text: "Yedi modül ile mimari formları tamamlayan geometriler oluşturmak mümkündür. Tasarım, sokak mobilyası tarihinin bir analiziyle geliştirilmiştir. Dış Mekan Mobilyası kategorisinde EDIDA 2020 kazananıdır.",
                 projBurositTitle: "MOBİLYA: BANZAI OFİS SANDALYESİ (MÜŞTERİ: BÜROSİT - TASARIM DANIŞMANLIĞI)",
                 projBurositText: "Bu ürün, şirketin yeni görünümünü ve hissini geliştirmeye odaklanan haftalık toplantıların sonucudur. Tasarım dilini sadeleştirerek rafine bir görünüm elde etmeyi amaçladık. Şirketin modern yeni kimliğinin ilk unsurlarından birini temsil etmektedir.",
                 projCocoonTitle: "MOBİLYA: İSTANBUL DESIGN WEEK COCOON YAPISI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
@@ -739,6 +769,8 @@ Following the success of the initial reconstruction, a larger vessel was later d
                     document.getElementById('langBtn').innerText = 'TÜRKÇE';
                 }
             });
+            // If mobile menu is open, close it on language change
+            document.getElementById('mobileMenu').classList.remove('active');
         }
 
         function filterProjects(category, element) {
@@ -748,6 +780,7 @@ Following the success of the initial reconstruction, a larger vessel was later d
             const dividers = document.querySelectorAll('.divider');
             sections.forEach(sec => sec.style.display = (category === 'all' || sec.classList.contains('filter-' + category)) ? 'block' : 'none');
             dividers.forEach(div => div.style.display = (category === 'all' || div.classList.contains('filter-' + category)) ? 'block' : 'none');
+            document.getElementById('mobileMenu').classList.remove('active');
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
