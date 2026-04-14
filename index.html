@@ -21,7 +21,7 @@
             position: fixed;
             top: 0; left: 0; width: 100%;
             display: flex; justify-content: space-between; align-items: center;
-            z-index: 2000; padding: 15px 40px; box-sizing: border-box;
+            z-index: 3000; padding: 15px 40px; box-sizing: border-box;
             background-color: rgba(245, 245, 245, 0.98);
             border-bottom: 1px solid rgb(0, 103, 79);
         }
@@ -48,8 +48,7 @@
             left: 0; background-color: #FF91AF; transition: width 0.3s ease; }
         .nav-item:hover::after { width: 100%; }
 
-        /* Hamburger Icon */
-        .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 2100; }
+        .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 3100; }
         .menu-toggle span { width: 25px; height: 2px; background-color: #1a1a1a; transition: 0.3s; }
 
         /* --- CATEGORY MENU & SCROLLABLE OVERLAY --- */
@@ -98,7 +97,6 @@
             .header-nav { padding: 15px 20px; }
             .gallery { grid-template-columns: repeat(2, 1fr); } 
             .img-wrapper.wide { grid-column: span 2; padding-top: calc(50% - 7.5px); } 
-            
             .nav-links { display: none; } 
             .menu-toggle { display: flex; } 
             
@@ -108,6 +106,7 @@
                 left: 0; 
                 width: 100%;
                 height: 0;
+                max-height: 0;
                 background-color: rgb(245, 245, 245); 
                 padding: 0; 
                 overflow-y: auto; 
@@ -117,13 +116,14 @@
                 border-bottom: none;
                 display: flex;
                 justify-content: flex-start;
-                gap: 0;
+                z-index: 2500;
             }
             .category-menu.active { 
                 height: calc(100vh - 60px); 
+                max-height: calc(100vh - 60px);
                 visibility: visible;
                 opacity: 1;
-                padding-bottom: 100px;
+                padding-bottom: 80px;
             }
             .cat-item { 
                 padding: 20px 40px; 
@@ -131,15 +131,16 @@
                 border-bottom: 1px solid rgba(0,0,0,0.05); 
                 width: 100%;
                 display: block;
+                flex-shrink: 0;
             }
-            .mobile-only-links { display: flex; } 
+            .mobile-only-links { display: flex; flex-shrink: 0; } 
             .intro { margin-top: 100px; padding: 0 20px; }
             .project-section { padding: 0 20px; }
             .divider { margin: 40px 20px; }
         }
 
         /* LIGHTBOX */
-        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.98); z-index: 3000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.98); z-index: 4000; justify-content: center; align-items: center; cursor: pointer; }
         .lb-content { position: relative; max-width: 90%; max-height: 90%; }
         .lightbox img { max-width: 100%; max-height: 85vh; object-fit: contain; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
         .lb-close { position: absolute; top: -60px; right: 0; font-size: 12px; color: #888; cursor: pointer; text-transform: uppercase; }
@@ -154,7 +155,6 @@
             </div>
             <a href="#" id="header-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">AYTEK JANE</a>
         </div>
-
         <div class="nav-links">
             <a href="mailto:aytekjane@gmail.com" class="nav-item">CONTACT</a>
             <div class="nav-item" onclick="toggleLanguage()" id="langBtn">TÜRKÇE</div>
@@ -673,7 +673,7 @@
             }
         }
 
-        // --- DATA DICTIONARY (Tüm metinler eksiksiz) ---
+        // --- DATA DICTIONARY ---
         const data = {
             en: {
                 desc: "A space where you can find my selected works and ideas.",
@@ -751,7 +751,7 @@
                 projModularSofaTitle: "MOBİLYA: MODÜLER KANEPE (MÜŞTERİ: WANGAN)",
                 projModularSofaText: "Çağdaş yaşam alanlarında esneklik ve uyarlanabilirlik için tasarlanmış modüler bir kanepe sistemi. Bu konsept, sürdürülebilir malzemeleri ergonomik konforla birleştiren, birbirine kilitlenen modüller aracılığıyla özelleştirilebilir konfigürasyonları araştırır.",
                 projHotelTitle: "MOBİLYA: OTEL MOBİLYASI TASARIMI (MÜŞTERİ: WANGAN)",
-                projHotelText: "Equestrian otel iç mekan kullanımı için tasarlanmıştır.",
+                projHotelText: "Designed for use in equestrian hotel interior.",
                 projBedTitle: "MOBİLYA: YATAK KONSEPTİ",
                 projBedText: "Yapısal minimalizm ve malzeme sıcaklığını araştıran çağdaş bir yatak tasarımı çalışması. Bu konsept, geometrik hassasiyet ile dinlendirici bir ortam için gereken konfor arasındaki dengeye odaklanır.",
                 proj4Title: "MOBİLYA: JANE SOKAK MOBİLYASI (MÜŞTERİ: URBAN JOBS)",
@@ -777,7 +777,7 @@
                 projPendantBTitle: "AYDINLATMA: THE NEW BIG PENDANT LIGHT (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
                 projPendantBText: "Geniş hacimli iç mekanlar için geliştirilen, endüstriyel yapısal elemanları rafine aydınlatma estetiğiyle birleştiren büyük ölçekli bir sarkıt lamba tasarımı.",
                 projGhDeskTitle: "AYDINLATMA: GRAND HYATT MASA LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projGhDeskText: "Grand Hyatt projesi için özel olarak tasarlanan masa lambası; fonksiyonel çalışma aydınlatmasını lüks konaklama iç mekanlarının sofistike estetik diliyle dengeler.",
+                projGhDeskText: "Grand Hyatt projesi için tasarlanan masa lambası; fonksiyonel çalışma aydınlatmasını lüks konaklama iç mekanlarının sofistike estetik diliyle dengeler.",
                 projBurganTitle: "AYDINLATMA: BURGAN BANK PRIVATE - AYDINLATMA PLANI (KURUM İÇİ ÇALIŞMA: I-AM ASSOCIATES)",
                 projBurganText: "Burgan Bank'ın özel şubesi için aydınlatma yerleşim planının geliştirilmesi, armatür seçimi ve DIALux yazılımı kullanılarak aydınlık düzeylerinin hesaplanmasını içeren aydınlatma tasarımı.",
                 proj1Title: "SAAT: UNIMATIC UC1 İSKELET KONSEPTİ",
@@ -803,9 +803,9 @@
             });
 
             const btns = ['langBtn', 'langBtnMobile'];
-            btns.forEach(id => {
-                const b = document.getElementById(id);
-                if(b) b.innerText = (currentLang === 'en' ? 'TÜRKÇE' : 'ENGLISH');
+            btns.forEach(btnId => {
+                const btn = document.getElementById(btnId);
+                if (btn) btn.innerText = (currentLang === 'en' ? 'TÜRKÇE' : 'ENGLISH');
             });
 
             document.querySelectorAll('.cat-item').forEach(item => {
@@ -827,11 +827,19 @@
             const dividers = document.querySelectorAll('.divider');
             
             sections.forEach(sec => {
-                sec.style.display = (category === 'all' || sec.classList.contains('filter-' + category)) ? 'block' : 'none';
+                if (category === 'all' || sec.classList.contains('filter-' + category)) {
+                    sec.style.display = 'block';
+                } else {
+                    sec.style.display = 'none';
+                }
             });
             
             dividers.forEach(div => {
-                div.style.display = (category === 'all' || div.classList.contains('filter-' + category)) ? 'block' : 'none';
+                if (category === 'all' || div.classList.contains('filter-' + category)) {
+                    div.style.display = 'block';
+                } else {
+                    div.style.display = 'none';
+                }
             });
             
             const menu = document.getElementById('mobileMenu');
