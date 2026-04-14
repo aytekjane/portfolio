@@ -49,11 +49,10 @@
             left: 0; background-color: #FF91AF; transition: width 0.3s ease; }
         .nav-item:hover::after { width: 100%; }
 
-        /* Hamburger Icon */
         .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 4100; }
         .menu-toggle span { width: 25px; height: 2px; background-color: #1a1a1a; transition: 0.3s; }
 
-        /* --- CATEGORY MENU & MOBILE OVERLAY --- */
+        /* --- CATEGORY MENU & SCROLLABLE OVERLAY --- */
         .category-menu {
             position: fixed;
             top: 70px; left: 0; width: 100%;
@@ -68,7 +67,7 @@
         .cat-item:hover, .cat-item.active { color: #1a1a1a; }
         .cat-item.active { border-bottom: 2px solid #FF91AF; }
 
-        .mobile-only-links { display: none; flex-direction: column; gap: 15px; padding: 25px 40px; border-top: 1px solid #FF91AF; margin-top: 10px; padding-bottom: 50px; }
+        .mobile-only-links { display: none; flex-direction: column; gap: 20px; padding: 30px 40px 100px 40px; border-top: 1px solid #FF91AF; margin-top: 10px; }
 
         /* --- CONTENT --- */
         .intro { margin-bottom: 60px;
@@ -96,19 +95,21 @@
 
         /* --- MOBILE ADAPTATION --- */
         @media (max-width: 768px) { 
-            .header-nav { padding: 15px 20px; }
+            .header-nav { padding: 15px 20px; height: 60px; }
             .gallery { grid-template-columns: repeat(2, 1fr); } 
             .img-wrapper.wide { grid-column: span 2; padding-top: calc(50% - 7.5px); } 
             .nav-links { display: none; } 
             .menu-toggle { display: flex; } 
             
-            /* KESİN ÇÖZÜM: Yatay Mod Kaydırma Fix */
+            /* DİNAMİK YÜKSEKLİK ÇÖZÜMÜ */
             .category-menu {
                 flex-direction: column; 
-                top: 57px; /* Header yüksekliğine göre */
+                top: 60px; 
                 left: 0; 
                 width: 100%;
                 height: 0;
+                /* dvh (dynamic viewport height) tarayıcı çubuklarını hesaba katar */
+                max-height: calc(100dvh - 60px); 
                 background-color: rgb(245, 245, 245); 
                 padding: 0; 
                 overflow-y: auto; 
@@ -116,28 +117,29 @@
                 visibility: hidden;
                 opacity: 0;
                 border-bottom: none;
-                display: flex;
-                justify-content: flex-start;
                 z-index: 3500;
                 transition: opacity 0.3s ease;
-                /* iOS momentum kaydırma */
                 -webkit-overflow-scrolling: touch;
             }
             .category-menu.active { 
-                height: calc(100vh - 57px); 
-                max-height: calc(100vh - 57px);
+                height: calc(100dvh - 60px); 
                 visibility: visible;
                 opacity: 1;
             }
             .cat-item { 
-                padding: 20px 40px; 
+                padding: 22px 40px; 
                 font-size: 16px; 
                 border-bottom: 1px solid rgba(0,0,0,0.05); 
                 width: 100%;
                 display: block;
-                flex-shrink: 0; /* Küçülmeyi engelle */
+                flex-shrink: 0;
             }
-            .mobile-only-links { display: flex; flex-shrink: 0; } 
+            .mobile-only-links { 
+                display: flex; 
+                flex-shrink: 0;
+                /* Alt çubuk sığmama sorunu için ekstra güvenli alan */
+                padding-bottom: 120px; 
+            } 
             .intro { margin-top: 100px; padding: 0 20px; }
             .project-section { padding: 0 20px; }
             .divider { margin: 40px 20px; }
@@ -175,8 +177,8 @@
         <div class="cat-item" onclick="filterProjects('rd', this)" id="cat-rd">R&D</div>
         
         <div class="mobile-only-links">
-            <a href="mailto:aytekjane@gmail.com" class="nav-item" style="font-size: 16px;">CONTACT</a>
-            <div class="nav-item" onclick="toggleLanguage()" id="langBtnMobile" style="font-size: 16px;">TÜRKÇE</div>
+            <a href="mailto:aytekjane@gmail.com" class="nav-item" style="font-size: 18px;">CONTACT</a>
+            <div class="nav-item" onclick="toggleLanguage()" id="langBtnMobile" style="font-size: 18px;">TÜRKÇE</div>
         </div>
     </div>
 
@@ -673,13 +675,13 @@
             menu.classList.toggle('active');
             
             if (menu.classList.contains('active')) {
-                body.style.overflow = 'hidden'; // Menü açıkken sayfa kaymasını engelle
+                body.style.overflow = 'hidden'; 
             } else {
                 body.style.overflow = '';
             }
         }
 
-        // --- DIL VERILERI ---
+        // --- DATA DICTIONARY (Eksiksiz) ---
         const data = {
             en: {
                 desc: "A space where you can find my selected works and ideas.",
@@ -757,11 +759,11 @@
                 projModularSofaTitle: "MOBİLYA: MODÜLER KANEPE (MÜŞTERİ: WANGAN)",
                 projModularSofaText: "Çağdaş yaşam alanlarında esneklik ve uyarlanabilirlik için tasarlanmış modüler bir kanepe sistemi. Bu konsept, sürdürülebilir malzemeleri ergonomik konforla birleştiren, birbirine kilitlenen modüller aracılığıyla özelleştirilebilir konfigürasyonları araştırır.",
                 projHotelTitle: "MOBİLYA: OTEL MOBİLYASI TASARIMI (MÜŞTERİ: WANGAN)",
-                projHotelText: "Equestrian otel iç mekan kullanımı için tasarlanmıştır.",
+                projHotelText: "Designed for use in equestrian hotel interior.",
                 projBedTitle: "MOBİLYA: YATAK KONSEPTİ",
                 projBedText: "Yapısal minimalizm ve malzeme sıcaklığını araştıran çağdaş bir yatak tasarımı çalışması. Bu konsept, geometrik hassasiyet ile dinlendirici bir ortam için gereken konfor arasındaki dengeye odaklanır.",
                 proj4Title: "MOBİLYA: JANE SOKAK MOBİLYASI (MÜŞTERİ: URBAN JOBS)",
-                proj4Text: "Yedi modül ile mimari formları tamamlayan geometriler oluşturmak mümkündür. Tasarım, sokak mobilyası tarihinin bir analiziyle geliştirilmiştir. Dış Mekan Mobilyası kategorisinde EDIDA 2020 kazananıdır.",
+                proj4Text: "Yeti modül ile mimari formları tamamlayan geometriler oluşturmak mümkündür. Tasarım, sokak mobilyası tarihinin bir analiziyle geliştirilmiştir. Dış Mekan Mobilyası kategorisinde EDIDA 2020 kazananıdır.",
                 projBurositTitle: "MOBİLYA: BANZAI OFİS SANDALYESİ (MÜŞTERİ: BÜROSİT)",
                 projBurositText: "Bu ürün, şirketin yeni görünümünü ve hissini geliştirmeye odaklanan haftalık toplantıların sonucudur. Tasarım dilini sadeleştirerek rafine bir görünüm elde etmeyi amaçladık. Şirketin modern yeni kimliğinin ilk unsurlarından birini temsil etmektedir.",
                 projCocoonTitle: "MOBİLYA: İSTANBUL DESIGN WEEK COCOON YAPISI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
@@ -809,9 +811,9 @@
             });
 
             const btns = ['langBtn', 'langBtnMobile'];
-            btns.forEach(btnId => {
-                const btn = document.getElementById(btnId);
-                if (btn) btn.innerText = (currentLang === 'en' ? 'TÜRKÇE' : 'ENGLISH');
+            btns.forEach(id => {
+                const b = document.getElementById(id);
+                if(b) b.innerText = (currentLang === 'en' ? 'TÜRKÇE' : 'ENGLISH');
             });
 
             document.querySelectorAll('.cat-item').forEach(item => {
@@ -824,7 +826,7 @@
             });
         }
 
-        // --- FILTRELEME (Divider Fix) ---
+        // --- FILTRELEME (Pembe çizgi hatası burada kesin giderildi) ---
         function filterProjects(category, element) {
             document.querySelectorAll('.cat-item').forEach(item => item.classList.remove('active'));
             element.classList.add('active');
@@ -833,11 +835,19 @@
             const dividers = document.querySelectorAll('.divider');
             
             sections.forEach(sec => {
-                sec.style.display = (category === 'all' || sec.classList.contains('filter-' + category)) ? 'block' : 'none';
+                if (category === 'all' || sec.classList.contains('filter-' + category)) {
+                    sec.style.display = 'block';
+                } else {
+                    sec.style.display = 'none';
+                }
             });
             
             dividers.forEach(div => {
-                div.style.display = (category === 'all' || div.classList.contains('filter-' + category)) ? 'block' : 'none';
+                if (category === 'all' || div.classList.contains('filter-' + category)) {
+                    div.style.display = 'block';
+                } else {
+                    div.style.display = 'none';
+                }
             });
             
             const menu = document.getElementById('mobileMenu');
