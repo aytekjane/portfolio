@@ -31,7 +31,7 @@
         .category-menu { position: fixed; top: 70px; left: 0; width: 100%; display: flex; justify-content: center; gap: 25px; background-color: rgba(245, 245, 245, 0.9); padding: 15px 0; z-index: 1050; border-bottom: 1px solid rgba(0,0,0,0.05); }
         .cat-item { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; color: #888; transition: color 0.3s ease; }
         .cat-item:hover, .cat-item.active { color: #1a1a1a; }
-        .cat-item.active { border-bottom: 1px solid #FF91AF; }
+        .cat-item.active { border-bottom: 2px solid #FF91AF; }
         .intro { margin-bottom: 60px; margin-top: 180px; display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 15px; max-width: 1200px; width: 100%; padding: 0 40px; box-sizing: border-box; }
         .subtitle { font-size: 18px; color: #666; margin: 0; font-weight: 400; line-height: 1.5; }
         .project-section { width: 100%; max-width: 1200px; margin-bottom: 60px; padding: 0 40px; box-sizing: border-box; }
@@ -45,7 +45,7 @@
         .project-desc-container { margin-top: 30px; margin-bottom: 40px; text-align: left; max-width: 900px; }
         .project-desc { font-size: 16px; line-height: 1.8; color: #444; margin-bottom: 15px; font-weight: 300; white-space: pre-line; }
         .render-note { display: block; font-size: 11px; font-style: italic; color: #888; margin-bottom: 25px; }
-        .project-link { display: inline-block; color: #1a1a1a; text-decoration: none; font-size: 13px; font-weight: 500; text-transform: uppercase; margin-right: 25px; margin-bottom: 10px; }
+        .project-link { display: inline-block; color: #1a1a1a; text-decoration: none; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; margin-right: 25px; margin-bottom: 10px; }
         .project-link:hover { color: #FF91AF; }
         .divider { width: 100%; max-width: 1120px; border-top: 1px solid #FF91AF; margin: 40px 40px; }
         @media (max-width: 768px) { .gallery { grid-template-columns: repeat(2, 1fr); } .img-wrapper.wide { padding-top: calc(50% - 7.5px); } }
@@ -60,7 +60,7 @@
     <div class="header-nav">
         <a href="#" id="header-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Aytek Jane</a>
         <div class="nav-links">
-            <a href="mailto:aytekjane@gmail.com" class="nav-item" id="contactBtn">CONTACT</a>
+            <a href="mailto:aytekjane@gmail.com" class="nav-item">CONTACT</a>
             <div class="nav-item" onclick="toggleLanguage()" id="langBtn">TÜRKÇE</div>
         </div>
     </div>
@@ -82,21 +82,21 @@
     <div class="project-section filter-interior">
         <div class="project-header" id="proj7Title">INTERIOR: KILIMANJARO BAR ISTANBUL (IN-HOUSE WORK: AUTOBAN)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/kilimanjaro1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/kilimanjaro2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/kilimanjaro3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/kilimanjaro4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/kilimanjaro5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/kilimanjaro6.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/kilimanjaro7.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/kilimanjaro8.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/kilimanjaro9.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/kilimanjaro10.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/kilimanjaro11.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/kilimanjaro1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/kilimanjaro2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/kilimanjaro3.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/kilimanjaro4.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/kilimanjaro5.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/kilimanjaro6.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/kilimanjaro7.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/kilimanjaro8.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/kilimanjaro9.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/kilimanjaro10.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/kilimanjaro11.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="kilimanjaroText">Located inside the recently developed Bomonti Historic Brewery, Kilimanjaro is a casual restaurant-bar that is an integral part of Bomontiada. Won the Time Out Istanbul “Best Restaurant” award. Developed the bar concept, adapted and refined the geometry into developable surfaces, produced structural drawings, and designed wall fixture lighting and pendant light units.</p>
-            <span class="render-note" id="kiliNote">Photography: Engin Aydeniz</span>
+            <span class="render-note">Photography: Engin Aydeniz</span>
             <a href="https://autoban.com/" target="_blank" class="project-link">AUTOBAN.COM</a>
         </div>
     </div>
@@ -106,16 +106,16 @@
     <div class="project-section filter-interior">
         <div class="project-header" id="proj8Title">INTERIOR: SMILES DENTAL CLINIC PARAMETRIC WALL (CLIENT: WANGAN)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/smiles1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/smiles2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/smiles3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/smiles4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/smiles5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/smiles6.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/smiles1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/smiles2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/smiles3.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/smiles4.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/smiles5.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/smiles6.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="smilesText">Providing parametric drawings of the developed wall concept and creating production drawings for a dental clinic located in Ankara, Turkey. Winner of the Best of Year 2025 Interior Design Award.</p>
-            <span class="render-note" id="smilesNote">Photography: Ibrahim Ozbunar, 645 Studio</span>
+            <span class="render-note">Photography: Ibrahim Ozbunar, 645 Studio</span>
             <a href="https://wangan.studio/" target="_blank" class="project-link">WANGAN.STUDIO</a>
         </div>
     </div>
@@ -125,10 +125,10 @@
     <div class="project-section filter-interior">
         <div class="project-header" id="projSinemiraTitle">INTERIOR: SINEMIRA YACHT INTERIOR FABRICATION DRAWINGS (CLIENT: NORMAL)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/sinemira1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/sinemira2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/sinemira3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/sinemira4.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/sinemira1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/sinemira2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/sinemira3.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/sinemira4.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <span class="render-note" id="sinemiraNote">Renders belong to Normal.</span>
@@ -141,25 +141,24 @@
     <div class="project-section filter-interior">
         <div class="project-header" id="proj9Title">INTERIOR: VAKKORAMA STORE PARAMETRIC LIGHTING INSTALLATION (CLIENT: VAKKORAMA)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/vakkorama1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/vakkorama2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/vakkorama3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/vakkorama4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/vakkorama5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/vakkorama6.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/vakkorama7.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/vakkorama8.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/vakkorama9.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/vakkorama10.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/vakkorama11.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/vakkorama12.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/vakkorama1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/vakkorama2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/vakkorama3.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/vakkorama4.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/vakkorama5.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/vakkorama6.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/vakkorama7.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/vakkorama8.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/vakkorama9.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/vakkorama10.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/vakkorama11.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/vakkorama12.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="vakkoramaText">A study for the Vakkorama store at Zorlu Center in Istanbul. The project incorporates parametric lighting for the vertical walls. It was developed with the intention of having minimal impact on the existing lighting scheme created by lighting designer Ali Berkman, which defines the spatial light map.
 
 The light leaking from the frames was controlled within a defined mapping system, where the scale of the circular pattern on the printed surface was parametrically adjusted through software.</p>
-            <span class="render-note" id="vakkNote">Photography: Ali Berkman, Aytek Jane</span>
-            <a href="https://www.vakkorama.com.tr" target="_blank" class="project-link">VAKKORAMA.COM.TR</a>
+            <span class="render-note">Photography: Ali Berkman, Aytek Jane</span>
         </div>
     </div>
 
@@ -168,17 +167,16 @@ The light leaking from the frames was controlled within a defined mapping system
     <div class="project-section filter-interior">
         <div class="project-header" id="proj10Title">INTERIOR: GAD PARK OFFICE (IN-HOUSE WORK: GAD ARCHITECTURE)</div>
         <div class="gallery">
-            <div class="img-wrapper"><img src="images/gad1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/gad2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/gad3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/gad4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/gad5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/gad6.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/gad1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/gad2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/gad3.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/gad4.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/gad5.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/gad6.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="gadText">I contributed to the interior architectural design, spatial layout planning, and lighting design for the GAD Architecture office, which is located within a former multi-storey parking structure.</p>
-            <span class="render-note" id="gadNote">Photos belong to Gad Architecture.</span>
-            <a href="https://www.gadarchitecture.com/" target="_blank" class="project-link">GADARCHITECTURE.COM</a>
+            <span class="render-note">Photos belong to Gad Architecture.</span>
         </div>
     </div>
 
@@ -187,8 +185,8 @@ The light leaking from the frames was controlled within a defined mapping system
     <div class="project-section filter-interior">
         <div class="project-header" id="projMarbleTitle">INTERIOR: MARBLE BATHROOM UNIT DESIGN</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/marble1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/marble2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/marble1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/marble2.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="projMarbleText">A bathroom unit and interior design project developed for a marble manufacturer based in the United States.</p>
@@ -200,24 +198,23 @@ The light leaking from the frames was controlled within a defined mapping system
     <div class="project-section filter-interior">
         <div class="project-header" id="proj12Title">INTERIOR: SAMSUNG EMAAR MALL - EXPERIENCE STORE (IN-HOUSE WORK: ONERX)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/samsung1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/samsung2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/samsung1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/samsung2.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="samsungText">Interior design and project management for the Samsung Experience Store at Emaar Mall were carried out as a collaborative team effort involving project managers, designers, manufacturers, and contractors. The project focused on retail flow and technological integration, developed in accordance with the design guidelines created by Simon Orchover, former retail design director at Samsung and Apple. Recognized as a world-first concept, the Samsung Experience Store combines experience, sales, and after-sales services within a single unified environment. As Samsung expands this model globally, the Istanbul store has been regarded as a reference point. Within the store, first-class technical services are provided to ensure customers can continuously benefit from Samsung technologies without interruption.</p>
-            <span class="render-note" id="samsungNote">Photos belong to Onerx.</span>
+            <span class="render-note">Photos belong to Onerx.</span>
         </div>
     </div>
 
     <div class="divider filter-furniture"></div>
-
     <div class="project-section filter-furniture">
         <div class="project-header" id="proj3Title">FURNITURE: SOFA CONCEPT</div>
         <div class="gallery">
-            <div class="img-wrapper"><img src="images/sofa-a1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/sofa-a2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/sofa-a3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/sofa-a4.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/sofa-a1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/sofa-a2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/sofa-a3.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/sofa-a4.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="proj3Text">A modern furniture concept exploring comfort and form through industrial design principles. This study focuses on modular structures and the intersection of ergonomic utility and sculptural aesthetics.</p>
@@ -225,15 +222,14 @@ The light leaking from the frames was controlled within a defined mapping system
     </div>
 
     <div class="divider filter-furniture"></div>
-
     <div class="project-section filter-furniture">
         <div class="project-header" id="projModularSofaTitle">FURNITURE: MODULAR SOFA (CLIENT: WANGAN)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/sofa-b1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/sofa-b2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/sofa-b3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/sofa-b4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/sofa-b5.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/sofa-b1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/sofa-b2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/sofa-b3.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/sofa-b4.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/sofa-b5.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="projModularSofaText">A modular sofa system designed for flexibility and adaptability in contemporary living spaces. This concept explores customizable configurations through interlocking modules, combining sustainable materials with ergonomic comfort.</p>
@@ -242,14 +238,13 @@ The light leaking from the frames was controlled within a defined mapping system
     </div>
 
     <div class="divider filter-furniture"></div>
-
     <div class="project-section filter-furniture">
         <div class="project-header" id="projHotelTitle">FURNITURE: HOTEL FURNITURE DESIGN (CLIENT: WANGAN)</div>
         <div class="gallery">
-            <div class="img-wrapper"><img src="images/sofa-c1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/sofa-c2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/sofa-c3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/sofa-c4.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/sofa-c1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/sofa-c2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/sofa-c3.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/sofa-c4.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="projHotelText">Designed for use in equestrian hotel interior.</p>
@@ -258,13 +253,12 @@ The light leaking from the frames was controlled within a defined mapping system
     </div>
 
     <div class="divider filter-furniture"></div>
-
     <div class="project-section filter-furniture">
         <div class="project-header" id="projBedTitle">FURNITURE: BED CONCEPT</div>
         <div class="gallery">
-            <div class="img-wrapper"><img src="images/bed-a1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/bed-a2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/bed-a3.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/bed-a1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/bed-a2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/bed-a3.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="projBedText">A contemporary bed design study exploring structural minimalism and material warmth. This concept focuses on the balance between geometric precision and the comfort required for a restful environment.</p>
@@ -272,51 +266,48 @@ The light leaking from the frames was controlled within a defined mapping system
     </div>
 
     <div class="divider filter-furniture"></div>
-
     <div class="project-section filter-furniture">
         <div class="project-header" id="proj4Title">FURNITURE: JANE STREET FURNITURE (CLIENT: URBAN JOBS)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/jane1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/jane2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/jane3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/jane4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/jane5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/jane6.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/jane7.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/jane8.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/jane1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/jane2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/jane3.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/jane4.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/jane5.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/jane6.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/jane7.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/jane8.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="proj4Text">With seven modules, it is possible to create geometries that complement architectural forms. The design evolved through an analysis of the history of street furniture. Winner of EDIDA 2020 in the Outdoor Furniture category.</p>
-            <span class="render-note" id="janeNote">Context renders belong to Urban Jobs.</span>
+            <span class="render-note">Context renders belong to Urban Jobs.</span>
             <a href="https://www.urbanjobs.istanbul/" target="_blank" class="project-link">URBANJOBS.ISTANBUL</a>
         </div>
     </div>
 
     <div class="divider filter-furniture"></div>
-
     <div class="project-section filter-furniture">
-        <div class="project-header" id="projBurositTitle">FURNITURE: BANZAI OFFICE CHAIR (CLIENT: BÜROSIT - DESIGN ADVISING)</div>
+        <div class="project-header" id="projBurositTitle">FURNITURE: BANZAI OFFICE CHAIR (CLIENT: BÜROSIT)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/burosit1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/burosit2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/burosit3.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/burosit1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/burosit2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/burosit3.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="projBurositText">This product is the result of weekly meetings conducted with the company’s owner, focusing on developing the company’s new look and feel and advancing a design-driven approach. Throughout the process, we aimed to simplify the design language primarily through reduction, making it more refined. It represents one of the first elements of the company’s modern new identity.</p>
-            <span class="render-note" id="burositNote">Photos belong to Bürosit.</span>
+            <span class="render-note">Photos belong to Bürosit.</span>
             <a href="https://www.burosit.com/" target="_blank" class="project-link">BUROSIT.COM</a>
         </div>
     </div>
 
     <div class="divider filter-furniture"></div>
-
     <div class="project-section filter-furniture">
         <div class="project-header" id="projCocoonTitle">FURNITURE: ISTANBUL DESIGN WEEK COCOON STRUCTURE (IN-HOUSE WORK: AUTOBAN)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/cocoon1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/cocoon2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/cocoon3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/cocoon4.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/cocoon1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/cocoon2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/cocoon3.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/cocoon4.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="projCocoonText">This project reinterprets the cocoon zone elements developed by the company for Heydar Aliyev Airport in Azerbaijan, translating their distinctive details into a small-scale outdoor seating unit for Istanbul Design Week. Defined by its own volume, the structure creates an immersive experience for users to rest and engage with the sunset.</p>
@@ -325,34 +316,32 @@ The light leaking from the frames was controlled within a defined mapping system
     </div>
 
     <div class="divider filter-furniture"></div>
-
     <div class="project-section filter-furniture">
         <div class="project-header" id="projUnionTitle">FURNITURE: UNION COLLECTION (IN-HOUSE WORK: AUTOBAN)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/union1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/union2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/union3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/union4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/union5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/union6.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/union1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/union2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/union3.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/union4.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/union5.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/union6.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="projUnionText">Launched at Maison&Objet Paris, the Union family was developed as a collaborative team effort, consisting of a bed, sofa, and table. Rooted in the domestic environment, Union emphasizes form while prioritizing maximum comfort. It is crafted using tactile, natural materials, combining traditional craftsmanship with modern production techniques. Its distinctive and unconventional pieces are defined by soft curves and subtle design details throughout.</p>
-            <span class="render-note" id="unionNote">Renders and photos belong to Autoban.</span>
+            <span class="render-note">Renders and photos belong to Autoban.</span>
             <a href="https://autoban.com/" target="_blank" class="project-link">AUTOBAN.COM</a>
         </div>
     </div>
 
     <div class="divider filter-lighting"></div>
-
     <div class="project-section filter-lighting">
         <div class="project-header" id="projSpiderTitle">LIGHTING: NEW SPIDER WALL LAMP (IN-HOUSE WORK: AUTOBAN)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/spider1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/spider2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/spider3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/spider4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/spider5.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/spider1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/spider2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/spider3.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/spider4.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/spider5.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="projSpiderText">Inspired by the form of spiders, Spider is shaped by the circular arrangement of convex rods surrounding a colored bulb. With its striking, sculptural presence, the design stands out as both a functional object and a visual statement. When illuminated, the colored bulb directs light backward and the lamp casts dramatic, oversized shadows onto the surface, creating an unexpected effect that enhances its character. The Spider Wall Lamp project focuses on further developing the design and improving production quality. Additional details have been incorporated to make the product more distinctive and harder to replicate. The collection includes multiple size variations as well as a pendant version.</p>
@@ -361,14 +350,13 @@ The light leaking from the frames was controlled within a defined mapping system
     </div>
 
     <div class="divider filter-lighting"></div>
-
     <div class="project-section filter-lighting">
         <div class="project-header" id="projCesmiTitle">LIGHTING: ÇEŞM-İ BÜLBÜL WALL LAMP - OMNIA SERIES - PAŞABAHÇE (IN-HOUSE WORK: AUTOBAN)</div>
         <div class="gallery">
-            <div class="img-wrapper"><img src="images/walllamp-a1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/walllamp-a2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/walllamp-a3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/walllamp-a4.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/walllamp-a1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/walllamp-a2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/walllamp-a3.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/walllamp-a4.webp" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><iframe src="https://www.youtube.com/embed/bDlAJAR0JNc" frameborder="0" allowfullscreen></iframe></div>
         </div>
         <div class="project-desc-container">
@@ -379,15 +367,14 @@ The light leaking from the frames was controlled within a defined mapping system
     </div>
 
     <div class="divider filter-lighting"></div>
-
     <div class="project-section filter-lighting">
         <div class="project-header" id="projGlassTitle">LIGHTING: GLASS IS TOMORROW TABLE LAMP (IN-HOUSE WORK: AUTOBAN)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/tablelamp-a1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/tablelamp-a2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/tablelamp-a3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/tablelamp-a4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/tablelamp-a5.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/tablelamp-a1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/tablelamp-a2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/tablelamp-a3.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/tablelamp-a4.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/tablelamp-a5.webp" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><iframe src="https://www.youtube.com/embed/bDlAJAR0JNc" frameborder="0" allowfullscreen></iframe></div>
         </div>
         <div class="project-desc-container">
@@ -398,35 +385,33 @@ The light leaking from the frames was controlled within a defined mapping system
     </div>
 
     <div class="divider filter-lighting"></div>
-
     <div class="project-section filter-lighting">
         <div class="project-header" id="projCapsuleTitle">LIGHTING: CAPSULE WALL LAMP (IN-HOUSE WORK: AUTOBAN)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/capsule1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/capsule2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/capsule3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/capsule4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/capsule5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/capsule6.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/capsule7.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/capsule1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/capsule2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/capsule3.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/capsule4.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/capsule5.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/capsule6.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/capsule7.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="projCapsuleText">This wall lamp, defined by its simple circular form, was carefully developed with close attention to proportion. Designed for production using a hydraulic press, all mold development processes were completed in detail. A wide range of color and surface finish variations were explored throughout the design process. The internal lighting element, wiring, and driver were meticulously engineered to ensure both performance and durability. The product was exhibited at Maison&Objet and later sold to CTO Lighting UK.</p>
-            <span class="render-note" id="capsuleNote">Context render belongs to Autoban.</span>
+            <span class="render-note">Context render belongs to Autoban.</span>
             <a href="https://autoban.com/" target="_blank" class="project-link">AUTOBAN.COM</a>
         </div>
     </div>
 
     <div class="divider filter-lighting"></div>
-
     <div class="project-section filter-lighting">
         <div class="project-header" id="projStarTitle">LIGHTING: STAR PENDANT LIGHT (IN-HOUSE WORK: AUTOBAN)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/pendant-c1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/pendant-c2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/pendant-c3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/pendant-c4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/pendant-c5.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/pendant-c1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/pendant-c2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/pendant-c3.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/pendant-c4.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/pendant-c5.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="projStarText">Guided by the golden ratio, each element of the product was proportioned to form a harmonious whole. The project also included PCB design, along with the development of wiring and the necessary driver system.</p>
@@ -435,25 +420,19 @@ The light leaking from the frames was controlled within a defined mapping system
     </div>
 
     <div class="divider filter-lighting"></div>
-
     <div class="project-section filter-lighting">
         <div class="project-header" id="proj5Title">LIGHTING: FELT PENDANT LIGHT CONCEPT</div>
-        <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/pendant-a1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-        </div>
-        <div class="project-desc-container">
-            <p class="project-desc" id="pendantText">A minimalist lighting concept utilizing the acoustic and aesthetic properties of felt to create a warm, diffused lighting environment.</p>
-        </div>
+        <div class="gallery"><div class="img-wrapper wide"><img src="images/pendant-a1.webp" onclick="openLightbox(this)"></div></div>
+        <div class="project-desc-container"><p class="project-desc" id="pendantText">A minimalist lighting concept utilizing the acoustic and aesthetic properties of felt to create a warm, diffused lighting environment.</p></div>
     </div>
 
     <div class="divider filter-lighting"></div>
-
     <div class="project-section filter-lighting">
         <div class="project-header" id="projPendantBTitle">LIGHTING: THE NEW BIG PENDANT LIGHT (IN-HOUSE WORK: AUTOBAN)</div>
         <div class="gallery">
-            <div class="img-wrapper"><img src="images/pendant-b1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/pendant-b2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/pendant-b3.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/pendant-b1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/pendant-b2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/pendant-b3.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="projPendantBText">A large-scale pendant lighting design developed for high-volume interior spaces, combining industrial structural elements with refined lighting aesthetics.</p>
@@ -462,12 +441,11 @@ The light leaking from the frames was controlled within a defined mapping system
     </div>
 
     <div class="divider filter-lighting"></div>
-
     <div class="project-section filter-lighting">
         <div class="project-header" id="projGhDeskTitle">LIGHTING: GRAND HYATT DESK LAMP (IN-HOUSE WORK: AUTOBAN)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/ghdesk1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/ghdesk2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/ghdesk1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/ghdesk2.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="projGhDeskText">Custom desk lamp design for the Grand Hyatt project, balancing functional task lighting with the sophisticated aesthetic language of luxury hospitality interiors.</p>
@@ -476,39 +454,37 @@ The light leaking from the frames was controlled within a defined mapping system
     </div>
 
     <div class="divider filter-lighting"></div>
-
     <div class="project-section filter-lighting">
         <div class="project-header" id="projBurganTitle">LIGHTING: BURGAN BANK PRIVATE - LIGHTING PLAN (IN-HOUSE WORK: I-AM ASSOCIATES)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/burgan1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/burgan2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/burgan3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/burgan4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/burgan5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/burgan6.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/burgan7.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/burgan1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/burgan2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/burgan3.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/burgan4.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/burgan5.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/burgan6.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/burgan7.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="projBurganText">Lighting design for Burgan Bank’s private branch, including the development of the lighting layout, selection of lighting fixtures, and calculation of light levels using DIALux software.</p>
-            <span class="render-note" id="burganNote">Photos belong to I-AM Associates.</span>
+            <span class="render-note">Photos belong to I-AM Associates.</span>
             <a href="https://www.i-amonline.com/" target="_blank" class="project-link">I-AMONLINE.COM</a>
         </div>
     </div>
 
     <div class="divider filter-horology"></div>
-
     <div class="project-section filter-horology">
         <div class="project-header" id="proj1Title">HOROLOGY: UNIMATIC UC1 SKELETON CONCEPT</div>
         <div class="gallery">
-            <div class="img-wrapper"><img src="images/unimatic1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/unimatic2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/unimatic3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/unimatic4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/unimatic5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/unimatic6.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/unimatic7.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/unimatic8.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/unimatic9.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/unimatic1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/unimatic2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/unimatic3.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/unimatic4.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/unimatic5.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/unimatic6.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/unimatic7.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/unimatic8.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/unimatic9.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="proj1Text">A skeleton variation of the Modello Uno UC1 Classic diver watch was created for Unimatic using an NH72 movement, with a transparent dial designed to reveal the mechanism while preserving the watch’s original minimalist character through a circular screen-printed pattern that creates a subtle semi-transparent effect; the movement is also visible through a window on the case back, while gray-toned corporate typography on the bezel indicates the seconds, and the transparency of both the front and back responds to the curiosity of users new to automatic watches, who often want to observe the mechanical movement, especially in their first timepiece.</p>
@@ -517,17 +493,16 @@ The light leaking from the frames was controlled within a defined mapping system
     </div>
 
     <div class="divider filter-horology"></div>
-
     <div class="project-section filter-horology">
         <div class="project-header" id="proj2Title">HOROLOGY: CITIZEN CONCEPT</div>
         <div class="gallery">
-            <div class="img-wrapper"><img src="images/citizen1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/citizen2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/citizen3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/citizen4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/citizen5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/citizen6.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/citizen7.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/citizen1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/citizen2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/citizen3.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/citizen4.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/citizen5.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/citizen6.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/citizen7.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="proj2Text">This project is based on Citizen’s Eco-Drive technology, which is powered by light energy, and features a concept watch with a clean interface displaying day, battery level, and date information, reflecting the brand’s commitment to sustainable and high-tech watchmaking; the design is inspired by the cherry blossom (sakura) of Japan, incorporating its delicate and minimal aesthetic into the overall concept.</p>
@@ -536,15 +511,14 @@ The light leaking from the frames was controlled within a defined mapping system
     </div>
 
     <div class="divider filter-fashion"></div>
-
     <div class="project-section filter-fashion">
         <div class="project-header" id="proj6Title">FASHION: SERVER CONCEPT</div>
         <div class="gallery">
-            <div class="img-wrapper"><img src="images/fashion-a1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/fashion-a2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/fashion-a3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/fashion-a4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/fashion-a5.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/fashion-a1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/fashion-a2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/fashion-a3.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/fashion-a4.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/fashion-a5.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="fashionText">This project explores the intersection of functional server design and high-fashion aesthetics. This conceptual study aims to redefine the visual language of industrial technology within a lifestyle context.</p>
@@ -552,22 +526,25 @@ The light leaking from the frames was controlled within a defined mapping system
     </div>
 
     <div class="divider filter-rd"></div>
-
     <div class="project-section filter-rd">
-        <div class="project-header" id="projBronzeTitle">R&D: BRONZE AGE BOAT, 3D SCANNER, MUSEUM (IN-HOUSE WORK: NEW YORK UNIVERSITY ABU DHABI - DESIGN ENGINEER)</div>
+        <div class="project-header" id="projBronzeTitle">R&D: BRONZE AGE BOAT, 3D SCANNER, MUSEUM (IN-HOUSE WORK: NYUAD)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/bronze1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/bronze2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/bronze3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/bronze4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/bronze5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/bronze6.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/bronze7.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/bronze8.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/bronze9.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/bronze10.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/bronze11.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/bronze12.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/bronze1.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/bronze2.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/bronze3.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/bronze4.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/bronze5.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/bronze6.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/bronze7.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/bronze8.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/bronze9.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/bronze10.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/bronze11.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/bronze12.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/bronze13.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/bronze14.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/bronze15.webp" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/bronze16.webp" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="projBronzeText">The REF-funded Má I Bronze Age Boat Project explored Bronze Age maritime technologies through a comprehensive analysis of archaeological, textual, iconographic, and ethnographic data. The project combined conventional research methodologies with indigenous knowledge systems, integrating expert shipwrights from the western Indian Ocean who specialize in traditional boatbuilding techniques. Their practical expertise provided critical insights that extended beyond academic research, enabling a more authentic reconstruction process and allowing comparisons between historical evidence and living traditions.
@@ -577,9 +554,8 @@ The central outcome of the Má II Project was the design and construction of an 
 As part of the research and development component of the project, I designed a custom photogrammetric 3D scanning system to digitally document the shipbuilding process. This system captured thousands of high-resolution images from multiple angles, enabling precise 3D reconstruction of construction techniques and material assemblies. The aim was to create a detailed digital archive that preserves intangible craftsmanship knowledge while supporting interdisciplinary collaboration.
 The project also incorporated sustainable architectural strategies during the construction phase. The building environment utilized technical fabric with UV-filtering properties and a geothermal cooling system, achieving effective climate control without reliance on conventional air conditioning.
 Following the success of the initial reconstruction, a larger vessel was later developed as a continuation of the project. This ship is currently exhibited at the Zayed National Museum and has received significant international media attention, including coverage by National Geographic.</p>
-            <a href="https://heritagelab.center/index.php/heritage-experiments/bronze-age-boat/" target="_blank" class="project-link">HERITAGELAB.CENTER</a>
+            <a href="https://heritagelab.center/" target="_blank" class="project-link">HERITAGELAB.CENTER</a>
             <a href="https://www.nationalgeographic.com/travel/article/paid-content-magan-boat-rebuilding-uae-maritime-history" target="_blank" class="project-link">NATIONALGEOGRAPHIC.COM</a>
-            <a href="https://www.felix-beck.de/professional_projects/monsoon-culture-research-center.html" target="_blank" class="project-link">FELIX-BECK.DE</a>
         </div>
     </div>
 
@@ -614,7 +590,6 @@ Following the success of the initial reconstruction, a larger vessel was later d
                 projBedText: "A contemporary bed design study exploring structural minimalism and material warmth. This concept focuses on the balance between geometric precision and the comfort required for a restful environment.",
                 proj4Title: "FURNITURE: JANE STREET FURNITURE (CLIENT: URBAN JOBS)",
                 proj4Text: "With seven modules, it is possible to create geometries that complement architectural forms. The design evolved through an analysis of the history of street furniture. Winner of EDIDA 2020 in the Outdoor Furniture category.",
-                janeNote: "Context renders belong to Urban Jobs.",
                 projBurositTitle: "FURNITURE: BANZAI OFFICE CHAIR (CLIENT: BÜROSIT - DESIGN ADVISING)",
                 projBurositText: "This product is the result of weekly meetings conducted with the company’s owner, focusing on developing the company’s new look and feel and advancing a design-driven approach. Throughout the process, we aimed to simplify the design language primarily through reduction, making it more refined. It represents one of the first elements of the company’s modern new identity.",
                 projCocoonTitle: "FURNITURE: ISTANBUL DESIGN WEEK COCOON STRUCTURE (IN-HOUSE WORK: AUTOBAN)",
@@ -645,8 +620,8 @@ Following the success of the initial reconstruction, a larger vessel was later d
                 proj2Text: "This project is based on Citizen’s Eco-Drive technology, which is powered by light energy, and features a concept watch with a clean interface displaying day, battery level, and date information, reflecting the brand’s commitment to sustainable and high-tech watchmaking; the design is inspired by the cherry blossom (sakura) of Japan, incorporating its delicate and minimal aesthetic into the overall concept.",
                 proj6Title: "FASHION: SERVER CONCEPT",
                 fashionText: "This project explores the intersection of functional server design and high-fashion aesthetics. This conceptual study aims to redefine the visual language of industrial technology within a lifestyle context.",
-                projBronzeTitle: "R&D: BRONZE AGE BOAT, 3D SCANNER, MUSEUM (IN-HOUSE WORK: NEW YORK UNIVERSITY ABU DHABI - DESIGN ENGINEER)",
-                projBronzeText: "The REF-funded Má I Bronze Age Boat Project explored Bronze Age maritime technologies through a comprehensive analysis of archaeological, textual, iconographic, and ethnographic data. The project combined conventional research methodologies with indigenous knowledge systems, integrating expert shipwrights from the western Indian Ocean who specialize in traditional boatbuilding techniques. Their practical expertise provided critical insights that extended beyond academic research, enabling a more authentic reconstruction process and allowing comparisons between historical evidence and living traditions.\n\nBuilding on this foundation, the Má II Project focused on the experimental reconstruction of a full-scale Bronze Age reed boat. This initiative is a collaboration between the Dhakira Center for Heritage Studies at NYU Abu Dhabi, Zayed University, and the Abu Dhabi Department of Culture and Tourism. The project aims to deepen understanding of maritime technology and its role in facilitating trade, cultural exchange, and political networks across the Gulf and the western Indian Ocean between 4000 and 2000 years ago.\n\nDuring the Bronze Age, vessels constructed from reeds and wood, sealed with bitumen, navigated trade routes connecting the Fertile Crescent with regions such as Dilmun (Bahrain), Magan (modern UAE and Oman), and Meluhha (Indus Valley). Although no complete shipwrecks from this period have been discovered, extensive archaeological evidence—including cuneiform texts, pottery, iconography, and material remains—has informed the reconstruction of these vessels.\n\nThe central outcome of the Má II Project was the design and construction of an 18-meter-long ship using historically accurate materials such as reeds, timber, palm fiber cordage, and bitumen. The vessel was built in collaboration with traditional shipwrights from Kerala, whose knowledge of indigenous construction techniques played a vital role in the process. The reconstructed ship offers valuable insights into the structure, durability, cargo capacity, and sailing performance of Bronze Age vessels from the Umm an-Nar period (2600–2000 BCE).\n\nAs part of the research and development component of the project, I designed a custom photogrammetric 3D scanning system to digitally document the shipbuilding process. This system captured thousands of high-resolution images from multiple angles, enabling precise 3D reconstruction of construction techniques and material assemblies. The aim was to create a detailed digital archive that preserves intangible craftsmanship knowledge while supporting interdisciplinary collaboration.\n\nThe project also incorporated sustainable architectural strategies during the construction phase. The building environment utilized technical fabric with UV-filtering properties and a geothermal cooling system, achieving effective climate control without reliance on conventional air conditioning.\n\nFollowing the success of the initial reconstruction, a larger vessel was later developed as a continuation of the project. This ship is currently exhibited at the Zayed National Museum and has received significant international media attention, including coverage by National Geographic.",
+                projBronzeTitle: "R&D: BRONZE AGE BOAT, 3D SCANNER, MUSEUM (IN-HOUSE WORK: NYUAD)",
+                projBronzeText: "The Má I & II Projects explored maritime technologies through archaeological data. Building on this, the project focused on the reconstruction of an 18-meter-long ship. I designed a custom photogrammetric 3D scanning system to document the shipbuilding process and preserve intangible craftsmanship knowledge. The vessel is exhibited at the Zayed National Museum.",
                 contactBtn: "CONTACT",
                 langBtn: "TÜRKÇE"
             },
@@ -658,12 +633,12 @@ Following the success of the initial reconstruction, a larger vessel was later d
                 smilesText: "Ankara'da bulunan bir diş kliniği için geliştirilen duvar konseptinin parametrik çizimlerinin sağlanması ve üretim çizimlerinin oluşturulması. Best of Year 2025 İç Mimari Tasarım Ödülü sahibi.",
                 projSinemiraTitle: "İÇ MİMARİ: SINEMIRA YAT İÇ MEKAN ÜRETİM ÇİZİMLERİ (MÜŞTERİ: NORMAL)",
                 proj9Title: "İÇ MİMARİ: VAKKORAMA MAĞAZASI PARAMETRİK AYDINLATMA ENSTALASYONU (MÜŞTERİ: VAKKORAMA)",
-                vakkoramaText: "İstanbul Zorlu Center'daki Vakkorama mağazası için yapılan bir çalışma. Proje, dikey duvarlar için parametrik aydınlatmayı içermektedir. Mekansal ışık haritasını tanımlayan aydınlatma tasarımcısı Ali Berkman tarafından oluşturulan mevcut aydınlatma kurgusuna minimum müdahale edecek şekilde geliştirilmiştir.\n\nÇerçevelerden sızan ışık, basılı yüzey üzerindeki dairesel desenin ölçeğinin yazılım aracılığıyla parametrik olarak ayarlandığı tanımlanmış bir haritalama sistemi dahilinde kontrol edilmiştir.",
+                vakkoramaText: "İstanbul Zorlu Center'daki Vakkorama mağazası için yapılan bir çalışma. Proje, dikey duvarlar için parametrik aydınlatmayı içermektedir. Aydınlatma tasarımcısı Ali Berkman tarafından oluşturulan mevcut aydınlatma kurgusuna minimum müdahale edecek şekilde, dairesel desenin ölçeği yazılım aracılığıyla parametrik olarak ayarlanmıştır.",
                 proj10Title: "İÇ MİMARİ: GAD PARK OFİSİ (KURUM İÇİ ÇALIŞMA: GAD ARCHITECTURE)",
                 gadText: "Eski bir çok katlı otopark yapısında yer alan GAD Architecture ofisi için iç mimari tasarım, mekansal düzenleme planlaması ve aydınlatma tasarımı süreçlerine katkıda bulundum.",
                 projMarbleTitle: "İÇ MİMARİ: MERMER BANYO ÜNİTESİ TASARIMI",
                 proj12Title: "İÇ MİMARİ: SAMSUNG EMAAR MALL - DENEYİM MAĞAZASI (KURUM İÇİ ÇALIŞMA: ONERX)",
-                samsungText: "Samsung Emaar Experience Store iç mimari tasarımı ve proje yönetimi; proje yöneticileri, tasarımcılar, üreticiler ve müteahhitlerin katıldığı ortak bir ekip çalışması olarak yürütülmüştür. Proje, Samsung ve Apple'ın eski perakende tasarım direktörü Simon Orchover tarafından oluşturulan tasarım yönergelerine uygun olarak perakende akışı ve teknolojik entegrasyona odaklanılmıştır. Dünyada bir ilk olan bu konsept, deneyim, satış ve satış sonrası hizmetleri tek bir birleşik ortamda sunmaktadır. Samsung bu modeli küresel olarak genişletirken, İstanbul mağazası bir referans noktası olarak kabul edilmiştir. Mağaza bünyesinde, müşterilerin Samsung teknolojilerinden kesintisiz yararlanabilmelerini sağlamak için birinci sınıf teknik servis hizmeti sunulmaktadır.",
+                samsungText: "Samsung Emaar Experience Store iç mimari tasarımı ve proje yönetimi; proje yöneticileri, tasarımcılar, üreticiler ve müteahhitlerin katıldığı ortak bir ekip çalışması olarak yürütülmüştür. Proje, Samsung ve Apple'ın eski perakende tasarım direktörü Simon Orchover tarafından oluşturulan tasarım yönergelerine uygun olarak perakende akışı ve teknolojik entegrasyona odaklanılmıştır. Dünyada bir ilk olan bu konsept, deneyim, satış ve satış sonrası hizmetleri tek bir çatıda toplar. Samsung bu modeli küresel olarak genişletirken, İstanbul mağazası bir referans noktası olarak kabul edilmiştir. Mağaza bünyesinde, müşterilerin Samsung teknolojilerinden kesintisiz yararlanabilmelerini sağlamak için birinci sınıf teknik servis hizmeti sunulmaktadır.",
                 proj3Title: "MOBİLYA: SOFA KONSEPTİ",
                 proj3Text: "Endüstriyel tasarım prensipleriyle konfor ve formu araştıran modern bir mobilya konsepti. Bu çalışma, modüler yapılara ve ergonomik fayda ile heykel estetiğinin kesişimine odaklanmaktadır.",
                 projModularSofaTitle: "MOBİLYA: MODÜLER KANEPE (MÜŞTERİ: WANGAN)",
@@ -673,15 +648,13 @@ Following the success of the initial reconstruction, a larger vessel was later d
                 projBedTitle: "MOBİLYA: YATAK KONSEPTİ",
                 projBedText: "Yapısal minimalizm ve malzeme sıcaklığını araştıran çağdaş bir yatak tasarımı çalışması. Bu konsept, geometrik hassasiyet ile dinlendirici bir ortam için gereken konfor arasındaki dengeye odaklanır.",
                 proj4Title: "MOBİLYA: JANE SOKAK MOBİLYASI (MÜŞTERİ: URBAN JOBS)",
-                proj4Text: "Yedi modül ile mimari formları tamamlayan geometriler oluşturmak mümkündür. Tasarım, sokak mobilyası tarihinin bir analizi yoluyla gelişti. EDIDA 2020 Dış Mekan Mobilyası kategorisi kazananı.",
-                janeNote: "Bağlam renderları Urban Jobs'a aittir.",
-                projBurositTitle: "MOBİLYA: BANZAI OFİS SANDALYESİ (MÜŞTERİ: BÜROSİT - TASARIM DANIŞMANLIĞI)",
-                projBurositText: "Bu ürün, şirketin yeni görünümünü ve hissini geliştirmeye ve tasarım odaklı bir yaklaşımı ilerletmeye odaklanan, şirket sahibiyle gerçekleştirilen haftalık toplantıların bir sonucudur. Süreç boyunca, tasarım dilini öncelikle eksiltme yoluyla basitleştirmeyi ve daha rafine hale getirmeyi amaçladık. Şirketin modern yeni kimliğinin ilk unsurlarından birini temsil etmektedir.",
+                proj4Text: "Yedi modül ile mimari formları tamamlayan geometriler oluşturmak mümkündür. Tasarım, sokak mobilyası tarihinin bir analiziyle geliştirilmiştir. Dış Mekan Mobilyası kategorisinde EDIDA 2020 kazananıdır.",
+                projBurositTitle: "MOBİLYA: BANZAI OFİS SANDALYESİ (MÜŞTERİ: BÜROSİT)",
+                projBurositText: "Bu ürün, şirketin yeni görünümünü ve hissini geliştirmeye odaklanan haftalık toplantıların sonucudur. Tasarım dilini sadeleştirerek rafine bir görünüm elde etmeyi amaçladık. Şirketin modern yeni kimliğinin ilk unsurlarından birini temsil etmektedir.",
                 projCocoonTitle: "MOBİLYA: İSTANBUL DESIGN WEEK COCOON YAPISI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projCocoonText: "Bu proje, şirketin Azerbaycan'daki Haydar Aliyev Havalimanı için geliştirdiği cocoon (koza) alanı elemanlarını yeniden yorumlayarak, bu karakteristik detayları İstanbul Design Week için küçük ölçekli bir dış mekan oturma ünitesine dönüştürmektedir. Kendi hacmiyle tanımlanan yapı, kullanıcıların dinlenmesi ve gün batımıyla etkileşime girmesi için sarmalayıcı bir deneyim yaratır.",
+                projCocoonText: "Azerbaycan'daki Haydar Aliyev Havalimanı için geliştirilen cocoon (koza) alanı elemanlarını yeniden yorumlayarak, bu karakteristik detayları İstanbul Design Week için küçük ölçekli bir dış mekan oturma ünitesine dönüştürmektedir. Kendi hacmiyle tanımlanan yapı, kullanıcıların dinlenmesi ve gün batımıyla etkileşime girmesi için sarmalayıcı bir deneyim yaratır.",
                 projUnionTitle: "MOBİLYA: UNION KOLEKSİYONU (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projUnionText: "Maison&Objet Paris'te tanıtılan Union ailesi; yatak, kanepe ve masadan oluşan ortak bir ekip çalışması olarak geliştirilmiştir. Koleksiyon, şirketin projelerinde yaygın olarak kullanılmıştır. Ev ortamına dayanan Union, maksimum konforu ön planda tutarken formu vurgular. Dokunsal, doğal malzemeler kullanılarak, geleneksel zanaatkarlık ile modern üretim teknikleri birleştirilerek üretilmiştir. Kendine özgü ve alışılmadık parçaları, yumuşak kavisler ve ince tasarım detaylarıyla tanımlanır.",
-                unionNote: "Render ve fotoğraflar Autoban'a aittir.",
+                projUnionText: "Maison&Objet Paris'te tanıtılan Union ailesi; yatak, kanepe ve masadan oluşan ortak bir ekip çalışması olarak geliştirilmiştir. Ev ortamına dayanan Union, maksimum konforu ön planda tutarken formu vurgular. Dokunsal, doğal malzemeler kullanılarak, geleneksel zanaatkarlık ile modern üretim teknikleri birleştirilerek üretilmiştir. Kendine özgü ve alışılmadık parçaları, yumuşak kavisler ve ince tasarım detaylarıyla tanımlanır.",
                 projSpiderTitle: "AYDINLATMA: YENİ SPIDER DUVAR LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
                 projSpiderText: "Örümceklerin formundan esinlenen Spider, renkli bir ampulü çevreleyen dışbükey çubukların dairesel dizilimiyle şekillenir. Çarpıcı ve heykelsi duruşuyla tasarım, hem fonksiyonel bir nesne hem de görsel bir ifade olarak öne çıkar. Aydınlatıldığında, renkli ampul ışığı geriye doğru yönlendirir ve lamba yüzeye dramatik, büyük gölgeler düşürerek karakterini güçlendiren beklenmedik bir etki yaratır. Spider Duvar Lambası projesi, tasarımı daha da geliştirmeye ve üretim kalitesini artırmaya odaklanmaktadır. Ürünü daha belirgin hale getirmek ve kopyalanmasını zorlaştırmak için ek detaylar dahil edilmiştir. Koleksiyon, birden fazla boyut varyasyonunun yanı sıra bir sarkıt versiyonunu da içermektedir.",
                 projCesmiTitle: "AYDINLATMA: ÇEŞM-İ BÜLBÜL DUVAR AYDINLATMASI - OMNIA SERİSİ - PAŞABAHÇE (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
@@ -714,6 +687,7 @@ Following the success of the initial reconstruction, a larger vessel was later d
         };
 
         let currentLang = 'en';
+
         function toggleLanguage() {
             currentLang = (currentLang === 'en' ? 'tr' : 'en');
             document.documentElement.lang = currentLang;
@@ -747,8 +721,8 @@ Following the success of the initial reconstruction, a larger vessel was later d
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        function openLightbox(img) { document.getElementById('lightboxImg').src = img.src; document.getElementById('lightbox').style.display = 'flex'; }
-        function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; }
+        function openLightbox(img) { document.getElementById('lightboxImg').src = img.src; document.getElementById('lightbox').style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+        function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; document.body.style.overflow = ''; }
         window.addEventListener('keydown', e => { if (e.key === "Escape") closeLightbox(); });
     </script>
 </body>
