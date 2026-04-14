@@ -15,13 +15,14 @@
             margin: 0; padding: 0;
             display: flex; flex-direction: column; align-items: center; 
             min-height: 100vh;
+            overflow-x: hidden;
         }
         /* --- HEADER & NAV --- */
         .header-nav {
             position: fixed;
             top: 0; left: 0; width: 100%;
             display: flex; justify-content: space-between; align-items: center;
-            z-index: 3000; padding: 15px 40px; box-sizing: border-box;
+            z-index: 4000; padding: 15px 40px; box-sizing: border-box;
             background-color: rgba(245, 245, 245, 0.98);
             border-bottom: 1px solid rgb(0, 103, 79);
         }
@@ -48,10 +49,11 @@
             left: 0; background-color: #FF91AF; transition: width 0.3s ease; }
         .nav-item:hover::after { width: 100%; }
 
-        .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 3100; }
+        /* Hamburger Icon */
+        .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 4100; }
         .menu-toggle span { width: 25px; height: 2px; background-color: #1a1a1a; transition: 0.3s; }
 
-        /* --- CATEGORY MENU & SCROLLABLE OVERLAY --- */
+        /* --- CATEGORY MENU & MOBILE OVERLAY --- */
         .category-menu {
             position: fixed;
             top: 70px; left: 0; width: 100%;
@@ -66,7 +68,7 @@
         .cat-item:hover, .cat-item.active { color: #1a1a1a; }
         .cat-item.active { border-bottom: 2px solid #FF91AF; }
 
-        .mobile-only-links { display: none; flex-direction: column; gap: 15px; padding: 25px 40px; border-top: 1px solid #FF91AF; margin-top: 10px; }
+        .mobile-only-links { display: none; flex-direction: column; gap: 15px; padding: 25px 40px; border-top: 1px solid #FF91AF; margin-top: 10px; padding-bottom: 50px; }
 
         /* --- CONTENT --- */
         .intro { margin-bottom: 60px;
@@ -100,13 +102,13 @@
             .nav-links { display: none; } 
             .menu-toggle { display: flex; } 
             
+            /* KESİN ÇÖZÜM: Yatay Mod Kaydırma Fix */
             .category-menu {
                 flex-direction: column; 
-                top: 60px; 
+                top: 57px; /* Header yüksekliğine göre */
                 left: 0; 
                 width: 100%;
                 height: 0;
-                max-height: 0;
                 background-color: rgb(245, 245, 245); 
                 padding: 0; 
                 overflow-y: auto; 
@@ -116,14 +118,16 @@
                 border-bottom: none;
                 display: flex;
                 justify-content: flex-start;
-                z-index: 2500;
+                z-index: 3500;
+                transition: opacity 0.3s ease;
+                /* iOS momentum kaydırma */
+                -webkit-overflow-scrolling: touch;
             }
             .category-menu.active { 
-                height: calc(100vh - 60px); 
-                max-height: calc(100vh - 60px);
+                height: calc(100vh - 57px); 
+                max-height: calc(100vh - 57px);
                 visibility: visible;
                 opacity: 1;
-                padding-bottom: 80px;
             }
             .cat-item { 
                 padding: 20px 40px; 
@@ -131,7 +135,7 @@
                 border-bottom: 1px solid rgba(0,0,0,0.05); 
                 width: 100%;
                 display: block;
-                flex-shrink: 0;
+                flex-shrink: 0; /* Küçülmeyi engelle */
             }
             .mobile-only-links { display: flex; flex-shrink: 0; } 
             .intro { margin-top: 100px; padding: 0 20px; }
@@ -140,13 +144,13 @@
         }
 
         /* LIGHTBOX */
-        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.98); z-index: 4000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.98); z-index: 5000; justify-content: center; align-items: center; cursor: pointer; }
         .lb-content { position: relative; max-width: 90%; max-height: 90%; }
         .lightbox img { max-width: 100%; max-height: 85vh; object-fit: contain; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
         .lb-close { position: absolute; top: -60px; right: 0; font-size: 12px; color: #888; cursor: pointer; text-transform: uppercase; }
     </style>
 </head>
-<body>
+<body id="page-body">
 
     <div class="header-nav">
         <div class="logo-group">
@@ -662,18 +666,20 @@
         }
         changeLogoFont();
 
-        // --- MOBILE MENU ---
+        // --- MOBILE MENU TOGGLE ---
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
+            const body = document.getElementById('page-body');
             menu.classList.toggle('active');
+            
             if (menu.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
+                body.style.overflow = 'hidden'; // Menü açıkken sayfa kaymasını engelle
             } else {
-                document.body.style.overflow = '';
+                body.style.overflow = '';
             }
         }
 
-        // --- DATA DICTIONARY ---
+        // --- DIL VERILERI ---
         const data = {
             en: {
                 desc: "A space where you can find my selected works and ideas.",
@@ -751,7 +757,7 @@
                 projModularSofaTitle: "MOBİLYA: MODÜLER KANEPE (MÜŞTERİ: WANGAN)",
                 projModularSofaText: "Çağdaş yaşam alanlarında esneklik ve uyarlanabilirlik için tasarlanmış modüler bir kanepe sistemi. Bu konsept, sürdürülebilir malzemeleri ergonomik konforla birleştiren, birbirine kilitlenen modüller aracılığıyla özelleştirilebilir konfigürasyonları araştırır.",
                 projHotelTitle: "MOBİLYA: OTEL MOBİLYASI TASARIMI (MÜŞTERİ: WANGAN)",
-                projHotelText: "Designed for use in equestrian hotel interior.",
+                projHotelText: "Equestrian otel iç mekan kullanımı için tasarlanmıştır.",
                 projBedTitle: "MOBİLYA: YATAK KONSEPTİ",
                 projBedText: "Yapısal minimalizm ve malzeme sıcaklığını araştıran çağdaş bir yatak tasarımı çalışması. Bu konsept, geometrik hassasiyet ile dinlendirici bir ortam için gereken konfor arasındaki dengeye odaklanır.",
                 proj4Title: "MOBİLYA: JANE SOKAK MOBİLYASI (MÜŞTERİ: URBAN JOBS)",
@@ -777,7 +783,7 @@
                 projPendantBTitle: "AYDINLATMA: THE NEW BIG PENDANT LIGHT (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
                 projPendantBText: "Geniş hacimli iç mekanlar için geliştirilen, endüstriyel yapısal elemanları rafine aydınlatma estetiğiyle birleştiren büyük ölçekli bir sarkıt lamba tasarımı.",
                 projGhDeskTitle: "AYDINLATMA: GRAND HYATT MASA LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projGhDeskText: "Grand Hyatt projesi için tasarlanan masa lambası; fonksiyonel çalışma aydınlatmasını lüks konaklama iç mekanlarının sofistike estetik diliyle dengeler.",
+                projGhDeskText: "Grand Hyatt projesi için özel olarak tasarlanan masa lambası; fonksiyonel çalışma aydınlatmasını lüks konaklama iç mekanlarının sofistike estetik diliyle dengeler.",
                 projBurganTitle: "AYDINLATMA: BURGAN BANK PRIVATE - AYDINLATMA PLANI (KURUM İÇİ ÇALIŞMA: I-AM ASSOCIATES)",
                 projBurganText: "Burgan Bank'ın özel şubesi için aydınlatma yerleşim planının geliştirilmesi, armatür seçimi ve DIALux yazılımı kullanılarak aydınlık düzeylerinin hesaplanmasını içeren aydınlatma tasarımı.",
                 proj1Title: "SAAT: UNIMATIC UC1 İSKELET KONSEPTİ",
@@ -818,7 +824,7 @@
             });
         }
 
-        // --- FILTER PROJECTS ---
+        // --- FILTRELEME (Divider Fix) ---
         function filterProjects(category, element) {
             document.querySelectorAll('.cat-item').forEach(item => item.classList.remove('active'));
             element.classList.add('active');
@@ -827,25 +833,17 @@
             const dividers = document.querySelectorAll('.divider');
             
             sections.forEach(sec => {
-                if (category === 'all' || sec.classList.contains('filter-' + category)) {
-                    sec.style.display = 'block';
-                } else {
-                    sec.style.display = 'none';
-                }
+                sec.style.display = (category === 'all' || sec.classList.contains('filter-' + category)) ? 'block' : 'none';
             });
             
             dividers.forEach(div => {
-                if (category === 'all' || div.classList.contains('filter-' + category)) {
-                    div.style.display = 'block';
-                } else {
-                    div.style.display = 'none';
-                }
+                div.style.display = (category === 'all' || div.classList.contains('filter-' + category)) ? 'block' : 'none';
             });
             
             const menu = document.getElementById('mobileMenu');
             if(window.innerWidth <= 768) {
                 menu.classList.remove('active');
-                document.body.style.overflow = '';
+                document.getElementById('page-body').style.overflow = '';
             }
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
