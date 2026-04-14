@@ -108,7 +108,7 @@
         .project-desc-container { margin-top: 30px; margin-bottom: 40px; text-align: left; max-width: 900px; }
         .project-desc { font-size: 16px; line-height: 1.8; color: #444; margin-bottom: 15px; font-weight: 300; white-space: pre-line; }
         .render-note { display: block; font-size: 11px; font-style: italic; color: #888; margin-bottom: 25px; }
-        .project-link { display: inline-block; color: #1a1a1a; text-decoration: none; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; margin-right: 25px; }
+        .project-link { display: inline-block; color: #1a1a1a; text-decoration: none; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; margin-right: 25px; margin-bottom: 10px; }
         .project-link:hover { color: #FF91AF; }
 
         /* --- LIGHTBOX --- */
@@ -139,56 +139,149 @@
 
     <div class="category-menu">
         <div class="cat-item active" onclick="filterProjects('all', this)" id="cat-all">ALL</div>
-        <div class="cat-item" onclick="filterProjects('horology', this)" id="cat-horology">HOROLOGY</div>
+        <div class="cat-item" onclick="filterProjects('interior', this)" id="cat-interior">INTERIOR</div>
         <div class="cat-item" onclick="filterProjects('furniture', this)" id="cat-furniture">FURNITURE</div>
         <div class="cat-item" onclick="filterProjects('lighting', this)" id="cat-lighting">LIGHTING</div>
+        <div class="cat-item" onclick="filterProjects('horology', this)" id="cat-horology">HOROLOGY</div>
         <div class="cat-item" onclick="filterProjects('fashion', this)" id="cat-fashion">FASHION</div>
-        <div class="cat-item" onclick="filterProjects('interior', this)" id="cat-interior">INTERIOR</div>
+        <div class="cat-item" onclick="filterProjects('rd', this)" id="cat-rd">R&D</div>
     </div>
 
     <div class="intro">
         <p class="subtitle" id="desc">A space where you can find my selected works and ideas.</p>
     </div>
 
-    <div class="project-section filter-horology">
-        <div class="project-header" id="proj1Title">HOROLOGY: UNIMATIC UC1 SKELETON CONCEPT</div>
+    <div class="project-section filter-interior">
+        <div class="project-header" id="proj7Title">INTERIOR: KILIMANJARO BAR ISTANBUL (IN-HOUSE WORK: AUTOBAN)</div>
         <div class="gallery">
-            <div class="img-wrapper"><img src="images/unimatic1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/unimatic2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/unimatic3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/unimatic4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/unimatic5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/unimatic6.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/unimatic7.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/unimatic8.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/unimatic9.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/kilimanjaro1.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/kilimanjaro2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/kilimanjaro3.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/kilimanjaro4.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/kilimanjaro5.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/kilimanjaro6.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/kilimanjaro7.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/kilimanjaro8.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/kilimanjaro9.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/kilimanjaro10.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/kilimanjaro11.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
-            <p class="project-desc" id="proj1Text">A skeleton variation of the Modello Uno UC1 Classic diver watch was created for Unimatic using an NH72 movement, with a transparent dial designed to reveal the mechanism while preserving the watch’s original minimalist character through a circular screen-printed pattern that creates a subtle semi-transparent effect; the movement is also visible through a window on the case back, while gray-toned corporate typography on the bezel indicates the seconds, and the transparency of both the front and back responds to the curiosity of users new to automatic watches, who often want to observe the mechanical movement, especially in their first timepiece.</p>
-            <a href="https://www.unimaticwatches.com" target="_blank" class="project-link">UNIMATICWATCHES.COM</a>
+            <p class="project-desc" id="kilimanjaroText">Located inside the recently developed Bomonti Historic Brewery, Kilimanjaro is a casual restaurant-bar that is an integral part of Bomontiada. Won the Time Out Istanbul “Best Restaurant” award. Developed the bar concept, adapted and refined the geometry into developable surfaces, produced structural drawings, and designed wall fixture lighting and pendant light units.</p>
+            <span class="render-note" id="kiliNote">Photography: Engin Aydeniz</span>
+            <a href="https://autoban.com/" target="_blank" class="project-link">AUTOBAN.COM</a>
         </div>
     </div>
 
-    <div class="divider filter-horology"></div>
+    <div class="divider filter-interior"></div>
 
-    <div class="project-section filter-horology">
-        <div class="project-header" id="proj2Title">HOROLOGY: CITIZEN CONCEPT</div>
+    <div class="project-section filter-interior">
+        <div class="project-header" id="proj8Title">INTERIOR: SMILES DENTAL CLINIC PARAMETRIC WALL (CLIENT: WANGAN)</div>
         <div class="gallery">
-            <div class="img-wrapper"><img src="images/citizen1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/citizen2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/citizen3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/citizen4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/citizen5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/citizen6.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/citizen7.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/smiles1.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/smiles2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/smiles3.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/smiles4.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/smiles5.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/smiles6.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
-            <p class="project-desc" id="proj2Text">This project is based on Citizen’s Eco-Drive technology, which is powered by light energy, and features a concept watch with a clean interface displaying day, battery level, and date information, reflecting the brand’s commitment to sustainable and high-tech watchmaking; the design is inspired by the cherry blossom (sakura) of Japan, incorporating its delicate and minimal aesthetic into the overall concept.</p>
-            <a href="https://www.citizenwatch.com" target="_blank" class="project-link">CITIZENWATCH.COM</a>
+            <p class="project-desc" id="smilesText">Providing parametric drawings of the developed wall concept and creating production drawings for a dental clinic located in Ankara, Turkey. Winner of the Best of Year 2025 Interior Design Award.</p>
+            <span class="render-note" id="smilesNote">Photography: Ibrahim Ozbunar, 645 Studio</span>
+            <a href="https://wangan.studio/" target="_blank" class="project-link">WANGAN.STUDIO</a>
         </div>
     </div>
 
-    <div class="divider filter-horology"></div>
+    <div class="divider filter-interior"></div>
+
+    <div class="project-section filter-interior">
+        <div class="project-header" id="projSinemiraTitle">INTERIOR: SINEMIRA YACHT INTERIOR FABRICATION DRAWINGS (CLIENT: NORMAL)</div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/sinemira1.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/sinemira2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/sinemira3.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/sinemira4.webp" loading="lazy" onclick="openLightbox(this)"></div>
+        </div>
+        <div class="project-desc-container">
+            <span class="render-note" id="sinemiraNote">Renders belong to Normal.</span>
+            <a href="https://www.normal.com.tr/" target="_blank" class="project-link">NORMAL.COM.TR</a>
+        </div>
+    </div>
+
+    <div class="divider filter-interior"></div>
+
+    <div class="project-section filter-interior">
+        <div class="project-header" id="proj9Title">INTERIOR: VAKKORAMA STORE PARAMETRIC LIGHTING INSTALLATION (CLIENT: VAKKORAMA)</div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/vakkorama1.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/vakkorama2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/vakkorama3.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/vakkorama4.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/vakkorama5.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/vakkorama6.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/vakkorama7.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/vakkorama8.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/vakkorama9.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/vakkorama10.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/vakkorama11.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/vakkorama12.webp" loading="lazy" onclick="openLightbox(this)"></div>
+        </div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="vakkoramaText">A study for the Vakkorama store at Zorlu Center in Istanbul. The project incorporates parametric lighting for the vertical walls. It was developed with the intention of having minimal impact on the existing lighting scheme created by lighting designer Ali Berkman, which defines the spatial light map.
+
+The light leaking from the frames was controlled within a defined mapping system, where the scale of the circular pattern on the printed surface was parametrically adjusted through software.</p>
+            <span class="render-note" id="vakkNote">Photography: Ali Berkman, Aytek Jane</span>
+            <a href="https://www.vakkorama.com.tr" target="_blank" class="project-link">VAKKORAMA.COM.TR</a>
+        </div>
+    </div>
+
+    <div class="divider filter-interior"></div>
+
+    <div class="project-section filter-interior">
+        <div class="project-header" id="proj10Title">INTERIOR: GAD PARK OFFICE (IN-HOUSE WORK: GAD ARCHITECTURE)</div>
+        <div class="gallery">
+            <div class="img-wrapper"><img src="images/gad1.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/gad2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/gad3.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/gad4.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/gad5.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/gad6.webp" loading="lazy" onclick="openLightbox(this)"></div>
+        </div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="gadText">I contributed to the interior architectural design, spatial layout planning, and lighting design for the GAD Architecture office, which is located within a former multi-storey parking structure.</p>
+            <span class="render-note" id="gadNote">Photos belong to Gad Architecture.</span>
+            <a href="https://www.gadarchitecture.com/" target="_blank" class="project-link">GADARCHITECTURE.COM</a>
+        </div>
+    </div>
+
+    <div class="divider filter-interior"></div>
+
+    <div class="project-section filter-interior">
+        <div class="project-header" id="projMarbleTitle">INTERIOR: MARBLE BATHROOM UNIT DESIGN</div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/marble1.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/marble2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+        </div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="projMarbleText">A bathroom unit and interior design project developed for a marble manufacturer based in the United States.</p>
+        </div>
+    </div>
+
+    <div class="divider filter-interior"></div>
+
+    <div class="project-section filter-interior">
+        <div class="project-header" id="proj12Title">INTERIOR: SAMSUNG EMAAR MALL - EXPERIENCE STORE (IN-HOUSE WORK: PROJECT MANAGER - ONERX)</div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/samsung1.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/samsung2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+        </div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="samsungText">Interior design and project management for the Samsung Experience Store at Emaar Mall were carried out as a collaborative team effort involving project managers, designers, manufacturers, and contractors. The project focused on retail flow and technological integration, developed in accordance with the design guidelines created by Simon Orchover, former retail design director at Samsung and Apple. Recognized as a world-first concept, the Samsung Experience Store combines experience, sales, and after-sales services within a single unified environment. As Samsung expands this model globally, the Istanbul store has been regarded as a reference point. Within the store, first-class technical services are provided to ensure customers can continuously benefit from Samsung technologies without interruption.</p>
+            <span class="render-note" id="samsungNote">Photos belong to Onerx.</span>
+        </div>
+    </div>
+
+    <div class="divider filter-interior"></div>
 
     <div class="project-section filter-furniture">
         <div class="project-header" id="proj3Title">FURNITURE: SOFA CONCEPT</div>
@@ -480,6 +573,46 @@
 
     <div class="divider filter-lighting"></div>
 
+    <div class="project-section filter-horology">
+        <div class="project-header" id="proj1Title">HOROLOGY: UNIMATIC UC1 SKELETON CONCEPT</div>
+        <div class="gallery">
+            <div class="img-wrapper"><img src="images/unimatic1.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/unimatic2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/unimatic3.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/unimatic4.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/unimatic5.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/unimatic6.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/unimatic7.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/unimatic8.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/unimatic9.webp" loading="lazy" onclick="openLightbox(this)"></div>
+        </div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="proj1Text">A skeleton variation of the Modello Uno UC1 Classic diver watch was created for Unimatic using an NH72 movement, with a transparent dial designed to reveal the mechanism while preserving the watch’s original minimalist character through a circular screen-printed pattern that creates a subtle semi-transparent effect; the movement is also visible through a window on the case back, while gray-toned corporate typography on the bezel indicates the seconds, and the transparency of both the front and back responds to the curiosity of users new to automatic watches, who often want to observe the mechanical movement, especially in their first timepiece.</p>
+            <a href="https://www.unimaticwatches.com" target="_blank" class="project-link">UNIMATICWATCHES.COM</a>
+        </div>
+    </div>
+
+    <div class="divider filter-horology"></div>
+
+    <div class="project-section filter-horology">
+        <div class="project-header" id="proj2Title">HOROLOGY: CITIZEN CONCEPT</div>
+        <div class="gallery">
+            <div class="img-wrapper"><img src="images/citizen1.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/citizen2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/citizen3.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/citizen4.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/citizen5.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/citizen6.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/citizen7.webp" loading="lazy" onclick="openLightbox(this)"></div>
+        </div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="proj2Text">This project is based on Citizen’s Eco-Drive technology, which is powered by light energy, and features a concept watch with a clean interface displaying day, battery level, and date information, reflecting the brand’s commitment to sustainable and high-tech watchmaking; the design is inspired by the cherry blossom (sakura) of Japan, incorporating its delicate and minimal aesthetic into the overall concept.</p>
+            <a href="https://www.citizenwatch.com" target="_blank" class="project-link">CITIZENWATCH.COM</a>
+        </div>
+    </div>
+
+    <div class="divider filter-horology"></div>
+
     <div class="project-section filter-fashion">
         <div class="project-header" id="proj6Title">FASHION: SERVER CONCEPT</div>
         <div class="gallery">
@@ -496,133 +629,33 @@
 
     <div class="divider filter-fashion"></div>
 
-    <div class="project-section filter-interior">
-        <div class="project-header" id="proj7Title">INTERIOR: KILIMANJARO BAR ISTANBUL (IN-HOUSE WORK: AUTOBAN)</div>
+    <div class="project-section filter-rd">
+        <div class="project-header" id="projBronzeTitle">R&D: BRONZE AGE BOAT, 3D SCANNER, MUSEUM (IN-HOUSE WORK: NEW YORK UNIVERSITY ABU DHABI - DESIGN ENGINEER)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/kilimanjaro1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/kilimanjaro2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/kilimanjaro3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/kilimanjaro4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/kilimanjaro5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/kilimanjaro6.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/kilimanjaro7.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/kilimanjaro8.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/kilimanjaro9.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/kilimanjaro10.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/kilimanjaro11.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/bronze1.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/bronze2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/bronze3.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/bronze4.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/bronze5.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/bronze6.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/bronze7.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/bronze8.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/bronze9.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/bronze10.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/bronze11.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/bronze12.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
-            <p class="project-desc" id="kilimanjaroText">Located inside the recently developed Bomonti Historic Brewery, Kilimanjaro is a casual restaurant-bar that is an integral part of Bomontiada. Won the Time Out Istanbul “Best Restaurant” award. Developed the bar concept, adapted and refined the geometry into developable surfaces, produced structural drawings, and designed wall fixture lighting and pendant light units.</p>
-            <span class="render-note" id="kiliNote">Photography: Engin Aydeniz</span>
-            <a href="https://autoban.com/" target="_blank" class="project-link">AUTOBAN.COM</a>
-        </div>
-    </div>
-
-    <div class="divider filter-interior"></div>
-
-    <div class="project-section filter-interior">
-        <div class="project-header" id="proj8Title">INTERIOR: SMILES DENTAL CLINIC PARAMETRIC WALL (CLIENT: WANGAN)</div>
-        <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/smiles1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/smiles2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/smiles3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/smiles4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/smiles5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/smiles6.webp" loading="lazy" onclick="openLightbox(this)"></div>
-        </div>
-        <div class="project-desc-container">
-            <p class="project-desc" id="smilesText">Providing parametric drawings of the developed wall concept and creating production drawings for a dental clinic located in Ankara, Turkey. Winner of the Best of Year 2025 Interior Design Award.</p>
-            <span class="render-note" id="smilesNote">Photography: Ibrahim Ozbunar, 645 Studio</span>
-            <a href="https://wangan.studio/" target="_blank" class="project-link">WANGAN.STUDIO</a>
-        </div>
-    </div>
-
-    <div class="divider filter-interior"></div>
-
-    <div class="project-section filter-interior">
-        <div class="project-header" id="projSinemiraTitle">INTERIOR: SINEMIRA YACHT INTERIOR FABRICATION DRAWINGS (CLIENT: NORMAL)</div>
-        <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/sinemira1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/sinemira2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/sinemira3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/sinemira4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-        </div>
-        <div class="project-desc-container">
-            <span class="render-note" id="sinemiraNote">Renders belong to Normal.</span>
-            <a href="https://www.normal.com.tr/" target="_blank" class="project-link">NORMAL.COM.TR</a>
-        </div>
-    </div>
-
-    <div class="divider filter-interior"></div>
-
-    <div class="project-section filter-interior">
-        <div class="project-header" id="proj9Title">INTERIOR: VAKKORAMA STORE PARAMETRIC LIGHTING INSTALLATION (CLIENT: VAKKORAMA)</div>
-        <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/vakkorama1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/vakkorama2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/vakkorama3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/vakkorama4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/vakkorama5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/vakkorama6.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/vakkorama7.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/vakkorama8.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/vakkorama9.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/vakkorama10.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/vakkorama11.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/vakkorama12.webp" loading="lazy" onclick="openLightbox(this)"></div>
-        </div>
-        <div class="project-desc-container">
-            <p class="project-desc" id="vakkoramaText">A study for the Vakkorama store at Zorlu Center in Istanbul. The project incorporates parametric lighting for the vertical walls. It was developed with the intention of having minimal impact on the existing lighting scheme created by lighting designer Ali Berkman, which defines the spatial light map.
-
-The light leaking from the frames was controlled within a defined mapping system, where the scale of the circular pattern on the printed surface was parametrically adjusted through software.</p>
-            <span class="render-note" id="vakkNote">Photography: Ali Berkman, Aytek Jane</span>
-            <a href="https://www.vakkorama.com.tr" target="_blank" class="project-link">VAKKORAMA.COM.TR</a>
-        </div>
-    </div>
-
-    <div class="divider filter-interior"></div>
-
-    <div class="project-section filter-interior">
-        <div class="project-header" id="proj10Title">INTERIOR: GAD PARK OFFICE (IN-HOUSE WORK: GAD ARCHITECTURE)</div>
-        <div class="gallery">
-            <div class="img-wrapper"><img src="images/gad1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/gad2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/gad3.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/gad4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/gad5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/gad6.webp" loading="lazy" onclick="openLightbox(this)"></div>
-        </div>
-        <div class="project-desc-container">
-            <p class="project-desc" id="gadText">I contributed to the interior architectural design, spatial layout planning, and lighting design for the GAD Architecture office, which is located within a former multi-storey parking structure.</p>
-            <span class="render-note" id="gadNote">Photos belong to Gad Architecture.</span>
-            <a href="https://www.gadarchitecture.com/" target="_blank" class="project-link">GADARCHITECTURE.COM</a>
-        </div>
-    </div>
-
-    <div class="divider filter-interior"></div>
-
-    <div class="project-section filter-interior">
-        <div class="project-header" id="projMarbleTitle">INTERIOR: MARBLE BATHROOM UNIT DESIGN</div>
-        <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/marble1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/marble2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-        </div>
-        <div class="project-desc-container">
-            <p class="project-desc" id="projMarbleText">A bathroom unit and interior design project developed for a marble manufacturer based in the United States.</p>
-        </div>
-    </div>
-
-    <div class="divider filter-interior"></div>
-
-    <div class="project-section filter-interior">
-        <div class="project-header" id="proj12Title">INTERIOR: SAMSUNG EMAAR MALL - EXPERIENCE STORE (IN-HOUSE WORK: PROJECT MANAGER - ONERX)</div>
-        <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/samsung1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/samsung2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-        </div>
-        <div class="project-desc-container">
-            <p class="project-desc" id="samsungText">Interior design and project management for the Samsung Experience Store at Emaar Mall were carried out as a collaborative team effort involving project managers, designers, manufacturers, and contractors. The project focused on retail flow and technological integration, developed in accordance with the design guidelines created by Simon Orchover, former retail design director at Samsung and Apple. Recognized as a world-first concept, the Samsung Experience Store combines experience, sales, and after-sales services within a single unified environment. As Samsung expands this model globally, the Istanbul store has been regarded as a reference point. Within the store, first-class technical services are provided to ensure customers can continuously benefit from Samsung technologies without interruption.</p>
-            <span class="render-note" id="samsungNote">Photos belong to Onerx.</span>
+            <p class="project-desc" id="projBronzeText">The REF-funded Má I Bronze Age Boat Project explored Bronze Age maritime technologies through a comprehensive analysis of archaeological, textual, iconographic, and ethnographic data. The project combined conventional research methodologies with indigenous knowledge systems, integrating expert shipwrights from the western Indian Ocean who specialize in traditional boatbuilding techniques. Their practical expertise provided critical insights that extended beyond academic research, enabling a more authentic reconstruction process and allowing comparisons between historical evidence and living traditions.
+Building on this foundation, the Má II Project focused on the experimental reconstruction of a full-scale Bronze Age reed boat. This initiative is a collaboration between the Dhakira Center for Heritage Studies at NYU Abu Dhabi, Zayed University, and the Abu Dhabi Department of Culture and Tourism. The project aims to deepen understanding of maritime technology and its role in facilitating trade, cultural exchange, and political networks across the Gulf and the western Indian Ocean between 4000 and 2000 years ago.
+During the Bronze Age, vessels constructed from reeds and wood, sealed with bitumen, navigated trade routes connecting the Fertile Crescent with regions such as Dilmun (Bahrain), Magan (modern BAE and Umman) and Meluhha (Indus Valley). Although no complete shipwrecks from this period have been discovered, extensive archaeological evidence—including cuneiform texts, pottery, iconography, and material remains—has informed the reconstruction of these vessels.
+The central outcome of the Má II Project was the design and construction of an 18-meter-long ship using historically accurate materials such as reeds, timber, palm fiber cordage, and bitumen. The vessel was built in collaboration with traditional shipwrights from Kerala, whose knowledge of indigenous construction techniques played a vital role in the process. The reconstructed ship offers valuable insights into the structure, durability, cargo capacity, and sailing performance of Bronze Age vessels from the Umm an-Nar period (2600–2000 BCE).
+As part of the research and development component of the project, I designed a custom photogrammetric 3D scanning system to digitally document the shipbuilding process. This system captured thousands of high-resolution images from multiple angles, enabling precise 3D reconstruction of construction techniques and material assemblies. The aim was to create a detailed digital archive that preserves intangible craftsmanship knowledge while supporting interdisciplinary collaboration.
+The project also incorporated sustainable architectural strategies during the construction phase. The building environment utilized technical fabric with UV-filtering properties and a geothermal cooling system, achieving effective climate control without reliance on conventional air conditioning.
+Following the success of the initial reconstruction, a larger vessel was later developed as a continuation of the project. This ship is currently exhibited at the Zayed National Museum and has received significant international media attention, including coverage by National Geographic.</p>
+            <a href="https://heritagelab.center/index.php/heritage-experiments/bronze-age-boat/" target="_blank" class="project-link">HERITAGELAB.CENTER</a>
+            <a href="https://www.nationalgeographic.com/travel/article/paid-content-magan-boat-rebuilding-uae-maritime-history" target="_blank" class="project-link">NATIONALGEOGRAPHIC.COM</a>
+            <a href="https://www.felix-beck.de/professional_projects/monsoon-culture-research-center.html" target="_blank" class="project-link">FELIX-BECK.DE</a>
         </div>
     </div>
 
@@ -645,6 +678,119 @@ The light leaking from the frames was controlled within a defined mapping system
         }
         changeLogoFont();
 
+        // --- DİL VERİLERİ ---
+        const data = {
+            en: {
+                desc: "A space where you can find my selected works and ideas.",
+                proj7Title: "INTERIOR: KILIMANJARO BAR ISTANBUL (IN-HOUSE WORK: AUTOBAN)",
+                kilimanjaroText: "Located inside the recently developed Bomonti Historic Brewery, Kilimanjaro is a casual restaurant-bar that is an integral part of Bomontiada. Won the Time Out Istanbul “Best Restaurant” award. Developed the bar concept, adapted and refined the geometry into developable surfaces, produced structural drawings, and designed wall fixture lighting and pendant light units.",
+                proj8Title: "INTERIOR: SMILES DENTAL CLINIC PARAMETRIC WALL (CLIENT: WANGAN)",
+                smilesText: "Providing parametric drawings of the developed wall concept and creating production drawings for a dental clinic located in Ankara, Turkey. Winner of the Best of Year 2025 Interior Design Award.",
+                projSinemiraTitle: "INTERIOR: SINEMIRA YACHT INTERIOR FABRICATION DRAWINGS (CLIENT: NORMAL)",
+                proj9Title: "INTERIOR: VAKKORAMA STORE PARAMETRIC LIGHTING INSTALLATION (CLIENT: VAKKORAMA)",
+                vakkoramaText: "A study for the Vakkorama store at Zorlu Center in Istanbul. The project incorporates parametric lighting for the vertical walls. It was developed with the intention of having minimal impact on the existing lighting scheme created by lighting designer Ali Berkman, which defines the spatial light map.\n\nThe light leaking from the frames was controlled within a defined mapping system, where the scale of the circular pattern on the printed surface was parametrically adjusted through software.",
+                proj10Title: "INTERIOR: GAD PARK OFFICE (IN-HOUSE WORK: GAD ARCHITECTURE)",
+                gadText: "I contributed to the interior architectural design, spatial layout planning, and lighting design for the GAD Architecture office, which is located within a former multi-storey parking structure.",
+                projMarbleTitle: "INTERIOR: MARBLE BATHROOM UNIT DESIGN",
+                proj12Title: "INTERIOR: SAMSUNG EMAAR MALL - EXPERIENCE STORE (IN-HOUSE WORK: PROJECT MANAGER - ONERX)",
+                samsungText: "Interior design and project management for the Samsung Experience Store at Emaar Mall were carried out as a collaborative team effort involving project managers, designers, manufacturers, and contractors. The project focused on retail flow and technological integration, developed in accordance with the design guidelines created by Simon Orchover, former retail design director at Samsung and Apple. Recognized as a world-first concept, the Samsung Experience Store combines experience, sales, and after-sales services within a single unified environment. As Samsung expands this model globally, the Istanbul store has been regarded as a reference point. Within the store, first-class technical services are provided to ensure customers can continuously benefit from Samsung technologies without interruption.",
+                proj3Title: "FURNITURE: SOFA CONCEPT",
+                projModularSofaTitle: "FURNITURE: MODULAR SOFA (CLIENT: WANGAN)",
+                projHotelTitle: "FURNITURE: HOTEL FURNITURE DESIGN (CLIENT: WANGAN)",
+                projBedTitle: "FURNITURE: BED CONCEPT",
+                proj4Title: "FURNITURE: JANE STREET FURNITURE (CLIENT: URBAN JOBS)",
+                projBurositTitle: "FURNITURE: BANZAI OFFICE CHAIR (CLIENT: BÜROSIT - DESIGN ADVISING)",
+                projCocoonTitle: "FURNITURE: ISTANBUL DESIGN WEEK COCOON STRUCTURE (IN-HOUSE WORK: AUTOBAN)",
+                projUnionTitle: "FURNITURE: UNION COLLECTION (IN-HOUSE WORK: AUTOBAN)",
+                projSpiderTitle: "LIGHTING: NEW SPIDER WALL LAMP (IN-HOUSE WORK: AUTOBAN)",
+                projCesmiTitle: "LIGHTING: ÇEŞM-İ BÜLBÜL WALL LAMP - OMNIA SERIES - PAŞABAHÇE (IN-HOUSE WORK: AUTOBAN)",
+                projGlassTitle: "LIGHTING: GLASS IS TOMORROW TABLE LAMP (IN-HOUSE WORK: AUTOBAN)",
+                projCapsuleTitle: "LIGHTING: CAPSULE WALL LAMP (IN-HOUSE WORK: AUTOBAN)",
+                projStarTitle: "LIGHTING: STAR PENDANT LIGHT (IN-HOUSE WORK: AUTOBAN)",
+                proj5Title: "LIGHTING: FELT PENDANT LIGHT CONCEPT",
+                projPendantBTitle: "LIGHTING: THE NEW BIG PENDANT LIGHT (IN-HOUSE WORK: AUTOBAN)",
+                projGhDeskTitle: "LIGHTING: GRAND HYATT DESK LAMP (IN-HOUSE WORK: AUTOBAN)",
+                projBurganTitle: "LIGHTING: BURGAN BANK PRIVATE - LIGHTING PLAN (IN-HOUSE WORK: I-AM ASSOCIATES)",
+                proj1Title: "HOROLOGY: UNIMATIC UC1 SKELETON CONCEPT",
+                proj2Title: "HOROLOGY: CITIZEN CONCEPT",
+                proj6Title: "FASHION: SERVER CONCEPT",
+                projBronzeTitle: "R&D: BRONZE AGE BOAT, 3D SCANNER, MUSEUM (IN-HOUSE WORK: NEW YORK UNIVERSITY ABU DHABI - DESIGN ENGINEER)",
+                projBronzeText: "The REF-funded Má I Bronze Age Boat Project explored Bronze Age maritime technologies through a comprehensive analysis of archaeological, textual, iconographic, and ethnographic data. The project combined conventional research methodologies with indigenous knowledge systems, integrating expert shipwrights from the western Indian Ocean who specialize in traditional boatbuilding techniques. Their practical expertise provided critical insights that extended beyond academic research, enabling a more authentic reconstruction process and allowing comparisons between historical evidence and living traditions.\n\nBuilding on this foundation, the Má II Project focused on the experimental reconstruction of a full-scale Bronze Age reed boat. This initiative is a collaboration between the Dhakira Center for Heritage Studies at NYU Abu Dhabi, Zayed University, and the Abu Dhabi Department of Culture and Tourism. The project aims to deepen understanding of maritime technology and its role in facilitating trade, cultural exchange, and political networks across the Gulf and the western Indian Ocean between 4000 and 2000 years ago.\n\nDuring the Bronze Age, vessels constructed from reeds and wood, sealed with bitumen, navigated trade routes connecting the Fertile Crescent with regions such as Dilmun (Bahrain), Magan (modern UAE and Umman) and Meluhha (Indus Valley). Although no complete shipwrecks from this period have been discovered, extensive archaeological evidence—including cuneiform texts, pottery, iconography, and material remains—has informed the reconstruction of these vessels.\n\nThe central outcome of the Má II Project was the design and construction of an 18-meter-long ship using historically accurate materials such as reeds, timber, palm fiber cordage, and bitumen. The vessel was built in collaboration with traditional shipwrights from Kerala, whose knowledge of indigenous construction techniques played a vital role in the process. The reconstructed ship offers valuable insights into the structure, durability, cargo capacity, and sailing performance of Bronze Age vessels from the Umm an-Nar period (2600–2000 BCE).\n\nAs part of the research and development component of the project, I designed a custom photogrammetric 3D scanning system to digitally document the shipbuilding process. This system captured thousands of high-resolution images from multiple angles, enabling precise 3D reconstruction of construction techniques and material assemblies. The aim was to create a detailed digital archive that preserves intangible craftsmanship knowledge while supporting interdisciplinary collaboration.\n\nThe project also incorporated sustainable architectural strategies during the construction phase. The building environment utilized technical fabric with UV-filtering properties and a geothermal cooling system, achieving effective climate control without reliance on conventional air conditioning.\n\nFollowing the success of the initial reconstruction, a larger vessel was later developed as a continuation of the project. This ship is currently exhibited at the Zayed National Museum and has received significant international media attention, including coverage by National Geographic.",
+                contactBtn: "CONTACT",
+                langBtn: "TÜRKÇE"
+            },
+            tr: {
+                desc: "Seçilmiş çalışmalarımı ve fikirlerimi bulabileceğiniz bir alan.",
+                proj7Title: "İÇ MİMARİ: KILIMANJARO BAR İSTANBUL (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                kilimanjaroText: "Bomonti Tarihi Bira Fabrikası içerisinde yer alan Kilimanjaro, Bomontiada'nın bir parçası olan rahat bir restoran-bardır. Time Out İstanbul “En İyi Restoran” ödülünü kazanmıştır. Bar konseptinin geliştirilmesi, geometrinin üretilebilir yüzeylere uyarlanması ve aydınlatma tasarımı süreçleri yürütülmüştür.",
+                proj8Title: "İÇ MİMARİ: SMILES DENTAL CLINIC PARAMETRIK DUVAR (MÜŞTERİ: WANGAN)",
+                smilesText: "Ankara'da bir klinik için geliştirilen duvar konseptinin parametrik çizimleri ve üretim çizimleri. Best of Year 2025 İç Mimari Tasarım Ödülü sahibi.",
+                projSinemiraTitle: "İÇ MİMARİ: SINEMIRA YAT İÇ MEKAN ÜRETİM ÇİZİMLERİ (MÜŞTERİ: NORMAL)",
+                proj9Title: "İÇ MİMARİ: VAKKORAMA MAĞAZASI PARAMETRİK AYDINLATMA ENSTALASYONU (MÜŞTERİ: VAKKORAMA)",
+                vakkoramaText: "Zorlu Center Vakkorama mağazası için dikey duvarlara parametrik aydınlatma çalışması. Mevcut aydınlatma kurgusuna minimum müdahale ile yazılım üzerinden dairesel desen ölçeklendirmesi yapılarak ışık kontrolü sağlanmıştır.",
+                proj10Title: "İÇ MİMARİ: GAD PARK OFİSİ (KURUM İÇİ ÇALIŞMA: GAD ARCHITECTURE)",
+                gadText: "Eski bir katlı otopark yapısında yer alan GAD Architecture ofisi için iç mimari tasarım, mekan kurgusu ve aydınlatma tasarımı süreçlerine katkıda bulundum.",
+                projMarbleTitle: "İÇ MİMARİ: MERMER BANYO ÜNİTESİ TASARIMI",
+                proj12Title: "İÇ MİMARİ: SAMSUNG EMAAR MALL - DENEYİM MAĞAZASI (KURUM İÇİ ÇALIŞMA: PROJE YÖNETİCİSİ - ONERX)",
+                samsungText: "Samsung Emaar Experience Store iç mimari tasarımı ve proje yönetimi; proje yöneticileri, tasarımcılar, üreticiler ve müteahhitlerin katıldığı ortak bir ekip çalışması olarak yürütülmüştür. Simon Orchover tarafından oluşturulan tasarım yönergelerine uygun olarak perakende akışı ve teknolojik entegrasyona odaklanılmıştır.",
+                proj3Title: "MOBİLYA: SOFA KONSEPTİ",
+                projModularSofaTitle: "MOBİLYA: MODÜLER KANEPE (MÜŞTERİ: WANGAN)",
+                projHotelTitle: "MOBİLYA: OTEL MOBİLYASI TASARIMI (MÜŞTERİ: WANGAN)",
+                projBedTitle: "MOBİLYA: YATAK KONSEPTİ",
+                proj4Title: "MOBİLYA: JANE SOKAK MOBİLYASI (MÜŞTERİ: URBAN JOBS)",
+                projBurositTitle: "MOBİLYA: BANZAI OFİS SANDALYESİ (MÜŞTERİ: BÜROSİT - TASARIM DANIŞMANLIĞI)",
+                projCocoonTitle: "MOBİLYA: İSTANBUL DESIGN WEEK COCOON YAPISI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                projUnionTitle: "MOBİLYA: UNION KOLEKSİYONU (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                projSpiderTitle: "AYDINLATMA: YENİ SPIDER DUVAR LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                projCesmiTitle: "AYDINLATMA: ÇEŞM-İ BÜLBÜL DUVAR AYDINLATMASI - OMNIA SERİSİ - PAŞABAHÇE (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                projGlassTitle: "AYDINLATMA: GLASS IS TOMORROW MASA LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                projCapsuleTitle: "AYDINLATMA: CAPSULE DUVAR LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                projStarTitle: "AYDINLATMA: STAR SARKIT LAMBA (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                proj5Title: "AYDINLATMA: KEÇE SARKIT LAMBA KONSEPTİ",
+                projPendantBTitle: "AYDINLATMA: THE NEW BIG PENDANT LIGHT (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                projGhDeskTitle: "AYDINLATMA: GRAND HYATT MASA LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                projBurganTitle: "AYDINLATMA: BURGAN BANK PRIVATE - AYDINLATMA PLANI (KURUM İÇİ ÇALIŞMA: I-AM ASSOCIATES)",
+                proj1Title: "SAAT: UNIMATIC UC1 İSKELET KONSEPTİ",
+                proj2Title: "SAAT: CITIZEN KONSEPTİ",
+                proj6Title: "MODA: SERVER KONSEPTİ",
+                projBronzeTitle: "AR-GE: TUNÇ ÇAĞI GEMİSİ, 3B TARAYICI, MÜZE (KURUM İÇİ ÇALIŞMA: NEW YORK UNIVERSITY ABU DHABI - TASARIM MÜHENDİSİ)",
+                projBronzeText: "REF tarafından finanse edilen Má I Tunç Çağı Gemisi Projesi, arkeolojik, metinsel, ikonografik ve etnografik verilerin kapsamlı bir analizi yoluyla Tunç Çağı denizcilik teknolojilerini araştırmıştır. Proje, geleneksel araştırma metodolojilerini yerel bilgi sistemleriyle birleştirerek, geleneksel tekne yapım tekniklerinde uzmanlaşmış Batı Hint Okyanusu'ndan gemi yapım ustalarını sürece dahil etmiştir. Ustaların pratik uzmanlığı, akademik araştırmaların ötesine geçen kritik bilgiler sağlayarak daha otantik bir yeniden inşa sürecine olanak tanımış ve tarihsel kanıtlarla yaşayan gelenekler arasında karşılaştırmalar yapılmasını sağlamıştır.\n\nBu temel üzerine inşa edilen Má II Projesi, tam ölçekli bir Tunç Çağı kamış gemisinin deneysel olarak yeniden inşasına odaklanmıştır. Bu girişim, NYU Abu Dhabi bünyesindeki Dhakira Miras Çalışmaları Merkezi, Zayed Üniversitesi ve Abu Dabi Kültür ve Turizm Bakanlığı arasındaki bir iş birliğidir. Proje, denizcilik teknolojisinin 4000 ile 2000 yıl önce Körfez ve Batı Hint Okyanusu genelinde ticaret, kültürel değişim ve siyasi ağları kolaylaştırmadaki rolünü daha derinlemesine anlamayı hedeflemektedir.\n\nTunç Çağı boyunca, kamış ve ahşaptan inşa edilen ve bitümle sızdırmaz hale getirilen gemiler, Bereketli Hilal'i Dilmun (Bahreyn), Magan (modern BAE ve Umman) ve Meluhha (İndus Vadisi) gibi bölgelere bağlayan ticaret rotalarında seyretmiştir. Bu döneme ait tam bir gemi enkazı keşfedilmemiş olsa da, çivi yazılı metinler, çanak çömlekler, ikonografi ve maddi kalıntılar dahil olmak üzere kapsamlı arkeolojik kanıtlar bu gemilerin yeniden inşasına temel oluşturmuştur.\n\nMá II Projesi'nin temel çıktısı, kamış, kereste, palmiye lifi halat ve bitüm gibi tarihsel olarak doğru malzemeler kullanılarak 18 metre uzunluğunda bir geminin tasarlanması ve inşa edilmesidir. Gemi, yerel inşa teknikleri konusundaki bilgileri süreçte hayati bir rol oynayan Keralalı geleneksel gemi yapım ustalarıyla iş birliği içinde inşa edilmiştir. Yeniden inşa edilen gemi, Umm an-Nar döneminden (M.Ö. 2600–2000) kalma Tunç Çağı gemilerinin yapısı, dayanıklılığı, kargo kapasitesi ve seyir performansı hakkında değerli bilgiler sunmaktadır.\n\nProjenin araştırma ve geliştirme bileşeninin bir parçası olarak, gemi yapım sürecini dijital olarak belgelemek için özel bir fotogrametrik 3B tarama sistemi tasarladım. Bu sistem, birden fazla açıdan binlerce yüksek çözünürlüklü görüntü yakalayarak inşa tekniklerinin ve malzeme birleşimlerinin hassas 3B rekonstrüksiyonuna olanak sağlamıştır. Amaç, disiplinler arası iş birliğini desteklerken somut olmayan zanaat bilgisini koruyan ayrıntılı bir dijital arşiv oluşturmaktı.\n\nProje ayrıca inşa aşamasında sürdürülebilir mimari stratejileri de içermiştir. İnşa ortamı, UV filtreleme özelliklerine sahip teknik kumaş ve jeotermal soğutma sistemi kullanarak, geleneksel klimaya ihtiyaç duymadan etkili bir iklim kontrolü sağlamıştır.\n\nİlk yeniden inşanın başarısının ardından, projenin devamı olarak daha büyük bir gemi geliştirilmiştir. Bu gemi şu anda Zayed Ulusal Müzesi'nde sergilenmektedir ve National Geographic dahil olmak üzere uluslararası medyada geniş yer bulmuştur.",
+                contactBtn: "İLETİŞİM",
+                langBtn: "ENGLISH"
+            }
+        };
+
+        let currentLang = 'en';
+        function toggleLanguage() {
+            currentLang = (currentLang === 'en' ? 'tr' : 'en');
+            document.documentElement.lang = currentLang;
+            
+            Object.keys(data[currentLang]).forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.innerText = data[currentLang][id];
+            });
+
+            document.querySelectorAll('.cat-item').forEach(item => {
+                if(currentLang === 'tr') {
+                    if(item.id === 'cat-all') item.innerText = 'HEPSİ';
+                    if(item.id === 'cat-interior') item.innerText = 'İÇ MİMARİ';
+                    if(item.id === 'cat-furniture') item.innerText = 'MOBİLYA';
+                    if(item.id === 'cat-lighting') item.innerText = 'AYDINLATMA';
+                    if(item.id === 'cat-horology') item.innerText = 'SAAT';
+                    if(item.id === 'cat-fashion') item.innerText = 'MODA';
+                    if(item.id === 'cat-rd') item.innerText = 'AR-GE';
+                } else {
+                    if(item.id === 'cat-all') item.innerText = 'ALL';
+                    if(item.id === 'cat-interior') item.innerText = 'INTERIOR';
+                    if(item.id === 'cat-furniture') item.innerText = 'FURNITURE';
+                    if(item.id === 'cat-lighting') item.innerText = 'LIGHTING';
+                    if(item.id === 'cat-horology') item.innerText = 'HOROLOGY';
+                    if(item.id === 'cat-fashion') item.innerText = 'FASHION';
+                    if(item.id === 'cat-rd') item.innerText = 'R&D';
+                }
+            });
+        }
+
         // --- FILTRELEME FONKSIYONU ---
         function filterProjects(category, element) {
             document.querySelectorAll('.cat-item').forEach(item => item.classList.remove('active'));
@@ -660,196 +806,6 @@ The light leaking from the frames was controlled within a defined mapping system
                 }
             });
 
-            dividers.forEach(div => {
-                if (category === 'all' || div.classList.contains('filter-' + category)) {
-                    div.style.display = 'block';
-                } else {
-                    div.style.display = 'none';
-                }
-            });
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-
-        // --- DİL VERİLERİ ---
-        const data = {
-            en: {
-                desc: "A space where you can find my selected works and ideas.",
-                proj1Title: "HOROLOGY: UNIMATIC UC1 SKELETON CONCEPT",
-                proj1Text: "A skeleton variation of the Modello Uno UC1 Classic diver watch was created for Unimatic using an NH72 movement, with a transparent dial designed to reveal the mechanism while preserving the watch’s original minimalist character through a circular screen-printed pattern that creates a subtle semi-transparent effect; the movement is also visible through a window on the case back, while gray-toned corporate typography on the bezel indicates the seconds, and the transparency of both the front and back responds to the curiosity of users new to automatic watches, who often want to observe the mechanical movement, especially in their first timepiece.",
-                proj2Title: "HOROLOGY: CITIZEN CONCEPT",
-                proj2Text: "This project is based on Citizen’s Eco-Drive technology, which is powered by light energy, and features a concept watch with a clean interface displaying day, battery level, and date information, reflecting the brand’s commitment to sustainable and high-tech watchmaking; the design is inspired by the cherry blossom (sakura) of Japan, incorporating its delicate and minimal aesthetic into the overall concept.",
-                proj3Title: "FURNITURE: SOFA CONCEPT",
-                proj3Text: "A modern furniture concept exploring comfort and form through industrial design principles. This study focuses on modular structures and the intersection of ergonomic utility and sculptural aesthetics.",
-                projModularSofaTitle: "FURNITURE: MODULAR SOFA (CLIENT: WANGAN)",
-                projModularSofaText: "A modular sofa system designed for flexibility and adaptability in contemporary living spaces. This concept explores customizable configurations through interlocking modules, combining sustainable materials with ergonomic comfort.",
-                projHotelTitle: "FURNITURE: HOTEL FURNITURE DESIGN (CLIENT: WANGAN)",
-                projHotelText: "Designed for use in equestrian hotel interior.",
-                projBedTitle: "FURNITURE: BED CONCEPT",
-                projBedText: "A contemporary bed design study exploring structural minimalism and material warmth. This concept focuses on the balance between geometric precision and the comfort required for a restful environment.",
-                proj4Title: "FURNITURE: JANE STREET FURNITURE (CLIENT: URBAN JOBS)",
-                proj4Text: "With seven modules, it is possible to create geometries that complement architectural forms. The design evolved through an analysis of the history of street furniture. Winner of EDIDA 2020 in the Outdoor Furniture category.",
-                janeNote: "Context renders belong to Urban Jobs.",
-                projBurositTitle: "FURNITURE: BANZAI OFFICE CHAIR (CLIENT: BÜROSIT - DESIGN ADVISING)",
-                projBurositText: "This product is the result of weekly meetings conducted with the company’s owner, focusing on developing the company’s new look and feel and advancing a design-driven approach. Throughout the process, we aimed to simplify the design language primarily through reduction, making it more refined. It represents one of the first elements of the company’s modern new identity.",
-                burositNote: "Photos belong to Bürosit.",
-                projCocoonTitle: "FURNITURE: ISTANBUL DESIGN WEEK COCOON STRUCTURE (IN-HOUSE WORK: AUTOBAN)",
-                projCocoonText: "This project reinterprets the cocoon zone elements developed by the company for Heydar Aliyev Airport in Azerbaijan, translating their distinctive details into a small-scale outdoor seating unit for Istanbul Design Week. Defined by its own volume, the structure creates an immersive experience for users to rest and engage with the sunset.",
-                projUnionTitle: "FURNITURE: UNION COLLECTION (IN-HOUSE WORK: AUTOBAN)",
-                projUnionText: "Launched at Maison&Objet Paris, the Union family was developed as a collaborative team effort, consisting of a bed, sofa, and table. The collection has been widely utilized across the company’s projects. Rooted in the domestic environment, Union emphasizes form while prioritizing maximum comfort. It is crafted using tactile, natural materials, combining traditional craftsmanship with modern production techniques. Its distinctive and unconventional pieces are defined by soft curves and subtle design details throughout.",
-                unionNote: "Renders and photos belong to Autoban.",
-                projSpiderTitle: "LIGHTING: NEW SPIDER WALL LAMP (IN-HOUSE WORK: AUTOBAN)",
-                projSpiderText: "Inspired by the form of spiders, Spider is shaped by the circular arrangement of convex rods surrounding a colored bulb. With its striking, sculptural presence, the design stands out as both a functional object and a visual statement. When illuminated, the colored bulb directs light backward and the lamp casts dramatic, oversized shadows onto the surface, creating an unexpected effect that enhances its character. The Spider Wall Lamp project focuses on further developing the design and improving production quality. Additional details have been incorporated to make the product more distinctive and harder to replicate. The collection includes multiple size variations as well as a pendant version.",
-                projCesmiTitle: "LIGHTING: ÇEŞM-İ BÜLBÜL WALL LAMP - OMNIA SERIES - PAŞABAHÇE (IN-HOUSE WORK: AUTOBAN)",
-                projCesmiText: "“Çeşm-i Bülbül,” translated as “the eye of the nightingale,” is a traditional Ottoman glassmaking technique developed in the late 18th century. It is distinguished by its intricate, spiraling, multicolored cane (filigree) patterns that resemble the eye of a nightingale. The technique was created by the Mevlevi dervish Mehmed Dede during the reign of Sultan Selim III, drawing inspiration from Venetian glassmaking traditions. This project was developed as an effort to carry this unique art form into the future. It was designed for Paşabahçe’s Omnia special collection and was showcased during the launch event as well as in retail stores.",
-                projGlassTitle: "LIGHTING: GLASS IS TOMORROW TABLE LAMP (IN-HOUSE WORK: AUTOBAN)",
-                projGlassText: "This table lamp was developed for the Omnia series under the theme “Glass is Tomorrow,” with the sponsorship of Paşabahçe and various partner organizations. The design process included extensive prototyping and material exploration. Multiple prototypes were produced and exhibited, demonstrating the project’s technical and formal development.",
-                projCapsuleTitle: "LIGHTING: CAPSULE WALL LAMP (IN-HOUSE WORK: AUTOBAN)",
-                projCapsuleText: "This wall lamp, defined by its simple circular form, was carefully developed with close attention to proportion. Designed for production using a hydraulic press, all mold development processes were completed in detail. A wide range of color and surface finish variations were explored throughout the design process. The internal lighting element, wiring, and driver were meticulously engineered to ensure both performance and durability. The product was exhibited at Maison&Objet and later sold to CTO Lighting UK.",
-                capsuleNote: "Context render belongs to Autoban.",
-                projStarTitle: "LIGHTING: STAR PENDANT LIGHT (IN-HOUSE WORK: AUTOBAN)",
-                projStarText: "Guided by the golden ratio, each element of the product was proportioned to form a harmonious whole. The project also included PCB design, along with the development of wiring and the necessary driver system.",
-                proj5Title: "LIGHTING: FELT PENDANT LIGHT CONCEPT",
-                pendantText: "A minimalist lighting concept utilizing the acoustic and aesthetic properties of felt to create a warm, diffused lighting environment.",
-                projPendantBTitle: "LIGHTING: THE NEW BIG PENDANT LIGHT (IN-HOUSE WORK: AUTOBAN)",
-                projPendantBText: "A large-scale pendant lighting design developed for high-volume interior spaces, combining industrial structural elements with refined lighting aesthetics.",
-                projGhDeskTitle: "LIGHTING: GRAND HYATT DESK LAMP (IN-HOUSE WORK: AUTOBAN)",
-                projGhDeskText: "Custom desk lamp design for the Grand Hyatt project, balancing functional task lighting with the sophisticated aesthetic language of luxury hospitality interiors.",
-                projBurganTitle: "LIGHTING: BURGAN BANK PRIVATE - LIGHTING PLAN (IN-HOUSE WORK: I-AM ASSOCIATES)",
-                projBurganText: "Lighting design for Burgan Bank’s private branch, including the development of the lighting layout, selection of lighting fixtures, and calculation of light levels using DIALux software.",
-                burganNote: "Photos belong to I-AM Associates.",
-                proj6Title: "FASHION: SERVER CONCEPT",
-                fashionText: "This project explores the intersection of functional server design and high-fashion aesthetics. This conceptual study aims to redefine the visual language of industrial technology within a lifestyle context.",
-                proj7Title: "INTERIOR: KILIMANJARO BAR ISTANBUL (IN-HOUSE WORK: AUTOBAN)",
-                kilimanjaroText: "Located inside the recently developed Bomonti Historic Brewery, Kilimanjaro is a casual restaurant-bar that is an integral part of Bomontiada. Won the Time Out Istanbul “Best Restaurant” award. Developed the bar concept, adapted and refined the geometry into developable surfaces, produced structural drawings, and designed wall fixture lighting and pendant light units.",
-                kiliNote: "Photography: Engin Aydeniz",
-                proj8Title: "INTERIOR: SMILES DENTAL CLINIC PARAMETRIC WALL (CLIENT: WANGAN)",
-                smilesText: "Providing parametric drawings of the developed wall concept and creating production drawings for a dental clinic located in Ankara, Turkey. Winner of the Best of Year 2025 Interior Design Award.",
-                smilesNote: "Photography: Ibrahim Ozbunar, 645 Studio",
-                projSinemiraTitle: "INTERIOR: SINEMIRA YACHT INTERIOR FABRICATION DRAWINGS (CLIENT: NORMAL)",
-                sinemiraNote: "Renders belong to Normal.",
-                proj9Title: "INTERIOR: VAKKORAMA STORE PARAMETRIC LIGHTING INSTALLATION (CLIENT: VAKKORAMA)",
-                vakkoramaText: "A study for the Vakkorama store at Zorlu Center in Istanbul. The project incorporates parametric lighting for the vertical walls. It was developed with the intention of having minimal impact on the existing lighting scheme created by lighting designer Ali Berkman, which defines the spatial light map.\n\nThe light leaking from the frames was controlled within a defined mapping system, where the scale of the circular pattern on the printed surface was parametrically adjusted through software.",
-                vakkNote: "Photography: Ali Berkman, Aytek Jane",
-                proj10Title: "INTERIOR: GAD PARK OFFICE (IN-HOUSE WORK: GAD ARCHITECTURE)",
-                gadText: "I contributed to the interior architectural design, spatial layout planning, and lighting design for the GAD Architecture office, which is located within a former multi-storey parking structure.",
-                gadNote: "Photos belong to Gad Architecture.",
-                projMarbleTitle: "INTERIOR: MARBLE BATHROOM UNIT DESIGN",
-                projMarbleText: "A bathroom unit and interior design project developed for a marble manufacturer based in the United States.",
-                proj12Title: "INTERIOR: SAMSUNG EMAAR MALL - EXPERIENCE STORE (IN-HOUSE WORK: PROJECT MANAGER - ONERX)",
-                samsungText: "Interior design and project management for the Samsung Experience Store at Emaar Mall were carried out as a collaborative team effort involving project managers, designers, manufacturers, and contractors. The project focused on retail flow and technological integration, developed in accordance with the design guidelines created by Simon Orchover, former retail design director at Samsung and Apple. Recognized as a world-first concept, the Samsung Experience Store combines experience, sales, and after-sales services within a single unified environment. As Samsung expands this model globally, the Istanbul store has been regarded as a reference point. Within the store, first-class technical services are provided to ensure customers can continuously benefit from Samsung technologies without interruption.",
-                samsungNote: "Photos belong to Onerx.",
-                contactBtn: "CONTACT",
-                langBtn: "TÜRKÇE"
-            },
-            tr: {
-                desc: "Seçilmiş çalışmalarımı ve fikirlerimi bulabileceğiniz bir alan.",
-                proj1Title: "SAAT: UNIMATIC UC1 İSKELET KONSEPTİ",
-                proj1Text: "Unimatic için Modello Uno UC1 Classic dalgıç saatinin NH72 mekanizması kullanılarak bir iskelet varyasyonu oluşturuldu. Mekanizmayı ortaya çıkarmak için şeffaf bir kadran tasarlandı ve saatin orijinal minimalist karakterini korumak amacıyla serigrafi baskı ile dairesel bir desen uygulanarak hafif yarı şeffaf bir efekt yaratıldı; mekanizma aynı zamanda kasa arkasındaki pencereden de görülebilirken, bezel üzerindeki gri tonlu kurumsal tipografi saniyeleri gösterir. Hem ön hem de arka yüzün şeffaflığı, özellikle ilk saatlerinde mekanik hareketi gözlemlemek isteyen ve otomatik saatlerle yeni tanışan kullanıcıların merakına yanıt verir.",
-                proj2Title: "SAAT: CITIZEN KONSEPTİ",
-                proj2Text: "Bu proje, gücünü ışık enerjisinden alan Citizen'ın Eco-Drive teknolojisine dayanmaktadır ve gün, pil seviyesi ile tarih bilgilerini gösteren temiz bir arayüze sahip konsept bir saat sunarak markanın sürdürülebilir ve yüksek teknoloji ürünü saatçiliğe olan bağlılığını yansıtır; tasarım, Japonya'nın kiraz çiçeğinden (sakura) ilham almış olup, onun narin ve minimal estetiğini genel konsepte entegre etmektedir.",
-                proj3Title: "MOBİLYA: SOFA KONSEPTİ",
-                proj3Text: "Endüstriyel tasarım prensipleriyle konfor ve formu araştıran modern bir mobilya konsepti. Bu çalışma, modüler yapılara ve ergonomik fayda ile heykel estetiğinin kesişimine odaklanmaktadır.",
-                projModularSofaTitle: "MOBİLYA: MODÜLER KANEPE (MÜŞTERİ: WANGAN)",
-                projModularSofaText: "Çağdaş yaşam alanlarında esneklik ve uyarlanabilirlik için tasarlanmış modüler bir kanepe sistemi. Bu konsept, sürdürülebilir malzemeleri ergonomik konforla birleştiren, birbirine kilitlenen modüller aracılığıyla özelleştirilebilir konfigürasyonları araştırır.",
-                projHotelTitle: "MOBİLYA: OTEL MOBİLYASI TASARIMI (MÜŞTERİ: WANGAN)",
-                projHotelText: "Binicilik oteli iç mekanı için tasarlanmıştır.",
-                projBedTitle: "MOBİLYA: YATAK KONSEPTİ",
-                projBedText: "Yapısal minimalizm ve malzeme sıcaklığını araştıran çağdaş bir yatak tasarımı çalışması. Bu konsept, geometrik hassasiyet ile dinlendirici bir ortam için gereken konfor arasındaki dengeye odaklanır.",
-                proj4Title: "MOBİLYA: JANE SOKAK MOBİLYASI (MÜŞTERİ: URBAN JOBS)",
-                proj4Text: "Yedi modül ile mimari formları tamamlayan geometriler oluşturmak mümkündür. Tasarım, sokak mobilyası tarihinin bir analizi yoluyla gelişti. EDIDA 2020 Dış Mekan Mobilyası kategorisi kazananı.",
-                janeNote: "Bağlam renderları Urban Jobs'a aittir.",
-                projBurositTitle: "MOBİLYA: BANZAI OFİS SANDALYESİ (MÜŞTERİ: BÜROSİT - TASARIM DANIŞMANLIĞI)",
-                projBurositText: "Bu ürün, şirketin yeni görünümünü ve hissini geliştirmeye ve tasarım odaklı bir yaklaşımı ilerletmeye odaklanan, şirket sahibiyle gerçekleştirilen haftalık toplantıların bir sonucudur. Süreç boyunca, tasarım dilini öncelikle eksiltme yoluyla basitleştirmeyi ve daha rafine hale getirmeyi amaçladık. Şirketin modern yeni kimliğinin ilk unsurlarından birini temsil etmektedir.",
-                burositNote: "Fotoğraflar Bürosit'e aittir.",
-                projCocoonTitle: "MOBİLYA: İSTANBUL DESIGN WEEK COCOON YAPISI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projCocoonText: "Bu proje, şirketin Azerbaycan'daki Haydar Aliyev Havalimanı için geliştirdiği cocoon (koza) alanı elemanlarını yeniden yorumlayarak, bu karakteristik detayları İstanbul Design Week için küçük ölçekli bir dış mekan oturma ünitesine dönüştürmektedir. Kendi hacmiyle tanımlanan yapı, kullanıcıların dinlenmesi ve gün batımıyla etkileşime girmesi için sarmalayıcı bir deneyim yaratır.",
-                projUnionTitle: "MOBİLYA: UNION KOLEKSİYONU (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projUnionText: "Maison&Objet Paris'te tanıtılan Union ailesi; yatak, kanepe ve masadan oluşan ortak bir ekip çalışması olarak geliştirilmiştir. Koleksiyon, şirketin projelerinde yaygın olarak kullanılmıştır. Ev ortamına dayanan Union, maksimum konforu ön planda tutarken formu vurgular. Dokunsal, doğal malzemeler kullanılarak, geleneksel zanaatkarlık ile modern üretim teknikleri birleştirilerek üretilmiştir. Kendine özgü ve alışılmadık parçaları, yumuşak kavisler ve ince tasarım detaylarıyla tanımlanır.",
-                unionNote: "Render ve fotoğraflar Autoban'a aittir.",
-                projSpiderTitle: "AYDINLATMA: YENİ SPIDER DUVAR LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projSpiderText: "Örümceklerin formundan esinlenen Spider, renkli bir ampulü çevreleyen dışbükey çubukların dairesel dizilimiyle şekillenir. Çarpıcı ve heykelsi duruşuyla tasarım, hem fonksiyonel bir nesne hem de görsel bir ifade olarak öne çıkar. Aydınlatıldığında, renkli ampul ışığı geriye doğru yönlendirir ve lamba yüzeye dramatik, büyük gölgeler düşürerek karakterini güçlendiren beklenmedik bir etki yaratır. Spider Duvar Lambası projesi, tasarımı daha da geliştirmeye ve üretim kalitesini artırmaya odaklanmaktadır. Ürünü daha belirgin hale getirmek ve kopyalanmasını zorlaştırmak için ek detaylar dahil edilmiştir. Koleksiyon, birden fazla boyut varyasyonunun yanı sıra bir sarkıt versiyonunu da içermektedir.",
-                projCesmiTitle: "AYDINLATMA: ÇEŞM-İ BÜLBÜL DUVAR AYDINLATMASI - OMNIA SERİSİ - PAŞABAHÇE (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projCesmiText: "“Çeşm-i Bülbül,” Türkçeye “bülbülün gözü” olarak çevrilen, 18. yüzyılın sonlarında geliştirilen geleneksel bir Osmanlı cam işleme tekniğidir. Bülbül gözünü andıran karmaşık, sarmal ve çok renkli cam çubuk (filigran) desenleriyle ayırt edilir. Teknik, III. Selim döneminde Mevlevi dervişi Mehmed Dede tarafından Venedik cam işleme geleneklerinden esinlenerek oluşturulmuştur. Bu proje, bu eşsiz sanat formunu geleceğe taşıma çabası olarak geliştirilmiştir. Paşabahçe’nin Omnia özel koleksiyonu için tasarlanmış olup, lansman etkinliğinin yanı sıra perakende mağazalarında da sergilenmiştir.",
-                projGlassTitle: "AYDINLATMA: GLASS IS TOMORROW MASA LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projGlassText: "Bu masa lambası, Paşabahçe ve çeşitli ortak kuruluşların sponsorluğunda, “Glass is Tomorrow” teması altındaki Omnia serisi için geliştirilmiştir. Tasarım süreci, kapsamlı prototipleme ve malzeme araştırmalarını içermiştir. Projenin teknik ve biçimsel gelişimini gösteren çok sayıda prototip üretilmiş ve sergilenmiştir.",
-                projCapsuleTitle: "AYDINLATMA: CAPSULE DUVAR LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projCapsuleText: "Basit dairesel formuyla tanımlanan bu duvar lambası, oranlara büyük önem verilerek özenle geliştirilmiştir. Hidrolik pres kullanılarak üretim için tasarlanan lambanın tüm kalıp geliştirme süreçleri detaylı bir şekilde tamamlanmıştır. Tasarım süreci boyunca çok çeşitli renk ve yüzey bitişi varyasyonları araştırılmıştır. İç aydınlatma elemanı, kablolama ve sürücü, hem performans hem de dayanıklılık sağlamak için titizlikle mühendislikten geçirilmiştir. Ürün Maison&Objet'te sergilenmiş ve daha sonra İngiliz CTO Lighting'e satılmıştır.",
-                capsuleNote: "Context render Autoban'a aittir.",
-                projStarTitle: "AYDINLATMA: STAR SARKIT LAMBA (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projStarText: "Altın oran rehberliğinde, ürünün her bir öğesi uyumlu bir bütün oluşturacak şekilde oranlanmıştır. Proje ayrıca PCB tasarımının yanı sıra kablolama ve gerekli sürücü sisteminin geliştirilmesini de içermektedir.",
-                proj5Title: "AYDINLATMA: KEÇE SARKIT LAMBA KONSEPTİ",
-                pendantText: "Sıcak ve dağılmış bir aydınlatma ortamı yaratmak için keçenin akustik ve estetik özelliklerinden yararlanan minimalist bir aydınlatma konsepti.",
-                projPendantBTitle: "AYDINLATMA: THE NEW BIG PENDANT LIGHT (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projGhDeskTitle: "AYDINLATMA: GRAND HYATT MASA LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projBurganTitle: "AYDINLATMA: BURGAN BANK PRIVATE - AYDINLATMA PLANI (KURUM İÇİ ÇALIŞMA: I-AM ASSOCIATES)",
-                projBurganText: "Burgan Bank'ın özel şubesi için aydınlatma yerleşim planının geliştirilmesi, armatür seçimi ve DIALux yazılımı kullanılarak aydınlık düzeylerinin hesaplanmasını içeren aydınlatma tasarımı.",
-                burganNote: "Fotoğraflar I-AM Associates'e aittir.",
-                proj6Title: "MODA: SERVER KONSEPTİ",
-                fashionText: "Bu proje, fonksiyonel sunucu tasarımı ile yüksek moda estetiğinin kesişimini endüstriyel teknolojinin görsel diliyle araştırmaktadır.",
-                proj7Title: "İÇ MİMARİ: KILIMANJARO BAR İSTANBUL (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                kilimanjaroText: "Bomonti Tarihi Bira Fabrikası içerisinde yer alan Kilimanjaro, Bomontiada'nın bir parçası olan rahat bir restoran-bardır. Time Out İstanbul “En İyi Restoran” ödülünü kazanmıştır. Bar konseptinin geliştirilmesi, geometrinin üretilebilir yüzeylere uyarlanması ve aydınlatma tasarımı süreçleri yürütülmüştür.",
-                kiliNote: "Fotoğraf: Engin Aydeniz",
-                proj8Title: "İÇ MİMARİ: SMILES DENTAL CLINIC PARAMETRIK DUVAR (MÜŞTERİ: WANGAN)",
-                smilesText: "Ankara'da bir klinik için geliştirilen duvar konseptinin parametrik çizimleri ve üretim çizimleri. Best of Year 2025 İç Mimari Tasarım Ödülü sahibi.",
-                smilesNote: "Fotoğraf: İbrahim Özbunar, 645 Studio",
-                projSinemiraTitle: "İÇ MİMARİ: SINEMIRA YAT İÇ MEKAN ÜRETİM ÇİZİMLERİ (MÜŞTERİ: NORMAL)",
-                sinemiraNote: "Renderlar Normal'e aittir.",
-                proj9Title: "İÇ MİMARİ: VAKKORAMA MAĞAZASI PARAMETRİK AYDINLATMA ENSTALASYONU (MÜŞTERİ: VAKKORAMA)",
-                vakkoramaText: "Zorlu Center Vakkorama mağazası için dikey duvarlara parametrik aydınlatma çalışması. Mevcut aydınlatma kurgusuna minimum müdahale ile yazılım üzerinden dairesel desen ölçeklendirmesi yapılarak ışık kontrolü sağlanmıştır.",
-                vakkNote: "Fotoğraf: Ali Berkman, Aytek Jane",
-                proj10Title: "İÇ MİMARİ: GAD PARK OFİSİ (KURUM İÇİ ÇALIŞMA: GAD ARCHITECTURE)",
-                gadText: "Eski bir katlı otopark yapısında yer alan GAD Architecture ofisi için iç mimari tasarım, mekan kurgusu ve aydınlatma tasarımı süreçlerine katkıda bulundum.",
-                gadNote: "Fotoğraflar GAD Architecture'a aittir.",
-                projMarbleTitle: "İÇ MİMARİ: MERMER BANYO ÜNİTESİ TASARIMI",
-                projMarbleText: "Amerika Birleşik Devletleri merkezli bir mermer üreticisi için geliştirilen banyo ünitesi ve iç mekan tasarım projesi.",
-                proj12Title: "İÇ MİMARİ: SAMSUNG EMAAR MALL - DENEYİM MAĞAZASI (KURUM İÇİ ÇALIŞMA: PROJE YÖNETİCİSİ - ONERX)",
-                samsungText: "Samsung Emaar Experience Store iç mimari tasarımı ve proje yönetimi; proje yöneticileri, tasarımcılar, üreticiler ve müteahhitlerin katıldığı ortak bir ekip çalışması olarak yürütülmüştür. Simon Orchover tarafından oluşturulan tasarım yönergelerine uygun olarak perakende akışı ve teknolojik entegrasyona odaklanılmıştır.",
-                samsungNote: "Fotoğraflar Onerx'e aittir.",
-                contactBtn: "İLETİŞİM",
-                langBtn: "ENGLISH"
-            }
-        };
-
-        let currentLang = 'en';
-        function toggleLanguage() {
-            currentLang = (currentLang === 'en' ? 'tr' : 'en');
-            document.documentElement.lang = currentLang;
-            Object.keys(data[currentLang]).forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.innerText = data[currentLang][id];
-            });
-            document.querySelectorAll('.cat-item').forEach(item => {
-                if(currentLang === 'tr') {
-                    if(item.id === 'cat-all') item.innerText = 'HEPSİ';
-                    if(item.id === 'cat-horology') item.innerText = 'SAAT';
-                    if(item.id === 'cat-furniture') item.innerText = 'MOBİLYA';
-                    if(item.id === 'cat-lighting') item.innerText = 'AYDINLATMA';
-                    if(item.id === 'cat-fashion') item.innerText = 'MODA';
-                    if(item.id === 'cat-interior') item.innerText = 'İÇ MİMARİ';
-                } else {
-                    if(item.id === 'cat-all') item.innerText = 'ALL';
-                    if(item.id === 'cat-horology') item.innerText = 'HOROLOGY';
-                    if(item.id === 'cat-furniture') item.innerText = 'FURNITURE';
-                    if(item.id === 'cat-lighting') item.innerText = 'LIGHTING';
-                    if(item.id === 'cat-fashion') item.innerText = 'FASHION';
-                    if(item.id === 'cat-interior') item.innerText = 'INTERIOR';
-                }
-            });
-        }
-
-        // --- FILTRELEME FONKSIYONU ---
-        function filterProjects(category, element) {
-            document.querySelectorAll('.cat-item').forEach(item => item.classList.remove('active'));
-            element.classList.add('active');
-            const sections = document.querySelectorAll('.project-section');
-            const dividers = document.querySelectorAll('.divider');
-            sections.forEach(sec => {
-                if (category === 'all' || sec.classList.contains('filter-' + category)) {
-                    sec.style.display = 'block';
-                } else {
-                    sec.style.display = 'none';
-                }
-            });
             dividers.forEach(div => {
                 if (category === 'all' || div.classList.contains('filter-' + category)) {
                     div.style.display = 'block';
