@@ -38,6 +38,7 @@
             color: #1a1a1a; font-weight: 700; cursor: pointer; 
             text-decoration: none; display: flex; text-transform: uppercase;
             -webkit-tap-highlight-color: transparent;
+            user-select: none;
         }
         #header-logo span { display: inline-block; transition: font-family 0.1s ease; }
         #header-logo span.space { width: 0.2em; }
@@ -104,14 +105,13 @@
             
             .category-menu {
                 flex-direction: column; top: 60px; left: 0; width: 100%; height: 0;
-                max-height: calc(100dvh - 60px); /* dVH ile tarayıcı çubuğu uyumu */
-                background-color: rgb(245, 245, 245); 
+                max-height: calc(100dvh - 60px); background-color: rgb(245, 245, 245); 
                 padding: 0; overflow-y: auto; overflow-x: hidden; visibility: hidden; opacity: 0; border-bottom: none;
                 display: flex; justify-content: flex-start; z-index: 4500; -webkit-overflow-scrolling: touch;
             }
             .category-menu.active { height: calc(100dvh - 60px); visibility: visible; opacity: 1; }
             .cat-item { padding: 22px 40px; font-size: 18px; border-bottom: 1px solid rgba(0,0,0,0.05); width: 100%; display: block; flex-shrink: 0; }
-            .mobile-only-links { display: flex; flex-shrink: 0; padding-bottom: 120px; } /* Alt boşluk eklendi */
+            .mobile-only-links { display: flex; flex-shrink: 0; padding-bottom: 120px; } 
             .intro { margin-top: 100px; padding: 0 20px; }
             .project-section { padding: 0 20px; }
             .divider { margin: 40px 20px; }
@@ -629,7 +629,7 @@
     </div>
 
     <script>
-        // --- LOGO ANIMATION (Fix for Mobile & Loop) ---
+        // --- LOGO ANIMATION (Güçlendirilmiş Mobil Döngü) ---
         const logoElement = document.getElementById('header-logo');
         const fonts = ['Arial', 'Verdana', 'Times New Roman', 'Impact', 'Courier New', 'Georgia', 'Trebuchet MS', 'Helvetica'];
         logoElement.innerHTML = "AYTEK JANE".split('').map(char => char === " " ? `<span class="space">&nbsp;</span>` : `<span>${char}</span>`).join('');
@@ -639,9 +639,11 @@
             const randomSpan = logoSpans[Math.floor(Math.random() * logoSpans.length)];
             const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
             randomSpan.style.fontFamily = randomFont;
+            // requestAnimationFrame yerine setTimeout kullanımı mobil arka plan kısıtlamalarını aşmaya yardımcı olur
             setTimeout(changeLogoFont, Math.random() * 500 + 100);
         }
-        changeLogoFont();
+        // Sayfa yüklendiğinde başlat
+        window.addEventListener('load', changeLogoFont);
 
         // --- MOBILE MENU ---
         function toggleMobileMenu() {
@@ -728,13 +730,13 @@
                 gadText: "Eski bir çok katlı otopark yapısında yer alan GAD Architecture ofisi için iç mimari tasarım, mekansal düzenleme planlaması ve aydınlatma tasarımı süreçlerine katkıda bulundum.",
                 projMarbleTitle: "İÇ MİMARİ: MERMER BANYO ÜNİTESİ TASARIMI",
                 proj12Title: "İÇ MİMARİ: SAMSUNG EMAAR MALL - DENEYİM MAĞAZASI (KURUM İÇİ ÇALIŞMA: ONERX)",
-                samsungText: "Samsung Emaar Experience Store iç mimari tasarımı ve proje yönetimi; proje yöneticileri, tasarımcılar, üreticiler ve müteahhitlerin katıldığı ortak bir ekip çalışması olarak yürütülmüştür. Proje, Samsung ve Apple'ın eski perakende tasarım direktörü Simon Orchover tarafından oluşturulan tasarım yönergelerine uygun olarak perakende akışı ve teknolojik entegrasyona odaklanılmıştır. Dünyada bir ilk olan bu konsept, deneyim, satış ve satış sonrası hizmetleri tek bir çatıda toplar. Samsung bu modeli küresel olarak genişletirken, İstanbul mağazası bir referans noktası olarak kabul edilmiştir. Mağaza bünyesinde, müşterilerin Samsung teknolojilerinden kesintisiz yararlanabilmelerini sağlamak için birinci sınıf teknik servis hizmeti sunulmaktadır.",
+                samsungText: "Samsung Emaar Experience Store iç mimari tasarımı ve proje yönetimi; proje yöneticileri, tasarımcılar, üreticiler ve müteahhitlerin katıldığı ortak bir ekip çalışması olarak yürütülmüştür. Proje, Simon Orchover tarafından oluşturulan tasarım yönergelerine uygun olarak perakende akışı ve teknolojik entegrasyona odaklanılmıştır. Dünyada bir ilk olan bu konsept, deneyim, satış ve satış sonrası hizmetleri tek bir çatıda toplar. Samsung bu modeli küresel olarak genişletirken, İstanbul mağazası bir referans noktası olarak kabul edilmiştir. Mağaza bünyesinde, müşterilerin Samsung teknolojilerinden kesintisiz yararlanabilmelerini sağlamak için birinci sınıf teknik servis hizmeti sunulmaktadır.",
                 proj3Title: "MOBİLYA: SOFA KONSEPTİ",
-                proj3Text: "Endüstriyel tasarım prensipleriyle konfor ve formu araştıran modern bir mobilya konsepti. Bu çalışma, modüler yapılara ve ergonomik fayda ile heykel estetiğinin kesişimine odaklanmaktadır.",
+                proj3Text: "Endüstriyel tasarım prensipleriyle konfor ve formu araştıran modern bir mobilya konsepti. Bu çalışma, modüler yapılara ve heykel estetiğinin kesişimine odaklanmaktadır.",
                 projModularSofaTitle: "MOBİLYA: MODÜLER KANEPE (MÜŞTERİ: WANGAN)",
                 projModularSofaText: "Çağdaş yaşam alanlarında esneklik ve uyarlanabilirlik için tasarlanmış modüler bir kanepe sistemi. Bu konsept, sürdürülebilir malzemeleri ergonomik konforla birleştiren, birbirine kilitlenen modüller aracılığıyla özelleştirilebilir konfigürasyonları araştırır.",
                 projHotelTitle: "MOBİLYA: OTEL MOBİLYASI TASARIMI (MÜŞTERİ: WANGAN)",
-                projHotelText: "Equestrian otel iç mekan kullanımı için tasarlanmıştır.",
+                projHotelText: "Designed for use in equestrian hotel interior.",
                 projBedTitle: "MOBİLYA: YATAK KONSEPTİ",
                 projBedText: "Yapısal minimalizm ve malzeme sıcaklığını araştıran çağdaş bir yatak tasarımı çalışması. Bu konsept, geometrik hassasiyet ile dinlendirici bir ortam için gereken konfor arasındaki dengeye odaklanır.",
                 proj4Title: "MOBİLYA: JANE SOKAK MOBİLYASI (MÜŞTERİ: URBAN JOBS)",
@@ -746,7 +748,7 @@
                 projUnionTitle: "MOBİLYA: UNION KOLEKSİYONU (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
                 projUnionText: "Maison&Objet Paris'te tanıtılan Union ailesi; yatak, kanepe ve masadan oluşan ortak bir ekip çalışması olarak geliştirilmiştir. Ev ortamına dayanan Union, maksimum konforu ön planda tutarken formu vurgular. Dokunsal, doğal malzemeler kullanılarak, geleneksel zanaatkarlık ile modern üretim teknikleri birleştirilerek üretilmiştir. Kendine özgü ve alışılmadık parçaları, yumuşak kavisler ve ince tasarım detaylarıyla tanımlanır.",
                 projSpiderTitle: "AYDINLATMA: YENİ SPIDER DUVAR LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projSpiderText: "Örümceklerin formundan esinlenen Spider, renkli bir ampulü çevreleyen dışbükey çubukların dairesel dizilimiyle şekillenir. Çarpıcı ve heykelsi duruşuyla tasarım, hem fonksiyonel bir nesne hem de görsel bir ifade olarak öne çıkar. Aydınlatıldığında, renkli ampul ışığı geriye doğru yönlendirir ve lamba yüzeye dramatik, büyük gölgeler düşürerek karakterini güçlendiren beklenmedik bir etki yaratır. Spider Duvar Lambası projesi, tasarımı daha da geliştirmeye ve üretim kalitesini artırmaya odaklanmaktadır. Ürünü daha belirgin hale getirmek ve kopyalanmasını zorlaştırmak için ek detaylar dahil edilmiştir. Koleksiyon, birden fazla boyut varyasyonunun yanı sıra bir sarkıt versiyonunu da içermektedir.",
+                projSpiderText: "Örümceklerin formundan esinlenen Spider, renkli bir ampulü çevreleyen dışbükey çubukların dairesel dizilimiyle şekillenir. Çarpıcı ve heykelsi duruşuyla tasarım, hem fonksiyonel bir nesne hem de görsel bir ifade olarak öne çıkar. Aydınlatıldığında, renkli ampul ışığı geriye doğru yönlendirir ve lamba yüzeye dramatik, büyük gölgeler düşürerek karakterini güçlendiren beklenmedik bir etki yaratır. Spider Wall Lamp projesi, tasarımı daha da geliştirmeye ve üretim kalitesini artırmaya odaklanmaktadır. Ürünü daha belirgin hale getirmek ve kopyalanmasını zorlaştırmak için ek detaylar dahil edilmiştir. Koleksiyon, birden fazla boyut varyasyonunun yanı sıra bir sarkıt versiyonunu da içermektedir.",
                 projCesmiTitle: "AYDINLATMA: ÇEŞM-İ BÜLBÜL DUVAR AYDINLATMASI - OMNIA SERİSİ - PAŞABAHÇE (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
                 projCesmiText: "“Çeşm-i Bülbül,” Türkçeye “bülbülün gözü” olarak çevrilen, 18. yüzyılın sonlarında geliştirilen geleneksel bir Osmanlı cam işleme tekniğidir. Bülbül gözünü andıran karmaşık, sarmal ve çok renkli cam çubuk (filigran) desenleriyle ayırt edilir. Teknik, III. Selim döneminde Mevlevi dervişi Mehmed Dede tarafından Venedik cam işleme geleneklerinden esinlenerek oluşturulmuştur. Bu proje, bu eşsiz sanat formunu geleceğe taşıma çabası olarak geliştirilmiştir. Paşabahçe’nin Omnia özel koleksiyonu için tasarlanmış olup, lansman etkinliğinin yanı sıra perakende mağazalarında da sergilenmiştir.",
                 projGlassTitle: "AYDINLATMA: GLASS IS TOMORROW MASA LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
@@ -786,9 +788,9 @@
             });
 
             const btns = ['langBtn', 'langBtnMobile'];
-            btns.forEach(btnId => {
-                const btn = document.getElementById(btnId);
-                if (btn) btn.innerText = (currentLang === 'en' ? 'TÜRKÇE' : 'ENGLISH');
+            btns.forEach(id => {
+                const b = document.getElementById(id);
+                if(b) b.innerText = (currentLang === 'en' ? 'TÜRKÇE' : 'ENGLISH');
             });
 
             document.querySelectorAll('.cat-item').forEach(item => {
@@ -801,7 +803,7 @@
             });
         }
 
-        // --- FILTER PROJECTS (Fixed Divider Issue) ---
+        // --- FILTER PROJECTS ---
         function filterProjects(category, element) {
             document.querySelectorAll('.cat-item').forEach(item => item.classList.remove('active'));
             element.classList.add('active');
@@ -810,11 +812,19 @@
             const dividers = document.querySelectorAll('.divider');
             
             sections.forEach(sec => {
-                sec.style.display = (category === 'all' || sec.classList.contains('filter-' + category)) ? 'block' : 'none';
+                if (category === 'all' || sec.classList.contains('filter-' + category)) {
+                    sec.style.display = 'block';
+                } else {
+                    sec.style.display = 'none';
+                }
             });
             
             dividers.forEach(div => {
-                div.style.display = (category === 'all' || div.classList.contains('filter-' + category)) ? 'block' : 'none';
+                if (category === 'all' || div.classList.contains('filter-' + category)) {
+                    div.style.display = 'block';
+                } else {
+                    div.style.display = 'none';
+                }
             });
             
             const menu = document.getElementById('mobileMenu');
