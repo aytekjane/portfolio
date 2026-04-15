@@ -124,24 +124,33 @@
             .img-wrapper.wide { grid-column: span 2; padding-top: 56.25%; }
 
             .category-menu {
-                flex-direction: column; top: 60px; left: 0; width: 100%; height: 0;
+                flex-direction: column;
+                top: 60px; left: 0; width: 100%; height: 0;
                 max-height: calc(100dvh - 60px); background-color: rgb(245, 245, 245); 
-                padding: 0; overflow-y: auto; overflow-x: hidden; visibility: hidden; opacity: 0; border-bottom: none;
+                padding: 0; overflow-y: auto;
+                overflow-x: hidden; visibility: hidden; opacity: 0; border-bottom: none;
                 display: flex; justify-content: flex-start; z-index: 4500; -webkit-overflow-scrolling: touch;
             }
-            .category-menu.active { height: calc(100dvh - 60px); visibility: visible; opacity: 1; }
-            .cat-item { padding: 22px 40px; font-size: 18px; border-bottom: 1px solid rgba(0,0,0,0.05); width: 100%; display: block; flex-shrink: 0; }
+            .category-menu.active { height: calc(100dvh - 60px); visibility: visible;
+                opacity: 1; }
+            .cat-item { padding: 22px 40px;
+                font-size: 18px; border-bottom: 1px solid rgba(0,0,0,0.05); width: 100%; display: block; flex-shrink: 0;
+            }
             .mobile-only-links { display: flex; flex-shrink: 0; padding-bottom: 150px; }
             .intro { margin-top: 100px; padding: 0 20px; }
             .project-section { padding: 0 20px; }
             .divider { margin: 40px 20px; }
         }
 
-        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.98); z-index: 6000; justify-content: center;
+        .lightbox { display: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.98); z-index: 6000; justify-content: center;
             align-items: center; cursor: pointer; }
         .lb-content { position: relative; max-width: 90%; max-height: 90%; }
-        .lightbox img { max-width: 100%; max-height: 85vh; object-fit: contain; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
-        .lb-close { position: absolute; top: -60px; right: 0; font-size: 12px; color: #888; cursor: pointer; text-transform: uppercase; }
+        .lightbox img { max-width: 100%; max-height: 85vh; object-fit: contain;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+        .lb-close { position: absolute; top: -60px;
+            right: 0; font-size: 12px; color: #888; cursor: pointer; text-transform: uppercase;
+        }
     </style>
 </head>
 <body id="page-body">
@@ -318,6 +327,28 @@
         </div>
     </div>
 
+    <div class="divider filter-exterior"></div>
+    <div class="project-section filter-exterior">
+        <div class="project-header" id="projEmaarTitle">EXTERIOR: EMAAR SHOPPING MALL FACADE GUIDELINE (CLIENT: NORMAL)</div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/emaar1.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/emaar2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/emaar3.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/emaar4.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/emaar5.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/emaar6.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/emaar7.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/emaar8.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/emaar9.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/emaar10.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/emaar11.webp" loading="lazy" onclick="openLightbox(this)"></div>
+        </div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="emaarText">Shopping malls often become visually cluttered because each brand applies its own corporate identity independently. To address this, the mall management requested a comprehensive guideline. The proposed design framework aimed to unify the overall visual language while respecting individual brand identities. The primary goal was to preserve the architectural integrity of the space and highlight its core aesthetic values, creating a more cohesive and refined environment suitable for a professional portfolio presentation.</p>
+            <a href="https://www.normal.com.tr/" target="_blank" class="project-link">NORMAL.COM.TR</a>
+        </div>
+    </div>
+
     <div class="divider filter-furniture"></div>
     <div class="project-section filter-furniture">
         <div class="project-header" id="proj3Title">FURNITURE: SOFA CONCEPT</div>
@@ -445,7 +476,6 @@
     </div>
 
     <div class="divider filter-lighting"></div>
-
     <div class="project-section filter-lighting">
         <div class="project-header" id="projNiluferTitle">LIGHTING: NILÜFER PENDANT LIGHT (IN-HOUSE WORK: AUTOBAN)</div>
         <div class="gallery">
@@ -823,6 +853,8 @@
                 samsungText: "Interior design and project management for the Samsung Experience Store at Emaar Mall were carried out as a collaborative team effort involving project managers, designers, manufacturers, and contractors. The project focused on retail flow and technological integration, developed in accordance with the design guidelines created by Simon Orchover, former retail design director at Samsung and Apple. Recognized as a world-first concept, the Samsung Experience Store combines experience, sales, and after-sales services within a single unified environment. As Samsung expands this model globally, the Istanbul store has been regarded as a reference point. Within the store, first-class technical services are provided to ensure customers can continuously benefit from Samsung technologies without interruption.",
                 projOdakuleTitle: "EXTERIOR: ODAKULE PASSAGE CONCEPT",
                 odakuleText: "Odakule is a key urban passage with heavy pedestrian flow throughout the day, bringing together diverse user groups. The project combines the idea of movement and stepping inherent in the concept of a passage with the production-oriented vision of İstanbul Sanayi Odası, aiming to generate energy from human motion. A piezoelectric flooring system converts each step into kinetic energy. With high daily foot traffic, this creates a meaningful and continuous energy source. The generated energy powers a helical interactive lighting element, establishing a real-time connection between the user and the space. This project was developed in collaboration with Enrico Şansal for the Odakule Passage National Design Competition. As a result, the passage transforms from a simple transit area into an interactive, energy-producing urban experience.",
+                projEmaarTitle: "EXTERIOR: EMAAR SHOPPING MALL FACADE GUIDELINE (CLIENT: NORMAL)",
+                emaarText: "Shopping malls often become visually cluttered because each brand applies its own corporate identity independently. To address this, the mall management requested a comprehensive guideline. The proposed design framework aimed to unify the overall visual language while respecting individual brand identities. The primary goal was to preserve the architectural integrity of the space and highlight its core aesthetic values, creating a more cohesive and refined environment suitable for a professional portfolio presentation.",
                 proj3Title: "FURNITURE: SOFA CONCEPT",
                 proj3Text: "A modern furniture concept exploring comfort and form through industrial design principles. This study focuses on modular structures and the intersection of ergonomic utility and sculptural aesthetics.",
                 projModularSofaTitle: "FURNITURE: MODULAR SOFA (CLIENT: WANGAN)",
@@ -839,10 +871,8 @@
                 projCocoonText: "This project reinterprets the cocoon zone elements developed by the company for Heydar Aliyev Airport in Azerbaijan, translating their distinctive details into a small-scale outdoor seating unit for Istanbul Design Week. Defined by its own volume, the structure creates an immersive experience for users to rest and engage with the sunset.",
                 projUnionTitle: "FURNITURE: UNION COLLECTION (IN-HOUSE WORK: AUTOBAN)",
                 projUnionText: "Launched at Maison&Objet Paris, the Union family was developed as a collaborative team effort, consisting of a bed, sofa, and table. Rooted in the domestic environment, Union emphasizes form while prioritizing maximum comfort. It is crafted using tactile, natural materials, combining traditional craftsmanship with modern production techniques. Its distinctive and unconventional pieces are defined by soft curves and subtle design details throughout.",
-                
                 projNiluferTitle: "LIGHTING: NILÜFER PENDANT LIGHT (IN-HOUSE WORK: AUTOBAN)",
                 niluferText: "This pendant lighting fixture was specially designed and produced for a food and beverage venue located within the Bomonti Historic Brewery, a newly redeveloped heritage complex. Its form is inspired by cymbals, reflecting a harmonious blend of industrial character and contemporary design.",
-
                 projBuhaisTitle: "LIGHTING: BUHAIS GEOLOGY PARK - AUTOMATIC VENETIAN BLIND & OCULUS (IN-HOUSE WORK: JVL)",
                 buhaisText: "A Venetian blind system was designed to protect the exhibited objects in the museum from UV-related damage. Using GPS-based location data and the sun’s movement, the blinds automatically open and close throughout the day. Additionally, the oculus introduces light into the space, where a vertically moving reflector—functioning like an aperture—controls the diameter of the incoming beam.",
                 projInfinityTitle: "LIGHTING: INFINITY ALUMINIUM TRIMLESS COVE LIGHTING (IN-HOUSE WORK: JVL)",
@@ -896,6 +926,8 @@
                 samsungText: "Samsung Emaar Experience Store iç mimari tasarımı ve proje yönetimi; proje yöneticileri, tasarımcılar, üreticiler ve müteahhitlerin katıldığı ortak bir ekip çalışması olarak yürütülmüştür. Proje, Samsung ve Apple'ın eski perakende tasarım direktörü Simon Orchover tarafından oluşturulan tasarım yönergelerine uygun olarak perakende akışı ve teknolojik entegrasyona odaklanılmıştır. Dünyada bir ilk olan bu konsept, deneyim, satış ve satış sonrası hizmetleri tek bir çatıda toplar. Samsung bu modeli küresel olarak genişletirken, İstanbul mağazası bir referans noktası olarak kabul edilmiştir. Mağaza bünyesinde, müşterilerin Samsung teknolojilerinden kesintisiz yararlanabilmelerini sağlamak için birinci sınıf teknik servis hizmeti sunulmaktadır.",
                 projOdakuleTitle: "DIŞ MİMARİ: ODAKULE PASAJI KONSEPTİ",
                 odakuleText: "Odakule, gün boyu yoğun yaya akışına sahip, farklı kullanıcı gruplarını bir araya getiren önemli bir kentsel pasajdır. Proje, pasaj kavramının doğasında var olan hareket ve adım atma fikrini, İstanbul Sanayi Odası'nın üretim odaklı vizyonuyla birleştirerek insan hareketinden enerji üretmeyi amaçlamaktadır. Piezoelektrik zemin sistemi, her adımı kinetik enerjiye dönüştürür. Yüksek günlük yaya trafiği ile bu, anlamlı ve sürekli bir enerji kaynağı yaratır. Üretilen enerji, sarmal bir interaktif aydınlatma elemanına güç vererek kullanıcı ile mekan arasında gerçek zamanlı bir bağ kurar. Bu proje, Odakule Pasajı Ulusal Tasarım Yarışması için Enrico Şansal ile iş birliği içinde geliştirilmiştir. Sonuç olarak pasaj, basit bir geçiş alanından etkileşimli, enerji üreten kentsel bir deneyime dönüşür.",
+                projEmaarTitle: "DIŞ MİMARİ: EMAAR AVM CEPHE KILAVUZU (MÜŞTERİ: NORMAL)",
+                emaarText: "Alışveriş merkezleri, her markanın kendi kurumsal kimliğini bağımsız olarak uygulaması nedeniyle genellikle görsel bir karmaşaya dönüşür. Bu sorunu gidermek amacıyla, AVM yönetimi kapsamlı bir kılavuz talep etmiştir. Önerilen tasarım çerçevesi, bireysel marka kimliklerine saygı duyarken genel görsel dili birleştirmeyi amaçlamıştır. Temel hedef, mekanın mimari bütünlüğünü korumak ve temel estetik değerlerini vurgulayarak profesyonel bir portföy sunumuna uygun, daha uyumlu ve rafine bir ortam yaratmaktı.",
                 proj3Title: "MOBİLYA: SOFA KONSEPTİ",
                 proj3Text: "Endüstriyel tasarım prensipleriyle konfor ve formu araştıran modern bir mobilya konsepti. Bu çalışma, modüler yapılara ve heykel estetiğinin kesişimine odaklanmaktadır.",
                 projModularSofaTitle: "MOBİLYA: MODÜLER KANEPE (MÜŞTERİ: WANGAN)",
@@ -912,10 +944,8 @@
                 projCocoonText: "Bu proje, şirketin Azerbaycan'daki Haydar Aliyev Havalimanı için geliştirdiği cocoon (koza) alanı elemanlarını yeniden yorumlayarak, bu karakteristik detayları İstanbul Design Week için küçük ölçekli bir dış mekan oturma ünitesine dönüştürmektedir. Kendi hacmiyle tanımlanan yapı, kullanıcıların dinlenmesi ve gün batımıyla etkileşime girmesi için sarmalayıcı bir deneyim yaratır.",
                 projUnionTitle: "MOBİLYA: UNION KOLEKSİYONU (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
                 projUnionText: "Maison&Objet Paris'te tanıtılan Union ailesi; yatak, kanepe ve masadan oluşan ortak bir ekip çalışması olarak geliştirilmiştir. Ev ortamına dayanan Union, maksimum konforu ön planda tutarken formu vurgular. Dokunsal, doğal malzemeler kullanılarak, geleneksel zanaatkarlık ile modern üretim teknikleri birleştirilerek üretilmiştir. Kendine özgü ve alışılmadık parçaları, yumuşak kavisler ve ince tasarım detaylarıyla tanımlanır.",
-                
                 projNiluferTitle: "AYDINLATMA: NİLÜFER SARKIT LAMBA (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
                 niluferText: "Bu sarkıt aydınlatma armatürü, yeni geliştirilen bir miras kompleksi olan Bomonti Tarihi Bira Fabrikası bünyesinde yer alan bir yeme-içme mekanı için özel olarak tasarlanmış ve üretilmiştir. Formu zillerden ilham alarak endüstriyel karakter ile çağdaş tasarımın uyumlu bir karışımını yansıtmaktadır.",
-
                 projBuhaisTitle: "AYDINLATMA: BUHAIS GEOLOGY PARK - OTOMATİK JALUZİ SİSTEMİ VE OKÜLÜS (KURUM İÇİ ÇALIŞMA: JVL)",
                 buhaisText: "Müzede sergilenen nesneleri UV kaynaklı hasarlardan korumak amacıyla bir jaluzi sistemi tasarlanmıştır. GPS tabanlı konum verileri ve güneşin hareketini kullanan jaluziler, gün boyunca otomatik olarak açılıp kapanmaktadır. Ayrıca okülüs, dikey olarak hareket eden bir reflektörün -bir diyafram gibi çalışarak- gelen ışık huzmesinin çapını kontrol ettiği bir sistemle mekana ışık sağlamaktadır.",
                 projInfinityTitle: "AYDINLATMA: INFINITY ALÜMİNYUM TRIMLESS GİZLİ AYDINLATMA (KURUM İÇİ ÇALIŞMA: JVL)",
@@ -937,9 +967,9 @@
                 projGhDeskTitle: "AYDINLATMA: GRAND HYATT MASA LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
                 projGhDeskText: "Grand Hyatt projesi için özel olarak tasarlanan masa lambası; fonksiyonel çalışma aydınlatmasını lüks konaklama iç mekanlarının sofistike estetik diliyle dengeler.",
                 projBurganTitle: "AYDINLATMA: BURGAN BANK PRIVATE - AYDINLATMA PLANI (KURUM İÇİ ÇALIŞMA: I-AM ASSOCIATES)",
-                projBurganText: "Burgan Bank'ın özel şubesi için aydınlatma yerleşim planının geliştirilmesi, armatür seçimi ve DIALux yazılımı kullanılarak aydınlık düzeylerinin hesaplanmasını içeren aydınlatma tasarımı.",
+                projBurganText: "Burgan Bank'ın özel şubesi için aydınlatma yerleşim planının geliştirilmesi, armatür seçimi ve DIALux yazulukı kullanılarak aydınlık düzeylerinin hesaplanmasını içeren aydınlatma tasarımı.",
                 projLavaTitle: "CAM EŞYA: LAVA TEA GLASS",
-                lavaText: "Wabi-Sabi (isim): Bir kavram, bir estetik ve bir dünya görüşü. Basitçe, kusurlardaki güzelliği bulmayı ve büyüme ile çürümenin doğal döngüsünü kabul etmeyi vurgulayan sezgisel bir yaşam biçimidir. Burada göreceğiniz çalışmalar, bilgisayar yardımıyla organize edilmiş parametrik geometrilerden oluşmakta, Wabi-Sabi mantığını ve camın doğal akışını harmanlamaktadır. Eğriler, matematiksel denklemlerin yardımıyla çizilmiştir.",
+                lavaText: "Wabi-Sabi (isim): Bir kavram, bir estetik ve bir dünya görüşü. Basitçe, kusurlardaki güzelliği bulmayı ve büyüme ile çürümenin doğal döngüsünü kabul etmeyi vurgulayan sezgisel bir yaşam biçimidir. Burada göreceğiniz çalışmalar, bilgisayar yardımıyla organize edilmiş parametrik geometrilerinden oluşmakta, Wabi-Sabi mantığını ve camın doğal akışını harmanlamaktadır. Eğriler, matematiksel denklemlerin yardımıyla çizilmiştir.",
                 projTestiTitle: "CAM EŞYA: TESTI WATER PITCHER",
                 testiText: "Bu su sürahisinin tasarımı için kapsamlı bir tarihsel araştırma süreci yürütülmüştür. Vietnam, Endonezya, Çin, Arap ve İran kültürlerinden gelen, kilden ve çeşitli malzemelerden yapılmış su kapları ve sürahiler derinlemesine incelenmiştir.",
                 projChippedTitle: "CAM EŞYA: CHIPPED GLASS",
