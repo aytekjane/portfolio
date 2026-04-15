@@ -40,19 +40,25 @@
             -webkit-tap-highlight-color: transparent;
             user-select: none;
         }
-        #header-logo span { display: inline-block; transition: font-family 0.1s ease; }
-        #header-logo span.space { width: 0.2em; }
+        #header-logo span { display: inline-block; transition: font-family 0.1s ease;
+        }
+        #header-logo span.space { width: 0.2em;
+        }
 
-        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links { display: flex; gap: 20px; align-items: center;
+        }
         .nav-item { cursor: pointer; color: #1a1a1a; padding: 8px 0; font-weight: 500;
             font-size: 12px; text-transform: uppercase; text-decoration: none; letter-spacing: 1.2px; transition: color 0.3s ease; position: relative;
         }
         .nav-item::after { content: ''; position: absolute; width: 0; height: 1px; bottom: 0;
             left: 0; background-color: #FF91AF; transition: width 0.3s ease; }
-        .nav-item:hover::after { width: 100%; }
+        .nav-item:hover::after { width: 100%;
+        }
 
-        .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 5100; }
-        .menu-toggle span { width: 25px; height: 2px; background-color: #1a1a1a; transition: 0.3s; }
+        .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 5100;
+        }
+        .menu-toggle span { width: 25px; height: 2px; background-color: #1a1a1a; transition: 0.3s;
+        }
 
         /* --- CATEGORY MENU & MOBILE OVERLAY --- */
         .category-menu {
@@ -66,8 +72,10 @@
         }
         .cat-item { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer;
             color: #888; transition: color 0.3s ease; }
-        .cat-item:hover, .cat-item.active { color: #1a1a1a; }
-        .cat-item.active { border-bottom: 2px solid #FF91AF; }
+        .cat-item:hover, .cat-item.active { color: #1a1a1a;
+        }
+        .cat-item.active { border-bottom: 2px solid #FF91AF;
+        }
 
         .mobile-only-links { display: none; flex-direction: column; gap: 20px; padding: 30px 40px;
             border-top: 1px solid #FF91AF; margin-top: 10px; }
@@ -83,7 +91,7 @@
             max-width: 1200px; margin-bottom: 60px; padding: 0 40px; box-sizing: border-box; }
         .project-header { margin-bottom: 30px;
             text-transform: uppercase; letter-spacing: 2px; font-weight: 600; text-align: left; color: #1a1a1a; font-size: 14px; display: flex; align-items: center; gap: 10px;
-        }
+            }
         .project-header::before { content: ''; display: inline-block; width: 8px; height: 8px; background-color: #FF91AF;
             border-radius: 50%; }
 
@@ -91,11 +99,12 @@
             margin-top: 20px; margin-bottom: 30px; align-items: start; }
         .img-wrapper { position: relative; width: 100%;
             padding-top: 100%; box-sizing: border-box; border: 2px solid transparent; transition: border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
-        } 
-        .img-wrapper.wide { grid-column: span 2; padding-top: calc(50% - 7.5px); }
+            } 
+        .img-wrapper.wide { grid-column: span 2; padding-top: calc(50% - 7.5px);
+            }
         .gallery img, .gallery iframe { position: absolute; top: 0; left: 0;
             width: 100%; height: 100%; display: block; cursor: pointer; object-fit: cover; background-color: #eee;
-        }
+            }
         .img-wrapper:hover { border-color: #FF91AF; transform: translateY(-5px) scale(1.05); z-index: 10;
             box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
 
@@ -107,40 +116,62 @@
             font-style: italic; color: #888; margin-bottom: 25px; }
         .project-link { display: inline-block; color: #1a1a1a;
             text-decoration: none; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; margin-right: 25px; margin-bottom: 10px;
+            }
+        .project-link:hover { color: #FF91AF;
         }
-        .project-link:hover { color: #FF91AF; }
         
         .divider { width: 100%;
             max-width: 1120px; border-top: 1px solid #FF91AF; margin: 40px 40px; display: block;
-        }
+            }
 
         @media (max-width: 768px) { 
-            .header-nav { padding: 15px 20px; height: 60px; }
-            .nav-links { display: none; } 
-            .menu-toggle { display: flex; } 
+            .header-nav { padding: 15px 20px;
+            height: 60px; }
+            .nav-links { display: none;
+            } 
+            .menu-toggle { display: flex;
+            } 
             
-            .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .img-wrapper { padding-top: 100%; }
-            .img-wrapper.wide { grid-column: span 2; padding-top: 56.25%; }
+            .gallery { grid-template-columns: repeat(2, 1fr);
+            gap: 10px; }
+            .img-wrapper { padding-top: 100%;
+            }
+            .img-wrapper.wide { grid-column: span 2; padding-top: 56.25%;
+            }
 
             .category-menu {
-                flex-direction: column; top: 60px; left: 0; width: 100%; height: 0;
+                flex-direction: column;
+                top: 60px; left: 0; width: 100%; height: 0;
                 max-height: calc(100dvh - 60px); background-color: rgb(245, 245, 245); 
-                padding: 0; overflow-y: auto; overflow-x: hidden; visibility: hidden; opacity: 0; border-bottom: none;
+                padding: 0; overflow-y: auto;
+                overflow-x: hidden; visibility: hidden; opacity: 0; border-bottom: none;
                 display: flex; justify-content: flex-start; z-index: 4500; -webkit-overflow-scrolling: touch;
-            }
-            .category-menu.active { height: calc(100dvh - 60px); visibility: visible; opacity: 1; }
-            .cat-item { padding: 22px 40px; font-size: 18px; border-bottom: 1px solid rgba(0,0,0,0.05); width: 100%; display: block; flex-shrink: 0; }
-            .mobile-only-links { display: flex; flex-shrink: 0; padding-bottom: 150px; }
-            .intro { margin-top: 100px; padding: 0 20px; }
-            .project-section { padding: 0 20px; }
-            .divider { margin: 40px 20px; }
+                }
+            .category-menu.active { height: calc(100dvh - 60px); visibility: visible;
+                opacity: 1; }
+            .cat-item { padding: 22px 40px;
+                font-size: 18px; border-bottom: 1px solid rgba(0,0,0,0.05); width: 100%; display: block; flex-shrink: 0;
+                }
+            .mobile-only-links { display: flex; flex-shrink: 0; padding-bottom: 150px;
+                }
+            .intro { margin-top: 100px; padding: 0 20px;
+                }
+            .project-section { padding: 0 20px;
+                }
+            .divider { margin: 40px 20px;
+                }
         }
 
-        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.98); z-index: 6000; justify-content: center; align-items: center; cursor: pointer; }
-        .lb-content { position: relative; max-width: 90%; max-height: 90%; }
-        .lightbox img { max-width: 100%; max-height: 85vh; object-fit: contain; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
-        .lb-close { position: absolute; top: -60px; right: 0; font-size: 12px; color: #888; cursor: pointer; text-transform: uppercase; }
+        .lightbox { display: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.98); z-index: 6000; justify-content: center;
+            align-items: center; cursor: pointer; }
+        .lb-content { position: relative; max-width: 90%; max-height: 90%;
+            }
+        .lightbox img { max-width: 100%; max-height: 85vh; object-fit: contain;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+        .lb-close { position: absolute; top: -60px;
+            right: 0; font-size: 12px; color: #888; cursor: pointer; text-transform: uppercase;
+            }
     </style>
 </head>
 <body id="page-body">
@@ -153,6 +184,7 @@
             <a href="#" id="header-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">AYTEK JANE</a>
         </div>
         <div class="nav-links">
+ 
             <a href="mailto:aytekjane@gmail.com" class="nav-item">CONTACT</a>
             <div class="nav-item" onclick="toggleLanguage()" id="langBtn">TÜRKÇE</div>
         </div>
@@ -163,7 +195,8 @@
         <div class="cat-item" onclick="filterProjects('interior', this)" id="cat-interior">INTERIOR</div>
         <div class="cat-item" onclick="filterProjects('furniture', this)" id="cat-furniture">FURNITURE</div>
         <div class="cat-item" onclick="filterProjects('lighting', this)" id="cat-lighting">LIGHTING</div>
-        <div class="cat-item" onclick="filterProjects('glassware', this)" id="cat-glassware">GLASSWARE</div>
+     
+    <div class="cat-item" onclick="filterProjects('glassware', this)" id="cat-glassware">GLASSWARE</div>
         <div class="cat-item" onclick="filterProjects('horology', this)" id="cat-horology">HOROLOGY</div>
         <div class="cat-item" onclick="filterProjects('fashion', this)" id="cat-fashion">FASHION</div>
         <div class="cat-item" onclick="filterProjects('rd', this)" id="cat-rd">R&D</div>
@@ -171,7 +204,8 @@
         <div class="mobile-only-links">
             <a href="mailto:aytekjane@gmail.com" class="nav-item" style="font-size: 18px;">CONTACT</a>
             <div class="nav-item" onclick="toggleLanguage()" id="langBtnMobile" style="font-size: 18px;">TÜRKÇE</div>
-        </div>
+       
+  </div>
     </div>
 
     <div class="intro">
@@ -183,13 +217,15 @@
         <div class="gallery">
             <div class="img-wrapper wide"><img src="images/kilimanjaro1.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/kilimanjaro2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/kilimanjaro3.webp" loading="lazy" onclick="openLightbox(this)"></div>
+  
+           <div class="img-wrapper"><img src="images/kilimanjaro3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/kilimanjaro4.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/kilimanjaro5.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/kilimanjaro6.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/kilimanjaro7.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/kilimanjaro8.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/kilimanjaro9.webp" loading="lazy" onclick="openLightbox(this)"></div>
+   
+          <div class="img-wrapper wide"><img src="images/kilimanjaro9.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/kilimanjaro10.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/kilimanjaro11.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
@@ -209,7 +245,8 @@
             <div class="img-wrapper"><img src="images/smiles3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/smiles4.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/smiles5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/smiles6.webp" loading="lazy" onclick="openLightbox(this)"></div>
+       
+      <div class="img-wrapper wide"><img src="images/smiles6.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="smilesText">Providing parametric drawings of the developed wall concept and creating production drawings for a dental clinic located in Ankara, Turkey. Winner of the Best of Year 2025 Interior Design Award.</p>
@@ -222,14 +259,16 @@
     <div class="project-section filter-interior">
         <div class="project-header" id="projSinemiraTitle">INTERIOR: SINEMIRA YACHT INTERIOR FABRICATION DRAWINGS (CLIENT: NORMAL)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/sinemira1.webp" loading="lazy" onclick="openLightbox(this)"></div>
+         
+    <div class="img-wrapper wide"><img src="images/sinemira1.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/sinemira2.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/sinemira3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/sinemira4.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <span class="render-note">Renders belong to Normal.</span>
-            <a href="https://www.normal.com.tr/" target="_blank" class="project-link">NORMAL.COM.TR</a>
+        
+     <a href="https://www.normal.com.tr/" target="_blank" class="project-link">NORMAL.COM.TR</a>
         </div>
     </div>
     <div class="divider filter-interior"></div>
@@ -239,13 +278,15 @@
         <div class="gallery">
             <div class="img-wrapper wide"><img src="images/vakkorama1.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/vakkorama2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/vakkorama3.webp" loading="lazy" onclick="openLightbox(this)"></div>
+         
+    <div class="img-wrapper"><img src="images/vakkorama3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/vakkorama4.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/vakkorama5.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/vakkorama6.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/vakkorama7.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/vakkorama8.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/vakkorama9.webp" loading="lazy" onclick="openLightbox(this)"></div>
+          
+   <div class="img-wrapper"><img src="images/vakkorama9.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/vakkorama10.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/vakkorama11.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/vakkorama12.webp" loading="lazy" onclick="openLightbox(this)"></div>
@@ -260,13 +301,15 @@
     <div class="project-section filter-interior">
         <div class="project-header" id="proj10Title">INTERIOR: GAD PARK OFFICE (IN-HOUSE WORK: GAD ARCHITECTURE)</div>
         <div class="gallery">
-            <div class="img-wrapper"><img src="images/gad1.webp" loading="lazy" onclick="openLightbox(this)"></div>
+     
+        <div class="img-wrapper"><img src="images/gad1.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/gad2.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/gad3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/gad4.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/gad5.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/gad6.webp" loading="lazy" onclick="openLightbox(this)"></div>
-        </div>
+        
+ </div>
         <div class="project-desc-container">
             <p class="project-desc" id="gadText">I contributed to the interior architectural design, spatial layout planning, and lighting design for the GAD Architecture office, which is located within a former multi-storey parking structure.</p>
             <span class="render-note">Photos belong to Gad Architecture.</span>
@@ -282,7 +325,8 @@
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="projMarbleText">A bathroom unit and interior design project developed for a marble manufacturer based in the United States.</p>
-        </div>
+       
+  </div>
     </div>
     <div class="divider filter-interior"></div>
 
@@ -293,7 +337,8 @@
             <div class="img-wrapper wide"><img src="images/samsung2.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
-            <p class="project-desc" id="samsungText">Interior design and project management for the Samsung Experience Store at Emaar Mall were carried out as a collaborative team effort involving project managers, designers, manufacturers, and contractors. The project focused on retail flow and technological integration, developed in accordance with the design guidelines created by Simon Orchover, former retail design director at Samsung and Apple. Recognized as a world-first concept, the Samsung Experience Store combines experience, sales, and after-sales services within a single unified environment. As Samsung expands this model globally, the Istanbul store has been regarded as a reference point. Within the store, first-class technical services are provided to ensure customers can continuously benefit from Samsung technologies without interruption.</p>
+    
+         <p class="project-desc" id="samsungText">Interior design and project management for the Samsung Experience Store at Emaar Mall were carried out as a collaborative team effort involving project managers, designers, manufacturers, and contractors. The project focused on retail flow and technological integration, developed in accordance with the design guidelines created by Simon Orchover, former retail design director at Samsung and Apple. Recognized as a world-first concept, the Samsung Experience Store combines experience, sales, and after-sales services within a single unified environment. As Samsung expands this model globally, the Istanbul store has been regarded as a reference point. Within the store, first-class technical services are provided to ensure customers can continuously benefit from Samsung technologies without interruption.</p>
             <span class="render-note">Photos belong to Onerx.</span>
         </div>
     </div>
@@ -303,7 +348,8 @@
         <div class="project-header" id="proj3Title">FURNITURE: SOFA CONCEPT</div>
         <div class="gallery">
             <div class="img-wrapper"><img src="images/sofa-a1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/sofa-a2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+     
+        <div class="img-wrapper wide"><img src="images/sofa-a2.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/sofa-a3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/sofa-a4.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
@@ -318,7 +364,8 @@
         <div class="gallery">
             <div class="img-wrapper wide"><img src="images/sofa-b1.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/sofa-b2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/sofa-b3.webp" loading="lazy" onclick="openLightbox(this)"></div>
+     
+        <div class="img-wrapper wide"><img src="images/sofa-b3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/sofa-b4.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/sofa-b5.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
@@ -333,14 +380,16 @@
         <div class="project-header" id="projHotelTitle">FURNITURE: HOTEL FURNITURE DESIGN (CLIENT: WANGAN)</div>
         <div class="gallery">
             <div class="img-wrapper"><img src="images/sofa-c1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/sofa-c2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+        
+     <div class="img-wrapper"><img src="images/sofa-c2.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/sofa-c3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/sofa-c4.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="projHotelText">Designed for use in equestrian hotel interior.</p>
             <a href="https://wangan.studio/" target="_blank" class="project-link">WANGAN.STUDIO</a>
-        </div>
+        
+ </div>
     </div>
     <div class="divider filter-furniture"></div>
 
@@ -351,7 +400,8 @@
             <div class="img-wrapper"><img src="images/bed-a2.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/bed-a3.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
-        <div class="project-desc-container">
+      
+   <div class="project-desc-container">
             <p class="project-desc" id="projBedText">A contemporary bed design study exploring structural minimalism and material warmth. This concept focuses on the balance between geometric precision and the comfort required for a restful environment.</p>
         </div>
     </div>
@@ -362,13 +412,15 @@
         <div class="gallery">
             <div class="img-wrapper wide"><img src="images/jane1.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/jane2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/jane3.webp" loading="lazy" onclick="openLightbox(this)"></div>
+  
+           <div class="img-wrapper"><img src="images/jane3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/jane4.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/jane5.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/jane6.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/jane7.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/jane8.webp" loading="lazy" onclick="openLightbox(this)"></div>
-        </div>
+    
+     </div>
         <div class="project-desc-container">
             <p class="project-desc" id="proj4Text">With seven modules, it is possible to create geometries that complement architectural forms. The design evolved through an analysis of the history of street furniture. Winner of EDIDA 2020 in the Outdoor Furniture category.</p>
             <span class="render-note">Context renders belong to Urban Jobs.</span>
@@ -380,7 +432,8 @@
     <div class="project-section filter-furniture">
         <div class="project-header" id="projBurositTitle">FURNITURE: BANZAI OFFICE CHAIR (CLIENT: BÜROSIT)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/burosit1.webp" loading="lazy" onclick="openLightbox(this)"></div>
+           
+  <div class="img-wrapper wide"><img src="images/burosit1.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/burosit2.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/burosit3.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
@@ -395,7 +448,8 @@
     <div class="project-section filter-furniture">
         <div class="project-header" id="projCocoonTitle">FURNITURE: İSTANBUL DESIGN WEEK COCOON STRUCTURE (IN-HOUSE WORK: AUTOBAN)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/cocoon1.webp" loading="lazy" onclick="openLightbox(this)"></div>
+      
+       <div class="img-wrapper wide"><img src="images/cocoon1.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/cocoon2.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/cocoon3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/cocoon4.webp" loading="lazy" onclick="openLightbox(this)"></div>
@@ -411,6 +465,7 @@
         <div class="project-header" id="projUnionTitle">FURNITURE: UNION COLLECTION (IN-HOUSE WORK: AUTOBAN)</div>
         <div class="gallery">
             <div class="img-wrapper wide"><img src="images/union1.webp" loading="lazy" onclick="openLightbox(this)"></div>
+ 
             <div class="img-wrapper wide"><img src="images/union2.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/union3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/union4.webp" loading="lazy" onclick="openLightbox(this)"></div>
@@ -418,7 +473,8 @@
             <div class="img-wrapper"><img src="images/union6.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
-            <p class="project-desc" id="projUnionText">Launched at Maison&Objet Paris, the Union family was developed as a collaborative team effort, consisting of a bed, sofa, and table. Rooted in the domestic environment, Union emphasizes form while prioritizing maximum comfort. It is crafted using tactile, natural materials, combining traditional craftsmanship with modern production techniques. Its distinctive and unconventional pieces are defined by soft curves and subtle design details throughout.</p>
+  
+           <p class="project-desc" id="projUnionText">Launched at Maison&Objet Paris, the Union family was developed as a collaborative team effort, consisting of a bed, sofa, and table. Rooted in the domestic environment, Union emphasizes form while prioritizing maximum comfort. It is crafted using tactile, natural materials, combining traditional craftsmanship with modern production techniques. Its distinctive and unconventional pieces are defined by soft curves and subtle design details throughout.</p>
             <span class="render-note">Renders and photos belong to Autoban.</span>
             <a href="https://autoban.com/" target="_blank" class="project-link">AUTOBAN.COM</a>
         </div>
@@ -427,13 +483,15 @@
     <div class="divider filter-lighting"></div>
     <div class="project-section filter-lighting">
         <div class="project-header" id="projBuhaisTitle">LIGHTING: BUHAIS GEOLOGY PARK - AUTOMATIC VENETIAN BLIND & OCULUS (IN-HOUSE WORK: JVL)</div>
-        <div class="gallery">
+       
+  <div class="gallery">
             <div class="img-wrapper wide"><img src="images/buhais1.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/buhais2.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/buhais3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/buhais4.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/buhais5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/buhais6.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div 
+ class="img-wrapper"><img src="images/buhais6.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/buhais7.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/buhais8.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
@@ -447,19 +505,22 @@
 
     <div class="project-section filter-lighting">
         <div class="project-header" id="projInfinityTitle">LIGHTING: INFINITY ALUMINIUM TRIMLESS COVE LIGHTING (IN-HOUSE WORK: JVL)</div>
-        <div class="gallery">
+   
+      <div class="gallery">
             <div class="img-wrapper wide"><img src="images/cove1.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/cove2.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/cove3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/cove4.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/cove5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/cove6.webp" loading="lazy" onclick="openLightbox(this)"></div>
+           
+  <div class="img-wrapper"><img src="images/cove6.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/cove7.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/cove8.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/cove9.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/cove10.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/cove11.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/cove12.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/cove12.webp" 
+ loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/cove13.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/cove14.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/cove15.webp" loading="lazy" onclick="openLightbox(this)"></div>
@@ -476,14 +537,16 @@
     <div class="project-section filter-lighting">
         <div class="project-header" id="projSpiderTitle">LIGHTING: NEW SPIDER WALL LAMP (IN-HOUSE WORK: AUTOBAN)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/spider1.webp" loading="lazy" onclick="openLightbox(this)"></div>
+          
+  <div class="img-wrapper wide"><img src="images/spider1.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/spider2.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/spider3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/spider4.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/spider5.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
-            <p class="project-desc" id="projSpiderText">Inspired by the form of spiders, Spider is shaped by the circular arrangement of convex rods surrounding a colored bulb. With its striking, sculptural presence, the design stands out as both a functional object and a visual statement. When illuminated, the colored bulb directs light backward and the lamp casts dramatic, oversized shadows onto the surface, creating an unexpected effect that enhances its character. The Spider Wall Lamp project focuses on further developing the design and improving production quality. Additional details have been incorporated to make the product more distinctive and harder to replicate. The collection includes multiple size variations as well as a pendant version.</p>
+          
+  <p class="project-desc" id="projSpiderText">Inspired by the form of spiders, Spider is shaped by the circular arrangement of convex rods surrounding a colored bulb. With its striking, sculptural presence, the design stands out as both a functional object and a visual statement. When illuminated, the colored bulb directs light backward and the lamp casts dramatic, oversized shadows onto the surface, creating an unexpected effect that enhances its character. The Spider Wall Lamp project focuses on further developing the design and improving production quality. Additional details have been incorporated to make the product more distinctive and harder to replicate. The collection includes multiple size variations as well as a pendant version.</p>
             <a href="https://autoban.com/" target="_blank" class="project-link">AUTOBAN.COM</a>
         </div>
     </div>
@@ -493,7 +556,8 @@
         <div class="project-header" id="projCesmiTitle">LIGHTING: ÇEŞM-İ BÜLBÜL WALL LAMP - OMNIA SERIES - PAŞABAHÇE (IN-HOUSE WORK: AUTOBAN)</div>
         <div class="gallery">
             <div class="img-wrapper"><img src="images/walllamp-a1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/walllamp-a2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+   
+          <div class="img-wrapper"><img src="images/walllamp-a2.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/walllamp-a3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/walllamp-a4.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><iframe src="https://www.youtube.com/embed/bDlAJAR0JNc" loading="lazy" frameborder="0" allowfullscreen></iframe></div>
@@ -508,13 +572,15 @@
 
     <div class="project-section filter-lighting">
         <div class="project-header" id="projGlassTitle">LIGHTING: GLASS IS TOMORROW TABLE LAMP (IN-HOUSE WORK: AUTOBAN)</div>
-        <div class="gallery">
+        
+ <div class="gallery">
             <div class="img-wrapper wide"><img src="images/tablelamp-a1.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/tablelamp-a2.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/tablelamp-a3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/tablelamp-a4.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/tablelamp-a5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><iframe src="https://www.youtube.com/embed/bDlAJAR0JNc" loading="lazy" frameborder="0" allowfullscreen></iframe></div>
+            <div class="img-wrapper wide"><iframe src="https://www.youtube.com/embed/bDlAJAR0JNc" 
+ loading="lazy" frameborder="0" allowfullscreen></iframe></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="projGlassText">This table lamp was developed for the Omnia series under the theme “Glass is Tomorrow,” with the sponsorship of Paşabahçe and various partner organizations. The design process included extensive prototyping and material exploration. Multiple prototypes were produced and exhibited, demonstrating the project’s technical and formal development.</p>
@@ -526,13 +592,15 @@
 
     <div class="project-section filter-lighting">
         <div class="project-header" id="projCapsuleTitle">LIGHTING: CAPSULE WALL LAMP (IN-HOUSE WORK: AUTOBAN)</div>
-        <div class="gallery">
+        <div 
+ class="gallery">
             <div class="img-wrapper wide"><img src="images/capsule1.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/capsule2.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/capsule3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/capsule4.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/capsule5.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/capsule6.webp" loading="lazy" onclick="openLightbox(this)"></div>
+ 
             <div class="img-wrapper"><img src="images/capsule7.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
@@ -546,14 +614,16 @@
     <div class="project-section filter-lighting">
         <div class="project-header" id="projStarTitle">LIGHTING: STAR PENDANT LIGHT (IN-HOUSE WORK: AUTOBAN)</div>
         <div class="gallery">
-            <div class="img-wrapper wide"><img src="images/pendant-c1.webp" loading="lazy" onclick="openLightbox(this)"></div>
+      
+       <div class="img-wrapper wide"><img src="images/pendant-c1.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/pendant-c2.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/pendant-c3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/pendant-c4.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/pendant-c5.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
-            <p class="project-desc" id="projStarText">Guided by the golden ratio, each element of the product was proportioned to form a harmonious whole. The project also included PCB design, along with the development of wiring and the necessary driver system.</p>
+        
+     <p class="project-desc" id="projStarText">Guided by the golden ratio, each element of the product was proportioned to form a harmonious whole. The project also included PCB design, along with the development of wiring and the necessary driver system.</p>
             <a href="https://autoban.com/" target="_blank" class="project-link">AUTOBAN.COM</a>
         </div>
     </div>
@@ -571,7 +641,8 @@
         <div class="gallery">
             <div class="img-wrapper"><img src="images/pendant-b1.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/pendant-b2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/pendant-b3.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div 
+ class="img-wrapper"><img src="images/pendant-b3.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
             <p class="project-desc" id="projPendantBText">A large-scale pendant lighting design developed for high-volume interior spaces, combining industrial structural elements with refined lighting aesthetics.</p>
@@ -581,7 +652,8 @@
     <div class="divider filter-lighting"></div>
 
     <div class="project-section filter-lighting">
-        <div class="project-header" id="projGhDeskTitle">LIGHTING: GRAND HYATT DESK LAMP (IN-HOUSE WORK: AUTOBAN)</div>
+        <div class="project-header" 
+ id="projGhDeskTitle">LIGHTING: GRAND HYATT DESK LAMP (IN-HOUSE WORK: AUTOBAN)</div>
         <div class="gallery">
             <div class="img-wrapper wide"><img src="images/ghdesk1.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/ghdesk2.webp" loading="lazy" onclick="openLightbox(this)"></div>
@@ -597,14 +669,16 @@
         <div class="project-header" id="projBurganTitle">LIGHTING: BURGAN BANK PRIVATE - LIGHTING PLAN (IN-HOUSE WORK: I-AM ASSOCIATES)</div>
         <div class="gallery">
             <div class="img-wrapper wide"><img src="images/burgan1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/burgan2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div 
+ class="img-wrapper wide"><img src="images/burgan2.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/burgan3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/burgan4.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/burgan5.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/burgan6.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/burgan7.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
-        <div class="project-desc-container">
+   
+      <div class="project-desc-container">
             <p class="project-desc" id="projBurganText">Lighting design for Burgan Bank’s private branch, including the development of the lighting layout, selection of lighting fixtures, and calculation of light levels using DIALux software.</p>
             <span class="render-note">Photos belong to I-AM Associates.</span>
             <a href="https://www.i-amonline.com/" target="_blank" class="project-link">I-AMONLINE.COM</a>
@@ -612,7 +686,8 @@
     </div>
 
     <div class="divider filter-glassware"></div>
-    <div class="project-section filter-glassware">
+    <div 
+ class="project-section filter-glassware">
         <div class="project-header" id="projLavaTitle">GLASSWARE: LAVA TEA GLASS</div>
         <div class="gallery">
             <div class="img-wrapper"><img src="images/lava1.webp" loading="lazy" onclick="openLightbox(this)"></div>
@@ -620,7 +695,26 @@
             <div class="img-wrapper"><img src="images/lava3.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
-            <p class="project-desc" id="lavaText">Wabi-Sabi (noun): A concept, an aesthetic, and a worldview. Simply an initiative way of living that emphasizes finding beauty in imperfection, and accepting the natural cycle of growth and decay. The works you will see here are composed of parametric geometries organized with the help of computers, blending the logic of Wabi-sabi and the natural flow of glass. Curves are drawn with the assistance of mathematical equations.</p>
+            
+ <p class="project-desc" id="lavaText">Wabi-Sabi (noun): A concept, an aesthetic, and a worldview. Simply an initiative way of living that emphasizes finding beauty in imperfection, and accepting the natural cycle of growth and decay. The works you will see here are composed of parametric geometries organized with the help of computers, blending the logic of Wabi-sabi and the natural flow of glass. Curves are drawn with the assistance of mathematical equations.</p>
+        </div>
+    </div>
+    <div class="divider filter-glassware"></div>
+
+    <div class="project-section filter-glassware">
+        <div class="project-header" id="projTestiTitle">GLASSWARE: TESTI WATER PITCHER</div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/testi1.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/testi2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/testi3.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/testi4.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/testi5.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/testi6.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/testi7.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/testi8.webp" loading="lazy" onclick="openLightbox(this)"></div>
+        </div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="testiText">A comprehensive historical research process was conducted for the design of this water pitcher. Water containers and pitchers made from clay and various materials, originating from Vietnamese, Indonesian, Chinese, Arab, and Iranian cultures, were thoroughly examined.</p>
         </div>
     </div>
     <div class="divider filter-glassware"></div>
@@ -630,7 +724,8 @@
         <div class="gallery">
             <div class="img-wrapper"><img src="images/chipped1.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/chipped2.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/chipped3.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper 
+ wide"><img src="images/chipped3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/chipped4.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/chipped5.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
@@ -641,13 +736,15 @@
 
     <div class="divider filter-horology"></div>
     <div class="project-section filter-horology">
+  
         <div class="project-header" id="proj1Title">HOROLOGY: UNIMATIC UC1 SKELETON CONCEPT</div>
         <div class="gallery">
             <div class="img-wrapper"><img src="images/unimatic1.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/unimatic2.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/unimatic3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/unimatic4.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/unimatic5.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img 
+ src="images/unimatic5.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/unimatic6.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/unimatic7.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/unimatic8.webp" loading="lazy" onclick="openLightbox(this)"></div>
@@ -661,14 +758,16 @@
     <div class="divider filter-horology"></div>
 
     <div class="project-section filter-horology">
-        <div class="project-header" id="proj2Title">HOROLOGY: CITIZEN CONCEPT</div>
+        
+ <div class="project-header" id="proj2Title">HOROLOGY: CITIZEN CONCEPT</div>
         <div class="gallery">
             <div class="img-wrapper"><img src="images/citizen1.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/citizen2.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/citizen3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/citizen4.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/citizen5.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/citizen6.webp" loading="lazy" onclick="openLightbox(this)"></div>
+      
+        <div class="img-wrapper"><img src="images/citizen6.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/citizen7.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
         <div class="project-desc-container">
@@ -682,7 +781,8 @@
         <div class="project-header" id="proj6Title">FASHION: SERVER CONCEPT</div>
         <div class="gallery">
             <div class="img-wrapper"><img src="images/fashion-a1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/fashion-a2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+    
+          <div class="img-wrapper"><img src="images/fashion-a2.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/fashion-a3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/fashion-a4.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/fashion-a5.webp" loading="lazy" onclick="openLightbox(this)"></div>
@@ -697,19 +797,22 @@
         <div class="project-header" id="projBronzeTitle">R&D: BRONZE AGE BOAT, 3D SCANNER, MUSEUM (IN-HOUSE WORK: NEW YORK UNIVERSITY ABU DHABI - DESIGN ENGINEER)</div>
         <div class="gallery">
             <div class="img-wrapper wide"><img src="images/bronze1.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/bronze2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+      
+        <div class="img-wrapper"><img src="images/bronze2.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/bronze3.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/bronze4.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/bronze5.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/bronze6.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/bronze7.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper wide"><img src="images/bronze8.webp" loading="lazy" onclick="openLightbox(this)"></div>
+         
+     <div class="img-wrapper wide"><img src="images/bronze8.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/bronze9.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/bronze10.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/bronze11.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/bronze12.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper wide"><img src="images/bronze13.webp" loading="lazy" onclick="openLightbox(this)"></div>
-            <div class="img-wrapper"><img src="images/bronze14.webp" loading="lazy" onclick="openLightbox(this)"></div>
+         
+     <div class="img-wrapper"><img src="images/bronze14.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/bronze15.webp" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="img-wrapper"><img src="images/bronze16.webp" loading="lazy" onclick="openLightbox(this)"></div>
         </div>
@@ -747,7 +850,8 @@
             const menu = document.getElementById('mobileMenu');
             const body = document.getElementById('page-body');
             menu.classList.toggle('active');
-            if (menu.classList.contains('active')) { body.style.overflow = 'hidden'; } else { body.style.overflow = ''; }
+            if (menu.classList.contains('active')) { body.style.overflow = 'hidden'; } else { body.style.overflow = '';
+            }
         }
 
         // --- DATA DICTIONARY ---
@@ -806,6 +910,8 @@
                 projBurganText: "Lighting design for Burgan Bank’s private branch, including the development of the lighting layout, selection of lighting fixtures, and calculation of light levels using DIALux software.",
                 projLavaTitle: "GLASSWARE: LAVA TEA GLASS",
                 lavaText: "Wabi-Sabi (noun): A concept, an aesthetic, and a worldview. Simply an initiative way of living that emphasizes finding beauty in imperfection, and accepting the natural cycle of growth and decay. The works you will see here are composed of parametric geometries organized with the help of computers, blending the logic of Wabi-sabi and the natural flow of glass. Curves are drawn with the assistance of mathematical equations.",
+                projTestiTitle: "GLASSWARE: TESTI WATER PITCHER",
+                testiText: "A comprehensive historical research process was conducted for the design of this water pitcher. Water containers and pitchers made from clay and various materials, originating from Vietnamese, Indonesian, Chinese, Arab, and Iranian cultures, were thoroughly examined.",
                 projChippedTitle: "GLASSWARE: CHIPPED GLASS",
                 chippedText: "Inspired by chipped arrowheads discovered in archaeological excavations.",
                 proj1Title: "HOROLOGY: UNIMATIC UC1 SKELETON CONCEPT",
@@ -871,6 +977,8 @@
                 projBurganText: "Burgan Bank'ın özel şubesi için aydınlatma yerleşim planının geliştirilmesi, armatür seçimi ve DIALux yazılımı kullanılarak aydınlık düzeylerinin hesaplanmasını içeren aydınlatma tasarımı.",
                 projLavaTitle: "CAM EŞYA: LAVA TEA GLASS",
                 lavaText: "Wabi-Sabi (isim): Bir kavram, bir estetik ve bir dünya görüşü. Basitçe, kusurlardaki güzelliği bulmayı ve büyüme ile çürümenin doğal döngüsünü kabul etmeyi vurgulayan sezgisel bir yaşam biçimidir. Burada göreceğiniz çalışmalar, bilgisayar yardımıyla organize edilmiş parametrik geometrilerden oluşmakta, Wabi-Sabi mantığını ve camın doğal akışını harmanlamaktadır. Eğriler, matematiksel denklemlerin yardımıyla çizilmiştir.",
+                projTestiTitle: "CAM EŞYA: TESTI WATER PITCHER",
+                testiText: "Bu su sürahisinin tasarımı için kapsamlı bir tarihsel araştırma süreci yürütülmüştür. Vietnam, Endonezya, Çin, Arap ve İran kültürlerinden gelen, kilden ve çeşitli malzemelerden yapılmış su kapları ve sürahiler derinlemesine incelenmiştir.",
                 projChippedTitle: "CAM EŞYA: CHIPPED GLASS",
                 chippedText: "Arkeolojik kazılarda keşfedilen yontulmuş ok uçlarından esinlenilmiştir.",
                 proj1Title: "SAAT: UNIMATIC UC1 İSKELET KONSEPTİ",
@@ -889,48 +997,53 @@
         function toggleLanguage() {
             currentLang = (currentLang === 'en' ? 'tr' : 'en');
             document.documentElement.lang = currentLang;
+       
             
             Object.keys(data[currentLang]).forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.innerText = data[currentLang][id];
             });
             const btns = ['langBtn', 'langBtnMobile'];
-            btns.forEach(id => {
+            btns.forEach(id => 
+ {
                 const b = document.getElementById(id);
                 if (b) b.innerText = (currentLang === 'en' ? 'TÜRKÇE' : 'ENGLISH');
             });
             document.querySelectorAll('.cat-item').forEach(item => {
                 const map = {
+          
                     tr: {all:'HEPSİ', interior:'İÇ MİMARİ', furniture:'MOBİLYA', lighting:'AYDINLATMA', glassware:'CAM EŞYA', horology:'SAAT', fashion:'MODA', rd:'AR-GE'},
                     en: {all:'ALL', interior:'INTERIOR', furniture:'FURNITURE', lighting:'LIGHTING', glassware:'GLASSWARE', horology:'HOROLOGY', fashion:'FASHION', rd:'R&D'}
                 };
-                const key = item.id.replace('cat-', '');
+ const key = item.id.replace('cat-', '');
                 if (map[currentLang][key]) item.innerText = map[currentLang][key];
             });
-        }
+ }
 
         // --- FILTER PROJECTS ---
         function filterProjects(category, element) {
             document.querySelectorAll('.cat-item').forEach(item => item.classList.remove('active'));
-            element.classList.add('active');
+ element.classList.add('active');
             const sections = document.querySelectorAll('.project-section');
             const dividers = document.querySelectorAll('.divider');
             sections.forEach(sec => {
                 sec.style.display = (category === 'all' || sec.classList.contains('filter-' + category)) ? 'block' : 'none';
             });
-            dividers.forEach(div => {
+ dividers.forEach(div => {
                 div.style.display = (category === 'all' || div.classList.contains('filter-' + category)) ? 'block' : 'none';
             });
-            const menu = document.getElementById('mobileMenu');
+ const menu = document.getElementById('mobileMenu');
             if(window.innerWidth <= 768) {
                 menu.classList.remove('active');
-                document.body.style.overflow = '';
+ document.body.style.overflow = '';
             }
             window.scrollTo({top: 0, behavior: 'smooth'});
-        }
+ }
 
-        function openLightbox(img) { document.getElementById('lightboxImg').src = img.src; document.getElementById('lightbox').style.display = 'flex'; document.body.style.overflow = 'hidden'; }
-        function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; document.body.style.overflow = ''; }
+        function openLightbox(img) { document.getElementById('lightboxImg').src = img.src; document.getElementById('lightbox').style.display = 'flex'; document.body.style.overflow = 'hidden';
+ }
+        function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; document.body.style.overflow = '';
+ }
         window.addEventListener('keydown', e => { if (e.key === "Escape") closeLightbox(); });
     </script>
 </body>
