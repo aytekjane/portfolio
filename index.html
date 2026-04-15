@@ -69,7 +69,8 @@
         .cat-item:hover, .cat-item.active { color: #1a1a1a; }
         .cat-item.active { border-bottom: 2px solid #FF91AF; }
 
-        .mobile-only-links { display: none; flex-direction: column; gap: 20px; padding: 30px 40px; border-top: 1px solid #FF91AF; margin-top: 10px; }
+        .mobile-only-links { display: none; flex-direction: column; gap: 20px; padding: 30px 40px;
+            border-top: 1px solid #FF91AF; margin-top: 10px; }
 
         /* --- CONTENT --- */
         .intro { margin-bottom: 60px;
@@ -107,7 +108,7 @@
             }
             .category-menu.active { height: calc(100dvh - 60px); visibility: visible; opacity: 1; }
             .cat-item { padding: 22px 40px; font-size: 18px; border-bottom: 1px solid rgba(0,0,0,0.05); width: 100%; display: block; flex-shrink: 0; }
-            .mobile-only-links { display: flex; flex-shrink: 0; padding-bottom: 150px; } /* Alt çubuk boşluğu */
+            .mobile-only-links { display: flex; flex-shrink: 0; padding-bottom: 150px; }
             .intro { margin-top: 100px; padding: 0 20px; }
             .project-section { padding: 0 20px; }
             .divider { margin: 40px 20px; }
@@ -150,7 +151,7 @@
     </div>
 
     <div class="intro">
-        <p class="subtitle" id="desc">A space where you can find my selected works and ideas.</p>
+       <p class="subtitle" id="desc">A space where you can find my selected works and ideas.</p>
     </div>
 
     <div class="project-section filter-interior">
@@ -400,6 +401,35 @@
     </div>
 
     <div class="divider filter-lighting"></div>
+
+    <div class="project-section filter-lighting">
+        <div class="project-header" id="projInfinityTitle">LIGHTING: INFINITY ALUMINIUM TRIMLESS COVE LIGHTING (IN-HOUSE WORK: JVL)</div>
+        <div class="gallery">
+            <div class="img-wrapper wide"><img src="images/cove1.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/cove2.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper wide"><img src="images/cove3.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/cove4.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/cove5.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/cove6.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/cove7.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/cove8.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/cove9.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/cove10.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/cove11.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/cove12.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/cove13.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/cove14.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/cove15.webp" loading="lazy" onclick="openLightbox(this)"></div>
+            <div class="img-wrapper"><img src="images/cove16.webp" loading="lazy" onclick="openLightbox(this)"></div>
+        </div>
+        <div class="project-desc-container">
+            <p class="project-desc" id="projInfinityText">It can adapt to various scenarios thanks to its specially designed aluminum extrusion profile. All connection details have been thoroughly resolved and developed.</p>
+            <span class="render-note">Context renders belong to JVL.</span>
+            <a href="https://www.jvlstudio.com/" target="_blank" class="project-link">JVLSTUDIO.COM</a>
+        </div>
+    </div>
+    <div class="divider filter-lighting"></div>
+
     <div class="project-section filter-lighting">
         <div class="project-header" id="projSpiderTitle">LIGHTING: NEW SPIDER WALL LAMP (IN-HOUSE WORK: AUTOBAN)</div>
         <div class="gallery">
@@ -624,15 +654,13 @@
     </div>
 
     <script>
-        // --- LOGO ANIMATION (Güçlendirilmiş Mobil Döngü) ---
+        // --- LOGO ANIMATION ---
         const logoElement = document.getElementById('header-logo');
         const fonts = ['Arial', 'Verdana', 'Times New Roman', 'Impact', 'Courier New', 'Georgia', 'Trebuchet MS', 'Helvetica'];
         logoElement.innerHTML = "AYTEK JANE".split('').map(char => char === " " ? `<span class="space">&nbsp;</span>` : `<span>${char}</span>`).join('');
         const logoSpans = logoElement.querySelectorAll('span:not(.space)');
-        
         let lastTime = 0;
         function changeLogoFont(timestamp) {
-            // Her 100-600ms arası bir span'ın fontunu değiştir
             if (timestamp - lastTime > (Math.random() * 500 + 100)) {
                 const randomSpan = logoSpans[Math.floor(Math.random() * logoSpans.length)];
                 const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
@@ -650,13 +678,13 @@
             menu.classList.toggle('active');
             
             if (menu.classList.contains('active')) {
-                body.style.overflow = 'hidden'; 
+                body.style.overflow = 'hidden';
             } else {
                 body.style.overflow = '';
             }
         }
 
-        // --- DATA DICTIONARY (Eksiksiz Metinler) ---
+        // --- DATA DICTIONARY ---
         const data = {
             en: {
                 desc: "A space where you can find my selected works and ideas.",
@@ -688,6 +716,8 @@
                 projCocoonText: "This project reinterprets the cocoon zone elements developed by the company for Heydar Aliyev Airport in Azerbaijan, translating their distinctive details into a small-scale outdoor seating unit for Istanbul Design Week. Defined by its own volume, the structure creates an immersive experience for users to rest and engage with the sunset.",
                 projUnionTitle: "FURNITURE: UNION COLLECTION (IN-HOUSE WORK: AUTOBAN)",
                 projUnionText: "Launched at Maison&Objet Paris, the Union family was developed as a collaborative team effort, consisting of a bed, sofa, and table. Rooted in the domestic environment, Union emphasizes form while prioritizing maximum comfort. It is crafted using tactile, natural materials, combining traditional craftsmanship with modern production techniques. Its distinctive and unconventional pieces are defined by soft curves and subtle design details throughout.",
+                projInfinityTitle: "LIGHTING: INFINITY ALUMINIUM TRIMLESS COVE LIGHTING (IN-HOUSE WORK: JVL)",
+                projInfinityText: "It can adapt to various scenarios thanks to its specially designed aluminum extrusion profile. All connection details have been thoroughly resolved and developed.",
                 projSpiderTitle: "LIGHTING: NEW SPIDER WALL LAMP (IN-HOUSE WORK: AUTOBAN)",
                 projSpiderText: "Inspired by the form of spiders, Spider is shaped by the circular arrangement of convex rods surrounding a colored bulb. With its striking, sculptural presence, the design stands out as both a functional object and a visual statement. When illuminated, the colored bulb directs light backward and the lamp casts dramatic, oversized shadows onto the surface, creating an unexpected effect that enhances its character. The Spider Wall Lamp project focuses on further developing the design and improving production quality. Additional details have been incorporated to make the product more distinctive and harder to replicate. The collection includes multiple size variations as well as a pendant version.",
                 projCesmiTitle: "LIGHTING: ÇEŞM-İ BÜLBÜL WALL LAMP - OMNIA SERIES - PAŞABAHÇE (IN-HOUSE WORK: AUTOBAN)",
@@ -734,17 +764,19 @@
                 projModularSofaTitle: "MOBİLYA: MODÜLER KANEPE (MÜŞTERİ: WANGAN)",
                 projModularSofaText: "Çağdaş yaşam alanlarında esneklik ve uyarlanabilirlik için tasarlanmış modüler bir kanepe sistemi. Bu konsept, sürdürülebilir malzemeleri ergonomik konforla birleştiren, birbirine kilitlenen modüller aracılığıyla özelleştirilebilir konfigürasyonları araştırır.",
                 projHotelTitle: "MOBİLYA: OTEL MOBİLYASI TASARIMI (MÜŞTERİ: WANGAN)",
-                projHotelText: "Designed for use in equestrian hotel interior.",
+                projHotelText: "Equestrian otel iç mekanı için tasarlanmıştır.",
                 projBedTitle: "MOBİLYA: YATAK KONSEPTİ",
                 projBedText: "Yapısal minimalizm ve malzeme sıcaklığını araştıran çağdaş bir yatak tasarımı çalışması. Bu konsept, geometrik hassasiyet ile dinlendirici bir ortam için gereken konfor arasındaki dengeye odaklanır.",
                 proj4Title: "MOBİLYA: JANE SOKAK MOBİLYASI (MÜŞTERİ: URBAN JOBS)",
-                proj4Text: "Yeti modül ile mimari formları tamamlayan geometriler oluşturmak mümkündür. Tasarım, sokak mobilyası tarihinin bir analiziyle geliştirilmiştir. Dış Mekan Mobilyası kategorisinde EDIDA 2020 kazananıdır.",
+                proj4Text: "Yedi modül ile mimari formları tamamlayan geometriler oluşturmak mümkündür. Tasarım, sokak mobilyası tarihinin bir analiziyle geliştirilmiştir. Dış Mekan Mobilyası kategorisinde EDIDA 2020 kazananıdır.",
                 projBurositTitle: "MOBİLYA: BANZAI OFİS SANDALYESİ (MÜŞTERİ: BÜROSİT)",
                 projBurositText: "Bu ürün, şirketin yeni görünümünü ve hissini geliştirmeye odaklanan haftalık toplantıların sonucudur. Tasarım dilini sadeleştirerek rafine bir görünüm elde etmeyi amaçladık. Şirketin modern yeni kimliğinin ilk unsurlarından birini temsil etmektedir.",
                 projCocoonTitle: "MOBİLYA: İSTANBUL DESIGN WEEK COCOON YAPISI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
                 projCocoonText: "Bu proje, şirketin Azerbaycan'daki Haydar Aliyev Havalimanı için geliştirdiği cocoon (koza) alanı elemanlarını yeniden yorumlayarak, bu karakteristik detayları İstanbul Design Week için küçük ölçekli bir dış mekan oturma ünitesine dönüştürmektedir. Kendi hacmiyle tanımlanan yapı, kullanıcıların dinlenmesi ve gün batımıyla etkileşime girmesi için sarmalayıcı bir deneyim yaratır.",
                 projUnionTitle: "MOBİLYA: UNION KOLEKSİYONU (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
                 projUnionText: "Maison&Objet Paris'te tanıtılan Union ailesi; yatak, kanepe ve masadan oluşan ortak bir ekip çalışması olarak geliştirilmiştir. Ev ortamına dayanan Union, maksimum konforu ön planda tutarken formu vurgular. Dokunsal, doğal malzemeler kullanılarak, geleneksel zanaatkarlık ile modern üretim teknikleri birleştirilerek üretilmiştir. Kendine özgü ve alışılmadık parçaları, yumuşak kavisler ve ince tasarım detaylarıyla tanımlanır.",
+                projInfinityTitle: "AYDINLATMA: INFINITY ALÜMİNYUM TRIMLESS GİZLİ AYDINLATMA (KURUM İÇİ ÇALIŞMA: JVL)",
+                projInfinityText: "Özel tasarım alüminyum ekstrüzyon profili sayesinde çeşitli senaryolara uyum sağlayabilir. Tüm bağlantı detayları kapsamlı bir şekilde çözülmüş ve geliştirilmiştir.",
                 projSpiderTitle: "AYDINLATMA: YENİ SPIDER DUVAR LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
                 projSpiderText: "Örümceklerin formundan esinlenen Spider, renkli bir ampulü çevreleyen dışbükey çubukların dairesel dizilimiyle şekillenir. Çarpıcı ve heykelsi duruşuyla tasarım, hem fonksiyonel bir nesne hem de görsel bir ifade olarak öne çıkar. Aydınlatıldığında, renkli ampul ışığı geriye doğru yönlendirir ve lamba yüzeye dramatik, büyük gölgeler düşürerek karakterini güçlendiren beklenmedik bir etki yaratır. Spider Wall Lamp projesi, tasarımı daha da geliştirmeye ve üretim kalitesini artırmaya odaklanmaktadır. Ürünü daha belirgin hale getirmek ve kopyalanmasını zorlaştırmak için ek detaylar dahil edilmiştir. Koleksiyon, birden fazla boyut varyasyonunun yanı sıra bir sarkıt versiyonunu da içermektedir.",
                 projCesmiTitle: "AYDINLATMA: ÇEŞM-İ BÜLBÜL DUVAR AYDINLATMASI - OMNIA SERİSİ - PAŞABAHÇE (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
@@ -766,7 +798,7 @@
                 proj1Title: "SAAT: UNIMATIC UC1 İSKELET KONSEPTİ",
                 proj1Text: "Unimatic için Modello Uno UC1 Classic dalgıç saatinin NH72 mekanizması kullanılarak bir iskelet varyasyonu oluşturuldu. Mekanizmayı ortaya çıkarmak için şeffaf bir kadran tasarlandı ve saatin orijinal minimalist karakterini korumak amacıyla serigrafi baskı ile dairesel bir desen uygulanarak hafif yarı şeffaf bir efekt yaratıldı; mekanizma aynı zamanda kasa arkasındaki pencereden de görülebilirken, bezel üzerindeki gri tonlu kurumsal tipografi saniyeleri gösterir. Hem ön hem de arka yüzün şeffaflığı, özellikle ilk saatlerinde mekanik hareketi gözlemlemek isteyen ve otomatik saatlerle yeni tanışan kullanıcıların merakına yanıt verir.",
                 proj2Title: "SAAT: CITIZEN KONSEPTİ",
-                proj2Text: "Bu proje, gücünü ışık enerjisinden alan Citizen'ın Eco-Drive teknolojisine dayanmaktadır ve gün, pil seviyesi ile tarih bilgilerini gösteren temiz bir arayüze sahip konsept bir saat sunarak markanın sürdürülebilir ve high-tech watchmaking; tasarım, Japonya'nın kiraz çiçeğinden (sakura) ilham almış olup, onun narin ve minimal estetiğini genel konsepte entegre etmektedir.",
+                proj2Text: "Bu proje, gücünü ışık enerjisinden alan Citizen'ın Eco-Drive teknolojisine dayanmaktadır ve gün, pil seviyesi ile tarih bilgilerini gösteren temiz bir arayüze sahip konsept bir saat sunarak markanın sürdürülebilir ve yüksek teknolojili saatçiliğe olan bağlılığını yansıtır; tasarım, Japonya'nın kiraz çiçeğinden (sakura) ilham almış olup, onun narin ve minimal estetiğini genel konsepte entegre etmektedir.",
                 proj6Title: "MODA: SERVER KONSEPTİ",
                 fashionText: "Bu proje, fonksiyonel sunucu tasarımı ile yüksek moda estetiğinin kesişimini araştırmaktadır. Bu kavramsal çalışma, endüstriyel teknolojinin görsel dilini bir yaşam tarzı bağlamında yeniden tanımlamayı amaçlamaktadır.",
                 projBronzeTitle: "AR-GE: TUNÇ ÇAĞI GEMİSİ, 3B TARAYICI, MÜZE (KURUM İÇİ ÇALIŞMA: NEW YORK UNIVERSITY ABU DHABI - DESIGN ENGINEER)",
@@ -812,11 +844,9 @@
             sections.forEach(sec => {
                 sec.style.display = (category === 'all' || sec.classList.contains('filter-' + category)) ? 'block' : 'none';
             });
-            
             dividers.forEach(div => {
                 div.style.display = (category === 'all' || div.classList.contains('filter-' + category)) ? 'block' : 'none';
             });
-            
             const menu = document.getElementById('mobileMenu');
             if(window.innerWidth <= 768) {
                 menu.classList.remove('active');
