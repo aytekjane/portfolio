@@ -66,25 +66,27 @@
         .intro { margin-bottom: 60px; margin-top: 200px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 15px; max-width: 1000px; width: 100%; padding: 0 40px; box-sizing: border-box; }
         .subtitle { font-family: 'Cinzel', serif; font-size: 2vw; color: var(--text-color); margin: 0; font-weight: 400; line-height: 1.4; letter-spacing: 1px; }
         
-        /* Daraltılmış Boşluklar */
         .project-section { width: 100%; max-width: 1400px; margin-bottom: 60px; padding: 0 50px; box-sizing: border-box; position: relative; z-index: 10; }
-        .project-header { position: relative; z-index: 20; font-family: 'Cinzel', serif; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 3px; font-weight: 400; text-align: center; color: var(--text-color); font-size: 18px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); will-change: transform; }
+        
+        /* BAŞLIK ALTINDAKİ ÇİZGİ (BORDER-BOTTOM) KALDIRILDI */
+        .project-header { position: relative; z-index: 20; font-family: 'Cinzel', serif; margin-bottom: 80px; text-transform: uppercase; letter-spacing: 3px; font-weight: 400; text-align: center; color: var(--text-color); font-size: 18px; padding-bottom: 0; will-change: transform; }
 
-        /* --- DAİRESEL ÖBEK MİMARİSİ (Taşmayı Engelleyen Sıkı Düzen) --- */
+        /* --- DAİRESEL ÖBEK MİMARİSİ --- */
         .gallery { 
-            position: relative;
-            z-index: 5;
+            position: relative; z-index: 5;
             display: flex; flex-wrap: wrap; justify-content: center; align-items: center; 
-            padding: 30px 0; margin-top: 0px; margin-bottom: 10px; 
+            padding: 100px 0; margin-top: 0px; margin-bottom: 0px; 
             cursor: none;
         }
 
         .img-wrapper { 
             position: relative; box-sizing: border-box; background-color: transparent; cursor: none;
             border-radius: 4px; overflow: hidden; 
-            transform: translateY(var(--parallax-y, 0px)); scale: 1; translate: 0 0;
             
-            margin: -25px -15px; z-index: 1;
+            transform: translateY(var(--parallax-y, 0px)) translateZ(0); 
+            scale: 1; translate: 0 0; rotate: 0deg;
+            
+            margin: -25px -30px; z-index: 1;
             
             transition: margin 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
                         top 0.6s cubic-bezier(0.25, 1, 0.5, 1),
@@ -92,36 +94,38 @@
                         opacity 0.5s ease, 
                         scale 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
                         translate 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        rotate 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
                         box-shadow 0.6s ease;
-            will-change: transform, scale, translate, top, left;
+            will-change: transform, scale, translate, top, left, rotate;
         } 
         
         .img-wrapper img { display: block; width: 100%; height: auto; }
         .img-wrapper iframe { display: block; width: 100%; aspect-ratio: 16 / 9; height: auto; }
 
-        .img-wrapper.square { width: 13%; }
-        .img-wrapper.portrait { width: 8%; }
-        .img-wrapper.landscape { width: 20%; }
-        .img-wrapper.wide-square { width: 24%; }
+        .img-wrapper.square { width: 15%; }
+        .img-wrapper.portrait { width: 10%; }
+        .img-wrapper.landscape { width: 22%; }
+        .img-wrapper.wide-square { width: 26%; }
         
-        .gallery .img-wrapper:nth-child(odd).square { width: 15%; }
-        .gallery .img-wrapper:nth-child(even).portrait { width: 10%; }
-        .gallery .img-wrapper:nth-child(3n).landscape { width: 22%; }
-        .gallery .img-wrapper:nth-child(5n).wide-square { width: 18%; }
-        .gallery .img-wrapper:nth-child(4n).portrait { width: 7%; }
+        .gallery .img-wrapper:nth-child(odd).square { width: 17%; }
+        .gallery .img-wrapper:nth-child(even).portrait { width: 12%; }
+        .gallery .img-wrapper:nth-child(3n).landscape { width: 24%; }
+        .gallery .img-wrapper:nth-child(5n).wide-square { width: 20%; }
+        .gallery .img-wrapper:nth-child(4n).portrait { width: 9%; }
 
-        /* Kavisler daha yumuşak yapıldı, taşmalar önlendi */
-        .gallery .img-wrapper:nth-child(5n + 1) { top: 20px; left: 20px; }
-        .gallery .img-wrapper:nth-child(5n + 2) { top: -10px; left: 10px; }
-        .gallery .img-wrapper:nth-child(5n + 3) { top: -25px; left: 0px; z-index: 3; } 
-        .gallery .img-wrapper:nth-child(5n + 4) { top: -10px; left: -10px; }
-        .gallery .img-wrapper:nth-child(5n + 5) { top: 20px; left: -20px; }
+        .gallery .img-wrapper:nth-child(5n + 1) { top: -50px; left: 20px; z-index: 1; rotate: -4deg; }
+        .gallery .img-wrapper:nth-child(5n + 2) { top: 40px; left: 30px; z-index: 3; rotate: 3deg; }
+        .gallery .img-wrapper:nth-child(5n + 3) { top: -10px; left: 0px; z-index: 5; scale: 1.05; } 
+        .gallery .img-wrapper:nth-child(5n + 4) { top: 50px; left: -30px; z-index: 4; rotate: -3deg; }
+        .gallery .img-wrapper:nth-child(5n + 5) { top: -40px; left: -25px; z-index: 2; rotate: 5deg; }
 
         /* --- JS İLE EXPAND (DAĞILMA) EDİLDİĞİNDE --- */
         .gallery.expanded .img-wrapper {
-            margin: -5px -2px !important; 
+            margin: 10px 10px !important; 
             top: 0px !important; 
             left: 0px !important; 
+            rotate: 0deg !important; 
+            scale: 1 !important;
         }
         
         .gallery.expanded:hover .img-wrapper:not(:hover) { 
@@ -130,10 +134,10 @@
         }
 
         .gallery.expanded .img-wrapper:hover {
-            scale: 1.35; 
-            translate: 0 -15px; 
-            z-index: 50; 
-            box-shadow: 0 0 0 3px var(--bm-pink), 0 40px 80px rgba(0,0,0,0.8); 
+            scale: 1.35 !important; 
+            translate: 0 -15px !important; 
+            z-index: 50 !important; 
+            box-shadow: 0 0 0 3px var(--bm-pink), 0 40px 80px rgba(0,0,0,0.8) !important; 
         }
 
         .pixel-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: repeat(8, 1fr); z-index: 5; pointer-events: none; }
@@ -143,14 +147,16 @@
         .project-desc { font-size: 14px; line-height: 2; color: var(--text-muted); margin-bottom: 20px; font-weight: 300; text-align: center; }
         .render-note { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 20px; opacity: 0.6; }
         
-        .project-link { display: inline-block; color: var(--text-color); cursor: none; text-decoration: none; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; margin: 5px 15px; padding-bottom: 3px; border-bottom: 1px solid transparent; transition: border-color 0.4s ease, color 0.4s ease; position: relative; z-index: 10; }
+        /* BOLDLUK İPTAL EDİLDİ (font-weight: 400) */
+        .project-link { display: inline-block; color: var(--text-color); cursor: none; text-decoration: none; font-size: 11px; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; margin: 10px 15px; padding-bottom: 3px; border-bottom: 1px solid transparent; transition: border-color 0.4s ease, color 0.4s ease; position: relative; z-index: 10; will-change: transform; }
         .project-link:hover { color: var(--accent); border-color: var(--accent); }
         
+        /* PROJELER ARASINDAKİ ÇİZGİ BURADA DURUYOR */
         .divider { width: 100%; max-width: 1200px; border-top: 1px solid var(--border-color); margin: 30px auto; display: block; }
         
         /* SCRAMBLE CSS */
         .scramble { opacity: 0; filter: blur(10px); }
-        .scramble-dud { color: var(--text-muted); opacity: 0.5; }
+        .scramble-dud { color: var(--text-muted); opacity: 0.3; font-weight: 300; }
 
         @media (max-width: 768px) { 
             body { cursor: auto; } .cursor-dot, .cursor-outline, .cursor-timer { display: none !important; }
@@ -158,8 +164,8 @@
             .nav-links { display: none; } 
             .menu-toggle { display: flex; cursor: pointer; position: absolute; left: 20px; } 
             .subtitle { font-size: 5vw; }
-            .gallery { padding: 10px 0; gap: 10px; margin-top: 20px; margin-bottom: 20px; }
-            .gallery .img-wrapper:nth-child(n) { top: 0 !important; left: 0 !important; margin: 0 !important; transform: none !important; }
+            .gallery { padding: 10px 0; gap: 10px; margin-top: 30px; }
+            .gallery .img-wrapper:nth-child(n) { top: 0 !important; left: 0 !important; margin: 0 !important; transform: none !important; rotate: 0deg !important; }
             .gallery.expanded .img-wrapper { margin: 0 !important; }
             .img-wrapper.square, .img-wrapper.portrait, .img-wrapper.landscape, .img-wrapper.wide-square { width: calc(48% - 6px) !important; }
             .img-wrapper.landscape, .img-wrapper.wide-square { width: 100% !important; }
@@ -170,7 +176,7 @@
             .category-menu.active { height: calc(100dvh - 70px); visibility: visible; opacity: 1; }
             .cat-item { padding: 25px 40px; font-size: 14px; border-bottom: 1px solid var(--border-color); width: 100%; display: block; flex-shrink: 0; text-align: center; }
             .mobile-only-links { display: flex; flex-shrink: 0; padding-bottom: 150px; text-align: center; }
-            .intro { margin-top: 120px; padding: 0 20px; margin-bottom: 40px; }
+            .intro { margin-top: 150px; padding: 0 20px; margin-bottom: 60px; }
             .project-section { padding: 0 20px; margin-bottom: 60px; }
             .project-header { margin-bottom: 30px; }
         }
@@ -1062,7 +1068,7 @@
             cursorTimer.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
         });
 
-        // EXPAND TİMER VE BAKER-MILLER HOVER SİSTEMİ
+        // EXPAND TİMER VE BAKER-MILLER HOVER SİSTEMİ (3 Saniye)
         document.querySelectorAll('.gallery').forEach(gallery => {
             let hoverTimer;
             let hoverTween;
@@ -1073,15 +1079,15 @@
                     gsap.to(cursorTimer, { opacity: 1, duration: 0.2 });
                     gsap.to(cursorOutline, { opacity: 0, duration: 0.2 });
 
-                    // 1 Saniyelik Hızlı Dolum Çemberi
+                    // 3 Saniyelik Dolum Çemberi
                     hoverTween = gsap.fromTo(cursorCircle, 
                         { strokeDashoffset: 164 }, 
-                        { strokeDashoffset: 0, duration: 1, ease: "none" }
+                        { strokeDashoffset: 0, duration: 3, ease: "none" }
                     );
 
                     hoverTimer = setTimeout(() => {
                         expandGallery(gallery);
-                    }, 1000);
+                    }, 3000);
                 }
             });
 
@@ -1128,7 +1134,7 @@
         }
 
         // Genel hoverable elemanlar
-        document.querySelectorAll('.hoverable, .cat-item, .menu-toggle, .lb-close').forEach(el => {
+        document.querySelectorAll('.hoverable, .cat-item, .menu-toggle, .lb-close, .project-link').forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursorOutline.style.width = '60px';
                 cursorOutline.style.height = '60px';
@@ -1166,10 +1172,11 @@
             if (menu.classList.contains('active')) { body.style.overflow = 'hidden'; } else { body.style.overflow = ''; }
         }
 
-        // --- IŞIK HIZINDA, SAKİNLEŞTİRİLMİŞ TEXT SCRAMBLE EFEKTİ ---
+        // --- SAKİNLEŞTİRİLMİŞ ZARİF TEXT SCRAMBLE EFEKTİ ---
         class TextScramble {
             constructor(el) {
                 this.el = el;
+                // Anksiyete yaratmayan, düz ve sakin kod çözme karakterleri
                 this.chars = 'abcdefghijklmnopqrstuvwxyz';
                 this.update = this.update.bind(this);
             }
@@ -1181,7 +1188,7 @@
                 for (let i = 0; i < length; i++) {
                     const from = oldText[i] || '';
                     const to = newText[i] || '';
-                    // Çok hızlı ve pürüzsüz çözünme algoritması
+                    // Soldan sağa doğru akan pürüzsüz ve çok hızlı dalga 
                     const start = Math.floor(i * 0.015); 
                     const end = start + Math.floor(Math.random() * 5) + 3; 
                     this.queue.push({ from, to, start, end });
@@ -1387,7 +1394,7 @@
                 niluferText: "Bu sarkıt aydınlatma armatürü, yeni geliştirilen bir miras kompleksi olan Bomonti Tarihi Bira Fabrikası bünyesinde yer alan bir yeme-içme mekanı için özel olarak tasarlanmış ve üretilmiştir. Formu zillerden ilham alarak endüstriyel karakter ile çağdaş tasarımın uyumlu bir karışımını yansıtmaktadır.",
                 niluferNote: "Bağlam görseli Autoban'a aittir.",
                 projBuhaisTitle: "AYDINLATMA: BUHAIS GEOLOGY PARK - OTOMATİK JALUZİ SİSTEMİ VE OKÜLÜS (KURUM İÇİ ÇALIŞMA: JVL)",
-                buhaisText: "Müzede sergilenen nesneleri UV kaynaklı hasarlardan korumak amacıyla bir jaluzi sistemi tasarlanmıştır. GPS tabanlı konum verileri ve güneşin hareketini kullanan jaluziler, gün boyunca otomatik olarak açılıp kapanmaktadır. Ayrıca okülüs, dikey olarak hareket eden bir reflektörün -bir diyafram gibi çalışarak- gelen ışık huzmesinin çapını kontrol ettiği bir sistemle mekana ışık sağlamaktadır.",
+                buhaisText: "Müzede sergilenen nesneleri UV kaynaklı hasarlardan korumak amacıyla bir jaluzi sistemi tasarlanmıştır. GPS tabanlı konum verileri ve güneşin hareketini kullanan jaluziler, gün boyunca otomatik olarak açılıp kapanmaktadır. Ayrıca okülüs, dikey olarak hareket eden bir reflektörın -bir diyafram gibi çalışarak- gelen ışık huzmesinin çapını kontrol ettiği bir sistemle mekana ışık sağlamaktadır.",
                 buhaisNote: "Bağlam görselleri ve fotoğraflar jvl'ye aittir.",
                 projInfinityTitle: "AYDINLATMA: INFINITY ALÜMİNYUM TRIMLESS GİZLİ AYDINLATMA (KURUM İÇİ ÇALIŞMA: JVL)",
                 projInfinityText: "Özel tasarım alüminyum ekstrüzyon profili sayesinde çeşitli senaryolara uyum sağlayabilir. Tüm bağlantı detayları kapsamlı bir şekilde çözülmüş ve geliştirilmiştir.",
@@ -1415,7 +1422,7 @@
                 projDressTitle: "CAM EŞYA: DRESS AİLESİ (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
                 projDressText: "Dress koleksiyonu, sofistike bir gece elbisesini andıran rafine ve zarif tasarımıyla öne çıkmaktadır. Her bir parça, yetenekli zanaatkarlar tarafından titizlikle elde üretilmiş ve sonucunda gerçekten eşsiz bir tasarım ortaya çıkmıştır. İnce detayları ve özenli işçiliğiyle bu tasarım, çarpıcı bir görsel deneyim sunmaktadır.",
                 projStoolTitle: "CAM EŞYA: TABURE - OMNIA SERİSİ - PAŞABAHÇE (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projStoolText: "Camı geleneksel kullanımlarının ötesine taşımayı ve bir mobilya elemanı olarak yeni bir bağlamda keşfetmeyi amaçladık. Bu fikir bizi camı sadece dekoratif veya işlevsel bir malzeme olarak değil, mobilya tasarımı içinde yapısal ve ifade edici bir bileşen olarak düşünmeye yöneltti. Birkaç prototip geliştirip test ettikten sonra konsepti rafine ettik ve nihai ürüne ulaştık. Türkçeye “bülbülün gözü” olarak çevrilen “Çeşm-i Bülbül,” 18. yüzyılın sonlarında geliştirilen geleneksel bir Osmanlı cam işleme tekniğidir. Bülbül gözünü andıran karmaşık, sarmal ve çok renkli cam çubuk (filigran) desenleriyle ayırt edilir. Teknik, III. Selim döneminde Mevlevi dervish Mehmed Dede tarafından Venedik cam işleme geleneklerinden esinlenerek oluşturulmuştur. Bu proje, bu eşsiz zanaatı yeniden yorumlama ve geleceğe taşıma çabası olarak geliştirilmiştir. Paşabahçe’nin Omnia özel koleksiyonu için tasarlanmış olup, lansman etkinliğinin yanı sıra perakende mağazalarında da sergilenmiştir.",
+                projStoolText: "Camı geleneksel kullanımlarının ötesine taşımayı ve bir mobilya elemanı olarak yeni bir bağlamda keşfetmeyi amaçladık. Bu fikir bizi camı sadece dekoratif veya işlevsel bir malzeme olarak değil, mobilya tasarımı içinde yapısal ve ifade edici bir bileşen olarak düşünmeye yöneltti. Birkaç prototip geliştirip test ettikten sonra konsepti rafine ettik ve nihai ürüne ulaştık. Türkçeye “bülbülün gözü” olarak çevrilen “Çeşm-i Bülbül,” 18. yüzyılın sonlarında geliştirilen geleneksel bir Osmanlı cam işleme tekniğidir. Bülbül gözünü andıran karmaşık, sarmal ve çok renkli cam çubuk (filigran) desenleriyle ayırt edilir. Teknik, III. Selim döneminde Mevlevi dervişi Mehmed Dede tarafından Venedik cam işleme geleneklerinden esinlenerek oluşturulmuştur. Bu proje, bu eşsiz zanaatı yeniden yorumlama ve geleceğe taşıma çabası olarak geliştirilmiştir. Paşabahçe’nin Omnia özel koleksiyonu için tasarlanmış olup, lansman etkinliğinin yanı sıra perakende mağazalarında da sergilenmiştir.",
                 projLavaTitle: "CAM EŞYA: LAVA TEA GLASS",
                 lavaText: "Wabi-Sabi (isim): Bir kavram, bir estetik ve bir dünya görüşü. Basitçe, kusurlardaki güzelliği bulmayı ve büyüme ile çürümenin doğal döngüsünü kabul etmeyi vurgulayan sezgisel bir yaşam biçimidir. Burada göreceğiniz çalışmalar, bilgisayar yardımıyla organize edilmiş parametrik geometrilerinden oluşmakta, Wabi-Sabi mantığını ve camın doğal akışını harmanlamaktadır. Eğriler, matematiksel denklemlerin yardımıyla çizilmiştir.",
                 projTestiTitle: "CAM EŞYA: TESTI WATER PITCHER",
@@ -1495,16 +1502,16 @@
                     sec.style.display = 'block';
                     
                     if (!firstVisible && category !== 'all') {
-                        sec.style.paddingTop = '100px'; 
+                        sec.style.marginTop = '200px'; 
                         firstVisible = true;
                     } else {
-                        sec.style.paddingTop = '0px';
+                        sec.style.marginTop = '0px';
                     }
 
                     gsap.set(sec, { opacity: 1, y: 0 }); 
                 } else {
                     sec.style.display = 'none';
-                    sec.style.paddingTop = '0px';
+                    sec.style.marginTop = '0px';
                 }
             });
             
@@ -1570,15 +1577,26 @@
         // ==========================================
         // EDİTORYAL ANİMASYON VE EFEKT KODLARI
         // ==========================================
-        const lenis = new Lenis({ duration: 1.5, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), direction: 'vertical', smooth: true, smoothTouch: false });
-        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-        requestAnimationFrame(raf);
-
+        
+        // GSAP TICKER İLE LENIS'İ SENKRONİZE EDEREK TİTREMEYİ (JITTER) YOK ETME
         gsap.registerPlugin(ScrollTrigger);
 
-        // --- TAO TAJIMA PARALLAX (HIZLI VE PÜRÜZSÜZ YUKARI SÜZÜLME) ---
+        const lenis = new Lenis({ 
+            duration: 1.2, 
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+            direction: 'vertical', 
+            smooth: true, 
+            smoothTouch: false 
+        });
+
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+        gsap.ticker.lagSmoothing(0);
+
+
+        // --- TAO TAJIMA PARALLAX (OVERLAPPING ÇÖZÜLDÜ) ---
         gsap.utils.toArray('.img-wrapper').forEach((wrapper, i) => {
-            const speed = (i % 3 === 0) ? -20 : (i % 3 === 1) ? -40 : -15; // Çakışma olmaması için yumuşatıldı
+            const speed = (i % 3 === 0) ? -25 : (i % 3 === 1) ? -45 : -15;
             gsap.to(wrapper, {
                 "--parallax-y": speed + "px", 
                 ease: "none",
@@ -1586,32 +1604,44 @@
                     trigger: wrapper.closest('.gallery'),
                     start: "top bottom",
                     end: "bottom top",
-                    scrub: 1.5 
+                    scrub: true 
                 }
             });
         });
 
-        // Metinler ve Başlıklar da Parallax olarak süzülüyor
         gsap.utils.toArray('.project-desc-container').forEach(el => {
             gsap.fromTo(el, 
-                { y: 20 }, 
-                { y: -20, ease: "none", scrollTrigger: {
+                { y: 60 }, 
+                { y: -60, ease: "none", scrollTrigger: {
                     trigger: el.closest('.project-section'),
                     start: "top bottom",
                     end: "bottom top",
-                    scrub: 1.5
+                    scrub: true
                 }}
             );
         });
 
         gsap.utils.toArray('.project-header').forEach(el => {
             gsap.fromTo(el, 
+                { y: 30 }, 
+                { y: -30, ease: "none", scrollTrigger: {
+                    trigger: el.closest('.project-section'),
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                }}
+            );
+        });
+
+        // --- PROJE LİNKLERİNE PARALLAX EKLENDİ ---
+        gsap.utils.toArray('.project-link').forEach(el => {
+            gsap.fromTo(el, 
                 { y: 20 }, 
                 { y: -20, ease: "none", scrollTrigger: {
                     trigger: el.closest('.project-section'),
                     start: "top bottom",
                     end: "bottom top",
-                    scrub: 1.5
+                    scrub: true
                 }}
             );
         });
@@ -1639,7 +1669,6 @@
             const fx = new TextScramble(el);
             scrambleInstances.set(el, fx);
             el.dataset.originalText = el.innerText;
-            // Başlangıçta CSS görünmez olacak
             gsap.set(el, { opacity: 0, filter: "blur(10px)" }); 
         });
 
@@ -1657,7 +1686,6 @@
             }
         });
 
-        // KUSURSUZ GÖRÜNÜRLÜK (INTERSECTION OBSERVER)
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1670,7 +1698,6 @@
                     if (entry.target.classList.contains('scramble')) {
                         if (entry.target.dataset.revealed !== 'true') {
                             entry.target.dataset.revealed = 'true';
-                            // Opaklığı 1'e, bluru 0'a çekerek yavaşça süzülmeyi başlat.
                             gsap.to(entry.target, { opacity: 1, filter: "blur(0px)", duration: 1.2, ease: "power2.out" });
                             scrambleInstances.get(entry.target).setText(entry.target.dataset.originalText);
                         }
@@ -1682,7 +1709,6 @@
                     }
                     if (entry.target.classList.contains('scramble')) {
                         entry.target.dataset.revealed = 'false';
-                        // Ekranda değilken kesinlikle görünmez yap
                         gsap.set(entry.target, { opacity: 0, filter: "blur(10px)" });
                     }
                 }
