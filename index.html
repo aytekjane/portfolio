@@ -63,18 +63,19 @@
         .cat-item.active::before { opacity: 1; }
         .mobile-only-links { display: none; flex-direction: column; gap: 20px; padding: 30px 40px; border-top: 1px solid var(--border-color); margin-top: 10px; }
 
-        .intro { margin-bottom: 100px; margin-top: 250px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 15px; max-width: 1000px; width: 100%; padding: 0 40px; box-sizing: border-box; }
+        .intro { margin-bottom: 60px; margin-top: 200px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 15px; max-width: 1000px; width: 100%; padding: 0 40px; box-sizing: border-box; }
         .subtitle { font-family: 'Cinzel', serif; font-size: 2vw; color: var(--text-color); margin: 0; font-weight: 400; line-height: 1.4; letter-spacing: 1px; }
         
-        .project-section { width: 100%; max-width: 1400px; margin-bottom: 150px; padding: 0 50px; box-sizing: border-box; }
-        
-        /* PARALLAX İÇİN WILL-CHANGE EKLENDİ */
-        .project-header { font-family: 'Cinzel', serif; margin-bottom: 60px; text-transform: uppercase; letter-spacing: 3px; font-weight: 400; text-align: center; color: var(--text-color); font-size: 18px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); will-change: transform; }
+        /* Daraltılmış Boşluklar */
+        .project-section { width: 100%; max-width: 1400px; margin-bottom: 60px; padding: 0 50px; box-sizing: border-box; position: relative; z-index: 10; }
+        .project-header { position: relative; z-index: 20; font-family: 'Cinzel', serif; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 3px; font-weight: 400; text-align: center; color: var(--text-color); font-size: 18px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); will-change: transform; }
 
-        /* --- DAİRESEL ÖBEK VE DAĞILMA MİMARİSİ --- */
+        /* --- DAİRESEL ÖBEK MİMARİSİ (Taşmayı Engelleyen Sıkı Düzen) --- */
         .gallery { 
+            position: relative;
+            z-index: 5;
             display: flex; flex-wrap: wrap; justify-content: center; align-items: center; 
-            padding: 80px 0; margin-top: 10px; margin-bottom: 30px; 
+            padding: 30px 0; margin-top: 0px; margin-bottom: 10px; 
             cursor: none;
         }
 
@@ -83,8 +84,7 @@
             border-radius: 4px; overflow: hidden; 
             transform: translateY(var(--parallax-y, 0px)); scale: 1; translate: 0 0;
             
-            /* Başlangıçta sıkı dairesel buket */
-            margin: -35px -20px; z-index: 1;
+            margin: -25px -15px; z-index: 1;
             
             transition: margin 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
                         top 0.6s cubic-bezier(0.25, 1, 0.5, 1),
@@ -110,64 +110,47 @@
         .gallery .img-wrapper:nth-child(5n).wide-square { width: 18%; }
         .gallery .img-wrapper:nth-child(4n).portrait { width: 7%; }
 
-        /* Kavisli (dairesel) ilk görünüm */
-        .gallery .img-wrapper:nth-child(5n + 1) { top: 40px; left: 30px; }
-        .gallery .img-wrapper:nth-child(5n + 2) { top: -20px; left: 15px; }
-        .gallery .img-wrapper:nth-child(5n + 3) { top: -60px; left: 0px; z-index: 3; } 
-        .gallery .img-wrapper:nth-child(5n + 4) { top: -20px; left: -15px; }
-        .gallery .img-wrapper:nth-child(5n + 5) { top: 40px; left: -30px; }
+        /* Kavisler daha yumuşak yapıldı, taşmalar önlendi */
+        .gallery .img-wrapper:nth-child(5n + 1) { top: 20px; left: 20px; }
+        .gallery .img-wrapper:nth-child(5n + 2) { top: -10px; left: 10px; }
+        .gallery .img-wrapper:nth-child(5n + 3) { top: -25px; left: 0px; z-index: 3; } 
+        .gallery .img-wrapper:nth-child(5n + 4) { top: -10px; left: -10px; }
+        .gallery .img-wrapper:nth-child(5n + 5) { top: 20px; left: -20px; }
 
-        /* --- JS İLE EXPAND (DAĞILMA) EDİLDİĞİNDE DEVREYE GİREN CSS'LER --- */
+        /* --- JS İLE EXPAND (DAĞILMA) EDİLDİĞİNDE --- */
         .gallery.expanded .img-wrapper {
-            margin: -10px -5px !important; /* Hafif üst üste kalır */
+            margin: -5px -2px !important; 
             top: 0px !important; 
             left: 0px !important; 
         }
         
-        /* Yayıldıktan sonra diğerleri hafif transparan olur */
         .gallery.expanded:hover .img-wrapper:not(:hover) { 
             opacity: 0.65; 
             z-index: 1;
         }
 
-        /* Yayıldıktan sonra Baker-Miller çerçeve ve 3D büyüme */
         .gallery.expanded .img-wrapper:hover {
             scale: 1.35; 
             translate: 0 -15px; 
             z-index: 50; 
-            /* Baker-Miller Pink Border ve 3D Gölge */
             box-shadow: 0 0 0 3px var(--bm-pink), 0 40px 80px rgba(0,0,0,0.8); 
         }
 
-        .pixel-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: grid; grid-template-columns: repeat(10, 1fr); grid-template-rows: repeat(10, 1fr); z-index: 5; pointer-events: none; }
+        .pixel-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: repeat(8, 1fr); z-index: 5; pointer-events: none; }
         .pixel-block { background-color: var(--bg-color); width: 102%; height: 102%; } 
 
-        .project-desc-container { margin-top: 20px; margin-bottom: 40px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; will-change: transform; }
+        .project-desc-container { position: relative; z-index: 20; margin-top: 10px; margin-bottom: 20px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; will-change: transform; }
         .project-desc { font-size: 14px; line-height: 2; color: var(--text-muted); margin-bottom: 20px; font-weight: 300; text-align: center; }
-        .render-note { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 30px; opacity: 0.6; }
+        .render-note { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 20px; opacity: 0.6; }
         
-        /* LİNKLER ESKİ HALİNE DÖNDÜ (VURGU HOVER'DA) */
-        .project-link { 
-            display: inline-block; 
-            color: var(--text-color); 
-            cursor: none; 
-            text-decoration: none; 
-            font-size: 11px; 
-            font-weight: 500; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            margin: 10px 15px; 
-            padding-bottom: 3px;
-            border-bottom: 1px solid transparent; 
-            transition: border-color 0.4s ease, color 0.4s ease; 
-            position: relative;
-            z-index: 10;
-        }
+        .project-link { display: inline-block; color: var(--text-color); cursor: none; text-decoration: none; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; margin: 5px 15px; padding-bottom: 3px; border-bottom: 1px solid transparent; transition: border-color 0.4s ease, color 0.4s ease; position: relative; z-index: 10; }
         .project-link:hover { color: var(--accent); border-color: var(--accent); }
         
-        .divider { width: 100%; max-width: 1200px; border-top: 1px solid var(--border-color); margin: 60px auto; display: block; }
-        .scramble { opacity: 0; }
-        .scramble-dud { color: var(--accent); opacity: 0.6; }
+        .divider { width: 100%; max-width: 1200px; border-top: 1px solid var(--border-color); margin: 30px auto; display: block; }
+        
+        /* SCRAMBLE CSS */
+        .scramble { opacity: 0; filter: blur(10px); }
+        .scramble-dud { color: var(--text-muted); opacity: 0.5; }
 
         @media (max-width: 768px) { 
             body { cursor: auto; } .cursor-dot, .cursor-outline, .cursor-timer { display: none !important; }
@@ -175,7 +158,7 @@
             .nav-links { display: none; } 
             .menu-toggle { display: flex; cursor: pointer; position: absolute; left: 20px; } 
             .subtitle { font-size: 5vw; }
-            .gallery { padding: 10px 0; gap: 10px; }
+            .gallery { padding: 10px 0; gap: 10px; margin-top: 20px; margin-bottom: 20px; }
             .gallery .img-wrapper:nth-child(n) { top: 0 !important; left: 0 !important; margin: 0 !important; transform: none !important; }
             .gallery.expanded .img-wrapper { margin: 0 !important; }
             .img-wrapper.square, .img-wrapper.portrait, .img-wrapper.landscape, .img-wrapper.wide-square { width: calc(48% - 6px) !important; }
@@ -187,8 +170,9 @@
             .category-menu.active { height: calc(100dvh - 70px); visibility: visible; opacity: 1; }
             .cat-item { padding: 25px 40px; font-size: 14px; border-bottom: 1px solid var(--border-color); width: 100%; display: block; flex-shrink: 0; text-align: center; }
             .mobile-only-links { display: flex; flex-shrink: 0; padding-bottom: 150px; text-align: center; }
-            .intro { margin-top: 150px; padding: 0 20px; }
-            .project-section { padding: 0 20px; }
+            .intro { margin-top: 120px; padding: 0 20px; margin-bottom: 40px; }
+            .project-section { padding: 0 20px; margin-bottom: 60px; }
+            .project-header { margin-bottom: 30px; }
         }
 
         .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(5, 5, 5, 0.98); backdrop-filter: blur(10px); z-index: 6000; justify-content: center; align-items: center; cursor: none; }
@@ -1182,11 +1166,11 @@
             if (menu.classList.contains('active')) { body.style.overflow = 'hidden'; } else { body.style.overflow = ''; }
         }
 
-        // --- TEXT SCRAMBLE / DECODE EFFECT ---
+        // --- IŞIK HIZINDA, SAKİNLEŞTİRİLMİŞ TEXT SCRAMBLE EFEKTİ ---
         class TextScramble {
             constructor(el) {
                 this.el = el;
-                this.chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!<>-_\\/[]{}—=+*^?#_';
+                this.chars = 'abcdefghijklmnopqrstuvwxyz';
                 this.update = this.update.bind(this);
             }
             setText(newText) {
@@ -1197,8 +1181,9 @@
                 for (let i = 0; i < length; i++) {
                     const from = oldText[i] || '';
                     const to = newText[i] || '';
-                    const start = Math.floor(Math.random() * 40);
-                    const end = start + Math.floor(Math.random() * 40);
+                    // Çok hızlı ve pürüzsüz çözünme algoritması
+                    const start = Math.floor(i * 0.015); 
+                    const end = start + Math.floor(Math.random() * 5) + 3; 
                     this.queue.push({ from, to, start, end });
                 }
                 cancelAnimationFrame(this.frameRequest);
@@ -1215,7 +1200,8 @@
                         complete++;
                         output += to;
                     } else if (this.frame >= start) {
-                        if (!char || Math.random() < 0.28) {
+                        // Titremeyi tamamen minimize eden düşük frekans
+                        if (!char || Math.random() < 0.05) {
                             char = this.randomChar();
                             this.queue[i].char = char;
                         }
@@ -1429,7 +1415,7 @@
                 projDressTitle: "CAM EŞYA: DRESS AİLESİ (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
                 projDressText: "Dress koleksiyonu, sofistike bir gece elbisesini andıran rafine ve zarif tasarımıyla öne çıkmaktadır. Her bir parça, yetenekli zanaatkarlar tarafından titizlikle elde üretilmiş ve sonucunda gerçekten eşsiz bir tasarım ortaya çıkmıştır. İnce detayları ve özenli işçiliğiyle bu tasarım, çarpıcı bir görsel deneyim sunmaktadır.",
                 projStoolTitle: "CAM EŞYA: TABURE - OMNIA SERİSİ - PAŞABAHÇE (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projStoolText: "Camı geleneksel kullanımlarının ötesine taşımayı ve bir mobilya elemanı olarak yeni bir bağlamda keşfetmeyi amaçladık. Bu fikir bizi camı sadece dekoratif veya işlevsel bir malzeme olarak değil, mobilya tasarımı içinde yapısal ve ifade edici bir bileşen olarak düşünmeye yöneltti. Birkaç prototip geliştirip test ettikten sonra konsepti rafine ettik ve nihai ürüne ulaştık. Türkçeye “bülbülün gözü” olarak çevrilen “Çeşm-i Bülbül,” 18. yüzyılın sonlarında geliştirilen geleneksel bir Osmanlı cam işleme tekniğidir. Bülbül gözünü andıran karmaşık, sarmal ve çok renkli cam çubuk (filigran) desenleriyle ayırt edilir. Teknik, III. Selim döneminde Mevlevi dervişi Mehmed Dede tarafından Venedik cam işleme geleneklerinden esinlenerek oluşturulmuştur. Bu proje, bu eşsiz zanaatı yeniden yorumlama ve geleceğe taşıma çabası olarak geliştirilmiştir. Paşabahçe’nin Omnia özel koleksiyonu için tasarlanmış olup, lansman etkinliğinin yanı sıra perakende mağazalarında da sergilenmiştir.",
+                projStoolText: "Camı geleneksel kullanımlarının ötesine taşımayı ve bir mobilya elemanı olarak yeni bir bağlamda keşfetmeyi amaçladık. Bu fikir bizi camı sadece dekoratif veya işlevsel bir malzeme olarak değil, mobilya tasarımı içinde yapısal ve ifade edici bir bileşen olarak düşünmeye yöneltti. Birkaç prototip geliştirip test ettikten sonra konsepti rafine ettik ve nihai ürüne ulaştık. Türkçeye “bülbülün gözü” olarak çevrilen “Çeşm-i Bülbül,” 18. yüzyılın sonlarında geliştirilen geleneksel bir Osmanlı cam işleme tekniğidir. Bülbül gözünü andıran karmaşık, sarmal ve çok renkli cam çubuk (filigran) desenleriyle ayırt edilir. Teknik, III. Selim döneminde Mevlevi dervish Mehmed Dede tarafından Venedik cam işleme geleneklerinden esinlenerek oluşturulmuştur. Bu proje, bu eşsiz zanaatı yeniden yorumlama ve geleceğe taşıma çabası olarak geliştirilmiştir. Paşabahçe’nin Omnia özel koleksiyonu için tasarlanmış olup, lansman etkinliğinin yanı sıra perakende mağazalarında da sergilenmiştir.",
                 projLavaTitle: "CAM EŞYA: LAVA TEA GLASS",
                 lavaText: "Wabi-Sabi (isim): Bir kavram, bir estetik ve bir dünya görüşü. Basitçe, kusurlardaki güzelliği bulmayı ve büyüme ile çürümenin doğal döngüsünü kabul etmeyi vurgulayan sezgisel bir yaşam biçimidir. Burada göreceğiniz çalışmalar, bilgisayar yardımıyla organize edilmiş parametrik geometrilerinden oluşmakta, Wabi-Sabi mantığını ve camın doğal akışını harmanlamaktadır. Eğriler, matematiksel denklemlerin yardımıyla çizilmiştir.",
                 projTestiTitle: "CAM EŞYA: TESTI WATER PITCHER",
@@ -1509,7 +1495,7 @@
                     sec.style.display = 'block';
                     
                     if (!firstVisible && category !== 'all') {
-                        sec.style.paddingTop = '180px'; 
+                        sec.style.paddingTop = '100px'; 
                         firstVisible = true;
                     } else {
                         sec.style.paddingTop = '0px';
@@ -1535,12 +1521,11 @@
             setTimeout(() => { ScrollTrigger.refresh(true); }, 100);
         }
 
-        // --- LIGHTBOX ---
+        // --- LIGHTBOX GÜVENLİ AÇMA (Sadece tıklanan resmi referans alır) ---
         let currentVisibleImages = [];
         let currentImageIndex = 0;
 
         function openLightbox(img) { 
-            // Expanded değilse lightbox açılmasın
             if (!img.closest('.gallery').classList.contains('expanded')) return;
 
             const visibleSections = Array.from(document.querySelectorAll('.project-section')).filter(sec => sec.style.display !== 'none');
@@ -1550,11 +1535,11 @@
                 imgs.forEach(i => currentVisibleImages.push(i));
             });
 
-            currentImageIndex = currentVisibleImages.indexOf(img);
+            currentImageIndex = currentVisibleImages.findIndex(i => i.src === img.src);
             if (currentImageIndex === -1) currentImageIndex = 0;
 
             const lightboxImg = document.getElementById('lightboxImg');
-            lightboxImg.src = currentVisibleImages[currentImageIndex].src;
+            lightboxImg.src = img.src; 
             
             document.getElementById('lightbox').style.display = 'flex'; 
             document.body.style.overflow = 'hidden'; 
@@ -1591,9 +1576,9 @@
 
         gsap.registerPlugin(ScrollTrigger);
 
-        // --- TAO TAJIMA PARALLAX (HIZLI VE PÜRÜZSÜZ) ---
+        // --- TAO TAJIMA PARALLAX (HIZLI VE PÜRÜZSÜZ YUKARI SÜZÜLME) ---
         gsap.utils.toArray('.img-wrapper').forEach((wrapper, i) => {
-            const speed = (i % 3 === 0) ? -60 : (i % 3 === 1) ? -100 : -30;
+            const speed = (i % 3 === 0) ? -20 : (i % 3 === 1) ? -40 : -15; // Çakışma olmaması için yumuşatıldı
             gsap.to(wrapper, {
                 "--parallax-y": speed + "px", 
                 ease: "none",
@@ -1609,8 +1594,8 @@
         // Metinler ve Başlıklar da Parallax olarak süzülüyor
         gsap.utils.toArray('.project-desc-container').forEach(el => {
             gsap.fromTo(el, 
-                { y: 80 }, 
-                { y: -80, ease: "none", scrollTrigger: {
+                { y: 20 }, 
+                { y: -20, ease: "none", scrollTrigger: {
                     trigger: el.closest('.project-section'),
                     start: "top bottom",
                     end: "bottom top",
@@ -1621,8 +1606,8 @@
 
         gsap.utils.toArray('.project-header').forEach(el => {
             gsap.fromTo(el, 
-                { y: 50 }, 
-                { y: -50, ease: "none", scrollTrigger: {
+                { y: 20 }, 
+                { y: -20, ease: "none", scrollTrigger: {
                     trigger: el.closest('.project-section'),
                     start: "top bottom",
                     end: "bottom top",
@@ -1631,10 +1616,19 @@
             );
         });
 
-        // --- PIXEL EFEKTLERİ ---
+        // --- YUMUŞATILMIŞ DİNGİN PİKSEL EFEKTİ ---
         function playPixels(wrapper) {
             const pixels = wrapper.querySelectorAll('.pixel-block');
-            gsap.fromTo(pixels, {opacity: 1}, {opacity: 0, duration: 0.6, stagger: { amount: 0.8, from: "random" }, ease: "steps(1)", overwrite: true});
+            gsap.fromTo(pixels, 
+                {opacity: 1}, 
+                {
+                    opacity: 0, 
+                    duration: 0.8, 
+                    stagger: { amount: 0.7, from: "random" }, 
+                    ease: "power2.inOut", 
+                    overwrite: true
+                }
+            );
         }
         function hidePixels(wrapper) {
             const pixels = wrapper.querySelectorAll('.pixel-block');
@@ -1645,7 +1639,8 @@
             const fx = new TextScramble(el);
             scrambleInstances.set(el, fx);
             el.dataset.originalText = el.innerText;
-            gsap.set(el, { opacity: 0 }); 
+            // Başlangıçta CSS görünmez olacak
+            gsap.set(el, { opacity: 0, filter: "blur(10px)" }); 
         });
 
         document.querySelectorAll('.img-wrapper').forEach(wrapper => {
@@ -1653,7 +1648,7 @@
             if(img) {
                 let overlay = document.createElement('div');
                 overlay.className = 'pixel-overlay';
-                for(let i=0; i<100; i++) { 
+                for(let i=0; i<64; i++) { 
                     let block = document.createElement('div');
                     block.className = 'pixel-block';
                     overlay.appendChild(block);
@@ -1662,6 +1657,7 @@
             }
         });
 
+        // KUSURSUZ GÖRÜNÜRLÜK (INTERSECTION OBSERVER)
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1674,7 +1670,8 @@
                     if (entry.target.classList.contains('scramble')) {
                         if (entry.target.dataset.revealed !== 'true') {
                             entry.target.dataset.revealed = 'true';
-                            gsap.to(entry.target, { opacity: 1, duration: 0.2 });
+                            // Opaklığı 1'e, bluru 0'a çekerek yavaşça süzülmeyi başlat.
+                            gsap.to(entry.target, { opacity: 1, filter: "blur(0px)", duration: 1.2, ease: "power2.out" });
                             scrambleInstances.get(entry.target).setText(entry.target.dataset.originalText);
                         }
                     }
@@ -1685,7 +1682,8 @@
                     }
                     if (entry.target.classList.contains('scramble')) {
                         entry.target.dataset.revealed = 'false';
-                        gsap.set(entry.target, { opacity: 0 });
+                        // Ekranda değilken kesinlikle görünmez yap
+                        gsap.set(entry.target, { opacity: 0, filter: "blur(10px)" });
                     }
                 }
             });
