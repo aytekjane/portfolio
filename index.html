@@ -1066,11 +1066,46 @@
             });
         });
 
+        // ----------------------------------------------------
+        // YENİ EXPAND MANTIĞI: HEM SÜRELİ HEM DE TIKLAMALI AÇILIŞ
+        // ----------------------------------------------------
         document.querySelectorAll('.gallery').forEach(gallery => {
             let hoverTimer;
             let hoverTween;
 
+            const expandGallery = () => {
+                if (gallery.classList.contains('expanded')) return;
+                
+                gallery.classList.add('expanded');
+                
+                gsap.to(cursorTimer, { opacity: 0, duration: 0.2 });
+                gsap.to(cursorOutline, { opacity: 1, duration: 0.2 });
+                cursorText.innerText = '';
+                
+                const wrappers = gallery.querySelectorAll('.img-wrapper');
+                wrappers.forEach(w => {
+                    if (!w.querySelector('iframe')) {
+                        w.style.cursor = 'none';
+                        w.classList.add('hoverable-img');
+                        
+                        w.onmouseenter = () => {
+                            cursorOutline.style.width = '80px';
+                            cursorOutline.style.height = '80px';
+                            cursorOutline.style.borderColor = 'rgba(255, 145, 175, 0.8)';
+                            cursorDot.style.backgroundColor = 'var(--bm-pink)';
+                        };
+                        w.onmouseleave = () => {
+                            cursorOutline.style.width = '40px';
+                            cursorOutline.style.height = '40px';
+                            cursorOutline.style.borderColor = 'rgba(220, 164, 166, 0.5)';
+                            cursorDot.style.backgroundColor = 'var(--accent)';
+                        };
+                    }
+                });
+            };
+
             gallery.addEventListener('mouseenter', () => {
+                if (window.innerWidth <= 768) return;
                 if (!gallery.classList.contains('expanded')) {
                     cursorText.innerText = currentLang === 'en' ? 'EXPAND' : 'YAYIL';
                     gsap.to(cursorTimer, { opacity: 1, duration: 0.2 });
@@ -1082,40 +1117,23 @@
                     );
 
                     hoverTimer = setTimeout(() => {
-                        gallery.classList.add('expanded');
-                        
-                        gsap.to(cursorTimer, { opacity: 0, duration: 0.2 });
-                        gsap.to(cursorOutline, { opacity: 1, duration: 0.2 });
-                        cursorText.innerText = '';
-                        
-                        const wrappers = gallery.querySelectorAll('.img-wrapper');
-                        wrappers.forEach(w => {
-                            if (!w.querySelector('iframe')) {
-                                w.style.cursor = 'none';
-                                w.classList.add('hoverable-img');
-                            }
-                        });
-                        
-                        document.querySelectorAll('.hoverable-img').forEach(el => {
-                            el.addEventListener('mouseenter', () => {
-                                cursorOutline.style.width = '80px';
-                                cursorOutline.style.height = '80px';
-                                cursorOutline.style.borderColor = 'rgba(255, 145, 175, 0.8)';
-                                cursorDot.style.backgroundColor = 'var(--bm-pink)';
-                            });
-                            el.addEventListener('mouseleave', () => {
-                                cursorOutline.style.width = '40px';
-                                cursorOutline.style.height = '40px';
-                                cursorOutline.style.borderColor = 'rgba(220, 164, 166, 0.5)';
-                                cursorDot.style.backgroundColor = 'var(--accent)';
-                            });
-                        });
-
+                        expandGallery();
                     }, 3000);
                 }
             });
 
+            // Tıklayınca 3 saniyeyi beklemeden anında yayılmasını (expand) sağlayan blok:
+            gallery.addEventListener('click', () => {
+                if (window.innerWidth <= 768) return;
+                if (!gallery.classList.contains('expanded')) {
+                    clearTimeout(hoverTimer);
+                    if (hoverTween) hoverTween.kill();
+                    expandGallery();
+                }
+            });
+
             gallery.addEventListener('mouseleave', () => {
+                if (window.innerWidth <= 768) return;
                 clearTimeout(hoverTimer);
                 if (hoverTween) hoverTween.kill();
                 
@@ -1130,6 +1148,8 @@
                     wrappers.forEach(w => {
                         w.style.cursor = 'none';
                         w.classList.remove('hoverable-img');
+                        w.onmouseenter = null;
+                        w.onmouseleave = null;
                     });
                     cursorOutline.style.width = '40px';
                     cursorOutline.style.height = '40px';
@@ -1462,7 +1482,8 @@
         let currentImageIndex = 0;
 
         function openLightbox(img) { 
-            if (!img.closest('.gallery').classList.contains('expanded')) return;
+            // Mobilde tıklandığında engellememesi için if bloğuna ek koşul eklenmiştir
+            if (window.innerWidth > 768 && !img.closest('.gallery').classList.contains('expanded')) return;
 
             const currentSection = img.closest('.project-section');
             currentVisibleImages = [];
