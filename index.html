@@ -151,8 +151,8 @@
         
         .divider { width: 100%; max-width: 1200px; border-top: 1px solid var(--border-color); margin: 30px auto; display: block; }
         
-        /* FADE-TEXT CSS */
-        .fade-text { opacity: 0; filter: blur(10px); }
+        /* FADE-TEXT CSS: Başlangıçta flu ve görünmez olması için burayı koruyoruz ama inline stil ayarlarını GSAP fromTo ile yöneteceğiz. */
+        .fade-text { opacity: 0; filter: blur(10px); visibility: hidden; }
 
         @media (max-width: 768px) { 
             body { cursor: auto; } .cursor-dot, .cursor-outline, .cursor-timer { display: none !important; }
@@ -1066,23 +1066,21 @@
             });
         });
 
-        // ----------------------------------------------------
-        // YENİ EXPAND MANTIĞI: HEM SÜRELİ HEM DE TIKLAMALI AÇILIŞ
-        // ----------------------------------------------------
         document.querySelectorAll('.gallery').forEach(gallery => {
-            let hoverTimer;
-            let hoverTween;
-
-            const expandGallery = () => {
-                if (gallery.classList.contains('expanded')) return;
+            
+            gallery.expandMe = function() {
+                if (this.classList.contains('expanded')) return;
                 
-                gallery.classList.add('expanded');
+                clearTimeout(this.hoverTimer);
+                if (this.hoverTween) this.hoverTween.kill();
+                
+                this.classList.add('expanded');
                 
                 gsap.to(cursorTimer, { opacity: 0, duration: 0.2 });
                 gsap.to(cursorOutline, { opacity: 1, duration: 0.2 });
                 cursorText.innerText = '';
                 
-                const wrappers = gallery.querySelectorAll('.img-wrapper');
+                const wrappers = this.querySelectorAll('.img-wrapper');
                 wrappers.forEach(w => {
                     if (!w.querySelector('iframe')) {
                         w.style.cursor = 'none';
@@ -1104,47 +1102,43 @@
                 });
             };
 
-            gallery.addEventListener('mouseenter', () => {
+            gallery.addEventListener('mouseenter', function() {
                 if (window.innerWidth <= 768) return;
-                if (!gallery.classList.contains('expanded')) {
+                if (!this.classList.contains('expanded')) {
                     cursorText.innerText = currentLang === 'en' ? 'EXPAND' : 'YAYIL';
                     gsap.to(cursorTimer, { opacity: 1, duration: 0.2 });
                     gsap.to(cursorOutline, { opacity: 0, duration: 0.2 });
 
-                    hoverTween = gsap.fromTo(cursorCircle, 
+                    this.hoverTween = gsap.fromTo(cursorCircle, 
                         { strokeDashoffset: 164 }, 
                         { strokeDashoffset: 0, duration: 3, ease: "none" }
                     );
 
-                    hoverTimer = setTimeout(() => {
-                        expandGallery();
+                    this.hoverTimer = setTimeout(() => {
+                        this.expandMe();
                     }, 3000);
                 }
             });
 
-            // Tıklayınca 3 saniyeyi beklemeden anında yayılmasını (expand) sağlayan blok:
-            gallery.addEventListener('click', () => {
-                if (window.innerWidth <= 768) return;
-                if (!gallery.classList.contains('expanded')) {
-                    clearTimeout(hoverTimer);
-                    if (hoverTween) hoverTween.kill();
-                    expandGallery();
+            gallery.addEventListener('click', function(e) {
+                if (window.innerWidth > 768) {
+                    this.expandMe();
                 }
             });
 
-            gallery.addEventListener('mouseleave', () => {
+            gallery.addEventListener('mouseleave', function() {
                 if (window.innerWidth <= 768) return;
-                clearTimeout(hoverTimer);
-                if (hoverTween) hoverTween.kill();
+                clearTimeout(this.hoverTimer);
+                if (this.hoverTween) this.hoverTween.kill();
                 
                 gsap.to(cursorTimer, { opacity: 0, duration: 0.2 });
                 gsap.to(cursorOutline, { opacity: 1, duration: 0.2 });
                 gsap.set(cursorCircle, { strokeDashoffset: 164 });
                 cursorText.innerText = '';
                 
-                if (gallery.classList.contains('expanded')) {
-                    gallery.classList.remove('expanded');
-                    const wrappers = gallery.querySelectorAll('.img-wrapper');
+                if (this.classList.contains('expanded')) {
+                    this.classList.remove('expanded');
+                    const wrappers = this.querySelectorAll('.img-wrapper');
                     wrappers.forEach(w => {
                         w.style.cursor = 'none';
                         w.classList.remove('hoverable-img');
@@ -1372,7 +1366,7 @@
                 projCapsuleText: "Basit dairesel formuyla tanımlanan bu duvar lambası, orantıya büyük özen gösterilerek dikkatlice geliştirildi. Hidrolik pres kullanılarak üretilmek üzere tasarlandığından, tüm kalıp geliştirme süreçleri detaylı bir şekilde tamamlandı. Tasarım süreci boyunca çok çeşitli renk ve yüzey kaplama varyasyonları araştırıldı. İç aydınlatma elemanı, kablolama ve sürücü; hem performansı hem de dayanıklılığı sağlamak üzere titizlikle tasarlandı. Ürün Maison&Objet'te sergilendi ve daha sonra İngiltere merkezli CTO Lighting'e satıldı.",
                 capsuleNote: "Bağlam görseli Autoban'a aittir.",
                 projStarTitle: "AYDINLATMA: STAR SARKIT LAMBA (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projStarText: "Altın oranın rehberliğinde, ürünün her bir elemanı uyumlu bir bütün oluşturacak şekilde oranlandırıldı. Proje ayrıca, kablolama ve gerekli sürücü sisteminin geliştirilmesinin yanı sıra PCB (Baskılı Devre Kartı) tasarımını da içeriyordu.",
+                projStarText: "Altın oranı rehberliğinde, ürünün her bir elemanı uyumlu bir bütün oluşturacak şekilde oranlandırıldı. Proje ayrıca, kablolama ve gerekli sürücü sisteminin geliştirilmesinin yanı sıra PCB (Baskılı Devre Kartı) tasarımını da içeriyordu.",
                 proj5Title: "AYDINLATMA: KEÇE SARKIT LAMBA KONSEPTİ",
                 pendantText: "Sıcak, dağınık bir aydınlatma ortamı yaratmak için keçenin akustik ve estetik özelliklerini kullanan minimalist bir aydınlatma konsepti."
             }
@@ -1482,8 +1476,14 @@
         let currentImageIndex = 0;
 
         function openLightbox(img) { 
-            // Mobilde tıklandığında engellememesi için if bloğuna ek koşul eklenmiştir
-            if (window.innerWidth > 768 && !img.closest('.gallery').classList.contains('expanded')) return;
+            const gallery = img.closest('.gallery');
+            
+            if (window.innerWidth > 768 && !gallery.classList.contains('expanded')) {
+                if (typeof gallery.expandMe === 'function') {
+                    gallery.expandMe();
+                }
+                return;
+            }
 
             const currentSection = img.closest('.project-section');
             currentVisibleImages = [];
@@ -1605,9 +1605,30 @@
             gsap.set(pixels, {opacity: 1}); 
         }
 
+        // ==========================================
+        // DÜZELTİLEN YER: FADE-TEXT FLU ANİMASYONU
+        // ==========================================
         document.querySelectorAll('.fade-text').forEach(el => {
             el.dataset.originalText = el.innerText;
-            gsap.set(el, { opacity: 0, filter: "blur(10px)" }); 
+        });
+
+        // Aşağı ve yukarı kaydırmalarda metinlerin pürüzsüzce belirip kaybolmasını sağlar
+        gsap.utils.toArray('.fade-text').forEach(el => {
+            gsap.fromTo(el, 
+                { opacity: 0, filter: "blur(10px)", visibility: "hidden" },
+                {
+                    opacity: 1,
+                    filter: "blur(0px)",
+                    visibility: "visible",
+                    duration: 1.2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 95%", 
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
         });
 
         document.querySelectorAll('.img-wrapper').forEach(wrapper => {
@@ -1644,20 +1665,6 @@
             projectLazyObserver.observe(sec);
         });
 
-        gsap.utils.toArray('.fade-text').forEach(el => {
-            gsap.to(el, {
-                opacity: 1,
-                filter: "blur(0px)",
-                duration: 1.2,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: el,
-                    start: "top 95%",
-                    toggleActions: "play none none none"
-                }
-            });
-        });
-
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1683,6 +1690,7 @@
 
         window.addEventListener('load', () => {
             window.scrollTo(0, 0);
+            setTimeout(() => { ScrollTrigger.refresh(true); }, 500);
         });
 
         document.addEventListener('contextmenu', event => event.preventDefault());
