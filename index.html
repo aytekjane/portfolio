@@ -151,7 +151,7 @@
         
         .divider { width: 100%; max-width: 1200px; border-top: 1px solid var(--border-color); margin: 30px auto; display: block; }
         
-        /* FADE-TEXT CSS */
+        /* FADE-TEXT CSS: Başlangıçta flu ve görünmez olması için burayı koruyoruz ama inline stil ayarlarını GSAP fromTo ile yöneteceğiz. */
         .fade-text { opacity: 0; filter: blur(10px); visibility: hidden; }
 
         @media (max-width: 768px) { 
@@ -1206,7 +1206,7 @@
                 projAquariumTitle: "HOBBY: FRESHWATER HIGH-TECH PLANTED AQUARIUM DESIGN",
                 projAquariumText: "These projects showcase a meticulously planned freshwater high-tech planted aquarium that merges advanced aquatic technology with natural aquascaping artistry. The design features a fully planted layout supported by high-intensity LED lighting, pressurized CO₂ injection, and automated nutrient dosing to promote vibrant, healthy plant growth. Careful attention was given to hardscape composition, plant selection, and flow dynamics, resulting in a balanced ecosystem that is both visually striking and biologically stable. Utilizing principles of biomimicry and Voronoi diagrams, I designed and 3D-printed modular structures of varying sizes that resemble mountainous formations. Their perforated surfaces allow water to flow naturally through the structures, mimicking organic currents, while internal cavities are filled with highly porous volcanic rock. These materials support aerobic bacteria on outer surfaces and anaerobic bacteria within inner pores, working together to biologically filter the water by converting toxic ammonia and nitrite into nitrate—an essential nutrient for aquatic plants. Surrounding these printed structures, mosses were carefully attached using transparent fishing line, allowing them to anchor and thrive by utilizing available nutrients. Throughout the process, I conducted experiments with various plant and moss species under different environmental conditions, including pH, KH, GH, conductivity, nutrient levels, CO₂ concentration, lighting duration, and Kelvin values. This integrated system promotes natural plant growth while enhancing biological filtration, resulting in a self-sustaining, bacteria-driven water purification ecosystem.",
                 proj7Title: "INTERIOR: KILIMANJARO BAR ISTANBUL (IN-HOUSE WORK: AUTOBAN)",
-                kilimanjaroText: "Located inside the Bomonti Historic Brewery, Kilimanjaro is a casual restaurant bar that is an integral part of Bomontiada. The project received the Time Out Istanbul “Best Restaurant” award. The bar concept was developed and the geometry translated into developable surfaces, defined by zero Gaussian curvature and the ability to be fabricated from flat materials without stretching. Structural drawings were produced, and in addition, detailed static calculations were carried out to ensure structural safety and performance. Based on the engineering data obtained, the correct structural profiles selected and implemented accordingly. Wall mounted and pendant lighting elements were designed, including preparation of production drawings and supervision of fabrication. The structure was fabricated on site by shipyard craftsmen, reflecting the close relationship between developable surface logic and shipbuilding techniques. On site support during construction included guidance on structural alignment, correct placement, and precise assembly of all components.",
+                kilimanjaroText: "Located inside the Bomonti Historic Brewery, Kilimanjaro is a casual restaurant bar that is an integral part of Bomontiada. The project received the Time Out Istanbul “Best Restaurant” award. The bar concept was developed and the geometry translated into developable surfaces, defined by zero Gaussian curvature and the ability to be fabricated from flat materials without stretching. Structural drawings were produced, and in addition, detailed static calculations were carried out to ensure structural safety and performance. Based on the engineering data obtained, the correct structural profiles were selected and implemented accordingly. Wall mounted and pendant lighting elements were designed, including preparation of production drawings and supervision of fabrication. The structure was fabricated on site by shipyard craftsmen, reflecting the close relationship between developable surface logic and shipbuilding techniques. On site support during construction included guidance on structural alignment, correct placement, and precise assembly of all components.",
                 kilimanjaroNote: "Photography: Engin Aydeniz",
                 proj8Title: "INTERIOR: SMILES DENTAL CLINIC PARAMETRIC WALL (CLIENT: WANGAN)",
                 smilesText: "Providing parametric drawings of the developed wall concept and creating production drawings for a dental clinic located in Ankara, Turkey. Winner of the Best of Year 2025 Interior Design Award.",
@@ -1606,13 +1606,13 @@
         }
 
         // ==========================================
-        // DÜZELTİLEN YER: FADE-TEXT ÇİFT YÖNLÜ TETİKLEYİCİ
+        // DÜZELTİLEN YER: FADE-TEXT FLU ANİMASYONU
         // ==========================================
         document.querySelectorAll('.fade-text').forEach(el => {
             el.dataset.originalText = el.innerText;
         });
 
-        // "play reverse play reverse" ayarı ile hem yukarı hem aşağı kaydırmalarda kusursuzca belirmesi/kaybolması sağlanır
+        // Aşağı ve yukarı kaydırmalarda metinlerin pürüzsüzce belirip kaybolmasını sağlar
         gsap.utils.toArray('.fade-text').forEach(el => {
             gsap.fromTo(el, 
                 { opacity: 0, filter: "blur(10px)", visibility: "hidden" },
@@ -1625,8 +1625,7 @@
                     scrollTrigger: {
                         trigger: el,
                         start: "top 95%", 
-                        end: "bottom 5%",
-                        toggleActions: "play reverse play reverse"
+                        toggleActions: "play none none reverse"
                     }
                 }
             );
