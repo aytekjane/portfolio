@@ -151,8 +151,8 @@
         
         .divider { width: 100%; max-width: 1200px; border-top: 1px solid var(--border-color); margin: 30px auto; display: block; }
         
-        /* FADE-TEXT CSS: Başlangıçta flu ve görünmez olması için burayı koruyoruz ama inline stil ayarlarını GSAP fromTo ile yöneteceğiz. */
-        .fade-text { opacity: 0; filter: blur(10px); visibility: hidden; }
+        /* FADE-TEXT CSS */
+        .fade-text { opacity: 0; filter: blur(10px); }
 
         @media (max-width: 768px) { 
             body { cursor: auto; } .cursor-dot, .cursor-outline, .cursor-timer { display: none !important; }
@@ -1606,13 +1606,13 @@
         }
 
         // ==========================================
-        // DÜZELTİLEN YER: FADE-TEXT FLU ANİMASYONU
+        // DÜZELTİLEN YER: FADE-TEXT ÇİFT YÖNLÜ TETİKLEYİCİ
         // ==========================================
         document.querySelectorAll('.fade-text').forEach(el => {
             el.dataset.originalText = el.innerText;
         });
 
-        // Aşağı ve yukarı kaydırmalarda metinlerin pürüzsüzce belirip kaybolmasını sağlar
+        // "play reverse play reverse" ayarı ile hem yukarı hem aşağı kaydırmalarda kusursuzca belirmesi/kaybolması sağlanır
         gsap.utils.toArray('.fade-text').forEach(el => {
             gsap.fromTo(el, 
                 { opacity: 0, filter: "blur(10px)", visibility: "hidden" },
@@ -1625,7 +1625,8 @@
                     scrollTrigger: {
                         trigger: el,
                         start: "top 95%", 
-                        toggleActions: "play none none reverse"
+                        end: "bottom top",
+                        toggleActions: "play reverse play reverse"
                     }
                 }
             );
