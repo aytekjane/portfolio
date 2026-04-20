@@ -1059,107 +1059,106 @@
             cursorDot.style.left = e.clientX + 'px';
             cursorDot.style.top = e.clientY + 'px';
             cursorOutline.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
-            cursorTimer.style.left = e.clientX + 'px';
-            cursorTimer.style.top = e.clientY + 'px';
+            cursorTimer.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
         });
-
-        document.querySelectorAll('.hoverable').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursorOutline.style.width = '60px';
-                cursorOutline.style.height = '60px';
-                cursorOutline.style.borderColor = 'rgba(220, 164, 166, 0.8)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursorOutline.style.width = '40px';
-                cursorOutline.style.height = '40px';
-                cursorOutline.style.borderColor = 'rgba(220, 164, 166, 0.5)';
-            });
-        });
-
-        let hoverTimer;
-        let isHovering = false;
-        let isExpanded = false;
 
         document.querySelectorAll('.gallery').forEach(gallery => {
-            gallery.addEventListener('mouseenter', () => {
-                if (window.innerWidth <= 768) return;
-                isHovering = true;
-                cursorOutline.style.opacity = '0';
-                cursorTimer.style.opacity = '1';
-                cursorCircle.style.transition = 'stroke-dashoffset 2s linear';
-                cursorCircle.style.strokeDashoffset = '0';
-                cursorText.innerText = 'EXPAND';
+            let hoverTimer;
+            let hoverTween;
 
-                hoverTimer = setTimeout(() => {
-                    if (isHovering && !isExpanded) {
-                        gallery.classList.add('expanded');
-                        isExpanded = true;
-                        cursorText.innerText = '';
-                        cursorTimer.style.opacity = '0';
-                        cursorOutline.style.opacity = '1';
-                        
-                        const wrappers = gallery.querySelectorAll('.img-wrapper');
-                        wrappers.forEach(w => {
-                            if (!w.querySelector('iframe')) {
-                                w.style.cursor = 'none';
-                                w.classList.add('hoverable-img');
-                            }
-                        });
-                        
-                        document.querySelectorAll('.hoverable-img').forEach(el => {
-                            el.addEventListener('mouseenter', () => {
-                                cursorOutline.style.width = '80px';
-                                cursorOutline.style.height = '80px';
-                                cursorOutline.style.borderColor = 'rgba(255, 145, 175, 0.8)';
-                                cursorDot.style.backgroundColor = 'var(--bm-pink)';
-                            });
-                            el.addEventListener('mouseleave', () => {
-                                cursorOutline.style.width = '40px';
-                                cursorOutline.style.height = '40px';
-                                cursorOutline.style.borderColor = 'rgba(220, 164, 166, 0.5)';
-                                cursorDot.style.backgroundColor = 'var(--accent)';
-                            });
-                        });
-                    }
-                }, 2000);
+            gallery.addEventListener('mouseenter', () => {
+                if (!gallery.classList.contains('expanded')) {
+                    cursorText.innerText = currentLang === 'en' ? 'EXPAND' : 'YAYIL';
+                    gsap.to(cursorTimer, { opacity: 1, duration: 0.2 });
+                    gsap.to(cursorOutline, { opacity: 0, duration: 0.2 });
+
+                    hoverTween = gsap.fromTo(cursorCircle, 
+                        { strokeDashoffset: 164 }, 
+                        { strokeDashoffset: 0, duration: 3, ease: "none" }
+                    );
+
+                    hoverTimer = setTimeout(() => {
+                        expandGallery(gallery);
+                    }, 3000);
+                }
             });
 
             gallery.addEventListener('mouseleave', () => {
-                if (window.innerWidth <= 768) return;
-                isHovering = false;
                 clearTimeout(hoverTimer);
-                cursorTimer.style.opacity = '0';
-                cursorOutline.style.opacity = '1';
-                cursorCircle.style.transition = 'none';
-                cursorCircle.style.strokeDashoffset = '164';
-                cursorText.innerText = '';
-                
-                if (isExpanded) {
-                    gallery.classList.remove('expanded');
-                    isExpanded = false;
-                    const wrappers = gallery.querySelectorAll('.img-wrapper');
-                    wrappers.forEach(w => {
-                        w.style.cursor = 'none';
-                        w.classList.remove('hoverable-img');
-                    });
-                    cursorOutline.style.width = '40px';
-                    cursorOutline.style.height = '40px';
-                    cursorOutline.style.borderColor = 'rgba(220, 164, 166, 0.5)';
-                    cursorDot.style.backgroundColor = 'var(--accent)';
+                if (hoverTween) hoverTween.kill();
+                gsap.to(cursorTimer, { opacity: 0, duration: 0.2 });
+                gsap.to(cursorOutline, { opacity: 1, duration: 0.2 });
+                gsap.set(cursorCircle, { strokeDashoffset: 164 });
+            });
+
+            gallery.addEventListener('click', (e) => {
+                if (!gallery.classList.contains('expanded')) {
+                    expandGallery(gallery);
                 }
             });
         });
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('active');
-            if(menu.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
+        document.querySelectorAll('.project-section').forEach(sec => {
+            sec.addEventListener('mouseenter', () => {
+                document.querySelectorAll('.gallery.expanded').forEach(g => {
+                    if (!sec.contains(g)) {
+                        g.classList.remove('expanded');
+                    }
+                });
+            });
+        });
+
+        function expandGallery(gal) {
+            document.querySelectorAll('.gallery.expanded').forEach(g => {
+                if (g !== gal) g.classList.remove('expanded');
+            });
+            
+            gal.classList.add('expanded');
+            
+            gsap.to(cursorTimer, { opacity: 0, duration: 0.2 });
+            gsap.to(cursorOutline, { opacity: 1, duration: 0.2 });
+            gsap.set(cursorCircle, { strokeDashoffset: 164 });
+            
+            setTimeout(() => ScrollTrigger.refresh(true), 600);
         }
 
+        document.querySelectorAll('.hoverable, .cat-item, .menu-toggle, .lb-close, .project-link').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorOutline.style.width = '60px';
+                cursorOutline.style.height = '60px';
+                cursorOutline.style.backgroundColor = 'rgba(255,145,175, 0.1)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorOutline.style.width = '40px';
+                cursorOutline.style.height = '40px';
+                cursorOutline.style.backgroundColor = 'transparent';
+            });
+        });
+
+        const logoElement = document.getElementById('header-logo');
+        const fonts = ['Cinzel', 'Playfair Display', 'Cormorant Garamond', 'Montserrat', 'Helvetica'];
+        logoElement.innerHTML = "AYTEK JANE".split('').map(char => char === " " ? `<span class="space">&nbsp;</span>` : `<span>${char}</span>`).join('');
+        const logoSpans = logoElement.querySelectorAll('span:not(.space)');
+        let lastTime = 0;
+        function changeLogoFont(timestamp) {
+            if (timestamp - lastTime > 800) { 
+                const randomSpan = logoSpans[Math.floor(Math.random() * logoSpans.length)];
+                const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+                randomSpan.style.fontFamily = randomFont;
+                lastTime = timestamp;
+            }
+            requestAnimationFrame(changeLogoFont);
+        }
+        requestAnimationFrame(changeLogoFont);
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const body = document.getElementById('page-body');
+            menu.classList.toggle('active');
+            if (menu.classList.contains('active')) { body.style.overflow = 'hidden'; } else { body.style.overflow = ''; }
+        }
+
+        // Dil Değiştirme
         const data = {
             en: {
                 desc: "A space where you can find my selected works and ideas.",
@@ -1168,40 +1167,6 @@
                 projBabajiTitle: "FURNITURE-LIGHTING: BABAJI RESTAURANT LIGHTING & FURNITURE DESIGN (IN-HOUSE WORK: AUTOBAN)",
                 projBabajiText: "Babaji, a Soho restaurant by London-based restaurateur Alan Yau, presents a contemporary interpretation of traditional Turkish cuisine and design. The interior draws on Turkey’s rich artisan heritage, featuring handcrafted materials and references to nearly forgotten craft techniques. The restaurant is set within a late 19th-century brick building, with a modest exterior that blends into the vibrant Soho streetscape. Inside, vivid blue ceramic tiles define the space, complemented by traditional Iznik tiles and patterns applied across surfaces and soft furnishings. Custom-designed furniture combines simplicity with refined detailing, including brass inlays inspired by Turkish craftsmanship, reimagined in a modern dotted motif. Spanning three levels, Babaji centers around a striking white cylindrical pide oven on the ground floor, offering a visual and culinary focal point. Additional dining areas are located on the first floor and in the basement, creating a layered and immersive dining experience. As part of a collaborative team effort, I contributed to this project through the design of furniture and lighting fixtures.",
                 babajiNote: "Photography Ed Reeve",
-                projNiluferTitle: "LIGHTING: NILÜFER PENDANT LIGHT (IN-HOUSE WORK: AUTOBAN)",
-                niluferText: "This pendant lighting fixture was specially designed and produced for a food and beverage venue located within the Bomonti Historic Brewery, a newly redeveloped heritage complex. Its form is inspired by cymbals, reflecting a harmonious blend of industrial character and contemporary design.",
-                niluferNote: "Context render belongs to Autoban.",
-                projBuhaisTitle: "LIGHTING: BUHAIS GEOLOGY PARK - AUTOMATIC VENETIAN BLIND & OCULUS (IN-HOUSE WORK: JVL)",
-                buhaisText: "A Venetian blind system was designed to protect the exhibited objects in the museum from UV-related damage. Using GPS-based location data and the sun’s movement, the blinds automatically open and close throughout the day. Additionally, the oculus introduces light into the space, where a vertically moving reflector—functioning like an aperture—controls the diameter of the incoming beam.",
-                buhaisNote: "Context renders and photos belong to jvl.",
-                projPendantBTitle: "LIGHTING: THE NEW BIG PENDANT LIGHT (IN-HOUSE WORK: AUTOBAN)",
-                projPendantBText: "A large-scale pendant lighting design developed for high-volume interior spaces, combining industrial structural elements with refined lighting aesthetics.",
-                projGhDeskTitle: "LIGHTING: GRAND HYATT DESK LAMP (IN-HOUSE WORK: AUTOBAN)",
-                projGhDeskText: "Custom desk lamp design for the Grand Hyatt project, balancing functional task lighting with the sophisticated aesthetic language of luxury hospitality interiors.",
-                projBurganTitle: "LIGHTING: BURGAN BANK PRIVATE - LIGHTING PLAN (IN-HOUSE WORK: I-AM ASSOCIATES)",
-                projBurganText: "Lighting design for Burgan Bank’s private branch, including the development of the lighting layout, selection of lighting fixtures, and calculation of light levels using DIALux software.",
-                burganNote: "Photos belong to I-AM Associates.",
-                projDressTitle: "GLASSWARE: DRESS FAMILY (IN-HOUSE WORK: AUTOBAN)",
-                projDressText: "The Dress collection stands out with its refined and elegant design, reminiscent of a sophisticated gown. Each piece is meticulously handcrafted by skilled artisans, resulting in a truly unique creation. With its intricate details and careful workmanship, this design offers a striking visual experience.",
-                projStoolTitle: "GLASSWARE: STOOL - OMNIA SERIES - PAŞABAHÇE (IN-HOUSE WORK: AUTOBAN)",
-                projStoolText: "We aimed to take glass beyond its traditional uses and explore it in a new context as a furniture element. This idea led us to consider glass not only as a decorative or functional material, but as a structural and expressive component within furniture design. After developing and testing several prototypes, we refined the concept and arrived at the final product. “Çeşm-i Bülbül,” meaning “the eye of the nightingale,” is a traditional Ottoman glassmaking technique developed in the late 18th century. It is characterized by intricate, spiraling, multicolored cane (filigree) patterns that resemble the eye of a nightingale. The technique was created by the Mevlevi dervish Mehmed Dede during the reign of Sultan Selim III, inspired by Venetian glassmaking traditions. This project was developed as an effort to reinterpret and carry this unique craft into the future. It was designed for Paşabahçe’s Omnia special collection and presented both at the launch event and in retail stores.",
-                lavaText: "Wabi-Sabi (noun): A concept, an aesthetic, and a worldview. Simply an initiative way of living that emphasizes finding beauty in imperfection, and accepting the natural cycle of growth and decay. The works you will see here are composed of parametric geometries organized with the help of computers, blending the logic of Wabi-sabi and the natural flow of glass. Curves are drawn with the assistance of mathematical equations.",
-                testiText: "A comprehensive historical research process was conducted for the design of this water pitcher. Water containers and pitchers made from clay and various materials, originating from Vietnamese, Indonesian, Chinese, Arab, and Iranian cultures, were thoroughly examined.",
-                chippedText: "Inspired by chipped arrowheads discovered in archaeological excavations.",
-                projPenTitle: "ACCESSORY: BRASS PEN",
-                projPenText: "The pen manufacturing project consists of several stages, each involving a different level of complexity on a turret lathe. The first stage has been successfully completed.",
-                proj1Title: "HOROLOGY: UNIMATIC UC1 SKELETON CONCEPT",
-                proj1Text: "A skeleton variation of the Modello Uno UC1 Classic diver watch was created for Unimatic using an NH72 movement, with a transparent dial designed to reveal the mechanism while preserving the watch’s original minimalist character through a circular screen-printed pattern that creates a subtle semi-transparent effect; the movement is also visible through a window on the case back, while gray-toned corporate typography on the bezel indicates the seconds, and the transparency of both the front and back responds to the curiosity of users new to automatic watches, who often want to observe the mechanical movement, especially in their first timepiece.",
-                proj2Title: "HOROLOGY: CITIZEN CONCEPT",
-                proj2Text: "This project is based on Citizen’s Eco-Drive technology, which is powered by light energy, and features a concept watch with a clean interface displaying day, battery level, and date information, reflecting the brand’s commitment to sustainable and high-tech watchmaking; the design is inspired by the cherry blossom (sakura) of Japan, incorporating its delicate and minimal aesthetic into the overall concept.",
-                proj6Title: "FASHION: SERVER CONCEPT",
-                fashionText: "This project explores the intersection of functional server design and high-fashion aesthetics. This conceptual study aims to redefine the visual language of industrial technology within a lifestyle context.",
-                projBronzeTitle: "R&D: BRONZE AGE BOAT, 3D SCANNER, MUSEUM (IN-HOUSE WORK: NEW YORK UNIVERSITY ABU DHABI - DESIGN ENGINEER)",
-                projBronzeText: "The REF-funded Má I Bronze Age Boat Project explored Bronze Age maritime technologies through a comprehensive analysis of archaeological, textual, iconographic, and ethnographic data. The project combined conventional research methodologies with indigenous knowledge systems, integrating expert shipwrights from the western Indian Ocean who specialize in traditional boatbuilding techniques. Their practical expertise provided critical insights that extended beyond academic research, enabling a more authentic reconstruction process and allowing comparisons between historical evidence and living traditions. Building on earlier research by the MAGAN team in Oman (2005) and drawing from archaeological evidence gathered across the UAE and Oman, the project developed an updated schematic for a 12-meter Bronze Age vessel, refining previous historical interpretations. As a Design Engineer in the project, my responsibilities included digitizing the technical drawings and ensuring their translation into accurate physical templates for the shipwrights. I was also tasked with scanning the entire construction process using a 3D laser scanner (Artec Leo) at regular intervals to create a precise digital record. This phase required regular travel to the construction site in Oman. Subsequently, I processed the scanned data to develop an interactive museum application using Unity, allowing users to engage with the construction process in a digital environment. Following the successful completion of the boat, the team collaborated with Zayed University to conduct a 40-nautical-mile sea trial over two days. The vessel was sailed by NYUAD students and the project team, validating the structural integrity, sailing characteristics, and overall seaworthiness of the reconstructed design.",
-                projVentilatorTitle: "R&D: EMERGENCY VENTILATOR DEVELOPMENT (ETMK TASK FORCE)",
-                projVentilatorText: "Reverse engineering and production of a ventilator originally designed by Japanese anesthesiologist Naoyuki Ishikita for use on the ISS, developed in response to potential ventilator shortages during the pandemic. During this period, major Turkish home appliance manufacturers and technology companies, such as Arçelik, Vestel, and Baykar, rapidly initiated efforts to mass-produce mechanical ventilators. As a contingency plan for triaged patients, a task force was established under ETMK (Industrial Designers’ Society of Turkey), bringing together multidisciplinary teams to develop alternative solutions. Following extensive testing and evaluation, the most functional and manufacturable design was selected for further development and potential production.",
-                projAquariumTitle: "HOBBY: FRESHWATER HIGH-TECH PLANTED AQUARIUM DESIGN",
-                projAquariumText: "These projects showcase a meticulously planned freshwater high-tech planted aquarium that merges advanced aquatic technology with natural aquascaping artistry. The design features a fully planted layout supported by high-intensity LED lighting, pressurized CO₂ injection, and automated nutrient dosing to promote vibrant, healthy plant growth. Careful attention was given to hardscape composition, plant selection, and flow dynamics, resulting in a balanced ecosystem that is both visually striking and biologically stable. Utilizing principles of biomimicry and Voronoi diagrams, I designed and 3D-printed modular structures of varying sizes that resemble mountainous formations. Their perforated surfaces allow water to flow naturally through the structures, mimicking organic currents, while internal cavities are filled with highly porous volcanic rock. These materials support aerobic bacteria on outer surfaces and anaerobic bacteria within inner pores, working together to biologically filter the water by converting toxic ammonia and nitrite into nitrate—an essential nutrient for aquatic plants. Surrounding these printed structures, mosses were carefully attached using transparent fishing line, allowing them to anchor and thrive by utilizing available nutrients. Throughout the process, I conducted experiments with various plant and moss species under different environmental conditions, including pH, KH, GH, conductivity, nutrient levels, CO₂ concentration, lighting duration, and Kelvin values. This integrated system promotes natural plant growth while enhancing biological filtration, resulting in a self-sustaining, bacteria-driven water purification ecosystem.",
                 proj7Title: "INTERIOR: KILIMANJARO BAR ISTANBUL (IN-HOUSE WORK: AUTOBAN)",
                 kilimanjaroText: "Located inside the Bomonti Historic Brewery, Kilimanjaro is a casual restaurant bar that is an integral part of Bomontiada. The project received the Time Out Istanbul “Best Restaurant” award. The bar concept was developed and the geometry translated into developable surfaces, defined by zero Gaussian curvature and the ability to be fabricated from flat materials without stretching. Structural drawings were produced, and in addition, detailed static calculations were carried out to ensure structural safety and performance. Based on the engineering data obtained, the correct structural profiles were selected and implemented accordingly. Wall mounted and pendant lighting elements were designed, including preparation of production drawings and supervision of fabrication. The structure was fabricated on site by shipyard craftsmen, reflecting the close relationship between developable surface logic and shipbuilding techniques. On site support during construction included guidance on structural alignment, correct placement, and precise assembly of all components.",
                 kilimanjaroNote: "Photography: Engin Aydeniz",
@@ -1236,7 +1201,10 @@
                 projHotelText: "Designed for use in equestrian hotel interior.",
                 projBedTitle: "FURNITURE: BED CONCEPT",
                 projBedText: "A contemporary bed design study exploring structural minimalism and material warmth. This concept focuses on the balance between geometric precision and the comfort required for a restful environment.",
-                projBurositTitle: "FURNITURE: BANZAI OFFICE CHAIR (CLIENT: BÜROSİT)",
+                proj4Title: "FURNITURE: JANE STREET FURNITURE (CLIENT: URBAN JOBS)",
+                proj4Text: "With seven modules, it is possible to create geometries that complement architectural forms. The design evolved through an analysis of the history of street furniture. Winner of EDIDA 2020 in the Outdoor Furniture category.",
+                janeNote: "Context renders belong to Urban Jobs.",
+                projBurositTitle: "FURNITURE: BANZAI OFFICE CHAIR (CLIENT: BÜROSIT)",
                 projBurositText: "This product is the result of weekly meetings conducted with the company’s owner, focusing on developing the company’s new look and feel and advancing a design-driven approach. Throughout the process, we aimed to simplify the design language primarily through reduction, making it more refined. It represents one of the first elements of the company’s modern new identity.",
                 burositNote: "Photos belong to Bürosit.",
                 projCocoonTitle: "FURNITURE: İSTANBUL DESIGN WEEK COCOON STRUCTURE (IN-HOUSE WORK: AUTOBAN)",
@@ -1244,6 +1212,12 @@
                 projUnionTitle: "FURNITURE: UNION COLLECTION (IN-HOUSE WORK: AUTOBAN)",
                 projUnionText: "Launched at Maison&Objet Paris, the Union family was developed as a collaborative team effort, consisting of a bed, sofa, and table. Rooted in the domestic environment, Union emphasizes form while prioritizing maximum comfort. It is crafted using tactile, natural materials, combining traditional craftsmanship with modern production techniques. Its distinctive and unconventional pieces are defined by soft curves and subtle design details throughout.",
                 unionNote: "Renders and photos belong to Autoban.",
+                projNiluferTitle: "LIGHTING: NILÜFER PENDANT LIGHT (IN-HOUSE WORK: AUTOBAN)",
+                niluferText: "This pendant lighting fixture was specially designed and produced for a food and beverage venue located within the Bomonti Historic Brewery, a newly redeveloped heritage complex. Its form is inspired by cymbals, reflecting a harmonious blend of industrial character and contemporary design.",
+                niluferNote: "Context render belongs to Autoban.",
+                projBuhaisTitle: "LIGHTING: BUHAIS GEOLOGY PARK - AUTOMATIC VENETIAN BLIND & OCULUS (IN-HOUSE WORK: JVL)",
+                buhaisText: "A Venetian blind system was designed to protect the exhibited objects in the museum from UV-related damage. Using GPS-based location data and the sun’s movement, the blinds automatically open and close throughout the day. Additionally, the oculus introduces light into the space, where a vertically moving reflector—functioning like an aperture—controls the diameter of the incoming beam.",
+                buhaisNote: "Context renders and photos belong to jvl.",
                 projInfinityTitle: "LIGHTING: INFINITY ALUMINIUM TRIMLESS COVE LIGHTING (IN-HOUSE WORK: JVL)",
                 projInfinityText: "It can adapt to various scenarios thanks to its specially designed aluminum extrusion profile. All connection details have been thoroughly resolved and developed.",
                 infinityNote: "Context renders belong to JVL.",
@@ -1259,73 +1233,70 @@
                 projStarTitle: "LIGHTING: STAR PENDANT LIGHT (IN-HOUSE WORK: AUTOBAN)",
                 projStarText: "Guided by the golden ratio, each element of the product was proportioned to form a harmonious whole. The project also included PCB design, along with the development of wiring and the necessary driver system.",
                 proj5Title: "LIGHTING: FELT PENDANT LIGHT CONCEPT",
-                pendantText: "A minimalist lighting concept utilizing the acoustic and aesthetic properties of felt to create a warm, diffused lighting environment."
+                pendantText: "A minimalist lighting concept utilizing the acoustic and aesthetic properties of felt to create a warm, diffused lighting environment.",
+                projPendantBTitle: "LIGHTING: THE NEW BIG PENDANT LIGHT (IN-HOUSE WORK: AUTOBAN)",
+                projPendantBText: "A large-scale pendant lighting design developed for high-volume interior spaces, combining industrial structural elements with refined lighting aesthetics.",
+                projGhDeskTitle: "LIGHTING: GRAND HYATT DESK LAMP (IN-HOUSE WORK: AUTOBAN)",
+                projGhDeskText: "Custom desk lamp design for the Grand Hyatt project, balancing functional task lighting with the sophisticated aesthetic language of luxury hospitality interiors.",
+                projBurganTitle: "LIGHTING: BURGAN BANK PRIVATE - LIGHTING PLAN (IN-HOUSE WORK: I-AM ASSOCIATES)",
+                projBurganText: "Lighting design for Burgan Bank’s private branch, including the development of the lighting layout, selection of lighting fixtures, and calculation of light levels using DIALux software.",
+                burganNote: "Photos belong to I-AM Associates.",
+                projDressTitle: "GLASSWARE: DRESS FAMILY (IN-HOUSE WORK: AUTOBAN)",
+                projDressText: "The Dress collection stands out with its refined and elegant design, reminiscent of a sophisticated gown. Each piece is meticulously handcrafted by skilled artisans, resulting in a truly unique creation. With its intricate details and careful workmanship, this design offers a striking visual experience.",
+                projStoolTitle: "GLASSWARE: STOOL - OMNIA SERIES - PAŞABAHÇE (IN-HOUSE WORK: AUTOBAN)",
+                projStoolText: "We aimed to take glass beyond its traditional uses and explore it in a new context as a furniture element. This idea led us to consider glass not only as a decorative or functional material, but as a structural and expressive component within furniture design. After developing and testing several prototypes, we refined the concept and arrived at the final product. “Çeşm-i Bülbül,” meaning “the eye of the nightingale,” is a traditional Ottoman glassmaking technique developed in the late 18th century. It is characterized by intricate, spiraling, multicolored cane (filigree) patterns that resemble the eye of a nightingale. The technique was created by the Mevlevi dervish Mehmed Dede during the reign of Sultan Selim III, inspired by Venetian glassmaking traditions. This project was developed as an effort to reinterpret and carry this unique craft into the future. It was designed for Paşabahçe’s Omnia special collection and presented both at the launch event and in retail stores.",
+                projLavaTitle: "GLASSWARE: LAVA TEA GLASS",
+                lavaText: "Wabi-Sabi (noun): A concept, an aesthetic, and a worldview. Simply an initiative way of living that emphasizes finding beauty in imperfection, and accepting the natural cycle of growth and decay. The works you will see here are composed of parametric geometries organized with the help of computers, blending the logic of Wabi-sabi and the natural flow of glass. Curves are drawn with the assistance of mathematical equations.",
+                projTestiTitle: "GLASSWARE: TESTI WATER PITCHER",
+                testiText: "A comprehensive historical research process was conducted for the design of this water pitcher. Water containers and pitchers made from clay and various materials, originating from Vietnamese, Indonesian, Chinese, Arab, and Iranian cultures, were thoroughly examined.",
+                projChippedTitle: "GLASSWARE: CHIPPED GLASS",
+                chippedText: "Inspired by chipped arrowheads discovered in archaeological excavations.",
+                projPenTitle: "ACCESSORY: BRASS PEN",
+                projPenText: "The pen manufacturing project consists of several stages, each involving a different level of complexity on a turret lathe. The first stage has been successfully completed.",
+                proj1Title: "HOROLOGY: UNIMATIC UC1 SKELETON CONCEPT",
+                proj1Text: "A skeleton variation of the Modello Uno UC1 Classic diver watch was created for Unimatic using an NH72 movement, with a transparent dial designed to reveal the mechanism while preserving the watch’s original minimalist character through a circular screen-printed pattern that creates a subtle semi-transparent effect; the movement is also visible through a window on the case back, while gray-toned corporate typography on the bezel indicates the seconds, and the transparency of both the front and back responds to the curiosity of users new to automatic watches, who often want to observe the mechanical movement, especially in their first timepiece.",
+                proj2Title: "HOROLOGY: CITIZEN CONCEPT",
+                proj2Text: "This project is based on Citizen’s Eco-Drive technology, which is powered by light energy, and features a concept watch with a clean interface displaying day, battery level, and date information, reflecting the brand’s commitment to sustainable and high-tech watchmaking; the design is inspired by the cherry blossom (sakura) of Japan, incorporating its delicate and minimal aesthetic into the overall concept.",
+                proj6Title: "FASHION: SERVER CONCEPT",
+                fashionText: "This project explores the intersection of functional server design and high-fashion aesthetics. This conceptual study aims to redefine the visual language of industrial technology within a lifestyle context.",
+                projBronzeTitle: "R&D: BRONZE AGE BOAT, 3D SCANNER, MUSEUM (IN-HOUSE WORK: NEW YORK UNIVERSITY ABU DHABI - DESIGN ENGINEER)",
+                projBronzeText: "The REF-funded Má I Bronze Age Boat Project explored Bronze Age maritime technologies through a comprehensive analysis of archaeological, textual, iconographic, and ethnographic data. The project combined conventional research methodologies with indigenous knowledge systems, integrating expert shipwrights from the western Indian Ocean who specialize in traditional boatbuilding techniques. Their practical expertise provided critical insights that extended beyond academic research, enabling a more authentic reconstruction process and allowing comparisons between historical evidence and living traditions. Building on this foundation, the Má II Project focused on the experimental reconstruction of a full-scale Bronze Age reed boat. This initiative is a collaboration between the Dhakira Center for Heritage Studies at NYU Abu Dhabi, Zayed University, and the Abu Dhabi Department of Culture and Tourism. The project aims to deepen understanding of maritime technology and its role in facilitating trade, cultural exchange, and political networks across the Gulf and the western Indian Ocean between 4000 and 2000 years ago. During the Bronze Age, vessels constructed from reeds and wood, sealed with bitumen, navigated trade routes connecting the Fertile Crescent with regions such as Dilmun (Bahrain), Magan (modern BAE and Umman) and Meluhha (Indus Valley). Although no complete shipwrecks from this period have been discovered, extensive archaeological evidence—including cuneiform texts, pottery, iconography, and material remains—has informed the reconstruction of these vessels. The central outcome of the Má II Project was the design and construction of an 18-meter-long ship using historically accurate materials such as reeds, timber, palm fiber cordage, and bitumen. The vessel was built in collaboration with traditional shipwrights from Kerala, whose knowledge of indigenous construction techniques played a vital role in the process. The reconstructed ship offers valuable insights into the structure, durability, cargo capacity, and sailing performance of Bronze Age vessels from the Umm an-Nar period (2600–2000 BCE). As part of the research and development component of the project, I designed a custom photogrammetric 3D scanning system to digitally document the shipbuilding process. This system captured thousands of high-resolution images from multiple angles, enabling precise 3D reconstruction of construction techniques and material assemblies. The aim was to create a detailed digital archive that preserves intangible craftsmanship knowledge while supporting interdisciplinary collaboration. The project also incorporated sustainable architectural strategies during the construction phase. The building environment utilized technical fabric with UV-filtering properties and a geothermal cooling system, achieving effective climate control without reliance on conventional air conditioning. Following the success of the initial reconstruction, a larger vessel was later developed as a continuation of the project. This ship is currently exhibited at the Zayed National Museum and has received significant international media attention, including coverage by National Geographic.",
+                projVentilatorTitle: "R&D: VENTILATION DEVICE",
+                projVentilatorText: "Reverse engineering and production of a ventilator originally designed by Japanese anesthesiologist Naoyuki Ishikita for use on the ISS, developed in response to potential ventilator shortages during the pandemic. During this period, major Turkish home appliance manufacturers and technology companies, such as Arçelik, Vestel, and Baykar, rapidly initiated efforts to mass-produce mechanical ventilators. As a contingency plan for triaged patients, a task force was established under ETMK (Industrial Designers’ Society of Turkey), bringing together multidisciplinary teams to develop alternative solutions. Following extensive testing and evaluation, the most functional and manufacturable design was selected for further development and potential production.",
+                projAquariumTitle: "HOBBY: FRESHWATER HIGH-TECH PLANTED AQUARIUM DESIGN",
+                projAquariumText: "These projects showcase a meticulously planned freshwater high-tech planted aquarium that merges advanced aquatic technology with natural aquascaping artistry. The design features a fully planted layout supported by high-intensity LED lighting, pressurized CO₂ injection, and automated nutrient dosing to promote vibrant, healthy plant growth. Careful attention was given to hardscape composition, plant selection, and flow dynamics, resulting in a balanced ecosystem that is both visually striking and biologically stable. Utilizing principles of biomimicry and Voronoi diagrams, I designed and 3D-printed modular structures of varying sizes that resemble mountainous formations. Their perforated surfaces allow water to flow naturally through the structures, mimicking organic currents, while internal cavities are filled with highly porous volcanic rock. These materials support aerobic bacteria on outer surfaces and anaerobic bacteria within inner pores, working together to biologically filter the water by converting toxic ammonia and nitrite into nitrate—an essential nutrient for aquatic plants. Surrounding these printed structures, mosses were carefully attached using transparent fishing line, allowing them to anchor and thrive by utilizing available nutrients. Throughout the process, I conducted experiments with various plant and moss species under different environmental conditions, including pH, KH, GH, conductivity, nutrient levels, CO₂ concentration, lighting duration, and Kelvin values. This integrated system promotes natural plant growth while enhancing biological filtration, resulting in a self-sustaining, bacteria-driven water purification ecosystem."
             },
             tr: {
                 desc: "Seçilmiş çalışmalarımı ve fikirlerimi bulabileceğiniz bir alan.",
                 projFoldTitle: "AYDINLATMA: FOLD ZEMİN VE DUVAR LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projFoldText: "Fold Serisi, üretilmiş yüzeylerin geometrik olarak katlanmasıyla origami'den ilham alan yapıları keşfeder ve bunları aydınlatma elemanlarına dönüştürür. Hassas biçimsel yapı ile yayılan ışığın yumuşaklığı arasındaki etkileşim, keskinliği dinginlikle dengeleyen bir kompozisyon oluşturur.",
+                projFoldText: "Fold Serisi, üretilmiş yüzeylerin geometrik olarak katlanması yoluyla origami esintili yapıları araştırır ve onları aydınlatma elemanlarına dönüştürür. Kesin biçimsel yapı ile yayılan ışığın yumuşaklığı arasındaki etkileşim, keskinlik ile dinginliği dengeleyen bir kompozisyon yaratır.",
                 projBabajiTitle: "MOBİLYA-AYDINLATMA: BABAJI RESTORAN AYDINLATMA VE MOBİLYA TASARIMI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projBabajiText: "Londra merkezli restoran işletmecisi Alan Yau'nun Soho'daki restoranı Babaji, geleneksel Türk mutfağının ve tasarımının çağdaş bir yorumunu sunmaktadır. İç mekan, Türkiye'nin zengin zanaat mirasından beslenerek el işçiliğiyle üretilmiş malzemelere ve neredeyse unutulmaya yüz tutmuş zanaat tekniklerine referanslar içermektedir. Restoran, canlı Soho sokak manzarasına uyum sağlayan mütevazı dış cephesiyle 19. yüzyılın sonlarından kalma tuğla bir binanın içinde yer almaktadır. İçeride, mekanı tanımlayan canlı mavi seramik karolar, yüzeylere ve yumuşak mobilyalara uygulanan geleneksel İznik çinileri ve desenleriyle tamamlanmaktadır. Özel tasarım mobilyalar, Türk el işçiliğinden ilham alan ve modern noktalı bir motifle yeniden yorumlanan pirinç kakmalar dahil olmak üzere, sadeliği zarif detaylarla birleştirmektedir. Üç kata yayılan Babaji'nin merkezinde, zemin katta görsel ve mutfak odak noktası sunan çarpıcı beyaz silindirik bir pide fırını yer almaktadır. Birinci katta ve bodrum katında yer alan ek yemek alanları, katmanlı ve sürükleyici bir yemek deneyimi yaratmaktadır. İşbirliğine dayalı bir ekip çalışmasının parçası olarak, bu projeye mobilya ve aydınlatma armatürlerinin tasarımıyla katkıda bulundum.",
-                babajiNote: "Fotoğraf Ed Reeve",
-                projNiluferTitle: "AYDINLATMA: NİLÜFER SARKIT LAMBA (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                niluferText: "Bu sarkıt aydınlatma armatürü, yeni geliştirilen bir miras kompleksi olan Bomonti Tarihi Bira Fabrikası bünyesinde yer alan bir yeme-içme mekanı için özel olarak tasarlanmış ve üretilmiştir. Formu zillerden ilham alarak endüstriyel karakter ile çağdaş tasarımın uyumlu bir karışımını yansıtmaktadır.",
-                niluferNote: "Bağlam görseli Autoban'a aittir.",
-                projBuhaisTitle: "AYDINLATMA: BUHAIS GEOLOGY PARK - OTOMATİK JALUZİ SİSTEMİ VE OKÜLÜS (KURUM İÇİ ÇALIŞMA: JVL)",
-                buhaisText: "Müzede sergilenen nesneleri UV kaynaklı hasarlardan korumak amacıyla bir jaluzi sistemi tasarlanmıştır. GPS tabanlı konum verileri ve güneşin hareketini kullanan jaluziler, gün boyunca otomatik olarak açılıp kapanmaktadır. Ayrıca okülüs, dikey olarak hareket eden bir reflektörün -bir diyafram gibi çalışarak- gelen ışık huzmesinin çapını kontrol ettiği mekana ışık girmesini sağlar.",
-                buhaisNote: "Bağlam görselleri ve fotoğraflar jvl'ye aittir.",
-                projPendantBTitle: "AYDINLATMA: THE NEW BIG PENDANT LIGHT (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projPendantBText: "Geniş hacimli iç mekanlar için geliştirilen, endüstriyel yapısal elemanları rafine aydınlatma estetiğiyle birleştiren büyük ölçekli bir sarkıt lamba tasarımı.",
-                projGhDeskTitle: "AYDINLATMA: GRAND HYATT MASA LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projGhDeskText: "Lüks konaklama iç mekanlarının sofistike estetik diliyle işlevsel görev aydınlatmasını dengeleyen, Grand Hyatt projesi için özel masa lambası tasarımı.",
-                projBurganTitle: "AYDINLATMA: BURGAN BANK PRIVATE - AYDINLATMA PLANI (KURUM İÇİ ÇALIŞMA: I-AM ASSOCIATES)",
-                projBurganText: "Burgan Bank'ın özel şubesi için aydınlatma düzeninin geliştirilmesi, aydınlatma armatürlerinin seçimi ve DIALux yazılımı kullanılarak ışık seviyelerinin hesaplanmasını içeren aydınlatma tasarımı.",
-                burganNote: "Fotoğraflar I-AM Associates'a aittir.",
-                projDressTitle: "CAM EŞYA: DRESS AİLESİ (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projDressText: "Dress koleksiyonu, sofistike bir gece elbisesini andıran rafine ve zarif tasarımıyla öne çıkmaktadır. Her bir parça, yetenekli zanaatkarlar tarafından titizlikle elde üretilmiş ve sonucunda gerçekten eşsiz bir tasarım ortaya çıkmıştır. İnce detayları ve özenli işçiliğiyle bu tasarım, çarpıcı bir görsel deneyim sunmaktadır.",
-                projStoolTitle: "CAM EŞYA: TABURE - OMNIA SERİSİ - PAŞABAHÇE (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projStoolText: "Camı geleneksel kullanım alanlarının ötesine taşımayı ve bir mobilya elemanı olarak yeni bir bağlamda keşfetmeyi amaçladık. Bu fikir, camı sadece dekoratif veya işlevsel bir malzeme olarak değil, mobilya tasarımı içinde yapısal ve ifade edici bir bileşen olarak değerlendirmemize yol açtı. Çeşitli prototipler geliştirip test ettikten sonra, konsepti rafine ederek nihai ürüne ulaştık. \"Bülbülün gözü\" anlamına gelen \"Çeşm-i Bülbül\", 18. yüzyılın sonlarında geliştirilmiş geleneksel bir Osmanlı cam yapım tekniğidir. Bülbülün gözünü andıran karmaşık, sarmal, çok renkli telkari desenleriyle karakterize edilir. Bu teknik, Venedik cam yapım geleneklerinden ilham alınarak Sultan III. Selim döneminde Mevlevi dervişi Mehmed Dede tarafından yaratılmıştır. Bu proje, bu eşsiz zanaatı yeniden yorumlamak ve geleceğe taşımak amacıyla geliştirilmiştir. Paşabahçe'nin Omnia özel koleksiyonu için tasarlanmış, hem lansman etkinliğinde hem de mağazalarda sunulmuştur.",
-                lavaText: "Wabi-Sabi (isim): Bir kavram, bir estetik ve bir dünya görüşü. Kısacası kusurdaki güzelliği bulmayı vurgulayan, büyüme ve çürümenin doğal döngüsünü kabul eden bir yaşam biçimi. Burada göreceğiniz eserler, Wabi-sabi mantığı ile camın doğal akışını harmanlayarak, bilgisayarlar yardımıyla organize edilmiş parametrik geometrilerden oluşmaktadır. Eğriler, matematiksel denklemlerin yardımıyla çizilmiştir.",
-                testiText: "Bu su testisı tasarımı için kapsamlı bir tarihi araştırma süreci yürütülmüştür. Vietnam, Endonezya, Çin, Arap ve İran kültürlerinden gelen, kil ve çeşitli malzemelerden yapılmış su kapları ve testiler detaylı bir şekilde incelenmiştir.",
-                chippedText: "Arkeolojik kazılarda bulunan yontulmuş ok uçlarından ilham alınmıştır.",
-                projPenTitle: "AKSESUAR: PİRİNÇ KALEM",
-                projPenText: "Kalem üretim projesi, her biri taret tornasında farklı bir karmaşıklık düzeyi içeren birkaç aşamadan oluşmaktadır. İlk aşama başarıyla tamamlanmıştır.",
-                proj1Title: "SAATÇİLİK: UNIMATIC UC1 İSKELET KONSEPTİ",
-                proj1Text: "Modello Uno UC1 Classic dalgıç saatinin NH72 mekanizması kullanılarak Unimatic için bir iskelet varyasyonu oluşturulmuştur. Şeffaf kadran, ince bir yarı şeffaf etki yaratan dairesel serigrafi deseniyle saatin orijinal minimalist karakterini korurken mekanizmayı ortaya çıkarmak üzere tasarlanmıştır; mekanizma aynı zamanda kasa arkasındaki bir pencereden de görülebilirken, çerçevedeki gri tonlu kurumsal tipografi saniyeleri gösterir. Hem ön hem de arka kısmın şeffaflığı, özellikle ilk saatlerinde mekanik hareketi gözlemlemek isteyen otomatik saatlere yeni başlayan kullanıcıların merakına yanıt vermektedir.",
-                proj2Title: "SAATÇİLİK: CITIZEN KONSEPTİ",
-                proj2Text: "Bu proje, gücünü ışık enerjisinden alan Citizen'ın Eco-Drive teknolojisine dayanmaktadır ve gün, pil seviyesi ile tarih bilgilerini gösteren temiz bir arayüze sahip konsept bir saat sunarak markanın sürdürülebilir ve yüksek teknolojili saatçiliğe olan bağlılığını yansıtır; tasarım, Japonya'nın kiraz çiçeğinden (sakura) ilham almış olup, onun narin ve minimal estetiğini genel konsepte entegre etmektedir.",
-                proj6Title: "MODA: SERVER KONSEPTİ",
-                fashionText: "Bu proje, fonksiyonel sunucu tasarımı ile yüksek moda estetiğinin kesişimini araştırmaktadır. Bu kavramsal çalışma, endüstriyel teknolojinin görsel dilini bir yaşam tarzı bağlamında yeniden tanımlamayı amaçlamaktadır.",
-                projBronzeTitle: "AR-GE: TUNÇ ÇAĞI GEMİSİ, 3B TARAYICI, MÜZE (KURUM İÇİ ÇALIŞMA: NEW YORK UNIVERSITY ABU DHABI - TASARIM MÜHENDİSİ)",
-                projBronzeText: "REF tarafından finanse edilen Má I Tunç Çağı Tekne Projesi, arkeolojik, metinsel, ikonografik ve etnografik verilerin kapsamlı bir analizi yoluyla Tunç Çağı denizcilik teknolojilerini araştırdı. Proje, geleneksel tekne yapım tekniklerinde uzmanlaşmış batı Hint Okyanusu'ndan uzman gemi yapımcılarını entegre ederek, geleneksel araştırma metodolojilerini yerel bilgi sistemleriyle birleştirdi. Onların pratik uzmanlığı, akademik araştırmanın ötesine geçen kritik içgörüler sağlayarak, daha otantik bir yeniden inşa sürecine olanak tanıdı ve tarihi kanıtlar ile yaşayan gelenekler arasında karşılaştırmalar yapılmasına izin verdi. BAE ve Umman'da toplanan arkeolojik kanıtlardan yararlanan ve Umman'daki MAGAN ekibinin (2005) önceki araştırmalarına dayanan proje, 12 metrelik bir Tunç Çağı gemisi için güncellenmiş bir şematik geliştirdi ve önceki tarihi yorumları rafine etti. Projede Tasarım Mühendisi olarak sorumluluklarım arasında teknik çizimleri dijitalleştirmek ve gemi yapımcıları için doğru fiziksel şablonlara dönüştürülmesini sağlamak yer alıyordu. Ayrıca, hassas bir dijital kayıt oluşturmak için tüm inşaat sürecini düzenli aralıklarla 3B lazer tarayıcı (Artec Leo) kullanarak taramakla görevlendirildim. Bu aşama, Umman'daki inşaat sahasına düzenli seyahat etmeyi gerektirdi. Daha sonra, taranmış verileri işleyerek Unity kullanarak etkileşimli bir müze uygulaması geliştirdim ve kullanıcıların inşaat süreciyle dijital bir ortamda etkileşime girmesini sağladım. Teknenin başarıyla tamamlanmasının ardından ekip, iki gün boyunca 40 deniz millik bir deniz denemesi yapmak üzere Zayed Üniversitesi ile işbirliği yaptı. Gemi, NYUAD öğrencileri ve proje ekibi tarafından denize indirilerek yeniden inşa edilen tasarımın yapısal bütünlüğü, yelken özellikleri ve genel denize elverişliliği doğrulandı.",
-                projVentilatorTitle: "AR-GE: ACİL DURUM VENTİLATÖRÜ GELİŞTİRME (ETMK GÖREV GÜCÜ)",
-                projVentilatorText: "Pandemi sırasında olası ventilatör eksikliklerine yanıt olarak, başlangıçta Japon anestezi uzmanı Naoyuki Ishikita tarafından ISS'de kullanım için tasarlanan bir ventilatörün tersine mühendisliği ve üretimi gerçekleştirildi. Bu dönemde Arçelik, Vestel ve Baykar gibi önde gelen Türk beyaz eşya üreticileri ve teknoloji şirketleri, mekanik ventilatörlerin seri üretimi için hızla girişimlerde bulundu. Triyaj hastaları için bir acil durum planı olarak, alternatif çözümler geliştirmek üzere ETMK (Endüstriyel Tasarımcılar Meslek Kuruluşu) altında çok disiplinli ekipleri bir araya getiren bir görev gücü oluşturuldu. Kapsamlı testler ve değerlendirmelerin ardından, daha fazla geliştirme ve olası üretim için en işlevsel ve üretilebilir tasarım seçildi.",
-                projAquariumTitle: "HOBİ: TATLI SU YÜKSEK TEKNOLOJİLİ BİTKİLİ AKVARYUM TASARIMI",
-                projAquariumText: "Bu projeler, gelişmiş su teknolojisini doğal aquascaping (su peyzajı) sanatıyla birleştiren, titizlikle planlanmış tatlı su yüksek teknolojili bitkili akvaryumları sergilemektedir. Tasarım, canlı ve sağlıklı bitki büyümesini teşvik etmek için yüksek yoğunluklu LED aydınlatma, basınçlı CO₂ enjeksiyonu ve otomatik besin dozajı ile desteklenen tamamen bitkili bir düzene sahiptir. Hardscape (sert peyzaj) kompozisyonuna, bitki seçimine ve akış dinamiklerine dikkat edilerek hem görsel olarak çarpıcı hem de biyolojik olarak kararlı, dengeli bir ekosistem elde edilmiştir. Biyomimikri ve Voronoi diyagramları prensiplerini kullanarak, dağlık oluşumlara benzeyen çeşitli boyutlarda modüler yapılar tasarladım ve 3B yazıcı ile ürettim. Delikli yüzeyleri, suyun yapılar arasından doğal bir şekilde akmasına izin vererek organik akıntıları taklit ederken, iç boşluklar oldukça gözenekli volkanik kayalarla doldurulmuştur. Bu malzemeler, dış yüzeylerde aerobik (oksijenli) bakterileri ve iç gözeneklerde anaerobik (oksijensiz) bakterileri destekleyerek, toksik amonyak ve nitriti su bitkileri için temel bir besin olan nitrata dönüştürmek suretiyle suyu biyolojik olarak filtrelemek üzere birlikte çalışırlar. Bu basılı yapıların etrafına, şeffaf misina kullanılarak yosunlar dikkatlice tutturulmuş, böylece mevcut besinleri kullanarak tutunmaları ve gelişmeleri sağlanmıştır. Süreç boyunca, pH, KH, GH, iletkenlik, besin seviyeleri, CO₂ konsantrasyonu, aydınlatma süresi ve Kelvin değerleri dahil olmak üzere farklı çevresel koşullar altında çeşitli bitki ve yosun türleri ile deneyler yaptım. Bu entegre sistem, biyolojik filtrasyonu artırırken doğal bitki büyümesini teşvik eder ve sonuç olarak kendi kendini idame ettiren, bakteri odaklı bir su arıtma ekosistemi yaratır.",
-                proj7Title: "İÇ MİMARİ: KİLİMANJARO BAR İSTANBUL (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                kilimanjaroText: "Bomonti Tarihi Bira Fabrikası içinde yer alan Kilimanjaro, Bomontiada'nın ayrılmaz bir parçası olan rahat bir restoran bardır. Proje, Time Out İstanbul \"En İyi Restoran\" ödülünü almıştır. Bar konsepti geliştirilmiş ve geometri, sıfır Gauss eğriliği ile tanımlanan ve düz malzemelerden esnetilmeden üretilebilme yeteneği sunan açılabilir yüzeylere dönüştürülmüştür. Yapısal çizimler üretilmiş olup, buna ek olarak yapısal güvenlik ve performansı sağlamak için detaylı statik hesaplamalar yapılmıştır. Elde edilen mühendislik verilerine dayanarak, doğru yapısal profiller seçilmiş ve buna göre uygulanmıştır. Duvara monte ve sarkıt aydınlatma elemanları tasarlanmış, üretim çizimlerinin hazırlanması ve imalatın denetlenmesi sağlanmıştır. Yapı, açılabilir yüzey mantığı ile gemi inşa teknikleri arasındaki yakın ilişkiyi yansıtacak şekilde, tersane zanaatkarları tarafından sahada üretilmiştir. İnşaat sırasındaki saha desteği, yapısal hizalama, doğru yerleştirme ve tüm bileşenlerin hassas montajı konusunda rehberlik etmeyi içermiştir.",
-                kilimanjaroNote: "Fotoğraf: Engin Aydeniz",
-                proj8Title: "İÇ MİMARİ: SMILES DİŞ KLİNİĞİ PARAMETRİK DUVAR (MÜŞTERİ: WANGAN)",
-                smilesText: "Geliştirilen duvar konseptinin parametrik çizimlerinin sağlanması ve Ankara'da bulunan bir diş kliniği için üretim çizimlerinin oluşturulması. Best of Year 2025 İç Mimari Tasarım Ödülü kazananı.",
-                smilesNote: "Fotoğraf: İbrahim Özbunar, 645 Studio",
-                projSinemiraTitle: "İÇ MİMARİ: SINEMIRA YAT İÇ MEKAN İMALAT ÇİZİMLERİ (MÜŞTERİ: NORMAL)",
-                sinemiraText: "Doğru tasarım geliştirmeyi desteklemek amacıyla mevcut yat iç mekanlarının saha ölçümlerini gerçekleştirdim, ardından detaylı plan ve kesit çizimlerinin hazırlığını yaptım. Özel mobilya ve yüzey kaplamaları için teknik ve üretim çizimlerini geliştirerek hassasiyet ve uygulanabilirliği sağladım. Uygulama aşaması boyunca tasarım bütünlüğünü ve kaliteyi korumaya yardımcı olarak sahadaki üretim ve montaj süreçlerine aktif olarak destek verdim.",
+                projBabajiText: "Londra merkezli restoran işletmecisi Alan Yau'nun Soho'daki restoranı Babaji, geleneksel Türk mutfağı ve tasarımının çağdaş bir yorumunu sunmaktadır. İç mekan, el işçiliği malzemeler ve neredeyse unutulmuş zanaat tekniklerine atıfta bulunarak Türkiye'nin zengin zanaatkar mirasına dayanmaktadır. Restoran, canlı Soho sokak manzarasına uyum sağlayan mütevazı bir dış cepheye sahip 19. yüzyılın sonlarından kalma tuğla bir binanın içinde yer almaktadır. İçeride, canlı mavi seramik karolar mekanı tanımlarken, geleneksel İznik çinileri ve yüzeylere ile yumuşak mobilyalara uygulanan desenlerle tamamlanmaktadır. Özel tasarım mobilyalar, Türk el işçiliğinden ilham alan ve modern noktalı bir motifle yeniden hayal edilen pirinç kakmalar da dahil olmak üzere basitliği rafine detaylarla birleştirmektedir. Üç kata yayılan Babaji, zemin katta görsel ve mutfak açısından odak noktası sunan çarpıcı beyaz silindirik bir pide fırınının etrafında şekillenmektedir. Birinci katta ve bodrum katında yer alan ek yemek alanları, katmanlı ve sarmalayıcı bir yemek deneyimi yaratmaktadır. Ortak bir ekip çalışmasının parçası olarak, bu projeye mobilya ve aydınlatma armatürlerinin tasarımı yoluyla katkıda bulundum.",
+                babajiNote: "Fotoğraflar: Ed Reeve",
+                proj7Title: "İÇ MİMARİ: KILIMANJARO BAR İSTANBUL (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                kilimanjaroText: "Bomonti Tarihi Bira Fabrikası içerisinde yer alan Kilimanjaro, Bomontiada'nın ayrılmaz bir parçası olan rahat bir restoran-bardır. Proje, Time Out İstanbul 'En İyi Restoran' ödülünü almıştır. Bar konsepti geliştirilmiş ve geometri, sıfır Gauss eğriliği ve esnetilmeden düz malzemelerden üretilebilme yeteneği ile tanımlanan açılabilir yüzeylere dönüştürülmüştür. Yapısal çizimler üretilmiş ve buna ek olarak, yapısal güvenlik ve performansı sağlamak için detaylı statik hesaplamalar yapılmıştır. Elde edilen mühendislik verilerine dayanarak, doğru yapısal profiller seçilmiş ve buna göre uygulanmıştır. Üretim çizimlerinin hazırlanması ve imalatın denetlenmesi dahil olmak üzere duvara monte ve sarkıt aydınlatma elemanları tasarlanmıştır. Yapı, açılabilir yüzey mantığı ile gemi inşa teknikleri arasındaki yakın ilişkiyi yansıtacak şekilde, tersane ustaları tarafından sahada üretilmiştir. İnşaat sırasındaki saha desteği, yapısal hizalamanın yanı sıra tüm bileşenlerin doğru yerleştirilmesi ve hassas montajı konusunda rehberliği de içermiştir.",
+                kilimanjaroNote: "Fotoğraflar: Engin Aydeniz",
+                proj8Title: "İÇ MİMARİ: SMILES DENTAL CLINIC PARAMETRİK DUVAR (MÜŞTERİ: WANGAN)",
+                smilesText: "Ankara'da bulunan bir diş kliniği için geliştirilen duvar konseptinin parametrik çizimlerinin sağlanması ve üretim çizimlerinin oluşturulması. Best of Year 2025 İç Mimari Tasarım Ödülü sahibi.",
+                smilesNote: "Fotoğraflar: İbrahim Özbunar, 645 Studio",
+                projSinemiraTitle: "İÇ MİMARİ: SINEMIRA YAT İÇ MEKAN ÜRETİM ÇİZİMLERİ (MÜŞTERİ: NORMAL)",
+                sinemiraText: "Doğru tasarım geliştirmesini desteklemek için mevcut yat iç mekanlarının saha ölçümleri gerçekleştirilmiş, ardından detaylı planlar ve kesit çizimleri hazırlanmıştır. Özel mobilyalar ve yüzey kaplamaları için teknik ve üretim çizimleri geliştirilerek hassasiyet ve uygulanabilirlik sağlanmıştır. Sahadaki üretim ve montaj süreçlerine aktif olarak destek verilmiş, uygulama aşaması boyunca tasarım bütünlüğünün ve kalitenin korunmasına yardımcı olunmuştur.",
                 sinemiraNote: "Görseller Normal'e aittir.",
                 proj9Title: "İÇ MİMARİ: VAKKORAMA MAĞAZASI PARAMETRİK AYDINLATMA ENSTALASYONU (MÜŞTERİ: VAKKORAMA)",
-                vakkoramaText: "İstanbul Zorlu Center'daki Vakkorama mağazası için bir çalışma. Proje, dikey duvarlar için parametrik aydınlatmayı içeriyor. Aydınlatma tasarımcısı Ali Berkman tarafından oluşturulan ve mekansal ışık haritasını tanımlayan mevcut aydınlatma şemasına minimum etki etmesi amacıyla geliştirildi. Çerçevelerden sızan ışık, tanımlanmış bir haritalama sistemi içinde kontrol edildi ve basılı yüzey üzerindeki dairesel desenin ölçeği yazılım aracılığıyla parametrik olarak ayarlandı.",
-                vakkoramaNote: "Fotoğraf: Ali Berkman, Aytek Jane",
+                vakkoramaText: "İstanbul Zorlu Center'daki Vakkorama mağazası için yapılan bir çalışma. Proje, dikey duvarlar için parametrik aydınlatmayı içermektedir. Mekansal ışık haritasını tanımlayan aydınlatma tasarımcısı Ali Berkman tarafından oluşturulan mevcut aydınlatma kurgusuna minimum müdahale edecek şekilde geliştirilmiştir. Çerçevelerden sızan ışık, basılı yüzey üzerindeki dairesel desenin ölçeğinin yazılım aracılığıyla parametrik olarak ayarlandığı tanımlanmış bir haritalama sistemi dahilinde kontrol edilmiştir.",
+                vakkoramaNote: "Fotoğraflar: Ali Berkman, Aytek Jane",
                 proj10Title: "İÇ MİMARİ: GAD PARK OFİSİ (KURUM İÇİ ÇALIŞMA: GAD ARCHITECTURE)",
-                gadText: "Eski bir çok katlı otopark yapısı içinde yer alan GAD Architecture ofisinin iç mimari tasarımına, mekansal yerleşim planlamasına ve aydınlatma tasarımına katkıda bulundum.",
-                gadNote: "Fotoğraflar GAD Architecture'a aittir.",
+                gadText: "Eski bir çok katlı otopark yapısında yer alan GAD Architecture ofisi için iç mimari tasarım, mekansal düzenleme planlaması ve aydınlatma tasarımı süreçlerine katkıda bulundum.",
+                gadNote: "Fotoğraflar Gad Architecture'a aittir.",
                 projMarbleTitle: "İÇ MİMARİ: MERMER BANYO ÜNİTESİ TASARIMI",
                 projMarbleText: "Amerika Birleşik Devletleri merkezli bir mermer üreticisi için geliştirilen banyo ünitesi ve iç mimari tasarım projesi.",
-                proj12Title: "İÇ MİMARİ: SAMSUNG EMAAR AVM - DENEYİM MAĞAZASI (KURUM İÇİ ÇALIŞMA: ONERX)",
-                samsungText: "Emaar AVM'deki Samsung Deneyim Mağazası'nın iç tasarımı ve proje yönetimi; proje yöneticileri, tasarımcılar, üreticiler ve yüklenicilerin dahil olduğu ortak bir ekip çalışmasıyla yürütülmüştür. Proje, perakende akışına ve teknolojik entegrasyona odaklanmış olup, Samsung ve Apple'ın eski perakende tasarım direktörü Simon Orchover tarafından oluşturulan tasarım kılavuzlarına uygun olarak geliştirilmiştir. Dünyada bir ilk konsept olarak kabul edilen Samsung Deneyim Mağazası; deneyim, satış ve satış sonrası hizmetleri tek ve bütünleşik bir ortamda bir araya getirmektedir. Samsung bu modeli küresel olarak genişletirken, İstanbul mağazası bir referans noktası olarak kabul edilmiştir. Mağaza içinde, müşterilerin Samsung teknolojilerinden kesintisiz olarak yararlanmaya devam edebilmelerini sağlamak için birinci sınıf teknik hizmetler sunulmaktadır.",
+                proj12Title: "İÇ MİMARİ: SAMSUNG EMAAR MALL - DENEYİM MAĞAZASI (KURUM İÇİ ÇALIŞMA: ONERX)",
+                samsungText: "Samsung Emaar Experience Store iç mimari tasarımı ve proje yönetimi; proje yöneticileri, tasarımcılar, üreticiler ve müteahhitlerin katıldığı ortak bir ekip çalışması olarak yürütülmüştür. Proje, Samsung ve Apple'ın eski perakende tasarım direktörü Simon Orchover tarafından oluşturulan tasarım yönergelerine uygun olarak perakende akışı ve teknolojik entegrasyona odaklanılmıştır. Dünyada bir ilk olan bu konsept, deneyim, satış ve satış sonrası hizmetleri tek bir çatıda toplar. Samsung bu modeli küresel olarak genişletirken, İstanbul mağazası bir referans noktası olarak kabul edilmiştir. Mağaza bünyesinde, müşterilerin Samsung teknolojilerinden kesintisiz yararlanabilmelerini sağlamak için birinci sınıf teknik servis hizmeti sunulmaktadır.",
                 samsungNote: "Fotoğraflar Onerx'e aittir.",
-                projNyuTitle: "İÇ MİMARİ: NEW YORK UNIVERSITY ABU DHABI - MÜHENDİSLİK BİNASI (KURUM İÇİ ÇALIŞMA: NYUAD-NTSI LAB)",
-                nyuText: "Bir sanal gerçeklik (VR) ve artırılmış gerçeklik (AR) sanat enstalasyonu için New York Üniversitesi Abu Dabi'deki Mühendislik Binası içindeki tüm mimari alanların kapsamlı modellemesi. Çalışma, sürükleyici AR/VR uygulamaları ve etkileşimli anlatı ortamları için optimize edilmiş, binanın tamamen mekansal olarak doğru bir dijital rekonstrüksiyonunun üretilmesini içeriyordu. Bu proje, mimari görselleştirme, sürükleyici medya ve mekansal hikaye anlatımının kesişimine odaklanan Narrative Technologies and Spatial Installations Lab bünyesinde geliştirilmiştir.",
+                projNyuTitle: "İÇ MİMARİ: NEW YORK UNIVERSITY ABU DHABI - ENGINEERING BUILDING (KURUM İÇİ ÇALIŞMA: NYUAD-NTSI LAB)",
+                nyuText: "New York University Abu Dhabi'deki Mühendislik Binası içindeki tüm mimari mekanların sanal gerçeklik (VR) ve artırılmış gerçeklik (AR) sanat enstalasyonu için kapsamlı modellenmesi. Çalışma, binanın sarmalayıcı AR/VR uygulamaları ve etkileşimli anlatı ortamları için optimize edilmiş, mekansal olarak tamamen doğru bir dijital rekonstrüksiyonunun üretilmesini içeriyordu. Bu proje, mimari görselleştirme, sarmalayıcı medya ve mekansal hikaye anlatımının kesişimine odaklanan Narrative Technologies and Spatial Installations Lab (Anlatı Teknolojileri ve Mekansal Enstalasyonlar Laboratuvarı) bünyesinde geliştirilmiştir.",
                 projOdakuleTitle: "DIŞ MİMARİ: ODAKULE PASAJI KONSEPTİ",
-                odakuleText: "Odakule, gün boyunca yoğun yaya akışına sahip olan ve farklı kullanıcı gruplarını bir araya getiren önemli bir kentsel geçittir. Proje, pasaj kavramının doğasında var olan hareket ve adım atma fikrini İstanbul Sanayi Odası'nın üretim odaklı vizyonuyla birleştirerek insan hareketinden enerji üretmeyi amaçlamaktadır. Piezoelektrik zemin kaplama sistemi her adımı kinetik enerjiye dönüştürür. Yüksek günlük yaya trafiği sayesinde bu, anlamlı ve sürekli bir enerji kaynağı yaratır. Üretilen enerji, sarmal yapılı etkileşimli bir aydınlatma elemanını besleyerek kullanıcı ile mekan arasında gerçek zamanlı bir bağlantı kurar. Bu proje, Odakule Pasajı Ulusal Tasarım Yarışması için Enrico Şansal ile işbirliği içinde geliştirilmiştir. Sonuç olarak pasaj, basit bir geçiş alanı olmaktan çıkarak etkileşimli, enerji üreten kentsel bir deneyime dönüşmektedir.",
+                odakuleText: "Odakule, gün boyu yoğun yaya akışına sahip, farklı kullanıcı gruplarını bir araya getiren önemli bir kentsel pasajdır. Proje, pasaj kavramının doğasında var olan hareket ve adım atma fikrini, İstanbul Sanayi Odası'nın üretim odaklı vizyonuyla birleştirerek insan hareketinden enerji üretmeyi amaçlamaktadır. Piezoelektrik zemin sistemi, her adımı kinetik enerjiye dönüştürür. Yüksek günlük yaya trafiği ile bu, anlamlı ve sürekli bir enerji kaynağı yaratır. Üretilen enerji, sarmal bir interaktif aydınlatma elemanına güç vererek kullanıcı ile mekan arasında gerçek zamanlı bir bağ kurar. Bu proje, Odakule Pasajı Ulusal Tasarım Yarışması için Enrico Şansal ile iş birliği içinde geliştirilmiştir. Sonuç olarak pasaj, basit bir geçiş alanından etkileşimli, enerji üreten kentsel bir deneyime dönüşür.",
                 projEmaarTitle: "DIŞ MİMARİ: EMAAR AVM CEPHE KILAVUZU (MÜŞTERİ: NORMAL)",
                 emaarText: "Alışveriş merkezleri, her markanın kendi kurumsal kimliğini bağımsız olarak uygulaması nedeniyle genellikle görsel bir karmaşaya dönüşür. Bu sorunu gidermek amacıyla, AVM yönetimi kapsamlı bir kılavuz talep etmiştir. Önerilen tasarım çerçevesi, bireysel marka kimliklerine saygı duyarken genel görsel dili birleştirmeyi amaçlamıştır. Temel hedef, mekanın mimari bütünlüğünü korumak ve temel estetik değerlerini vurgulayarak profesyonel bir portföy sunumuna uygun, daha uyumlu ve rafine bir ortam yaratmaktı.",
                 proj3Title: "MOBİLYA: SOFA KONSEPTİ",
@@ -1340,29 +1311,66 @@
                 proj4Text: "Yedi modül ile mimari formları tamamlayan geometriler oluşturmak mümkündür. Tasarım, sokak mobilyası tarihinin bir analiziyle geliştirilmiştir. Dış Mekan Mobilyası kategorisinde EDIDA 2020 kazananıdır.",
                 janeNote: "Bağlam görselleri Urban Jobs'a aittir.",
                 projBurositTitle: "MOBİLYA: BANZAI OFİS SANDALYESİ (MÜŞTERİ: BÜROSİT)",
-                projBurositText: "Bu ürün, şirketin yeni görünüm ve hissini geliştirmeye ve tasarım odaklı bir yaklaşımı ilerletmeye odaklanarak şirket sahibiyle yapılan haftalık toplantıların sonucudur. Süreç boyunca, tasarım dilini temel olarak eksiltme yoluyla basitleştirmeyi ve daha rafine hale getirmeyi amaçladık. Şirketin modern yeni kimliğinin ilk unsurlarından birini temsil etmektedir.",
+                projBurositText: "Bu ürün, şirketin yeni görünümünü ve hissini geliştirmeye odaklanan haftalık toplantıların sonucudur. Tasarım dilini sadeleştirerek rafine bir görünüm elde etmeyi amaçladık. Şirketin modern yeni kimliğinin ilk unsurlarından birini temsil etmektedir.",
                 burositNote: "Fotoğraflar Bürosit'e aittir.",
-                projCocoonTitle: "MOBİLYA: İSTANBUL DESIGN WEEK COCOON YERLEŞTİRMESİ (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projCocoonText: "Bu proje, şirketin Azerbaycan'daki Haydar Aliyev Havalimanı için geliştirdiği cocoon (koza) alanı elemanlarını yeniden yorumluyor ve onlara özgü detayları İstanbul Tasarım Haftası için küçük ölçekli bir açık hava oturma ünitesine dönüştürüyor. Kendi hacmiyle tanımlanan yapı, kullanıcıların dinlenmesi ve gün batımıyla bağ kurması için sürükleyici bir deneyim yaratıyor.",
+                projCocoonTitle: "MOBİLYA: İSTANBUL DESIGN WEEK COCOON YAPISI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                projCocoonText: "Bu proje, şirketin Azerbaycan'daki Haydar Aliyev Havalimanı için geliştirdiği cocoon (koza) alanı elemanlarını yeniden yorumlayarak, bu karakteristik detayları İstanbul Design Week için küçük ölçekli bir dış mekan oturma ünitesine dönüştürmektedir. Kendi hacmiyle tanımlanan yapı, kullanıcıların dinlenmesi ve gün batımıyla etkileşime girmesi için sarmalayıcı bir deneyim yaratır.",
                 projUnionTitle: "MOBİLYA: UNION KOLEKSİYONU (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projUnionText: "Maison&Objet Paris'te lansmanı yapılan Union ailesi; yatak, kanepe ve masadan oluşan işbirlikçi bir ekip çalışması olarak geliştirildi. Kökleri ev ortamına dayanan Union, maksimum konforu ön planda tutarken formu vurguluyor. Geleneksel zanaatkarlığı modern üretim teknikleriyle birleştirerek dokunsal, doğal malzemeler kullanılarak üretilmiştir. Kendine özgü ve alışılmışın dışındaki parçaları, baştan sona yumuşak kıvrımlar ve ince tasarım detaylarıyla tanımlanıyor.",
+                projUnionText: "Maison&Objet Paris'te tanıtılan Union ailesi; yatak, kanepe ve masadan oluşan ortak bir ekip çalışması olarak geliştirilmiştir. Ev ortamına dayanan Union, maksimum konforu ön planda tutarken formu vurgular. Dokunsal, doğal malzemeler kullanılarak, geleneksel zanaatkarlık ile modern üretim teknikleri birleştirilerek üretilmiştir. Kendine özgü ve alışılmadık parçaları, yumuşak kavisler ve ince tasarım detaylarıyla tanımlanır.",
                 unionNote: "Görseller ve fotoğraflar Autoban'a aittir.",
-                projInfinityTitle: "AYDINLATMA: INFINITY ALÜMİNYUM ÇERÇEVESİZ GİZLİ AYDINLATMA (KURUM İÇİ ÇALIŞMA: JVL)",
-                projInfinityText: "Özel tasarlanmış alüminyum ekstrüzyon profili sayesinde farklı senaryolara uyum sağlayabilir. Tüm bağlantı detayları baştan sona çözülmüş ve geliştirilmiştir.",
+                projNiluferTitle: "AYDINLATMA: NİLÜFER SARKIT LAMBA (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                niluferText: "Bu sarkıt aydınlatma armatürü, yeni geliştirilen bir miras kompleksi olan Bomonti Tarihi Bira Fabrikası bünyesinde yer alan bir yeme-içme mekanı için özel olarak tasarlanmış ve üretilmiştir. Formu zillerden ilham alarak endüstriyel karakter ile çağdaş tasarımın uyumlu bir karışımını yansıtmaktadır.",
+                niluferNote: "Bağlam görseli Autoban'a aittir.",
+                projBuhaisTitle: "AYDINLATMA: BUHAIS GEOLOGY PARK - OTOMATİK JALUZİ SİSTEMİ VE OKÜLÜS (KURUM İÇİ ÇALIŞMA: JVL)",
+                buhaisText: "Müzede sergilenen nesneleri UV kaynaklı hasarlardan korumak amacıyla bir jaluzi sistemi tasarlanmıştır. GPS tabanlı konum verileri ve güneşin hareketini kullanan jaluziler, gün boyunca otomatik olarak açılıp kapanmaktadır. Ayrıca okülüs, dikey olarak hareket eden bir reflektörün -bir diyafram gibi çalışarak- gelen ışık huzmesinin çapını kontrol ettiği bir sistemle mekana ışık sağlamaktadır.",
+                buhaisNote: "Bağlam görselleri ve fotoğraflar jvl'ye aittir.",
+                projInfinityTitle: "AYDINLATMA: INFINITY ALÜMİNYUM TRIMLESS GİZLİ AYDINLATMA (KURUM İÇİ ÇALIŞMA: JVL)",
+                projInfinityText: "Özel tasarım alüminyum ekstrüzyon profili sayesinde çeşitli senaryolara uyum sağlayabilir. Tüm bağlantı detayları kapsamlı bir şekilde çözülmüş ve geliştirilmiştir.",
                 infinityNote: "Bağlam görselleri JVL'ye aittir.",
-                projSpiderTitle: "AYDINLATMA: NEW SPIDER DUVAR LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projSpiderText: "Örümcek formundan ilham alan Spider, renkli bir ampulü çevreleyen dışbükey çubukların dairesel dizilimiyle şekilleniyor. Çarpıcı, heykelsi duruşuyla tasarım, hem işlevsel bir nesne hem de görsel bir ifade olarak öne çıkıyor. Aydınlatıldığında, renkli ampul ışığı geriye doğru yönlendiriyor ve lamba yüzeye dramatik, büyük boyutlu gölgeler düşürerek karakterini artıran beklenmedik bir etki yaratıyor. Spider Duvar Lambası projesi, tasarımı daha da geliştirmeye ve üretim kalitesini artırmaya odaklanıyor. Ürünü daha farklı ve kopyalanması zor hale getirmek için ek detaylar dahil edildi. Koleksiyon, birden fazla boyut varyasyonunun yanı sıra bir sarkıt versiyonunu da içeriyor.",
-                projCesmiTitle: "AYDINLATMA: ÇEŞM-İ BÜLBÜL DUVAR LAMBASI - OMNIA SERİSİ - PAŞABAHÇE (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projCesmiText: "\"Bülbülün gözü\" anlamına gelen \"Çeşm-i Bülbül\", 18. yüzyılın sonlarında geliştirilmiş geleneksel bir Osmanlı cam yapım tekniğidir. Bülbülün gözünü andıran karmaşık, sarmal, çok renkli telkari desenleriyle öne çıkar. Bu teknik, Venedik cam yapım geleneklerinden ilham alınarak Sultan III. Selim döneminde Mevlevi dervişi Mehmed Dede tarafından yaratılmıştır. Bu proje, bu eşsiz sanat formunu geleceğe taşımak amacıyla geliştirilmiştir. Paşabahçe'nin Omnia özel koleksiyonu için tasarlanmış olup hem lansman etkinliğinde hem de mağazalarda sergilenmiştir.",
+                projSpiderTitle: "AYDINLATMA: YENİ SPIDER DUVAR LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                projSpiderText: "Örümceklerin formundan esinlenen Spider, renkli bir ampulü çevreleyen dışbükey çubukların dairesel dizilimiyle şekillenir. Çarpıcı ve heykelsi duruşuyla tasarım, hem fonksiyonel bir nesne hem de görsel bir ifade olarak öne çıkar. Aydınlatıldığında, renkli ampul ışığı geriye doğru yönlendirir ve lamba yüzeye dramatik, büyük gölgeler düşürerek karakterini güçlendiren beklenmedik bir etki yaratır. Spider Wall Lamp projesi, tasarımı daha da geliştirmeye ve üretim kalitesini artırmaya odaklanmaktadır. Ürünü daha belirgin hale getirmek ve kopyalanmasını zorlaştırmak için ek detaylar dahil edilmiştir. Koleksiyon, birden fazla boyut varyasyonunun yanı sıra bir sarkıt versiyonunu da içermektedir.",
+                projCesmiTitle: "AYDINLATMA: ÇEŞM-İ BÜLBÜL DUVAR AYDINLATMASI - OMNIA SERİSİ - PAŞABAHÇE (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                projCesmiText: "“Çeşm-i Bülbül,” Türkçeye “bülbülün gözü” olarak çevrilen, 18. yüzyılın sonlarında geliştirilen geleneksel bir Osmanlı cam işleme tekniğidir. Bülbül gözünü andıran karmaşık, sarmal ve çok renkli cam çubuk (filigran) desenleriyle ayırt edilir. Teknik, III. Selim döneminde Mevlevi dervish Mehmed Dede tarafından Venedik cam işleme geleneklerinden esinlenerek oluşturulmuştur. Bu proje, bu eşsiz sanat formunu geleceğe taşıma çabası olarak geliştirilmiştir. Paşabahçe’nin Omnia özel koleksiyonu için tasarlanmış olup, lansman etkinliğinin yanı sıra perakende mağazalarında da sergilenmiştir.",
                 projGlassTitle: "AYDINLATMA: GLASS IS TOMORROW MASA LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projGlassText: "Bu masa lambası, Paşabahçe ve çeşitli ortak kuruluşların sponsorluğunda \"Cam Yarındır\" teması altında Omnia serisi için geliştirilmiştir. Tasarım süreci, kapsamlı prototipleme ve malzeme keşfini içeriyordu. Projenin teknik ve biçimsel gelişimini gösteren birden fazla prototip üretilmiş ve sergilenmiştir.",
+                projGlassText: "Bu masa lambası, Paşabahçe ve çeşitli ortak kuruluşların sponsorluğunda, “Glass is Tomorrow” teması altındaki Omnia serisi için geliştirilmiştir. Tasarım süreci, kapsamlı prototipleme ve malzeme araştırmalarını içermiştir. Projenin teknik ve biçimsel gelişimini gösteren çok sayıda prototip üretilmiş ve sergilenmiştir.",
                 projCapsuleTitle: "AYDINLATMA: CAPSULE DUVAR LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projCapsuleText: "Basit dairesel formuyla tanımlanan bu duvar lambası, orantıya büyük özen gösterilerek dikkatlice geliştirildi. Hidrolik pres kullanılarak üretilmek üzere tasarlandığından, tüm kalıp geliştirme süreçleri detaylı bir şekilde tamamlandı. Tasarım süreci boyunca çok çeşitli renk ve yüzey kaplama varyasyonları araştırıldı. İç aydınlatma elemanı, kablolama ve sürücü; hem performansı hem de dayanıklılığı sağlamak üzere titizlikle tasarlandı. Ürün Maison&Objet'te sergilendi ve daha sonra İngiltere merkezli CTO Lighting'e satıldı.",
+                projCapsuleText: "Basit dairesel formuyla tanımlanan bu duvar lambası, oranlara büyük önem verilerek özenle geliştirilmiştir. Hidrolik press kullanılarak üretim için tasarlanan lambanın tüm kalıp geliştirme süreçleri detaylı bir şekilde tamamlanmıştır. Tasarım süreci boyunca çok çeşitli renk ve yüzey bitişi varyasyonları araştırılmıştır. İç aydınlatma elemanı, kablolama ve sürücü, hem performans hem de dayanıklılık sağlamak için titizlikle mühendislikten geçirilmiştir. Ürün Maison&Objet'te sergilenmiş ve daha sonra İngiliz CTO Lighting'e satılmıştır.",
                 capsuleNote: "Bağlam görseli Autoban'a aittir.",
                 projStarTitle: "AYDINLATMA: STAR SARKIT LAMBA (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projStarText: "Altın oranın rehberliğinde, ürünün her bir elemanı uyumlu bir bütün oluşturacak şekilde oranlandırıldı. Proje ayrıca, kablolama ve gerekli sürücü sisteminin geliştirilmesinin yanı sıra PCB (Baskılı Devre Kartı) tasarımını da içeriyordu.",
+                projStarText: "Altın oran rehberliğinde, ürünün her bir öğesi uyumlu bir bütün oluşturacak şekilde oranlanmıştır. Proje ayrıca PCB tasarımının yanı sıra kablolama ve gerekli sürücü sisteminin geliştirilmesini de içermektedir.",
                 proj5Title: "AYDINLATMA: KEÇE SARKIT LAMBA KONSEPTİ",
-                pendantText: "Sıcak, dağınık bir aydınlatma ortamı yaratmak için keçenin akustik ve estetik özelliklerini kullanan minimalist bir aydınlatma konsepti."
+                pendantText: "Sıcak ve dağılmış bir aydınlatma ortamı yaratmak için keçenin akustik ve estetik özelliklerinden yararlanan minimalist bir aydınlatma konsepti.",
+                projPendantBTitle: "AYDINLATMA: THE NEW BIG PENDANT LIGHT (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                projPendantBText: "Geniş hacimli iç mekanlar için geliştirilen, endüstriyel yapısal elemanları rafine aydınlatma estetiğiyle birleştiren büyük ölçekli bir sarkıt lamba tasarımı.",
+                projGhDeskTitle: "AYDINLATMA: GRAND HYATT MASA LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                projGhDeskText: "Custom desk lamp design for the Grand Hyatt project, balancing functional task lighting with the sophisticated aesthetic language of luxury hospitality interiors.",
+                projBurganTitle: "AYDINLATMA: BURGAN BANK PRIVATE - AYDINLATMA PLANI (KURUM İÇİ ÇALIŞMA: I-AM ASSOCIATES)",
+                projBurganText: "Lighting design for Burgan Bank’s private branch, including the development of the lighting layout, selection of lighting fixtures, and calculation of light levels using DIALux software.",
+                burganNote: "Fotoğraflar I-AM Associates'a aittir.",
+                projDressTitle: "CAM EŞYA: DRESS AİLESİ (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                projDressText: "Dress koleksiyonu, sofistike bir gece elbisesini andıran rafine ve zarif tasarımıyla öne çıkmaktadır. Her bir parça, yetenekli zanaatkarlar tarafından titizlikle elde üretilmiş ve sonucunda gerçekten eşsiz bir tasarım ortaya çıkmıştır. İnce detayları ve özenli işçiliğiyle bu tasarım, çarpıcı bir görsel deneyim sunmaktadır.",
+                projStoolTitle: "CAM EŞYA: TABURE - OMNIA SERİSİ - PAŞABAHÇE (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
+                projStoolText: "Camı geleneksel kullanımlarının ötesine taşımayı ve bir mobilya elemanı olarak yeni bir bağlamda keşfetmeyi amaçladık. Bu fikir bizi camı sadece dekoratif veya işlevsel bir malzeme olarak değil, mobilya tasarımı içinde yapısal ve ifade edici bir bileşen olarak düşünmeye yöneltti. Birkaç prototip geliştirip test ettikten sonra konsepti rafine ettik ve nihai ürüne ulaştık. Türkçeye “bülbülün gözü” olarak çevrilen “Çeşm-i Bülbül,” 18. yüzyılın sonlarında geliştirilen geleneksel bir Osmanlı cam işleme tekniğidir. Bülbül gözünü andıran karmaşık, sarmal ve çok renkli cam çubuk (filigran) desenleriyle ayırt edilir. Teknik, III. Selim döneminde Mevlevi dervişi Mehmed Dede tarafından Venedik cam işleme geleneklerinden esinlenerek oluşturulmuştur. Bu proje, bu eşsiz zanaatı yeniden yorumlama ve geleceğe taşıma çabası olarak geliştirilmiştir. Paşabahçe’nin Omnia özel koleksiyonu için tasarlanmış olup, lansman etkinliğinin yanı sıra perakende mağazalarında da sergilenmiştir.",
+                projLavaTitle: "CAM EŞYA: LAVA TEA GLASS",
+                lavaText: "Wabi-Sabi (isim): Bir kavram, bir estetik ve bir dünya görüşü. Basitçe, kusurlardaki güzelliği bulmayı ve büyüme ile çürümenin doğal döngüsünü kabul etmeyi vurgulayan sezgisel bir yaşam biçimidir. Burada göreceğiniz çalışmalar, bilgisayar yardımıyla organize edilmiş parametrik geometrilerinden oluşmakta, Wabi-Sabi mantığını ve camın doğal akışını harmanlamaktadır. Eğriler, matematiksel denklemlerin yardımıyla çizilmiştir.",
+                projTestiTitle: "CAM EŞYA: TESTI WATER PITCHER",
+                testiText: "Bu su sürahisinin tasarımı için kapsamlı bir tarihsel araştırma süreci yürütülmüştür. Vietnam, Endonezya, Çin, Arap ve İran kültürlerinden gelen, kilden ve çeşitli malzemelerden yapılmış su kapları ve sürahiler derinlemesine incelenmiştir.",
+                projChippedTitle: "CAM EŞYA: CHIPPED GLASS",
+                chippedText: "Arkeolojik kazılarda keşfedilen yontulmuş ok uçlarından esinlenilmiştir.",
+                projPenTitle: "AKSESUAR: PİRİNÇ KALEM",
+                projPenText: "Kalem üretim projesi, her biri taret tornasında farklı karmaşıklık seviyeleri içeren birkaç aşamadan oluşmaktadır. İlk aşama başarıyla tamamlanmıştır.",
+                proj1Title: "SAAT: UNIMATIC UC1 İSKELET KONSEPTİ",
+                proj1Text: "Unimatic için Modello Uno UC1 Classic dalgıç saatinin NH72 mekanizması kullanılarak bir iskelet varyasyonu oluşturuldu. Mekanizmayı ortaya çıkarmak için şeffaf bir kadran tasarlandı ve saatin orijinal minimalist karakterini korumak amacıyla serigrafi baskı ile dairesel bir desen uygulanarak hafif yarı şeffaf bir efekt yaratıldı; mekanizma aynı zamanda kasa arkasındaki pencereden de görülebilirken, bezel üzerindeki gri tonlu kurumsal tipografi saniyeleri gösterir. Hem ön hem de arka yüzün şeffaflığı, özellikle ilk saatlerinde mekanik hareketi gözlemlemek isteyen ve otomatik saatlerle yeni tanışan kullanıcıların merakına yanıt verir.",
+                proj2Title: "SAAT: CITIZEN KONSEPTİ",
+                proj2Text: "Bu proje, gücünü ışık enerjisinden alan Citizen'ın Eco-Drive teknolojisine dayanmaktadır ve gün, pil seviyesi ile tarih bilgilerini gösteren temiz bir arayüze sahip konsept bir saat sunarak markanın sürdürülebilir ve yüksek teknolojili saatçiliğe olan bağlılığını yansıtır; tasarım, Japonya'nın kiraz çiçeğinden (sakura) ilham almış olup, onun narin ve minimal estetiğini genel konsepte entegre etmektedir.",
+                proj6Title: "MODA: SERVER KONSEPTİ",
+                fashionText: "Bu proje, fonksiyonel sunucu tasarımı ile yüksek moda estetiğinin kesişimini araştırmaktadır. Bu kavramsal çalışma, endüstriyel teknolojinin görsel dilini bir yaşam tarzı bağlamında yeniden tanımlamayı amaçlamaktadır.",
+                projBronzeTitle: "AR-GE: TUNÇ ÇAĞI GEMİSİ, 3B TARAYICI, MÜZE (KURUM İÇİ ÇALIŞMA: NEW YORK UNIVERSITY ABU DHABI - DESIGN ENGINEER)",
+                projBronzeText: "REF tarafından finanse edilen Má I Tunç Çağı Gemisi Projesi, arkeolojik, metinsel, ikonografik ve etnografik verilerin kapsamlı bir analizi yoluyla Tunç Çağı denizcilik teknolojilerini araştırmıştır. Proje, geleneksel araştırma metodolojilerini yerel bilgi sistemleriyle birleştirerek, geleneksel tekne yapım tekniklerinde uzmanlaşmış Batı Hint Okyanusu'ndan gemi yapım ustalarını sürece dahil etmiştir. Ustaların pratik uzmanlığı, akademik araştırmaların ötesine geçen kritik bilgiler sağlayarak daha otantik bir yeniden inşa sürecine olanak tanımış ve tarihsel kanıtlarla yaşayan gelenekler arasında karşılaştırmalar yapılmasını sağlamıştır. Bu temel üzerine inşa edilen Má II Projesi, tam ölçekli bir Tunç Çağı kamış gemisinin deneysel olarak yeniden inşasına odaklanmıştır. Bu girişim, NYU Abu Dhabi bünyesindeki Dhakira Miras Çalışmaları Merkezi, Zayed Üniversitesi ve Abu Dabi Kültür ve Turizm Bakanlığı arasındaki bir iş birliğidir. Proje, denizcilik teknolojisinin 4000 ile 2000 yıl önce Körfez ve Batı Hint Okyanusu genelinde ticaret, kültürel değişim ve siyasi ağları kolaylaştırmadaki rolünü daha derinlemesine anlamayı hedeflemektedir. Tunç Çağı boyunca, kamış ve ahşaptan inşa edilen ve bitümle sızdırmaz hale getirilen gemiler, Bereketli Hilal'i Dilmun (Bahreyn), Magan (modern BAE and Umman) ve Meluhha (Indus Vadisi) gibi bölgelere bağlayan ticaret rotalarında seyretmiştir. Bu döneye ait tam bir gemi enkazı keşfedilmemiş olsa da, çivi yazılı metinler, çanak çömlekler, ikonografi ve maddi kalıntılar dahil olmak üzere kapsamlı arkeolojik kanıtlar bu gemilerin yeniden inşasına temel oluşturmuştur. Má II Projesi'nin temel çıktısı, kamış, kereste, palmiye palmiye lifi halat ve bitüm gibi tarihsel olarak doğru malzemeler kullanılarak 18 metre uzunluğunda bir geminin tasarlanması ve inşa edilmesidir. Gemi, yerel inşa teknikleri konusundaki bilgileri süreçte hayati bir rol oynayan Keralalı geleneksel gemi yapım ustalarıyla iş birliği içinde inşa edilmiştir. Yeniden inşa edilen gemi, Umm an-Nar döneminden (M.Ö. 2600–2000) kalma Tunç Çağı gemilerinin yapısı, dayanıklılığı, kargo kapasitesi ve seyir performansı hakkında değerli bilgiler sunmaktadır. Projenin araştırma ve geliştirme bileşeninin bir parçası olarak, gemi yapım sürecini dijital olarak belgelemek için özel bir fotogrammetrik 3B tarama sistemi tasarladım. Bu sistem, birden fazla açıdan binlerce yüksek çözünürlüklü görüntü yakalayarak inşa tekniklerinin ve malzeme birleşimlerinin hassas 3B rekonstrüksiyonuna olanak sağlamıştır. Amaç, disiplinler arası iş birliğini desteklerken somut olmayan zanaat bilgisini koruyan ayrıntılı bir dijital arşiv oluşturmaktı. Proje ayrıca inşa aşamasında sürdürülebilir mimari stratejileri de içermiştir. İnşa ortamı, UV filtreleme özelliklerine sahip teknik kumaş ve jeotermal soğutma sistemi kullanarak, geleneksel klimaya ihtiyaç duymadan etkili bir iklim kontrolü sağlamıştır. İlk yeniden inşanın başarısının ardından, projenin devamı olarak daha büyük bir gemi geliştirilmiştir. Bu gemi şu anda Zayed Ulusal Müzesi'nde sergilenmektedir ve National Geographic dahil olmak üzere uluslararası medyada geniş yer bulmuştur.",
+                projVentilatorTitle: "AR-GE: SOLUNUM CİHAZI (VENTİLATÖR)",
+                projVentilatorText: "Pandemi dönemindeki olası solunum cihazı kıtlığına yanıt olarak geliştirilen ve aslen Japon anesteziyoloji uzmanı Naoyuki Ishikita tarafından ISS (Uluslararası Uzay İstasyonu) kullanımı için tasarlanan bir ventilatörün tersine mühendisliği ve üretimi. Bu dönemde Arçelik, Vestel ve Baykar gibi Türkiye'nin önde gelen beyaz eşya üreticileri ve teknoloji şirketleri mekanik ventilatörlerin seri üretimi için hızla çalışmalara başladı. Triyajdaki hastalar için bir acil durum planı olarak ETMK (Endüstriyel Tasarımcılar Meslek Kuruluşu) çatısı altında bir görev gücü oluşturuldu ve alternatif çözümler geliştirmek üzere multidisipliner ekipler bir araya getirildi. Kapsamlı test ve değerlendirmelerin ardından, daha fazla geliştirme ve olası üretim için en işlevsel ve üretilebilir tasarım seçildi.",
+                projAquariumTitle: "HOBİ: YÜKSEK TEKNOLOJİLİ TATLI SU BİTKİLİ AKVARYUM TASARIMI",
+                projAquariumText: "Bu projeler, gelişmiş su teknolojisini doğal aquascaping (su altı peyzajı) sanatı ile birleştiren, titizlikle planlanmış tatlı su yüksek teknolojili bitkili bir akvaryumu sergilemektedir. Tasarım, canlı ve sağlıklı bitki büyümesini teşvik etmek için yüksek yoğunluklu LED aydınlatma, basınçlı CO₂ enjeksiyonu ve otomatik besin dozajı ile desteklenen tamamen bitkili bir düzene sahiptir. Hardscape (sert peyzaj) kompozisyonuna, bitki seçimine ve akış dinamiklerine dikkat edilerek hem görsel olarak çarpıcı hem de biyolojik olarak kararlı, dengeli bir ekosistem elde edilmiştir. Biyomimikri ve Voronoi diyagramları prensiplerini kullanarak, dağlık oluşumlara benzeyen çeşitli boyutlarda modüler yapılar tasarladım ve 3B yazıcı ile ürettim. Delikli yüzeyleri, suyun yapılar arasından doğal bir şekilde akmasına izin vererek organik akıntıları taklit ederken, iç boşluklar oldukça gözenekli volkanik kayalarla doldurulmuştur. Bu malzemeler, dış yüzeylerde aerobik (oksijenli) bakterileri ve iç gözeneklerde anaerobik (oksijensiz) bakterileri destekleyerek, toksik amonyak ve nitriti su bitkileri için temel bir besin olan nitrata dönüştürmek suretiyle suyu biyolojik olarak filtrelemek üzere birlikte çalışırlar. Bu basılı yapıların etrafına, şeffaf misina kullanılarak yosunlar dikkatlice tutturulmuş, böylece mevcut besinleri kullanarak tutunmaları ve gelişmeleri sağlanmıştır. Süreç boyunca, pH, KH, GH, iletkenlik, besin seviyeleri, CO₂ konsantrasyonu, aydınlatma süresi ve Kelvin değerleri dahil olmak üzere farklı çevresel koşullar altında çeşitli bitki ve yosun türleri ile deneyler yaptım. Bu entegre sistem, biyolojik filtrasyonu artırırken doğal bitki büyümesini teşvik eder ve sonuç olarak kendi kendini idame ettiren, bakteri odaklı bir su arıtma ekosistemi yaratır."
             }
         };
         let currentLang = 'en';
@@ -1463,11 +1471,12 @@
         function openLightbox(img) { 
             if (!img.closest('.gallery').classList.contains('expanded')) return;
 
-            const currentSection = img.closest('.project-section');
+            const visibleSections = Array.from(document.querySelectorAll('.project-section')).filter(sec => sec.style.display !== 'none');
             currentVisibleImages = [];
-            
-            const imgs = currentSection.querySelectorAll('.img-wrapper img');
-            imgs.forEach(i => currentVisibleImages.push(i));
+            visibleSections.forEach(sec => {
+                const imgs = sec.querySelectorAll('.img-wrapper img');
+                imgs.forEach(i => currentVisibleImages.push(i));
+            });
 
             currentImageIndex = currentVisibleImages.findIndex(i => i.src === img.src || i.dataset.src === img.dataset.src);
             if (currentImageIndex === -1) currentImageIndex = 0;
@@ -1501,6 +1510,10 @@
             if (e.key === "ArrowRight" && document.getElementById('lightbox').style.display === 'flex') nextLightboxImage();
         });
 
+        // ==========================================
+        // EDİTORYAL ANİMASYON VE EFEKT KODLARI
+        // ==========================================
+        
         gsap.registerPlugin(ScrollTrigger);
 
         const lenis = new Lenis({ 
@@ -1583,18 +1596,73 @@
             gsap.set(pixels, {opacity: 1}); 
         }
 
-        const revealObserver = new IntersectionObserver((entries) => {
+        document.querySelectorAll('.fade-text').forEach(el => {
+            el.dataset.originalText = el.innerText;
+            gsap.set(el, { opacity: 0, filter: "blur(10px)" }); 
+        });
+
+        document.querySelectorAll('.img-wrapper').forEach(wrapper => {
+            const img = wrapper.querySelector('img') || wrapper.querySelector('iframe');
+            if(img) {
+                let overlay = document.createElement('div');
+                overlay.className = 'pixel-overlay';
+                for(let i=0; i<64; i++) { 
+                    let block = document.createElement('div');
+                    block.className = 'pixel-block';
+                    overlay.appendChild(block);
+                }
+                wrapper.appendChild(overlay);
+            }
+        });
+
+        // PROJE ODAKLI LAZY LOAD OBSERVER
+        const projectLazyObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const section = entry.target;
+                    const mediaEls = section.querySelectorAll('img[data-src], iframe[data-src]');
+                    
+                    mediaEls.forEach(el => {
+                        el.src = el.getAttribute('data-src');
+                        el.removeAttribute('data-src');
+                    });
+                    
+                    observer.unobserve(section);
+                }
+            });
+        }, { rootMargin: "1500px 0px" });
+
+        document.querySelectorAll('.project-section').forEach(sec => {
+            projectLazyObserver.observe(sec);
+        });
+
+        // METİN FLULUĞUNUN SCROLL İLE ÇALIŞMASI (SCROLLTRIGGER)
+        gsap.utils.toArray('.fade-text').forEach(el => {
+            gsap.to(el, {
+                opacity: 1,
+                filter: "blur(0px)",
+                duration: 1.2,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 95%", // Element ekrana girmeye başladığında çalıştırır
+                    toggleActions: "play none none none" // Yalnızca bir kere çalışsın, geri kaybolmasın
+                }
+            });
+        });
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     if (entry.target.classList.contains('img-wrapper')) {
-                        playPixels(entry.target);
-                        revealObserver.unobserve(entry.target);
-                    } else {
-                        gsap.to(entry.target, { opacity: 1, filter: "blur(0px)", duration: 0.8, ease: "power2.out" });
-                        revealObserver.unobserve(entry.target);
+                        if (entry.target.dataset.revealed !== 'true') {
+                            entry.target.dataset.revealed = 'true';
+                            playPixels(entry.target);
+                        }
                     }
                 } else {
                     if (entry.target.classList.contains('img-wrapper')) {
+                        entry.target.dataset.revealed = 'false';
                         hidePixels(entry.target);
                     }
                 }
@@ -1605,39 +1673,9 @@
 
         const introSection = document.querySelector('.intro');
         gsap.fromTo(introSection, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.5, ease: "power3.out", delay: 0.2 });
+        
+        filterProjects('all', document.getElementById('cat-all'));
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    observer.unobserve(img);
-                }
-            });
-        }, { rootMargin: '200px 0px' });
-
-        document.querySelectorAll('img[data-src]').forEach(img => observer.observe(img));
-
-        window.addEventListener('load', () => {
-            window.scrollTo(0, 0);
-        });
-
-        document.addEventListener('contextmenu', event => event.preventDefault());
-
-        document.onkeydown = function (e) {
-            if (e.keyCode == 123) {
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
-                return false;
-            }
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-                return false;
-            }
-        }
     </script>
 </body>
 </html>
