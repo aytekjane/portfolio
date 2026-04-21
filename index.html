@@ -55,40 +55,27 @@
         }
 
         .header-nav { position: fixed; top: 0; left: 0; width: 100%; display: flex;
-            justify-content: center; align-items: center; gap: 60px; z-index: 5000; padding: 25px 50px; box-sizing: border-box; background-color: rgba(8, 8, 8, 0.7); backdrop-filter: blur(15px);
+            justify-content: center; align-items: center; z-index: 5000; padding: 25px 50px; box-sizing: border-box; background-color: rgba(8, 8, 8, 0.7); backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--border-color); }
-        #header-logo { font-family: 'Cinzel', serif; font-size: 26px;
-            letter-spacing: 2px; color: var(--text-color); font-weight: 600; cursor: none; text-decoration: none; display: flex; text-transform: uppercase;
-        }
-        #header-logo span { display: inline-block; transition: font-family 0.4s ease;
-        }
-        #header-logo span.space { width: 0.3em;
-        }
-
-        .nav-links { display: flex; gap: 30px; align-items: center;
-        }
-        .nav-item { cursor: none; color: var(--text-color); padding: 5px 0; font-weight: 400;
-            font-size: 11px; text-transform: uppercase; text-decoration: none; letter-spacing: 2px; transition: color 0.4s ease; position: relative;
-        }
-        .nav-item::after { content: ''; position: absolute; width: 0; height: 1px; bottom: 0;
-            left: 50%; transform: translateX(-50%); background-color: var(--accent); transition: width 0.4s ease;
-        }
-        .nav-item:hover { color: var(--accent);
-        }
-        .nav-item:hover::after { width: 100%;
-        }
+            
+        /* LOGO */
+        #header-logo { cursor: none; text-decoration: none; display: flex; align-items: center; justify-content: center; transition: opacity 0.3s ease; }
+        #header-logo:hover { opacity: 0.8; }
+        #header-logo img { height: 60px; width: auto; display: block; object-fit: contain; }
         
         .menu-toggle { display: none;
-            cursor: none; flex-direction: column; gap: 6px; z-index: 5100; }
+            cursor: none; flex-direction: column; gap: 6px; z-index: 5100; position: absolute; left: 50px; }
         .menu-toggle span { width: 30px;
             height: 1px; background-color: var(--text-color); transition: 0.4s; }
 
-        .category-menu { position: fixed; top: 82px;
-            left: 0; width: 100%; display: flex; justify-content: center; gap: 35px; background-color: rgba(8, 8, 8, 0.85); backdrop-filter: blur(10px); padding: 20px 0;
+        .category-menu { position: fixed; top: 111px; /* Header yüksekliğine göre ayarlandı */
+            left: 0; width: 100%; display: flex; justify-content: center; align-items: center;
+            flex-wrap: wrap; row-gap: 15px; column-gap: 35px; /* Sığmadığında alt satıra geçmesi için */
+            background-color: rgba(8, 8, 8, 0.85); backdrop-filter: blur(10px); padding: 20px 40px; box-sizing: border-box;
             z-index: 4500; border-bottom: 1px solid var(--border-color); transition: all 0.4s ease;
         }
         .cat-item { font-size: 10px; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; cursor: none;
-            color: var(--text-muted); transition: color 0.4s ease, transform 0.4s ease; position: relative;
+            color: var(--text-muted); transition: color 0.4s ease, transform 0.4s ease; position: relative; white-space: nowrap;
         }
         .cat-item::before { content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
             width: 4px; height: 4px; border-radius: 50%; background-color: var(--accent); opacity: 0; transition: opacity 0.3s ease;
@@ -97,8 +84,19 @@
         }
         .cat-item.active::before { opacity: 1;
         }
-        .mobile-only-links { display: none; flex-direction: column; gap: 20px; padding: 30px 40px;
-            border-top: 1px solid var(--border-color); margin-top: 10px; }
+        
+        /* SAĞ KISIMDAKİ EKSTRA LİNKLER VE AYRAÇ */
+        .menu-right-group {
+            display: flex; align-items: center; gap: 35px;
+        }
+        .menu-separator {
+            width: 1px; height: 12px; background-color: var(--text-muted); opacity: 0.5;
+        }
+        .menu-link {
+            font-size: 10px; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; cursor: none; white-space: nowrap;
+            color: var(--text-color); transition: color 0.4s ease, transform 0.4s ease; text-decoration: none; position: relative;
+        }
+        .menu-link:hover { color: var(--accent); transform: translateY(2px); }
 
         .intro { margin-bottom: 60px; margin-top: 200px;
             display: flex; flex-direction: column; align-items: center; text-align: center; gap: 15px; max-width: 1000px; width: 100%; padding: 0 40px; box-sizing: border-box;
@@ -150,36 +148,22 @@
         .img-wrapper iframe { display: block; width: 100%;
             aspect-ratio: 16 / 9; height: auto; }
 
-        .img-wrapper.square { width: 15%;
-        }
-        .img-wrapper.portrait { width: 10%;
-        }
-        .img-wrapper.landscape { width: 22%;
-        }
-        .img-wrapper.wide-square { width: 26%;
-        }
+        .img-wrapper.square { width: 15%; }
+        .img-wrapper.portrait { width: 10%; }
+        .img-wrapper.landscape { width: 22%; }
+        .img-wrapper.wide-square { width: 26%; }
         
-        .gallery .img-wrapper:nth-child(odd).square { width: 17%;
-        }
-        .gallery .img-wrapper:nth-child(even).portrait { width: 12%;
-        }
-        .gallery .img-wrapper:nth-child(3n).landscape { width: 24%;
-        }
-        .gallery .img-wrapper:nth-child(5n).wide-square { width: 20%;
-        }
-        .gallery .img-wrapper:nth-child(4n).portrait { width: 9%;
-        }
+        .gallery .img-wrapper:nth-child(odd).square { width: 17%; }
+        .gallery .img-wrapper:nth-child(even).portrait { width: 12%; }
+        .gallery .img-wrapper:nth-child(3n).landscape { width: 24%; }
+        .gallery .img-wrapper:nth-child(5n).wide-square { width: 20%; }
+        .gallery .img-wrapper:nth-child(4n).portrait { width: 9%; }
 
-        .gallery .img-wrapper:nth-child(5n + 1) { top: -50px; left: 20px; z-index: 1;
-            rotate: -4deg; }
-        .gallery .img-wrapper:nth-child(5n + 2) { top: 40px; left: 30px;
-            z-index: 3; rotate: 3deg; }
-        .gallery .img-wrapper:nth-child(5n + 3) { top: -10px;
-            left: 0px; z-index: 5; scale: 1.05; } 
-        .gallery .img-wrapper:nth-child(5n + 4) { top: 50px;
-            left: -30px; z-index: 4; rotate: -3deg; }
-        .gallery .img-wrapper:nth-child(5n + 5) { top: -40px;
-            left: -25px; z-index: 2; rotate: 5deg; }
+        .gallery .img-wrapper:nth-child(5n + 1) { top: -50px; left: 20px; z-index: 1; rotate: -4deg; }
+        .gallery .img-wrapper:nth-child(5n + 2) { top: 40px; left: 30px; z-index: 3; rotate: 3deg; }
+        .gallery .img-wrapper:nth-child(5n + 3) { top: -10px; left: 0px; z-index: 5; scale: 1.05; } 
+        .gallery .img-wrapper:nth-child(5n + 4) { top: 50px; left: -30px; z-index: 4; rotate: -3deg; }
+        .gallery .img-wrapper:nth-child(5n + 5) { top: -40px; left: -25px; z-index: 2; rotate: 5deg; }
 
         /* --- JS İLE EXPAND (DAĞILMA) EDİLDİĞİNDE --- */
         .gallery.expanded .img-wrapper {
@@ -190,10 +174,7 @@
             scale: 1 !important;
         }
         
-        .gallery.expanded:hover .img-wrapper:not(:hover) { 
-            opacity: 0.65;
-            z-index: 1;
-        }
+        .gallery.expanded:hover .img-wrapper:not(:hover) { opacity: 0.65; z-index: 1; }
 
         .gallery.expanded .img-wrapper:hover {
             scale: 1.35 !important;
@@ -220,24 +201,21 @@
             color: var(--text-muted); cursor: none; text-decoration: none; font-size: 11px; font-weight: 300; text-transform: uppercase; letter-spacing: 2px; margin: 10px 15px; padding-bottom: 3px;
             border-bottom: 1px solid transparent; transition: color 0.4s ease, border-color 0.4s ease; position: relative; z-index: 10; will-change: transform;
         }
-        .project-link:hover { color: var(--accent); border-color: var(--accent);
-        }
+        .project-link:hover { color: var(--accent); border-color: var(--accent); }
         
         .divider { width: 100%;
             max-width: 1200px; border-top: 1px solid var(--border-color); margin: 30px auto; display: block;
         }
         
-        /* FADE-TEXT CSS */
-        .fade-text { opacity: 0; filter: blur(10px); visibility: hidden;
-        }
+        .fade-text { opacity: 0; filter: blur(10px); visibility: hidden; }
 
         /* MOBIL OPTIMIZASYONU VE EFEKTLERIN IPTALI */
         @media (max-width: 768px) { 
             body { cursor: auto; } 
             .cursor-dot, .cursor-outline, .cursor-timer { display: none !important; }
-            .header-nav { padding: 20px; height: 70px; justify-content: center; gap: 0; }
-            .nav-links { display: none; } 
-            .menu-toggle { display: flex; cursor: pointer; position: absolute; left: 20px; } 
+            .header-nav { padding: 20px; height: 88px; justify-content: center; align-items: center; }
+            #header-logo img { height: 48px; } /* Mobilde logo küçülür ama eski orana göre %100 daha büyük */
+            .menu-toggle { display: flex; cursor: pointer; left: 20px; } 
             .subtitle { font-size: 5vw; }
             .gallery { padding: 10px 0; gap: 10px; margin-top: 30px; }
             .gallery .img-wrapper:nth-child(n) { top: 0 !important; left: 0 !important; margin: 0 !important; transform: none !important; rotate: 0deg !important; }
@@ -247,10 +225,17 @@
             .img-wrapper { cursor: pointer; }
             .gallery.expanded .img-wrapper:hover { scale: 1 !important; translate: 0 !important; box-shadow: none !important; }
             .gallery.expanded:hover .img-wrapper:not(:hover) { opacity: 1; }
-            .category-menu { flex-direction: column; top: 70px; left: 0; width: 100%; height: 0; max-height: calc(100dvh - 70px); background-color: var(--bg-color); padding: 0; overflow-y: auto; overflow-x: hidden; visibility: hidden; opacity: 0; border-bottom: none; display: flex; justify-content: flex-start; z-index: 4500; -webkit-overflow-scrolling: touch; }
-            .category-menu.active { height: calc(100dvh - 70px); visibility: visible; opacity: 1; }
-            .cat-item { padding: 25px 40px; font-size: 14px; border-bottom: 1px solid var(--border-color); width: 100%; display: block; flex-shrink: 0; text-align: center; }
-            .mobile-only-links { display: flex; flex-shrink: 0; padding-bottom: 150px; text-align: center; }
+            
+            /* KATEGORI VE MENÜ ELEMANLARI MOBIL GÖRÜNÜMÜ */
+            .category-menu { flex-direction: column; top: 88px; left: 0; width: 100%; height: 0; max-height: calc(100dvh - 88px); background-color: var(--bg-color); padding: 0; overflow-y: auto; overflow-x: hidden; visibility: hidden; opacity: 0; border-bottom: none; display: flex; justify-content: flex-start; align-items: stretch; z-index: 4500; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; gap: 0; }
+            .category-menu.active { height: calc(100dvh - 88px); visibility: visible; opacity: 1; }
+            .cat-item { padding: 25px 40px; font-size: 14px; border-bottom: 1px solid var(--border-color); width: 100%; display: block; flex-shrink: 0; text-align: center; box-sizing: border-box; }
+            
+            /* CONTACT VE DİL BUTONUNUN MOBİLDE YERLEŞİMİ */
+            .menu-right-group { flex-direction: column; width: 100%; gap: 0; padding-bottom: 150px; }
+            .menu-separator { display: none; }
+            .menu-link { padding: 25px 40px; font-size: 14px; border-bottom: 1px solid var(--border-color); width: 100%; display: block; flex-shrink: 0; text-align: center; box-sizing: border-box; transform: none !important; }
+
             .intro { margin-top: 150px; padding: 0 20px; margin-bottom: 60px; }
             .project-section { padding: 0 20px; margin-bottom: 60px; }
             .project-header { margin-bottom: 30px; }
@@ -289,13 +274,10 @@
 
     <div class="header-nav">
         <div class="menu-toggle" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
-        <div class="nav-links">
-            <a href="mailto:aytekjane@gmail.com" class="nav-item hoverable">CONTACT</a>
-        </div>
-        <a href="#" id="header-logo" class="hoverable" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">AYTEK JANE</a>
-        <div class="nav-links">
-            <div class="nav-item hoverable" onclick="toggleLanguage()" id="langBtn">TÜRKÇE</div>
-        </div>
+        
+        <a href="#" id="header-logo" class="hoverable" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
+            <img src="images/logo.png" alt="Aytek Jane Logo">
+        </a>
     </div>
 
     <div class="category-menu" id="mobileMenu">
@@ -310,9 +292,10 @@
         <div class="cat-item hoverable" onclick="filterProjects('rd', this)" id="cat-rd">R&D</div>
         <div class="cat-item hoverable" onclick="filterProjects('hobby', this)" id="cat-hobby">HOBBY</div>
         
-        <div class="mobile-only-links">
-            <a href="mailto:aytekjane@gmail.com" class="nav-item" style="font-size: 14px;">CONTACT</a>
-            <div class="nav-item" onclick="toggleLanguage()" id="langBtnMobile" style="font-size: 14px;">TÜRKÇE</div>
+        <div class="menu-right-group">
+            <div class="menu-separator"></div>
+            <a href="mailto:aytekjane@gmail.com" class="menu-link hoverable">CONTACT</a>
+            <div class="menu-link hoverable" onclick="toggleLanguage()" id="langBtn">TÜRKÇE</div>
         </div>
     </div>
 
@@ -1397,7 +1380,7 @@
                 projVentilatorTitle: "AR-GE: ACİL DURUM VENTİLATÖRÜ GELİŞTİRME (ETMK GÖREV GÜCÜ)",
                 projVentilatorText: "Pandemi sırasında olası ventilatör eksikliklerine yanıt olarak, başlangıçta Japon anestezi uzmanı Naoyuki Ishikita tarafından ISS'de kullanım için tasarlanan bir ventilatörün tersine mühendisliği ve üretimi gerçekleştirildi. Bu dönemde Arçelik, Vestel ve Baykar gibi önde gelen Türk beyaz eşya üreticileri ve teknoloji şirketleri, mekanik ventilatörlerin seri üretimi için hızla girişimlerde bulundu. Triyaj hastaları için bir acil durum planı olarak, alternatif çözümler geliştirmek üzere ETMK (Endüstriyel Tasarımcılar Meslek Kuruluşu) altında çok disiplinli ekipleri bir araya getiren bir görev gücü oluşturuldu. Kapsamlı testler ve değerlendirmelerin ardından, daha fazla geliştirme ve olası üretim için en işlevsel ve üretilebilir tasarım seçildi.",
                 projAquariumTitle: "HOBİ: TATLI SU YÜKSEK TEKNOLOJİLİ BİTKİLİ AKVARYUM TASARIMI",
-                projAquariumText: "Bu projeler, gelişmiş su teknolojisini doğal aquascaping (su peyzajı) sanatıyla birleştiren, titizlikle planlanmış tatlı su yüksek teknolojili bitkili akvaryumları sergilemektedir. Tasarım, canlı ve sağlıklı bitki büyümesini teşvik etmek için yüksek yoğunluklu LED aydınlatma, basınçlı CO₂ enjeksiyonu ve otomatik besin dozajı ile desteklenen tamamen bitkili bir düzene sahiptir. Hardscape (sert peyzaj) kompozisyonuna, bitki seçimine ve akış dinamiklerine dikkat edilerek hem görsel olarak çarpıcı hem de biyolojik olarak kararlı, dengeli bir ekosistem elde edilmiştir. Biyomimikri ve Voronoi diyagramları prensiplerini kullanarak, dağlık oluşumlara benzeyen çeşitli boyutlarda modüler yapılar tasarladım ve 3B yazıcı ile ürettim. Delikli yüzeyleri, suyun yapılar arasından doğal bir şekilde akmasına izin vererek organik akıntıları taklit ederken, iç boşluklar oldukça gözenekli volkanik kayalarla doldurulmuştur. Bu malzemeler, dış yüzeylerde aerobik (oksijenli) bakterileri ve iç gözeneklerde anaerobik (oksijensiz) bakterileri destekleyerek, toksik amonyak ve nitriti su bitkileri için temel bir besin olan nitrata dönüştürmek suretiyle suyu biyolojik olarak filtrelemek üzere birlikte çalışırlar. Bu basılı yapıların etrafına, şeffaf misina kullanılarak yosunlar dikkatlice tutturulmuş, böylece mevcut besinleri kullanarak tutunmaları ve gelişmeleri sağlanmıştır. Süreç boyunca, pH, KH, GH, iletkenlik, besin seviyeleri, CO₂ konsantrasyonu, aydınlatma süresi ve Kelvin değerleri dahil olmak üzere farklı çevresel koşullar altında çeşitli bitki ve yosun türleri ile deneyler yaptım. Bu entegre sistem, biyolojik filtrasyonu artırırken doğal bitki büyümesini teşvik eder ve sonuç olarak kendi kendini idame ettiren, bakteri odaklı bir su arıtma ekosistemi yaratır.",
+                projAquariumText: "Bu projeler, gelişmiş su teknolojisini doğal aquascaping (su peyzajı) sanatıyla birleştiren, titizlikle planlanmış tatlı su yüksek teknolojili bitkili akvaryumları sergilemektedir. Tasarım, canlı ve sağlıklı bitki büyümesini teşvik etmek için yüksek yoğunluklu LED aydınlatma, basınçlı CO₂ enjeksiyonu ve otomatik besin dozajı ile desteklenen tamamen bitkili bir düzene sahiptir. Hardscape (sert peyzaj) kompozisyonuna, bitki seçimine ve akış dinamiklerine dikkat edilerek hem görsel olarak çarpıcı hem de biyolojik olarak kararlı, dengeli bir ekosistem elde edilmiştir. Biyomimikri ve Voronoi diyagramları prensiplerini kullanarak, dağlık oluşumlara benzeyen çeşitli boyutlarda modüler yapılar tasarladım ve 3B yazıcı ile ürettim. Delikli yüzeyleri, suyun yapılar arasından doğal bir şekilde akmasına izin vererek organik akıntıları taklit ederken, iç boşluklar oldukça gözenekli volkanik kayalarla doldurulmuştur. Bu malzemeler, dış yüzeylerde aerobik (oksijenli) bakterileri ve iç gözeneklerde anaerobik (oksijensiz) bakterileri destekleyerek, toksik amonyak ve nitriti su bitkileri için temel bir besin olan nitrata dönüştürmek suretiyle suyu biyolojik olarak filtrelemek üzere birlikte çalışırlar. Bu basılı yapıların etrafına, şeffaf misina kullanılarak yosunlar dikkatlice tutturulmuş, böylece mevcut besinleri kullanarak tutunmaları ve gelişmeleri sağlanmıştır. Süreç boyunca, pH, KH, GH, iletkenlik, besin seviyeleri, CO₂ konsantrasyonu, aydınlatma süresi ve Kelvin değerleri dahil olmak üzere farklı çevresel koşullar altında çeşitli bitki ve yosun türleri ile deneyler yaptım. Bu entegre sistem, biyolojik filtrasyonu artırırken doğal bitki filtrasyonunu artırır ve sonuç olarak kendi kendini idame ettiren, bakteri odaklı bir su arıtma ekosistemi yaratır.",
                 proj7Title: "İÇ MİMARİ: KİLİMANJARO BAR İSTANBUL (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
                 kilimanjaroText: "Bomonti Tarihi Bira Fabrikası içinde yer alan Kilimanjaro, Bomontiada'nın ayrılmaz bir parçası olan rahat bir restoran bardır. Proje, Time Out İstanbul \"En İyi Restoran\" ödülünü almıştır. Bar konsepti geliştirilmiş ve geometri, sıfır Gauss eğriliği ile tanımlanan ve düz malzemelerden esnetilmeden üretilebilme yeteneği sunan açılabilir yüzeylere dönüştürülmüştür. Yapısal çizimler üretilmiş olup, buna ek olarak yapısal güvenlik ve performansı sağlamak için detaylı statik hesaplamalar yapılmıştır. Elde edilen mühendislik verilerine dayanarak, doğru yapısal profiller seçilmiş ve buna göre uygulanmıştır. Duvara monte ve sarkıt aydınlatma elemanları tasarlanmış, üretim çizimlerinin hazırlanması ve imalatın denetlenmesi sağlanmıştır. Yapı, açılabilir yüzey mantığı ile gemi inşa teknikleri arasındaki yakın ilişkiyi yansıtacak şekilde, tersane zanaatkarları tarafından sahada üretilmiştir. İnşaat sırasındaki saha desteği, yapısal hizalama, doğru yerleştirme ve tüm bileşenlerin hassas montajı konusunda rehberlik etmeyi içermiştir.",
                 kilimanjaroNote: "Fotoğraf: Engin Aydeniz",
@@ -1490,11 +1473,9 @@
                     }
                 }
             });
-            const btns = ['langBtn', 'langBtnMobile'];
-            btns.forEach(id => {
-                const b = document.getElementById(id);
-                if (b) b.innerText = (currentLang === 'en' ? 'TÜRKÇE' : 'ENGLISH');
-            });
+            const b = document.getElementById('langBtn');
+            if (b) b.innerText = (currentLang === 'en' ? 'TÜRKÇE' : 'ENGLISH');
+            
             document.querySelectorAll('.cat-item').forEach(item => {
                 const map = {
                     tr: {all:'HEPSİ', interior:'İÇ MİMARİ', exterior:'DIŞ MİMARİ', furniture:'MOBİLYA', lighting:'AYDINLATMA', glassware:'CAM EŞYA', accessory:'AKSESUAR', fashion:'MODA', rd:'AR-GE', hobby:'HOBİ'},
@@ -1740,9 +1721,6 @@
 
         // MOBİL KONTROLLERİ (768px ve Altı)
         mm.add("(max-width: 768px)", () => {
-            // Mobilde herhangi bir GSAP ScrollTrigger ön belleğe alınmasını veya CSS yitimi durumunu önlemek için 
-            // GSAP ile elemanları düz ve temiz (görünür) formlarına açıkça ayarlıyoruz. 
-            // Ayrıca CSS Media Query kısmında !important destekli koruma da eklidir.
             gsap.set('.fade-text', { opacity: 1, filter: "blur(0px)", visibility: "visible" });
             gsap.set('.pixel-overlay', { display: "none" });
             gsap.set('.img-wrapper', { "--parallax-y": "0px" });
