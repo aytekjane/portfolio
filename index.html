@@ -33,19 +33,19 @@
         }
         
         ::-webkit-scrollbar {
-            width: 12px; /* Scrollbar genişliği - net görünüm için */
+            width: 12px;
         }
         ::-webkit-scrollbar-track {
             background: var(--bg-color);
             border-left: 1px solid var(--border-color);
         }
         ::-webkit-scrollbar-thumb {
-            background: var(--bm-pink); /* Baker-Miller Pink */
+            background: var(--bm-pink); 
             border-radius: 10px;
-            border: 3px solid var(--bg-color); /* Kenarlarda boşluk yaratarak daha şık görünmesini sağlar */
+            border: 3px solid var(--bg-color); 
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #ff7aa0; /* Üzerine gelince biraz daha koyu/canlı bir pembe */
+            background: #ff7aa0; 
         }
 
         .noise-overlay {
@@ -90,9 +90,9 @@
         .menu-toggle span { width: 30px;
             height: 1px; background-color: var(--text-color); transition: 0.4s; }
 
-        .category-menu { position: fixed; top: 111px; /* Header yüksekliğine göre ayarlandı */
+        .category-menu { position: fixed; top: 111px;
             left: 0; width: 100%; display: flex; justify-content: center; align-items: center;
-            flex-wrap: wrap; row-gap: 15px; column-gap: 35px; /* Sığmadığında alt satıra geçmesi için */
+            flex-wrap: wrap; row-gap: 15px; column-gap: 35px;
             background-color: rgba(8, 8, 8, 0.85); backdrop-filter: blur(10px); padding: 20px 40px; box-sizing: border-box;
             z-index: 4500; border-bottom: 1px solid var(--border-color); transition: all 0.4s ease;
         }
@@ -102,29 +102,47 @@
         .cat-item::before { content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
             width: 4px; height: 4px; border-radius: 50%; background-color: var(--accent); opacity: 0; transition: opacity 0.3s ease;
         }
-        .cat-item:hover, .cat-item.active { color: var(--text-color); transform: translateY(2px);
-        }
-        .cat-item.active::before { opacity: 1;
-        }
+        .cat-item:hover, .cat-item.active { color: var(--text-color); transform: translateY(2px); }
+        .cat-item.active::before { opacity: 1; }
         
         /* SAĞ KISIMDAKİ EKSTRA LİNKLER VE AYRAÇ */
         .menu-right-group {
-            display: flex; align-items: center; gap: 35px;
+            display: flex; align-items: center; gap: 35px; flex-wrap: wrap; justify-content: center;
         }
         .menu-separator {
             width: 1px; height: 12px; background-color: var(--text-muted); opacity: 0.5;
         }
         .menu-link {
             font-size: 10px; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; cursor: none; white-space: nowrap;
-            color: var(--text-color); transition: color 0.4s ease, transform 0.4s ease; text-decoration: none; position: relative;
+            color: var(--text-muted); transition: color 0.4s ease, transform 0.4s ease; text-decoration: none; position: relative;
         }
-        .menu-link:hover { color: var(--accent); transform: translateY(2px); }
+        .menu-link::before { content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+            width: 4px; height: 4px; border-radius: 50%; background-color: var(--accent); opacity: 0; transition: opacity 0.3s ease;
+        }
+        .menu-link:hover, .menu-link.active { color: var(--text-color); transform: translateY(2px); }
+        .menu-link.active::before { opacity: 1; }
 
-        .intro { margin-bottom: 60px; margin-top: 200px;
+        .intro { margin-bottom: 20px; margin-top: 200px;
             display: flex; flex-direction: column; align-items: center; text-align: center; gap: 15px; max-width: 1000px; width: 100%; padding: 0 40px; box-sizing: border-box;
         }
         .subtitle { font-family: 'Cinzel', serif; font-size: 2vw; color: var(--text-color); margin: 0;
             font-weight: 400; line-height: 1.4; letter-spacing: 1px; }
+
+        .about-section {
+            max-width: 850px; width: 100%; margin: 0 auto 100px auto; padding: 0 40px; box-sizing: border-box; text-align: center;
+        }
+        .about-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 40px;
+            display: inline-block;
+            object-fit: cover;
+        }
+        .about-text {
+            font-size: 13px; line-height: 2.2; color: var(--text-muted); font-weight: 300;
+        }
         
         .project-section { width: 100%;
             max-width: 1400px; margin-bottom: 60px; padding: 0 50px; box-sizing: border-box; position: relative; z-index: 10;
@@ -236,7 +254,7 @@
             body { cursor: auto; } 
             .cursor-dot, .cursor-outline, .cursor-timer { display: none !important; }
             .header-nav { padding: 20px; height: 88px; justify-content: center; align-items: center; }
-            #header-logo img { height: 48px; } /* Mobilde logo küçülür ama eski orana göre %100 daha büyük */
+            #header-logo img { height: 48px; } 
             .menu-toggle { display: flex; cursor: pointer; left: 20px; } 
             .subtitle { font-size: 5vw; }
             .gallery { padding: 10px 0; gap: 10px; margin-top: 30px; }
@@ -257,8 +275,10 @@
             .menu-right-group { flex-direction: column; width: 100%; gap: 0; padding-bottom: 150px; }
             .menu-separator { display: none; }
             .menu-link { padding: 25px 40px; font-size: 14px; border-bottom: 1px solid var(--border-color); width: 100%; display: block; flex-shrink: 0; text-align: center; box-sizing: border-box; transform: none !important; }
+            .menu-link::before { display: none !important; }
 
-            .intro { margin-top: 150px; padding: 0 20px; margin-bottom: 60px; }
+            .intro { margin-top: 150px; padding: 0 20px; margin-bottom: 30px; }
+            .about-section { margin-bottom: 60px; }
             .project-section { padding: 0 20px; margin-bottom: 60px; }
             .project-header { margin-bottom: 30px; }
 
@@ -316,6 +336,7 @@
         
         <div class="menu-right-group">
             <div class="menu-separator"></div>
+            <a href="#" class="menu-link hoverable" onclick="filterProjects('about', this); return false;" id="aboutBtn">ABOUT</a>
             <a href="mailto:aytekjane@gmail.com" class="menu-link hoverable">CONTACT</a>
             <div class="menu-link hoverable" onclick="toggleLanguage()" id="langBtn">TÜRKÇE</div>
         </div>
@@ -323,6 +344,11 @@
 
     <div class="intro" id="intro-section">
         <p class="subtitle fade-text" id="desc">A space where you can find my selected works and ideas.</p>
+    </div>
+    
+    <div class="about-section" id="about-section" style="display: none;">
+        <img src="images/aytek.webp" alt="Aytek Jane" class="about-image fade-text">
+        <p class="about-text fade-text" id="aboutText"></p>
     </div>
 
     <div class="project-section filter-furniture filter-exterior">
@@ -1211,7 +1237,6 @@
             gallery.addEventListener('mouseenter', function() {
                 if (window.innerWidth <= 768) return;
                 
-                // MOUSE TEKRAR GİRDİĞİNDE KAPANMAYI (COLLAPSE) İPTAL ET
                 clearTimeout(this.collapseTimer); 
                 
                 if (!this.classList.contains('expanded')) {
@@ -1247,7 +1272,6 @@
                 cursorText.innerText = '';
                 
                 if (this.classList.contains('expanded')) {
-                    // HEMEN KAPANMAMASI İÇİN 600ms GECİKME EKLENDİ
                     this.collapseTimer = setTimeout(() => {
                         if(this.classList.contains('expanded')) {
                             this.classList.remove('expanded');
@@ -1281,6 +1305,7 @@
         const data = {
             en: {
                 desc: "A space where you can find my selected works and ideas.",
+                aboutText: "My design journey has been shaped by an academic trajectory extending from Istanbul to Italy, backed by 15 years of multifaceted industry experience. Throughout my career, I have delivered projects across a broad spectrum—ranging from furniture and glassware design to high-tech products, interior architecture, and lighting—always maintaining a rigorous balance between aesthetics and function.<br><br>While managing the strategic processes of projects in my role as a Design Studio Manager, I further deepened my technical expertise at NYU Abu Dhabi, where I conducted R&D on 3D scanning technologies, museum studies, and archaeology. I have also contributed to the academic field by leading studio processes and teaching project courses as a guest designer at Kadir Has University’s Industrial Design Department.<br><br>For me, design is the art of merging in-depth research with production methodologies, cost discipline, and aesthetics. Today, I continue to focus on creating innovative and viable solutions, fueled by my specialized interest in biomimicry, biophilic design, IoT, and horology.",
                 projFoldTitle: "LIGHTING: FOLD FLOOR & WALL LAMP (IN-HOUSE WORK: AUTOBAN)",
                 projFoldText: "The Fold Series explores origami-inspired structures through the geometric folding of fabricated surfaces, transforming them into lighting elements. The interplay between the precise formal structure and the softness of the emitted light creates a composition that balances sharpness with serenity.",
                 projBabajiTitle: "FURNITURE-LIGHTING: BABAJI RESTAURANT LIGHTING & FURNITURE DESIGN (IN-HOUSE WORK: AUTOBAN)",
@@ -1384,6 +1409,7 @@
             },
             tr: {
                 desc: "Seçilmiş çalışmalarımı ve fikirlerimi bulabileceğiniz bir alan.",
+                aboutText: "Tasarım yolculuğum, İstanbul'dan İtalya'ya uzanan akademik bir eğitim süreci ve 15 yıllık çok yönlü sektör deneyimiyle şekillendi. Kariyerim boyunca mobilya ve cam eşya tasarımından yüksek teknoloji ürünlerine, iç mimariden aydınlatmaya kadar geniş bir yelpazede, estetik ve işlev arasındaki hassas dengeyi daima koruyarak projeler ürettim.<br><br>Tasarım Stüdyosu Yöneticisi olarak projelerin stratejik süreçlerini yönetirken, NYU Abu Dhabi'de 3 boyutlu tarama teknolojileri, müze çalışmaları ve arkeoloji üzerine Ar-Ge çalışmaları yürüterek teknik uzmanlığımı daha da derinleştirdim. Ayrıca Kadir Has Üniversitesi Endüstriyel Tasarım Bölümü'nde misafir tasarımcı olarak stüdyo süreçlerine liderlik edip proje dersleri vererek akademik alana da katkıda bulundum.<br><br>Benim için tasarım; derinlemesine araştırmayı üretim metodolojileri, maliyet disiplini ve estetikle harmanlama sanatıdır. Bugün, biyomimikri, biyofilik tasarım, IoT ve saatçiliğe olan özel ilgimden güç alarak yenilikçi ve uygulanabilir çözümler üretmeye odaklanmaya devam ediyorum.",
                 projFoldTitle: "AYDINLATMA: FOLD ZEMİN VE DUVAR LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
                 projFoldText: "Fold Serisi, üretilmiş yüzeylerin geometrik olarak katlanmasıyla origami'den ilham alan yapıları keşfeder ve bunları aydınlatma elemanlarına dönüştürür. Hassas biçimsel yapı ile yayılan ışığın yumuşaklığı arasındaki etkileşim, keskinliği dinginlikle dengeleyen bir kompozisyon oluşturur.",
                 projBabajiTitle: "MOBİLYA-AYDINLATMA: BABAJI RESTORAN AYDINLATMA VE MOBİLYA TASARIMI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
@@ -1516,11 +1542,12 @@
                     }
                 }
             });
-            const btns = ['langBtn', 'langBtnMobile'];
-            btns.forEach(id => {
-                const b = document.getElementById(id);
-                if (b) b.innerText = (currentLang === 'en' ? 'TÜRKÇE' : 'ENGLISH');
-            });
+            const b = document.getElementById('langBtn');
+            if (b) b.innerText = (currentLang === 'en' ? 'TÜRKÇE' : 'ENGLISH');
+            
+            const aBtn = document.getElementById('aboutBtn');
+            if (aBtn) aBtn.innerText = (currentLang === 'en' ? 'ABOUT' : 'HAKKINDA');
+            
             document.querySelectorAll('.cat-item').forEach(item => {
                 const map = {
                     tr: {all:'HEPSİ', interior:'İÇ MİMARİ', exterior:'DIŞ MİMARİ', furniture:'MOBİLYA', lighting:'AYDINLATMA', glassware:'CAM EŞYA', accessory:'AKSESUAR', fashion:'MODA', rd:'AR-GE', hobby:'HOBİ'},
@@ -1532,24 +1559,40 @@
         }
 
         function filterProjects(category, element) {
-            document.querySelectorAll('.cat-item').forEach(item => item.classList.remove('active'));
+            document.querySelectorAll('.cat-item, .menu-link').forEach(item => {
+                if (item.id !== 'langBtn') { 
+                    item.classList.remove('active');
+                }
+            });
             if(element) element.classList.add('active');
             
             lenis.scrollTo(0, { immediate: true });
             
             const introSec = document.getElementById('intro-section');
+            const aboutSec = document.getElementById('about-section');
+            
             if (category === 'all') {
                 introSec.style.display = 'flex';
+                aboutSec.style.display = 'none';
                 gsap.fromTo(introSec, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8 });
+            } else if (category === 'about') {
+                introSec.style.display = 'none';
+                aboutSec.style.display = 'block';
+                aboutSec.style.marginTop = '200px'; 
+                gsap.fromTo(aboutSec, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8 });
             } else {
                 introSec.style.display = 'none';
+                aboutSec.style.display = 'none';
             }
 
             const sections = document.querySelectorAll('.project-section');
             
             let firstVisible = false;
             sections.forEach(sec => {
-                if (category === 'all' || sec.classList.contains('filter-' + category)) {
+                if (category === 'about') {
+                    sec.style.display = 'none';
+                    sec.style.marginTop = '0px';
+                } else if (category === 'all' || sec.classList.contains('filter-' + category)) {
                     sec.style.display = 'block';
                     
                     if (!firstVisible && category !== 'all') {
@@ -1670,7 +1713,7 @@
         }
 
         // ==========================================
-        // DÜZELTİLEN YER: FADE-TEXT FLU ANİMASYONU
+        // FADE-TEXT İÇİN ORİJİNAL DATA EKLENMESİ
         // ==========================================
         document.querySelectorAll('.fade-text').forEach(el => {
             el.dataset.originalText = el.innerText;
@@ -1805,7 +1848,9 @@
         });
 
         const introSection = document.querySelector('.intro');
+        const aboutSection = document.querySelector('.about-section');
         gsap.fromTo(introSection, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.5, ease: "power3.out", delay: 0.2 });
+        gsap.fromTo(aboutSection, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.5, ease: "power3.out", delay: 0.4 });
         
         window.addEventListener('load', () => {
             window.scrollTo(0, 0);
