@@ -231,51 +231,33 @@
         .fade-text { opacity: 0; filter: blur(10px); visibility: hidden;
         }
 
+        /* MOBIL OPTIMIZASYONU VE EFEKTLERIN IPTALI */
         @media (max-width: 768px) { 
-            body { cursor: auto;
-            } .cursor-dot, .cursor-outline, .cursor-timer { display: none !important; }
-            .header-nav { padding: 20px;
-            height: 70px; justify-content: center; gap: 0; }
-            .nav-links { display: none;
-            } 
-            .menu-toggle { display: flex; cursor: pointer;
-            position: absolute; left: 20px; } 
-            .subtitle { font-size: 5vw;
-            }
-            .gallery { padding: 10px 0; gap: 10px;
-            margin-top: 30px; }
-            .gallery .img-wrapper:nth-child(n) { top: 0 !important;
-            left: 0 !important; margin: 0 !important; transform: none !important; rotate: 0deg !important;
-            }
-            .gallery.expanded .img-wrapper { margin: 0 !important;
-            }
-            .img-wrapper.square, .img-wrapper.portrait, .img-wrapper.landscape, .img-wrapper.wide-square { width: calc(48% - 6px) !important;
-            }
-            .img-wrapper.landscape, .img-wrapper.wide-square { width: 100% !important;
-            }
-            .img-wrapper { cursor: pointer;
-            }
-            .gallery.expanded .img-wrapper:hover { scale: 1 !important;
-            translate: 0 !important; box-shadow: none !important; }
-            .gallery.expanded:hover .img-wrapper:not(:hover) { opacity: 1;
-            }
-            .category-menu { flex-direction: column; top: 70px; left: 0;
-            width: 100%; height: 0; max-height: calc(100dvh - 70px); background-color: var(--bg-color); padding: 0; overflow-y: auto; overflow-x: hidden; visibility: hidden; opacity: 0;
-            border-bottom: none; display: flex; justify-content: flex-start; z-index: 4500; -webkit-overflow-scrolling: touch;
-            }
-            .category-menu.active { height: calc(100dvh - 70px); visibility: visible;
-            opacity: 1; }
-            .cat-item { padding: 25px 40px;
-            font-size: 14px; border-bottom: 1px solid var(--border-color); width: 100%; display: block; flex-shrink: 0; text-align: center;
-            }
-            .mobile-only-links { display: flex; flex-shrink: 0; padding-bottom: 150px;
-            text-align: center; }
-            .intro { margin-top: 150px;
-            padding: 0 20px; margin-bottom: 60px; }
-            .project-section { padding: 0 20px;
-            margin-bottom: 60px; }
-            .project-header { margin-bottom: 30px;
-            }
+            body { cursor: auto; } 
+            .cursor-dot, .cursor-outline, .cursor-timer { display: none !important; }
+            .header-nav { padding: 20px; height: 70px; justify-content: center; gap: 0; }
+            .nav-links { display: none; } 
+            .menu-toggle { display: flex; cursor: pointer; position: absolute; left: 20px; } 
+            .subtitle { font-size: 5vw; }
+            .gallery { padding: 10px 0; gap: 10px; margin-top: 30px; }
+            .gallery .img-wrapper:nth-child(n) { top: 0 !important; left: 0 !important; margin: 0 !important; transform: none !important; rotate: 0deg !important; }
+            .gallery.expanded .img-wrapper { margin: 0 !important; }
+            .img-wrapper.square, .img-wrapper.portrait, .img-wrapper.landscape, .img-wrapper.wide-square { width: calc(48% - 6px) !important; }
+            .img-wrapper.landscape, .img-wrapper.wide-square { width: 100% !important; }
+            .img-wrapper { cursor: pointer; }
+            .gallery.expanded .img-wrapper:hover { scale: 1 !important; translate: 0 !important; box-shadow: none !important; }
+            .gallery.expanded:hover .img-wrapper:not(:hover) { opacity: 1; }
+            .category-menu { flex-direction: column; top: 70px; left: 0; width: 100%; height: 0; max-height: calc(100dvh - 70px); background-color: var(--bg-color); padding: 0; overflow-y: auto; overflow-x: hidden; visibility: hidden; opacity: 0; border-bottom: none; display: flex; justify-content: flex-start; z-index: 4500; -webkit-overflow-scrolling: touch; }
+            .category-menu.active { height: calc(100dvh - 70px); visibility: visible; opacity: 1; }
+            .cat-item { padding: 25px 40px; font-size: 14px; border-bottom: 1px solid var(--border-color); width: 100%; display: block; flex-shrink: 0; text-align: center; }
+            .mobile-only-links { display: flex; flex-shrink: 0; padding-bottom: 150px; text-align: center; }
+            .intro { margin-top: 150px; padding: 0 20px; margin-bottom: 60px; }
+            .project-section { padding: 0 20px; margin-bottom: 60px; }
+            .project-header { margin-bottom: 30px; }
+
+            /* MOBILDE METİN BLUR VE PİKSEL EFEKTİNİ KALDIRAN CSS KURALLARI */
+            .fade-text { opacity: 1 !important; filter: blur(0px) !important; visibility: visible !important; transform: none !important; }
+            .pixel-overlay { display: none !important; }
         }
 
         .lightbox { display: none;
@@ -1593,13 +1575,10 @@
             const imgs = currentSection.querySelectorAll('.img-wrapper img');
             imgs.forEach(i => currentVisibleImages.push(i));
 
-            // DOM referansı ile tıklanan öğeyi güvenli bir şekilde bul
             currentImageIndex = currentVisibleImages.findIndex(i => i === img);
             if (currentImageIndex === -1) currentImageIndex = 0;
 
             const lightboxImg = document.getElementById('lightboxImg');
-            
-            // Veri seti içindeki yüksek çözünürlüklü adresi kontrol et
             lightboxImg.src = img.dataset.highres || img.src; 
             
             document.getElementById('lightbox').style.display = 'flex';
@@ -1614,7 +1593,6 @@
             const lightboxImg = document.getElementById('lightboxImg');
             gsap.fromTo(lightboxImg, {opacity: 0.5}, {opacity: 1, duration: 0.3});
             
-            // Veri seti içindeki yüksek çözünürlüklü adresi kontrol et
             const currentImg = currentVisibleImages[currentImageIndex];
             lightboxImg.src = currentImg.dataset.highres || currentImg.src;
         }
@@ -1642,56 +1620,6 @@
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((time) => { lenis.raf(time * 1000); });
         gsap.ticker.lagSmoothing(0);
-        
-        gsap.utils.toArray('.img-wrapper').forEach((wrapper, i) => {
-            const speed = (i % 3 === 0) ? -25 : (i % 3 === 1) ? -45 : -15;
-            gsap.to(wrapper, {
-                "--parallax-y": speed + "px", 
-                ease: "none",
-                scrollTrigger: {
-                    trigger: wrapper.closest('.gallery'),
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: true 
-                }
-            });
-        });
-        
-        gsap.utils.toArray('.project-desc-container').forEach(el => {
-            gsap.fromTo(el, 
-                { y: 60 }, 
-                { y: -60, ease: "none", scrollTrigger: {
-                    trigger: el.closest('.project-section'),
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: true
-                }}
-            );
-        });
-        
-        gsap.utils.toArray('.project-header').forEach(el => {
-            gsap.fromTo(el, 
-                { y: 30 }, 
-                { y: -30, ease: "none", scrollTrigger: {
-                    trigger: el.closest('.project-section'),
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: true
-                }}
-            );
-        });
-        
-        gsap.utils.toArray('.project-link').forEach(el => {
-            gsap.fromTo(el, 
-                { y: 20 }, 
-                { y: -20, ease: "none", scrollTrigger: {
-                    trigger: el.closest('.project-section'),
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: true
-                }}
-            );
-        });
 
         // ==========================================
         // GÖRSEL PİKSEL EFEKTİ DÜZENLEMESİ
@@ -1716,30 +1644,10 @@
         }
 
         // ==========================================
-        // FADE-TEXT YUKARI/AŞAĞI BLUR EFEKTİ
+        // FADE-TEXT İÇİN ORİJİNAL DATA EKLENMESİ
         // ==========================================
         document.querySelectorAll('.fade-text').forEach(el => {
             el.dataset.originalText = el.innerText;
-        });
-        
-        gsap.utils.toArray('.fade-text').forEach(el => {
-            gsap.fromTo(el, 
-                { opacity: 0, filter: "blur(10px)", visibility: "hidden" },
-                {
-                    opacity: 1,
-                    filter: "blur(0px)",
-                    visibility: "visible",
-                    duration: 1.2,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: el,
-                        start: "top 95%", 
-                        end: "bottom 5%",
-                        // 'play reverse play reverse' her iki yönde çıkışta reverse, girişte play yapar
-                        toggleActions: "play reverse play reverse"
-                    }
-                }
-            );
         });
 
         // ==========================================
@@ -1760,21 +1668,90 @@
         });
 
         // ==========================================
-        // GÖRSELLER İÇİN GSAP SCROLLTRIGGER PİKSEL EFEKTİ
+        // GSAP MATCHMEDIA - MOBİL VS MASAÜSTÜ
         // ==========================================
-        gsap.utils.toArray('.img-wrapper').forEach(wrapper => {
-            ScrollTrigger.create({
-                trigger: wrapper,
-                start: "top 95%",
-                end: "bottom 5%",
-                onEnter: () => playPixels(wrapper),
-                onLeave: () => hidePixels(wrapper),
-                onEnterBack: () => playPixels(wrapper),
-                onLeaveBack: () => hidePixels(wrapper)
+        let mm = gsap.matchMedia();
+
+        // MASAÜSTÜ KONTROLLERİ (769px ve Üzeri)
+        mm.add("(min-width: 769px)", () => {
+            
+            // 1. Görsellerin Kaydırma Esnasında Kısayol / Paralaks Efekti
+            gsap.utils.toArray('.img-wrapper').forEach((wrapper, i) => {
+                const speed = (i % 3 === 0) ? -25 : (i % 3 === 1) ? -45 : -15;
+                gsap.to(wrapper, {
+                    "--parallax-y": speed + "px", 
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: wrapper.closest('.gallery'),
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: true 
+                    }
+                });
             });
+            
+            // 2. Metin Blokları Kısayol Kaydırma (Yatay / Düşey hareketler) Efektleri
+            gsap.utils.toArray('.project-desc-container').forEach(el => {
+                gsap.fromTo(el, { y: 60 }, { y: -60, ease: "none", scrollTrigger: { trigger: el.closest('.project-section'), start: "top bottom", end: "bottom top", scrub: true }});
+            });
+            
+            gsap.utils.toArray('.project-header').forEach(el => {
+                gsap.fromTo(el, { y: 30 }, { y: -30, ease: "none", scrollTrigger: { trigger: el.closest('.project-section'), start: "top bottom", end: "bottom top", scrub: true }});
+            });
+            
+            gsap.utils.toArray('.project-link').forEach(el => {
+                gsap.fromTo(el, { y: 20 }, { y: -20, ease: "none", scrollTrigger: { trigger: el.closest('.project-section'), start: "top bottom", end: "bottom top", scrub: true }});
+            });
+
+            // 3. Fade-Text Blur / Görünürlük Efekti
+            gsap.utils.toArray('.fade-text').forEach(el => {
+                gsap.fromTo(el, 
+                    { opacity: 0, filter: "blur(10px)", visibility: "hidden" },
+                    {
+                        opacity: 1,
+                        filter: "blur(0px)",
+                        visibility: "visible",
+                        duration: 1.2,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 95%", 
+                            end: "bottom 5%",
+                            toggleActions: "play reverse play reverse"
+                        }
+                    }
+                );
+            });
+
+            // 4. Görseller için Piksel Belirme Efekti
+            gsap.utils.toArray('.img-wrapper').forEach(wrapper => {
+                ScrollTrigger.create({
+                    trigger: wrapper,
+                    start: "top 95%",
+                    end: "bottom 5%",
+                    onEnter: () => playPixels(wrapper),
+                    onLeave: () => hidePixels(wrapper),
+                    onEnterBack: () => playPixels(wrapper),
+                    onLeaveBack: () => hidePixels(wrapper)
+                });
+            });
+            
         });
 
+        // MOBİL KONTROLLERİ (768px ve Altı)
+        mm.add("(max-width: 768px)", () => {
+            // Mobilde herhangi bir GSAP ScrollTrigger ön belleğe alınmasını veya CSS yitimi durumunu önlemek için 
+            // GSAP ile elemanları düz ve temiz (görünür) formlarına açıkça ayarlıyoruz. 
+            // Ayrıca CSS Media Query kısmında !important destekli koruma da eklidir.
+            gsap.set('.fade-text', { opacity: 1, filter: "blur(0px)", visibility: "visible" });
+            gsap.set('.pixel-overlay', { display: "none" });
+            gsap.set('.img-wrapper', { "--parallax-y": "0px" });
+            gsap.set(['.project-desc-container', '.project-header', '.project-link'], { y: 0 });
+        });
+
+        // ==========================================
         // LAZY LOAD VE SCROLLTRIGGER POZİSYON GÜNCELLEMESİ
+        // ==========================================
         let refreshTimeout;
         function debounceRefresh() {
             clearTimeout(refreshTimeout);
