@@ -176,7 +176,7 @@
         /* --- DAİRESEL ÖBEK MİMARİSİ --- */
         .gallery { 
             position: relative;
-            z-index: 30; /* Z-INDEX YÜKSELTİLDİ: Metinlerin DAİMA üstünde süzülmesi için */
+            z-index: 30;
             display: flex; flex-wrap: wrap; justify-content: center; align-content: center; align-items: center; 
             padding: 100px 0; margin-top: 0px; margin-bottom: 0px; 
             cursor: none;
@@ -185,7 +185,7 @@
         .img-wrapper { 
             position: relative;
             box-sizing: border-box; background-color: transparent; cursor: none;
-            border-radius: 4px; overflow: hidden; 
+            /* border-radius ve overflow: hidden özellikleri KALDIRILDI. Görseller artık animasyon sırasında rahatça nefes alacak ve kırpılmayacak. */
             
             transform: translateY(var(--parallax-y, 0px)) translateZ(0); 
             scale: 1; translate: 0 0;
@@ -197,53 +197,43 @@
             -webkit-backface-visibility: hidden;
             transform-style: preserve-3d;
             
-            /* CSS'teki tüm pozisyon (margin, top, left vs.) transitionları iptal edildi. İşlem tamamen Flip algoritmasında. */
             transition: opacity 0.6s ease, 
                         scale 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
-                        translate 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
-                        box-shadow 0.6s ease;
+                        translate 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             
             will-change: transform, scale, translate, rotate, margin, top, left;
         } 
         
+        /* Border-radius ve box-shadow artık doğrudan elementlere uygulanıyor */
         .img-wrapper img { display: block;
             width: 100%; height: auto; 
+            border-radius: 4px; /* Taşındı */
+            transition: box-shadow 0.6s ease; /* Hover pürüzsüzlüğü için eklendi */
             backface-visibility: hidden; 
             -webkit-backface-visibility: hidden;
         }
         .img-wrapper iframe { display: block; width: 100%;
-            aspect-ratio: 16 / 9; height: auto; }
+            aspect-ratio: 16 / 9; height: auto; 
+            border-radius: 4px; /* Taşındı */
+            transition: box-shadow 0.6s ease; /* Hover pürüzsüzlüğü için eklendi */
+        }
 
-        .img-wrapper.square { width: 15%;
-        }
-        .img-wrapper.portrait { width: 10%;
-        }
-        .img-wrapper.landscape { width: 22%;
-        }
-        .img-wrapper.wide-square { width: 26%;
-        }
+        .img-wrapper.square { width: 15%; }
+        .img-wrapper.portrait { width: 10%; }
+        .img-wrapper.landscape { width: 22%; }
+        .img-wrapper.wide-square { width: 26%; }
         
-        .gallery .img-wrapper:nth-child(odd).square { width: 17%;
-        }
-        .gallery .img-wrapper:nth-child(even).portrait { width: 12%;
-        }
-        .gallery .img-wrapper:nth-child(3n).landscape { width: 24%;
-        }
-        .gallery .img-wrapper:nth-child(5n).wide-square { width: 20%;
-        }
-        .gallery .img-wrapper:nth-child(4n).portrait { width: 9%;
-        }
+        .gallery .img-wrapper:nth-child(odd).square { width: 17%; }
+        .gallery .img-wrapper:nth-child(even).portrait { width: 12%; }
+        .gallery .img-wrapper:nth-child(3n).landscape { width: 24%; }
+        .gallery .img-wrapper:nth-child(5n).wide-square { width: 20%; }
+        .gallery .img-wrapper:nth-child(4n).portrait { width: 9%; }
 
-        .gallery .img-wrapper:nth-child(5n + 1) { top: -50px; left: 20px; z-index: 1;
-            rotate: -4deg; }
-        .gallery .img-wrapper:nth-child(5n + 2) { top: 40px; left: 30px;
-            z-index: 3; rotate: 3deg; }
-        .gallery .img-wrapper:nth-child(5n + 3) { top: -10px;
-            left: 0px; z-index: 5; scale: 1.05; } 
-        .gallery .img-wrapper:nth-child(5n + 4) { top: 50px;
-            left: -30px; z-index: 4; rotate: -3deg; }
-        .gallery .img-wrapper:nth-child(5n + 5) { top: -40px;
-            left: -25px; z-index: 2; rotate: 5deg; }
+        .gallery .img-wrapper:nth-child(5n + 1) { top: -50px; left: 20px; z-index: 1; rotate: -4deg; }
+        .gallery .img-wrapper:nth-child(5n + 2) { top: 40px; left: 30px; z-index: 3; rotate: 3deg; }
+        .gallery .img-wrapper:nth-child(5n + 3) { top: -10px; left: 0px; z-index: 5; scale: 1.05; } 
+        .gallery .img-wrapper:nth-child(5n + 4) { top: 50px; left: -30px; z-index: 4; rotate: -3deg; }
+        .gallery .img-wrapper:nth-child(5n + 5) { top: -40px; left: -25px; z-index: 2; rotate: 5deg; }
 
         /* --- JS İLE EXPAND (DAĞILMA) EDİLDİĞİNDE --- */
         .gallery.expanded .img-wrapper {
@@ -253,18 +243,23 @@
             rotate: 0deg !important; 
         }
         
-        .gallery.expanded:hover .img-wrapper:not(:hover) { opacity: 0.65;
-            z-index: 1; }
+        .gallery.expanded:hover .img-wrapper:not(:hover) { opacity: 0.65; z-index: 1; }
 
         .gallery.expanded .img-wrapper:hover {
             scale: 1.35;
             translate: 0 -15px; 
             z-index: 50; 
+        }
+
+        /* YENİ: Pembe çerçeve doğrudan görsele veriliyor. Siyah boşluklar engellendi! */
+        .gallery.expanded .img-wrapper:hover img,
+        .gallery.expanded .img-wrapper:hover iframe {
             box-shadow: 0 0 0 3px var(--bm-pink), 0 40px 80px rgba(0,0,0,0.8);
         }
 
         .pixel-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             display: grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: repeat(8, 1fr); z-index: 5; pointer-events: none;
+            border-radius: 4px; overflow: hidden; /* Overlay'in görsellerden taşmaması için eklendi */
         }
         .pixel-block { background-color: var(--bg-color); width: 102%; height: 102%;
         } 
@@ -318,8 +313,14 @@
             }
             .img-wrapper { cursor: pointer;
             }
+            
             .gallery.expanded .img-wrapper:hover { scale: 1 !important;
-                translate: 0 !important; box-shadow: none !important; }
+                translate: 0 !important; }
+            .gallery.expanded .img-wrapper:hover img,
+            .gallery.expanded .img-wrapper:hover iframe {
+                box-shadow: none !important;
+            }
+            
             .gallery.expanded:hover .img-wrapper:not(:hover) { opacity: 1;
             }
             
