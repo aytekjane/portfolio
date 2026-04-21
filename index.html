@@ -49,6 +49,19 @@
             background: #ff7aa0;
         }
 
+        /* --- ARKA PLAN VİDEOSU --- */
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Videonun ekranı esnemeden tam kaplamasını sağlar */
+            z-index: -1; /* Sitedeki her şeyin arkasında kalır */
+            pointer-events: none; /* Fare etkileşimlerini engeller */
+            opacity: 0.3; /* Videonun şeffaflığı (Yazıların okunabilirliği için) */
+        }
+
         .noise-overlay {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -160,6 +173,15 @@
             display: inline-block;
             object-fit: cover;
         }
+        .about-title {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            letter-spacing: 3px;
+            color: var(--text-color);
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
         .about-text {
             font-size: 13px;
             line-height: 2.2; color: var(--text-muted); font-weight: 300;
@@ -185,7 +207,6 @@
         .img-wrapper { 
             position: relative;
             box-sizing: border-box; background-color: transparent; cursor: none;
-            /* border-radius ve overflow: hidden özellikleri KALDIRILDI. Görseller artık animasyon sırasında rahatça nefes alacak ve kırpılmayacak. */
             
             transform: translateY(var(--parallax-y, 0px)) translateZ(0); 
             scale: 1; translate: 0 0;
@@ -204,18 +225,17 @@
             will-change: transform, scale, translate, rotate, margin, top, left;
         } 
         
-        /* Border-radius ve box-shadow artık doğrudan elementlere uygulanıyor */
         .img-wrapper img { display: block;
             width: 100%; height: auto; 
-            border-radius: 4px; /* Taşındı */
-            transition: box-shadow 0.6s ease; /* Hover pürüzsüzlüğü için eklendi */
+            border-radius: 4px;
+            transition: box-shadow 0.6s ease;
             backface-visibility: hidden; 
             -webkit-backface-visibility: hidden;
         }
         .img-wrapper iframe { display: block; width: 100%;
             aspect-ratio: 16 / 9; height: auto; 
-            border-radius: 4px; /* Taşındı */
-            transition: box-shadow 0.6s ease; /* Hover pürüzsüzlüğü için eklendi */
+            border-radius: 4px;
+            transition: box-shadow 0.6s ease;
         }
 
         .img-wrapper.square { width: 15%; }
@@ -251,7 +271,6 @@
             z-index: 50; 
         }
 
-        /* YENİ: Pembe çerçeve doğrudan görsele veriliyor. Siyah boşluklar engellendi! */
         .gallery.expanded .img-wrapper:hover img,
         .gallery.expanded .img-wrapper:hover iframe {
             box-shadow: 0 0 0 3px var(--bm-pink), 0 40px 80px rgba(0,0,0,0.8);
@@ -259,7 +278,7 @@
 
         .pixel-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             display: grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: repeat(8, 1fr); z-index: 5; pointer-events: none;
-            border-radius: 4px; overflow: hidden; /* Overlay'in görsellerden taşmaması için eklendi */
+            border-radius: 4px; overflow: hidden;
         }
         .pixel-block { background-color: var(--bg-color); width: 102%; height: 102%;
         } 
@@ -354,6 +373,8 @@
             }
             .project-header { margin-bottom: 30px;
             }
+            
+            .about-title { font-size: 20px; }
 
             /* MOBILDE METİN BLUR VE PİKSEL EFEKTİNİ KALDIRAN CSS KURALLARI */
             .fade-text { opacity: 1 !important;
@@ -377,6 +398,10 @@
     </style>
 </head>
 <body id="page-body">
+
+    <video class="bg-video" autoplay loop muted playsinline>
+        <source src="images/arkaplanvideo.mp4" type="video/mp4">
+    </video>
 
     <div class="noise-overlay"></div>
     <div class="cursor-dot" id="cursor-dot"></div>
@@ -423,6 +448,7 @@
     
     <div class="about-section" id="about-section" style="display: none;">
         <img src="images/aytek.webp" alt="Aytek Jane" class="about-image fade-text">
+        <h2 class="about-title fade-text">AYTEK JANE</h2>
         <p class="about-text fade-text" id="aboutText"></p>
     </div>
 
@@ -1619,7 +1645,7 @@
                 projCapsuleText: "Basit dairesel formuyla tanımlanan bu duvar lambası, orantıya büyük özen gösterilerek dikkatlice geliştirildi. Hidrolik pres kullanılarak üretilmek üzere tasarlandığından, tüm kalıp geliştirme süreçleri detaylı bir şekilde tamamlandı. Tasarım süreci boyunca çok çeşitli renk ve yüzey kaplama varyasyonları araştırıldı. İç aydınlatma elemanı, kablolama ve sürücü; hem performansı hem de dayanıklılığı sağlamak üzere titizlikle tasarlandı. Ürün Maison&Objet'te sergilendi ve daha sonra İngiltere merkezli CTO Lighting'e satıldı.",
                 capsuleNote: "Bağlam görseli Autoban'a aittir.",
                 projStarTitle: "AYDINLATMA: STAR SARKIT LAMBA (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
-                projStarText: "Altın oranı rehberliğinde, ürünün her bir elemanı uyumlu bir bütün oluşturacak şekilde oranlandırıldı. Proje ayrıca, kablolama ve gerekli sürücü sisteminin geliştirilmesinin yanı sıra PCB (Baskılı Devre Kartı) tasarımını da içeriyordu.",
+                projStarText: "Guided by the golden ratio, each element of the product was proportioned to form a harmonious whole. The project also included PCB design, along with the development of wiring and the necessary driver system.",
                 proj5Title: "AYDINLATMA: KEÇE SARKIT LAMBA KONSEPTİ",
                 pendantText: "Sıcak, dağınık bir aydınlatma ortamı yaratmak için keçenin akustik ve estetik özelliklerini kullanan minimalist bir aydınlatma konsepti."
             }
