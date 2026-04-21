@@ -90,7 +90,7 @@
         .menu-toggle span { width: 30px;
             height: 1px; background-color: var(--text-color); transition: 0.4s; }
 
-        .category-menu { position: fixed; top: 111px;
+        .category-menu { position: fixed; top: 111px; /* Header yüksekliğine göre ayarlandı */
             left: 0; width: 100%; display: flex; justify-content: center; align-items: center;
             flex-wrap: wrap; row-gap: 15px; column-gap: 35px;
             background-color: rgba(8, 8, 8, 0.85); backdrop-filter: blur(10px); padding: 20px 40px; box-sizing: border-box;
@@ -1166,6 +1166,18 @@
     </div>
 
     <script>
+        let currentVisibleImages = [];
+        let currentImageIndex = 0;
+
+        function preloadNextImage() {
+            if (currentVisibleImages.length > 1) {
+                let nextIdx = (currentImageIndex + 1) % currentVisibleImages.length;
+                let nextImg = currentVisibleImages[nextIdx];
+                let preloader = new Image();
+                preloader.src = nextImg.dataset.highres || nextImg.src;
+            }
+        }
+
         document.querySelectorAll('.gallery').forEach(gallery => {
             let items = Array.from(gallery.children);
             items.sort(() => Math.random() - 0.5);
@@ -1420,7 +1432,7 @@
                 niluferNote: "Bağlam görseli Autoban'a aittir.",
                 projBuhaisTitle: "AYDINLATMA: BUHAIS GEOLOGY PARK - OTOMATİK JALUZİ SİSTEMİ VE OKÜLÜS (KURUM İÇİ ÇALIŞMA: JVL)",
                 buhaisText: "Müzede sergilenen nesneleri UV kaynaklı hasarlardan korumak amacıyla bir jaluzi sistemi tasarlanmıştır. GPS tabanlı konum verileri ve güneşin hareketini kullanan jaluziler, gün boyunca otomatik olarak açılıp kapanmaktadır. Ayrıca okülüs, dikey olarak hareket eden bir reflektörün -bir diyafram gibi çalışarak- gelen ışık huzmesinin çapını kontrol ettiği mekana ışık girmesini sağlar.",
-                buhaisNote: "Bağlam görselleri ve fotoğraflar jvl'ye aittir.",
+                buhaisNote: "Bağlam görselli ve fotoğraflar jvl'ye aittir.",
                 projPendantBTitle: "AYDINLATMA: THE NEW BIG PENDANT LIGHT (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
                 projPendantBText: "Geniş hacimli iç mekanlar için geliştirilen, endüstriyel yapısal elemanları rafine aydınlatma estetiğiyle birleştiren büyük ölçekli bir sarkıt lamba tasarımı.",
                 projGhDeskTitle: "AYDINLATMA: GRAND HYATT MASA LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)",
@@ -1629,6 +1641,15 @@
 
         let currentVisibleImages = [];
         let currentImageIndex = 0;
+
+        function preloadNextImage() {
+            if (currentVisibleImages.length > 1) {
+                let nextIdx = (currentImageIndex + 1) % currentVisibleImages.length;
+                let nextImg = currentVisibleImages[nextIdx];
+                let preloader = new Image();
+                preloader.src = nextImg.dataset.highres || nextImg.src;
+            }
+        }
         
         function openLightbox(img) { 
             const gallery = img.closest('.gallery');
@@ -1652,6 +1673,8 @@
             
             document.getElementById('lightbox').style.display = 'flex';
             document.body.style.overflow = 'hidden'; 
+            
+            preloadNextImage(); // Hızlandırma: Sonraki görseli arka planda yükle
         }
 
         function nextLightboxImage(event) {
@@ -1660,10 +1683,14 @@
             
             currentImageIndex = (currentImageIndex + 1) % currentVisibleImages.length;
             const lightboxImg = document.getElementById('lightboxImg');
-            gsap.fromTo(lightboxImg, {opacity: 0.5}, {opacity: 1, duration: 0.3});
+            
+            // Animasyon süresi 0.15s olarak kısaltıldı
+            gsap.fromTo(lightboxImg, {opacity: 0.5}, {opacity: 1, duration: 0.15});
             
             const currentImg = currentVisibleImages[currentImageIndex];
             lightboxImg.src = currentImg.dataset.highres || currentImg.src;
+            
+            preloadNextImage(); // Hızlandırma: Bir sonraki görseli arka planda yükle
         }
 
         function closeLightbox(event) { 
