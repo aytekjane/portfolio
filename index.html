@@ -417,6 +417,19 @@
             color: var(--text-color); text-transform: uppercase; cursor: none; }
         .lb-hint { position: absolute; bottom: -30px;
             font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; }
+        .lb-nav { position: absolute; top: 50%; transform: translateY(-50%);
+            font-family: 'Cinzel', serif; font-size: 44px; line-height: 1; color: var(--text-color);
+            opacity: 0.45; cursor: none; user-select: none; padding: 20px; z-index: 10;
+            transition: opacity 0.3s ease, color 0.3s ease; }
+        .lb-nav:hover { opacity: 1; color: var(--bm-pink); }
+        .lb-prev { left: -75px; }
+        .lb-next { right: -75px; }
+        @media (max-width: 768px) {
+            .lb-nav { font-size: 30px; padding: 12px; opacity: 0.85;
+                background-color: rgba(8, 8, 8, 0.45); border-radius: 50%; }
+            .lb-prev { left: 8px; }
+            .lb-next { right: 8px; }
+        }
     </style>
 </head>
 <body id="page-body">
@@ -598,6 +611,7 @@
         </div>
         <div class="project-desc-container">
             <p class="project-desc fade-text" id="lcwText"></p>
+            <a href="https://www.lcwaikiki.com/" target="_blank" class="project-link fade-text">LCWAIKIKI.COM</a>
         </div>
     </div>
     <div class="divider filter-interior"></div>
@@ -1371,9 +1385,11 @@
 
     <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
         <div class="lb-content">
-            <div class="lb-close" onclick="closeLightbox(event)">CLOSE</div>
+            <div class="lb-close hoverable" onclick="closeLightbox(event)">CLOSE</div>
+            <div class="lb-nav lb-prev hoverable" onclick="prevLightboxImage(event)">&#8249;</div>
             <img id="lightboxImg" src="" onclick="nextLightboxImage(event)">
-            <div class="lb-hint">CLICK IMAGE FOR NEXT</div>
+            <div class="lb-nav lb-next hoverable" onclick="nextLightboxImage(event)">&#8250;</div>
+            <div class="lb-hint">CLICK IMAGE OR ARROWS TO NAVIGATE</div>
         </div>
     </div>
 
@@ -1616,7 +1632,7 @@
                 sinemiraText: `Conducted on-site measurements of existing yacht interiors to support accurate design development, followed by the preparation of detailed plans and section drawings. Developed technical and production drawings for custom furniture and surface finishes, ensuring precision and feasibility. Actively assisted in the on-site manufacturing and installation processes, helping to maintain design integrity and quality throughout the execution phase.`,
                 sinemiraNote: `Renders belong to Normal.`,
                 projLcwTitle: `INTERIOR: LC WAIKIKI INTERIOR DESIGN CONCEPT`,
-                lcwText: `Write your English description here.`,
+                lcwText: `A design study developed for the women's footwear section of LC Waikiki stores, shaped around the brand's corporate identity while updating its design language.`,
                 proj9Title: `INTERIOR: VAKKORAMA STORE PARAMETRIC LIGHTING INSTALLATION (CLIENT: VAKKORAMA)`,
                 vakkoramaText: `A study for the Vakkorama store at Zorlu Center in Istanbul. The project incorporates parametric lighting for the vertical walls. It was developed with the intention of having minimal impact on the existing lighting scheme created by lighting designer Ali Berkman, which defines the spatial light map. The light leaking from the frames was controlled within a defined mapping system, where the scale of the circular pattern on the printed surface was parametrically adjusted through software.`,
                 vakkoramaNote: `Photography: Ali Berkman, Aytek Jane`,
@@ -1725,7 +1741,7 @@
                 sinemiraText: `Doğru tasarım geliştirmeyi desteklemek amacıyla mevcut yat iç mekanlarının saha ölçümlerini gerçekleştirdim, ardından detaylı plan ve kesit çizimlerinin hazırlığını yaptım. Özel mobilya ve yüzey kaplamaları için teknik ve üretim çizimlerini geliştirerek hassasiyet ve uygulanabilirliği sağladım. Uygulama aşaması boyunca tasarım bütünlüğünü ve kaliteyi korumaya yardımcı olarak sahadaki üretim ve montaj süreçlerine aktif olarak destek verdim.`,
                 sinemiraNote: `Görseller Normal'e aittir.`,
                 projLcwTitle: `İÇ MİMARİ: LC WAIKIKI İÇ MEKAN TASARIM KONSEPTİ`,
-                lcwText: `Buraya Türkçe açıklama metnini yaz.`,
+                lcwText: `LC Waikiki mağazalarının kadın ayakkabı bölümü için, markanın kurumsal kimliği göz önünde bulundurularak ve tasarım dili güncellenerek geliştirilen bir çalışma.`,
                 proj9Title: `İÇ MİMARİ: VAKKORAMA MAĞAZASI PARAMETRİK AYDINLATMA ENSTALASYONU (MÜŞTERİ: VAKKORAMA)`,
                 vakkoramaText: `İstanbul Zorlu Center'daki Vakkorama mağazası için bir çalışma. Proje, dikey duvarlar için parametrik aydınlatmayı içeriyor. Aydınlatma tasarımcısı Ali Berkman tarafından oluşturulan ve mekansal ışık haritasını tanımlayan mevcut aydınlatma şemasına minimum etki etmesi amacıyla geliştirildi. Çerçevelerden sızan ışık, tanımlanmış bir haritalama sistemi içinde kontrol edildi ve basılı yüzey üzerindeki dairesel desenin ölçeği yazılım aracılığıyla parametrik olarak ayarlandı.`,
                 vakkoramaNote: `Fotoğraf: Ali Berkman, Aytek Jane`,
@@ -1938,6 +1954,17 @@
             lightboxImg.src = currentImg.dataset.highres || currentImg.src;
         }
 
+        function prevLightboxImage(event) {
+            if (event) event.stopPropagation();
+            if (currentVisibleImages.length === 0) return;
+
+            currentImageIndex = (currentImageIndex - 1 + currentVisibleImages.length) % currentVisibleImages.length;
+            const lightboxImg = document.getElementById('lightboxImg');
+
+            const currentImg = currentVisibleImages[currentImageIndex];
+            lightboxImg.src = currentImg.dataset.highres || currentImg.src;
+        }
+
         function closeLightbox(event) { 
             if (event && event.target.id === 'lightboxImg') return;
             document.getElementById('lightbox').style.display = 'none'; 
@@ -1947,6 +1974,7 @@
         window.addEventListener('keydown', e => { 
             if (e.key === "Escape") closeLightbox(); 
             if (e.key === "ArrowRight" && document.getElementById('lightbox').style.display === 'flex') nextLightboxImage();
+            if (e.key === "ArrowLeft" && document.getElementById('lightbox').style.display === 'flex') prevLightboxImage();
         });
         // EKLENTİLERİ KAYDET (FLIP DAHİL)
         gsap.registerPlugin(ScrollTrigger, Flip);
