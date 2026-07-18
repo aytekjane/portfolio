@@ -191,6 +191,43 @@
             font-size: 13px;
             line-height: 2.2; color: var(--text-muted); font-weight: 300;
         }
+
+        .contact-section {
+            max-width: 850px; width: 100%; margin: 0 auto 100px auto; padding: 0 40px;
+            box-sizing: border-box; text-align: center;
+        }
+        .contact-intro {
+            font-size: 13px; line-height: 2; color: var(--text-muted); font-weight: 300;
+            max-width: 520px; margin: 0 auto 45px auto;
+        }
+        .contact-links {
+            display: flex; flex-direction: column; gap: 16px; align-items: center; margin-bottom: 60px;
+        }
+        .contact-link {
+            display: inline-block; font-family: 'Inter', sans-serif; font-size: 14px; letter-spacing: 1px;
+            color: var(--text-muted); text-decoration: none; padding-bottom: 3px;
+            border-bottom: 1px solid transparent;
+            transition: color 0.4s ease, border-color 0.4s ease;
+        }
+        .contact-link:hover { color: var(--accent); border-color: var(--accent); }
+        .qr-card { display: inline-flex; flex-direction: column; align-items: center; gap: 18px; }
+        .qr-frame {
+            display: inline-block; padding: 18px; background-color: #fdfdfd; border-radius: 8px;
+            line-height: 0; box-shadow: 0 15px 40px rgba(0,0,0,0.45);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .qr-frame:hover { transform: translateY(-4px); box-shadow: 0 22px 55px rgba(0,0,0,0.6); }
+        .qr-svg { width: 180px; height: 180px; display: block; }
+        .qr-svg rect { fill: #0a0a0a; }
+        .qr-caption {
+            font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+            color: var(--text-muted); font-weight: 300;
+        }
+        @media (max-width: 768px) {
+            .qr-svg { width: 150px; height: 150px; }
+            .contact-link { font-size: 12px; }
+            .contact-section { margin-bottom: 60px; }
+        }
         
         .project-section { width: 100%;
             max-width: 1400px; margin-bottom: 60px; padding: 0 50px; box-sizing: border-box; position: relative; z-index: 10;
@@ -474,7 +511,7 @@
             <div class="menu-separator"></div>
     
             <a href="#" class="menu-link hoverable" onclick="filterProjects('about', this); return false;" id="aboutBtn">ABOUT</a>
-            <a href="mailto:aytekjane@gmail.com" class="menu-link hoverable">CONTACT</a>
+            <a href="#" class="menu-link hoverable" onclick="filterProjects('contact', this); return false;" id="contactBtn">CONTACT</a>
             <div class="menu-link hoverable" onclick="toggleLanguage()" id="langBtn">TÜRKÇE</div>
         </div>
     </div>
@@ -487,6 +524,14 @@
         <img src="images/aytek.webp" alt="Aytek Jane" class="about-image fade-text">
         <h2 class="about-title fade-text">AYTEK JANE</h2>
         <p class="about-text fade-text" id="aboutText"></p>
+    </div>
+
+    <div class="contact-section" id="contact-section" style="display: none;">
+        <h2 class="about-title fade-text" id="contactHeading">GET IN TOUCH</h2>
+        <div class="qr-card fade-text">
+            <a href="https://www.instagram.com/fauxlumen/" target="_blank" rel="noopener" class="qr-frame hoverable" aria-label="Open Instagram @fauxlumen"><svg class="qr-svg" viewBox="0 0 37 37" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" role="img" aria-label="QR code linking to instagram.com/fauxlumen"><rect x="2" y="2" width="7" height="1"/><rect x="10" y="2" width="4" height="1"/><rect x="15" y="2" width="7" height="1"/><rect x="25" y="2" width="1" height="1"/><rect x="28" y="2" width="7" height="1"/><rect x="2" y="3" width="1" height="1"/><rect x="8" y="3" width="1" height="1"/><rect x="11" y="3" width="2" height="1"/><rect x="15" y="3" width="3" height="1"/><rect x="19" y="3" width="1" height="1"/><rect x="22" y="3" width="1" height="1"/><rect x="24" y="3" width="1" height="1"/><rect x="28" y="3" width="1" height="1"/><rect x="34" y="3" width="1" height="1"/><rect x="2" y="4" width="1" height="1"/><rect x="4" y="4" width="3" height="1"/><rect x="8" y="4" width="1" height="1"/><rect x="11" y="4" width="1" height="1"/><rect x="16" y="4" width="1" height="1"/><rect x="18" y="4" width="3" height="1"/><rect x="22" y="4" width="1" height="1"/><rect x="26" y="4" width="1" height="1"/><rect x="28" y="4" width="1" height="1"/><rect x="30" y="4" width="3" height="1"/><rect x="34" y="4" width="1" height="1"/><rect x="2" y="5" width="1" height="1"/><rect x="4" y="5" width="3" height="1"/><rect x="8" y="5" width="1" height="1"/><rect x="12" y="5" width="1" height="1"/><rect x="16" y="5" width="2" height="1"/><rect x="21" y="5" width="6" height="1"/><rect x="28" y="5" width="1" height="1"/><rect x="30" y="5" width="3" height="1"/><rect x="34" y="5" width="1" height="1"/><rect x="2" y="6" width="1" height="1"/><rect x="4" y="6" width="3" height="1"/><rect x="8" y="6" width="1" height="1"/><rect x="10" y="6" width="1" height="1"/><rect x="12" y="6" width="2" height="1"/><rect x="15" y="6" width="1" height="1"/><rect x="18" y="6" width="3" height="1"/><rect x="26" y="6" width="1" height="1"/><rect x="28" y="6" width="1" height="1"/><rect x="30" y="6" width="3" height="1"/><rect x="34" y="6" width="1" height="1"/><rect x="2" y="7" width="1" height="1"/><rect x="8" y="7" width="1" height="1"/><rect x="10" y="7" width="1" height="1"/><rect x="12" y="7" width="1" height="1"/><rect x="14" y="7" width="1" height="1"/><rect x="16" y="7" width="1" height="1"/><rect x="19" y="7" width="1" height="1"/><rect x="22" y="7" width="1" height="1"/><rect x="24" y="7" width="1" height="1"/><rect x="28" y="7" width="1" height="1"/><rect x="34" y="7" width="1" height="1"/><rect x="2" y="8" width="7" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="12" y="8" width="1" height="1"/><rect x="14" y="8" width="1" height="1"/><rect x="16" y="8" width="1" height="1"/><rect x="18" y="8" width="1" height="1"/><rect x="20" y="8" width="1" height="1"/><rect x="22" y="8" width="1" height="1"/><rect x="24" y="8" width="1" height="1"/><rect x="26" y="8" width="1" height="1"/><rect x="28" y="8" width="7" height="1"/><rect x="13" y="9" width="1" height="1"/><rect x="16" y="9" width="3" height="1"/><rect x="20" y="9" width="1" height="1"/><rect x="23" y="9" width="1" height="1"/><rect x="25" y="9" width="1" height="1"/><rect x="3" y="10" width="7" height="1"/><rect x="11" y="10" width="1" height="1"/><rect x="14" y="10" width="1" height="1"/><rect x="16" y="10" width="4" height="1"/><rect x="24" y="10" width="3" height="1"/><rect x="29" y="10" width="2" height="1"/><rect x="34" y="10" width="1" height="1"/><rect x="5" y="11" width="1" height="1"/><rect x="7" y="11" width="1" height="1"/><rect x="9" y="11" width="3" height="1"/><rect x="14" y="11" width="5" height="1"/><rect x="20" y="11" width="6" height="1"/><rect x="28" y="11" width="2" height="1"/><rect x="31" y="11" width="2" height="1"/><rect x="34" y="11" width="1" height="1"/><rect x="2" y="12" width="1" height="1"/><rect x="4" y="12" width="1" height="1"/><rect x="7" y="12" width="4" height="1"/><rect x="14" y="12" width="1" height="1"/><rect x="16" y="12" width="3" height="1"/><rect x="20" y="12" width="1" height="1"/><rect x="22" y="12" width="2" height="1"/><rect x="26" y="12" width="3" height="1"/><rect x="30" y="12" width="1" height="1"/><rect x="32" y="12" width="1" height="1"/><rect x="2" y="13" width="1" height="1"/><rect x="5" y="13" width="1" height="1"/><rect x="11" y="13" width="4" height="1"/><rect x="23" y="13" width="3" height="1"/><rect x="30" y="13" width="4" height="1"/><rect x="5" y="14" width="2" height="1"/><rect x="8" y="14" width="3" height="1"/><rect x="14" y="14" width="1" height="1"/><rect x="16" y="14" width="3" height="1"/><rect x="20" y="14" width="1" height="1"/><rect x="23" y="14" width="1" height="1"/><rect x="25" y="14" width="3" height="1"/><rect x="29" y="14" width="3" height="1"/><rect x="33" y="14" width="2" height="1"/><rect x="2" y="15" width="1" height="1"/><rect x="4" y="15" width="1" height="1"/><rect x="12" y="15" width="1" height="1"/><rect x="17" y="15" width="2" height="1"/><rect x="22" y="15" width="7" height="1"/><rect x="31" y="15" width="1" height="1"/><rect x="33" y="15" width="2" height="1"/><rect x="2" y="16" width="3" height="1"/><rect x="7" y="16" width="3" height="1"/><rect x="11" y="16" width="1" height="1"/><rect x="13" y="16" width="3" height="1"/><rect x="17" y="16" width="1" height="1"/><rect x="21" y="16" width="1" height="1"/><rect x="26" y="16" width="4" height="1"/><rect x="31" y="16" width="1" height="1"/><rect x="33" y="16" width="1" height="1"/><rect x="2" y="17" width="2" height="1"/><rect x="5" y="17" width="1" height="1"/><rect x="10" y="17" width="2" height="1"/><rect x="13" y="17" width="2" height="1"/><rect x="18" y="17" width="2" height="1"/><rect x="21" y="17" width="5" height="1"/><rect x="27" y="17" width="6" height="1"/><rect x="2" y="18" width="4" height="1"/><rect x="8" y="18" width="1" height="1"/><rect x="10" y="18" width="1" height="1"/><rect x="18" y="18" width="1" height="1"/><rect x="20" y="18" width="2" height="1"/><rect x="24" y="18" width="4" height="1"/><rect x="29" y="18" width="2" height="1"/><rect x="34" y="18" width="1" height="1"/><rect x="2" y="19" width="2" height="1"/><rect x="6" y="19" width="2" height="1"/><rect x="9" y="19" width="3" height="1"/><rect x="14" y="19" width="2" height="1"/><rect x="17" y="19" width="6" height="1"/><rect x="24" y="19" width="6" height="1"/><rect x="31" y="19" width="2" height="1"/><rect x="34" y="19" width="1" height="1"/><rect x="2" y="20" width="1" height="1"/><rect x="5" y="20" width="2" height="1"/><rect x="8" y="20" width="1" height="1"/><rect x="10" y="20" width="1" height="1"/><rect x="12" y="20" width="4" height="1"/><rect x="17" y="20" width="2" height="1"/><rect x="24" y="20" width="1" height="1"/><rect x="27" y="20" width="1" height="1"/><rect x="29" y="20" width="2" height="1"/><rect x="32" y="20" width="2" height="1"/><rect x="2" y="21" width="2" height="1"/><rect x="6" y="21" width="2" height="1"/><rect x="9" y="21" width="2" height="1"/><rect x="12" y="21" width="1" height="1"/><rect x="15" y="21" width="1" height="1"/><rect x="21" y="21" width="1" height="1"/><rect x="25" y="21" width="1" height="1"/><rect x="27" y="21" width="1" height="1"/><rect x="29" y="21" width="6" height="1"/><rect x="2" y="22" width="1" height="1"/><rect x="8" y="22" width="1" height="1"/><rect x="10" y="22" width="2" height="1"/><rect x="14" y="22" width="1" height="1"/><rect x="16" y="22" width="3" height="1"/><rect x="20" y="22" width="1" height="1"/><rect x="22" y="22" width="3" height="1"/><rect x="26" y="22" width="2" height="1"/><rect x="30" y="22" width="2" height="1"/><rect x="33" y="22" width="2" height="1"/><rect x="2" y="23" width="1" height="1"/><rect x="6" y="23" width="1" height="1"/><rect x="11" y="23" width="1" height="1"/><rect x="14" y="23" width="1" height="1"/><rect x="16" y="23" width="2" height="1"/><rect x="23" y="23" width="1" height="1"/><rect x="25" y="23" width="1" height="1"/><rect x="28" y="23" width="1" height="1"/><rect x="31" y="23" width="2" height="1"/><rect x="34" y="23" width="1" height="1"/><rect x="2" y="24" width="1" height="1"/><rect x="6" y="24" width="1" height="1"/><rect x="8" y="24" width="1" height="1"/><rect x="11" y="24" width="1" height="1"/><rect x="13" y="24" width="1" height="1"/><rect x="15" y="24" width="1" height="1"/><rect x="17" y="24" width="1" height="1"/><rect x="19" y="24" width="1" height="1"/><rect x="22" y="24" width="3" height="1"/><rect x="27" y="24" width="1" height="1"/><rect x="33" y="24" width="1" height="1"/><rect x="2" y="25" width="1" height="1"/><rect x="4" y="25" width="1" height="1"/><rect x="6" y="25" width="1" height="1"/><rect x="9" y="25" width="1" height="1"/><rect x="11" y="25" width="2" height="1"/><rect x="15" y="25" width="1" height="1"/><rect x="17" y="25" width="2" height="1"/><rect x="23" y="25" width="1" height="1"/><rect x="27" y="25" width="2" height="1"/><rect x="31" y="25" width="2" height="1"/><rect x="2" y="26" width="1" height="1"/><rect x="4" y="26" width="2" height="1"/><rect x="8" y="26" width="3" height="1"/><rect x="15" y="26" width="1" height="1"/><rect x="18" y="26" width="1" height="1"/><rect x="22" y="26" width="1" height="1"/><rect x="24" y="26" width="1" height="1"/><rect x="26" y="26" width="5" height="1"/><rect x="33" y="26" width="1" height="1"/><rect x="10" y="27" width="1" height="1"/><rect x="16" y="27" width="3" height="1"/><rect x="20" y="27" width="4" height="1"/><rect x="25" y="27" width="2" height="1"/><rect x="30" y="27" width="1" height="1"/><rect x="32" y="27" width="1" height="1"/><rect x="34" y="27" width="1" height="1"/><rect x="2" y="28" width="7" height="1"/><rect x="10" y="28" width="1" height="1"/><rect x="13" y="28" width="1" height="1"/><rect x="16" y="28" width="3" height="1"/><rect x="20" y="28" width="1" height="1"/><rect x="22" y="28" width="2" height="1"/><rect x="25" y="28" width="2" height="1"/><rect x="28" y="28" width="1" height="1"/><rect x="30" y="28" width="1" height="1"/><rect x="32" y="28" width="2" height="1"/><rect x="2" y="29" width="1" height="1"/><rect x="8" y="29" width="1" height="1"/><rect x="10" y="29" width="4" height="1"/><rect x="16" y="29" width="2" height="1"/><rect x="20" y="29" width="7" height="1"/><rect x="30" y="29" width="5" height="1"/><rect x="2" y="30" width="1" height="1"/><rect x="4" y="30" width="3" height="1"/><rect x="8" y="30" width="1" height="1"/><rect x="10" y="30" width="2" height="1"/><rect x="15" y="30" width="2" height="1"/><rect x="19" y="30" width="1" height="1"/><rect x="23" y="30" width="1" height="1"/><rect x="26" y="30" width="6" height="1"/><rect x="2" y="31" width="1" height="1"/><rect x="4" y="31" width="3" height="1"/><rect x="8" y="31" width="1" height="1"/><rect x="10" y="31" width="2" height="1"/><rect x="14" y="31" width="4" height="1"/><rect x="20" y="31" width="1" height="1"/><rect x="22" y="31" width="4" height="1"/><rect x="27" y="31" width="1" height="1"/><rect x="30" y="31" width="1" height="1"/><rect x="32" y="31" width="1" height="1"/><rect x="34" y="31" width="1" height="1"/><rect x="2" y="32" width="1" height="1"/><rect x="4" y="32" width="3" height="1"/><rect x="8" y="32" width="1" height="1"/><rect x="10" y="32" width="1" height="1"/><rect x="12" y="32" width="4" height="1"/><rect x="17" y="32" width="1" height="1"/><rect x="20" y="32" width="2" height="1"/><rect x="23" y="32" width="1" height="1"/><rect x="25" y="32" width="5" height="1"/><rect x="31" y="32" width="2" height="1"/><rect x="2" y="33" width="1" height="1"/><rect x="8" y="33" width="1" height="1"/><rect x="10" y="33" width="3" height="1"/><rect x="17" y="33" width="2" height="1"/><rect x="20" y="33" width="5" height="1"/><rect x="27" y="33" width="2" height="1"/><rect x="30" y="33" width="3" height="1"/><rect x="2" y="34" width="7" height="1"/><rect x="11" y="34" width="1" height="1"/><rect x="14" y="34" width="1" height="1"/><rect x="16" y="34" width="1" height="1"/><rect x="18" y="34" width="1" height="1"/><rect x="21" y="34" width="1" height="1"/><rect x="24" y="34" width="4" height="1"/><rect x="29" y="34" width="1" height="1"/><rect x="31" y="34" width="1" height="1"/><rect x="33" y="34" width="1" height="1"/></svg></a>
+            <a href="https://www.instagram.com/fauxlumen/" target="_blank" rel="noopener" class="contact-link hoverable">AI WORKS - INSTAGRAM @FAUXLUMEN</a>
+        </div>
     </div>
 
     <div class="project-section filter-furniture filter-exterior">
@@ -1582,6 +1627,7 @@
             en: {
                 desc: `A space where you can find my selected works and ideas.`,
                 aboutText: `My design journey has been shaped by an academic trajectory extending from Istanbul to Italy, backed by 15 years of multifaceted industry experience. Throughout my career, I have delivered projects across a broad spectrum—ranging from furniture and glassware design to high-tech products, interior architecture, and lighting—always maintaining a rigorous balance between aesthetics and function.<br><br>While managing the strategic processes of projects in my role as a Design Studio Manager, I further deepened my technical expertise at NYU Abu Dhabi, where I conducted R&D on 3D scanning technologies, museum studies, and archaeology. I have also contributed to the academic field by leading studio processes and teaching project courses as a guest designer at Kadir Has University’s Industrial Design Department.<br><br>For me, design is the art of merging in-depth research with production methodologies, cost discipline, and aesthetics. Today, I continue to focus on creating innovative and viable solutions, fueled by my specialized interest in biomimicry, biophilic design, IoT, and horology.`,
+                contactHeading: `GET IN TOUCH`,
                 projFoldTitle: `LIGHTING: FOLD FLOOR & WALL LAMP (IN-HOUSE WORK: AUTOBAN)`,
                 projFoldText: `The Fold Series explores origami-inspired structures through the geometric folding of fabricated surfaces, transforming them into lighting elements. The interplay between the precise formal structure and the softness of the emitted light creates a composition that balances sharpness with serenity.`,
                 projBabajiTitle: `FURNITURE-LIGHTING: BABAJI RESTAURANT LIGHTING & FURNITURE DESIGN (IN-HOUSE WORK: AUTOBAN)`,
@@ -1691,6 +1737,7 @@
    
                 desc: `Seçilmiş çalışmalarımı ve fikirlerimi bulabileceğiniz bir alan.`,
                 aboutText: `Tasarım yolculuğum, İstanbul'dan İtalya'ya uzanan akademik bir eğitim süreci ve 15 yıllık çok yönlü sektör deneyimiyle şekillendi. Kariyerim boyunca mobilya ve cam eşya tasarımından yüksek teknoloji ürünlerine, iç mimariden aydınlatmaya kadar geniş bir yelpazede, estetik ve işlev arasındaki hassas dengeyi daima koruyarak projeler ürettim.<br><br>Tasarım Stüdyosu Yöneticisi olarak projelerin stratejik süreçlerini yönetirken, NYU Abu Dhabi'de 3 boyutlu tarama teknolojileri, müze çalışmaları ve arkeoloji üzerine Ar-Ge çalışmaları yürüterek teknik uzmanlığımı daha da derinleştirdim. Ayrıca Kadir Has Üniversitesi Endüstriyel Tasarım Bölümü'nde misafir tasarımcı olarak stüdyo süreçlerine liderlik edip proje dersleri vererek akademik alana da katkıda bulundum.<br><br>Benim için tasarım; derinlemesine araştırmayı üretim metodolojileri, maliyet disiplini ve estetikle harmanlama sanatıdır. Bugün, biyomimikri, biyofilik tasarım, IoT ve saatçiliğe olan özel ilgimden güç alarak yenilikçi ve uygulanabilir çözümler üretmeye odaklanmaya devam ediyorum.`,
+                contactHeading: `İLETİŞİM`,
                 projFoldTitle: `AYDINLATMA: FOLD ZEMİN VE DUVAR LAMBASI (KURUM İÇİ ÇALIŞMA: AUTOBAN)`,
                 projFoldText: `Fold Serisi, üretilmiş yüzeylerin geometrik olarak katlanmasıyla origami'den ilham alan yapıları keşfeder ve bunları aydınlatma elemanlarına dönüştürür. Hassas biçimsel yapı ile yayılan ışığın yumuşaklığı arasındaki etkileşim, keskinliği dinginlikle dengeleyen bir kompozisyon oluşturur.`,
                 projBabajiTitle: `MOBİLYA-AYDINLATMA: BABAJI RESTORAN AYDINLATMA VE MOBİLYA TASARIMI (KURUM İÇİ ÇALIŞMA: AUTOBAN)`,
@@ -1834,6 +1881,8 @@
             
             const aBtn = document.getElementById('aboutBtn');
             if (aBtn) aBtn.innerText = (currentLang === 'en' ? 'ABOUT' : 'HAKKINDA');
+            const cBtn = document.getElementById('contactBtn');
+            if (cBtn) cBtn.innerText = (currentLang === 'en' ? 'CONTACT' : 'İLETİŞİM');
             document.querySelectorAll('.cat-item').forEach(item => {
                 const map = {
                     tr: {all:'HEPSİ', interior:'İÇ MİMARİ', exterior:'DIŞ MİMARİ', furniture:'MOBİLYA', lighting:'AYDINLATMA', glassware:'CAM EŞYA', accessory:'AKSESUAR', fashion:'MODA', rd:'AR-GE', hobby:'HOBİ'},
@@ -1857,24 +1906,35 @@
             
             const introSec = document.getElementById('intro-section');
             const aboutSec = document.getElementById('about-section');
+            const contactSec = document.getElementById('contact-section');
             if (category === 'all') {
                 introSec.style.display = 'flex';
                 aboutSec.style.display = 'none';
+                contactSec.style.display = 'none';
                 gsap.fromTo(introSec, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8 });
             } else if (category === 'about') {
                 introSec.style.display = 'none';
+                contactSec.style.display = 'none';
                 aboutSec.style.display = 'block';
                 aboutSec.style.marginTop = '200px'; 
                 gsap.fromTo(aboutSec, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8 });
+            } else if (category === 'contact') {
+                introSec.style.display = 'none';
+                aboutSec.style.display = 'none';
+                contactSec.style.display = 'block';
+                contactSec.style.marginTop = '200px';
+                gsap.set(contactSec.querySelectorAll('.fade-text'), { opacity: 1, filter: 'blur(0px)', visibility: 'visible' });
+                gsap.fromTo(contactSec, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8 });
             } else {
                 introSec.style.display = 'none';
                 aboutSec.style.display = 'none';
+                contactSec.style.display = 'none';
             }
 
             const sections = document.querySelectorAll('.project-section');
             let firstVisible = false;
             sections.forEach(sec => {
-                if (category === 'about') {
+                if (category === 'about' || category === 'contact') {
                     sec.style.display = 'none';
                     sec.style.marginTop = '0px';
                 } else if (category === 'all' || sec.classList.contains('filter-' + category)) {
